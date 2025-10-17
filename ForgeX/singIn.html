@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bejelentkezés</title>
+    <link rel="stylesheet" href="asd.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome ikonokhoz -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="container"> <!-- nagy doboz -->
+    <div class="header"> <!-- fejléc -->
+        <div class="avatar">
+            <i class="fa-solid fa-user"></i> <!-- kis ember ikon -->
+        </div>
+        <h2>Üdvözlünk</h2>
+        <p>Jelentkezz be a fiókodba</p>
+    </div>
+
+    <div class="form-box">
+        <div class="tab-buttons">
+            <button>Bejelentkezés</button>
+        </div>
+
+        <form> <!-- összes mező és gomb -->
+            <label for="email">Email cím</label> <!-- kis szöveg -->
+            <div class="input-box">
+                <i class="fa-solid fa-envelope"></i> <!-- kis ikon -->
+                <input type="email" id="email" placeholder="pelda@email.com" required> <!-- mező -->
+            </div>
+
+            <label for="password">Jelszó</label>
+            <div class="input-box">
+                <i class="fa-solid fa-lock"></i> <!-- bal oldali lakat ikon -->
+                <input type="password" id="password" placeholder="Minimum 8 karakter" required> <!-- mező -->
+                <i class="fa-solid fa-eye" id="togglePassword"></i><!-- jobb oldali szem ikon -->
+            </div>
+
+            <div class="options">
+                <label><input type="checkbox"> Emlékezz rám</label> <!-- szöveg + kis doboz -->
+                <a href="#">Elfelejtett jelszó?</a>
+            </div>
+
+            <a href="index.html"><button class="login-btn">Bejelentkezés <i class="fa-solid fa-arrow-right"></i></button></a> <!-- bejelentkezés gomb + kis nyíl -->
+        </form>
+
+        <p class="signup-text">Nincs még fiókod? <a href="reg.html">Regisztrálj itt</a></p>
+
+        <div class="divider">
+            <span>vagy</span>
+        </div>
+
+        <div class="social-buttons">
+            <button><i class="fa-brands fa-google"></i> Google</button>
+            <button><i class="fa-brands fa-facebook"></i> Facebook</button>
+        </div>
+    </div>
+
+    <p class="footer-text">
+        A folytatással elfogadod az <a href="szerzodesek.html">Általános Szerződési Feltételeket</a>
+        és az <a href="szerzodesek.html">Adatvédelmi Szabályzatot</a>
+    </p>
+</div>
+
+<div class="phoneAlsoMenu" id="hidden">
+    <a href=""><img src="https://blogger.googleusercontent.com/img/a/AVvXsEjWKRjSGDLLZiHXHkVvs17JzH96-r_hTw5IEggJbNOVacw37Vp2BVelLwtoc4KRhvw61tWrgjPqOdFYy5HF_yED3b3JjMWiNvcM3NubgzkjuuvtmEn2pEVUtO6Jn3T-vBUeHytWzNUfliRMC7sPhwZrAiPpuJeW6-jd0vwZlIjfdZLg5FDJL-Jz2tJiajM" class="phoneAlsoButt2" id="phoneProfilButt"></a>
+    <a href="index.html"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEjTj_tBeEAlNqVcqK3BqoPRryYKbcv8wNU8j9XzjyGMi4HlppPqyyhTaoLT3vMiTAVshSMVfvFEiLeJN-i2x_wSTMgEps3je7uKuPmR7s6XrVTQ928wPFwyj5-lVChSteg-dzFv76Q_IjNiov2p7cLphdxKF9Ys-mUaiZlEeD6S338zj5nwLyukV9NKgdo" class="phoneAlsoButt" id="phoneHomeButt"></a>
+    <a href=""><img src="https://blogger.googleusercontent.com/img/a/AVvXsEjnr3paeYkomWqEuLtpy-LUrJtccK4i5TAvsA4fIgCuoEmtgKqU2Nx3n4trTJrgoRU3T4w6qhAG3t7TAzlh8090v8e8luNlBsNdGc0avkHqE65n2omeiEctqzaxqvYTESBxYGCDRsHupOurWGNd1EwNhrAZem6DvrOP0dW1wc-EatQ0WWRXSMyXMxVgOLk" class="phoneAlsoButt2" id="phoneKosarButt"></a>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
