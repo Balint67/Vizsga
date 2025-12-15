@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<video
+        src="logo.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+        class="no-interact"
+></video>
+<style>
+    .no-interact {
+        pointer-events: none;    /* letiltja az összes egérkattintást, húzást stb. */
+        user-select: none;       /* nem lehet kijelölni */
+        -webkit-user-drag: none; /* nem lehet elhúzni sem */
+        outline: none;
+        border: none;
+    }
+
+</style>
+</body>
+</html>

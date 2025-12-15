@@ -1,9 +1,18 @@
 body {
     font-family: Arial, sans-serif;
-    background: #0f1c2e;
     color: #fff;
     margin: 0;
     padding: 0;
+}
+.logoVid{
+    margin-left: 30px;
+    height: 40px;
+    width: auto;
+}
+.menuPict{
+    margin-top: 200px;
+    height: 400px;
+    width: auto;
 }
 
 .container {

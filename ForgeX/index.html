@@ -12,14 +12,25 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 
+    <link rel="stylesheet" href="asd.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 
 </head>
-
 <body>
+
 
 <div class="top-bar">
     <div class="left-spacer">
-        <a href="index.html"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEgJXcEJRlL5_Y8B4gnkOZTZPBPN2EEDE9SN4kdOp74E50orb7F64EJ34atjlSI-I_8KSOaap23rm1S0AWUewkJEN-Rt82nkfLwMXuV9a_FTUym7B0tYUXGdR1Te2VgIS1fhHe9bGOHIqv75_J4Tq7NIfonjOuTA0T3kwdw9yMQIEsR2I28nKMvm6bda3pM" class="logoIMG" alt="logo"></a>
+        <a href="index.html"><video
+                src="logo.mp4"
+                autoplay
+                muted
+                playsinline
+                class="logoVid"
+        ></video>
+        </a>
     </div>
     <header class="site-header">
         <div class="container nav-container">
@@ -68,8 +79,8 @@
                         <a href=""><p>Elérhetőségek</p></a>
                     </div>
                     </li>
-                    <li><div class="text">
-                        <a href="singIn.html"><button class="btn" href="" onclick="showIcons()">Bejelentkezés</button></a>
+                    <li class="bejelentkezBtn"><div class="text">
+                        <a href="#"><button class="btn" href="" onclick="showIcons()">Bejelentkezés</button></a>
                     </div>
                     </li>
 
@@ -90,13 +101,88 @@
 </div>
 
 
-<div class="phoneAlsoMenu" id="hidden">
-    <a href="singIn.html"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEjWKRjSGDLLZiHXHkVvs17JzH96-r_hTw5IEggJbNOVacw37Vp2BVelLwtoc4KRhvw61tWrgjPqOdFYy5HF_yED3b3JjMWiNvcM3NubgzkjuuvtmEn2pEVUtO6Jn3T-vBUeHytWzNUfliRMC7sPhwZrAiPpuJeW6-jd0vwZlIjfdZLg5FDJL-Jz2tJiajM" class="phoneAlsoButt2" id="phoneProfilButt"></a>
-    <a href="index.html"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEjTj_tBeEAlNqVcqK3BqoPRryYKbcv8wNU8j9XzjyGMi4HlppPqyyhTaoLT3vMiTAVshSMVfvFEiLeJN-i2x_wSTMgEps3je7uKuPmR7s6XrVTQ928wPFwyj5-lVChSteg-dzFv76Q_IjNiov2p7cLphdxKF9Ys-mUaiZlEeD6S338zj5nwLyukV9NKgdo" class="phoneAlsoButt" id="phoneHomeButt"></a>
-    <a href=""><img src="https://blogger.googleusercontent.com/img/a/AVvXsEjnr3paeYkomWqEuLtpy-LUrJtccK4i5TAvsA4fIgCuoEmtgKqU2Nx3n4trTJrgoRU3T4w6qhAG3t7TAzlh8090v8e8luNlBsNdGc0avkHqE65n2omeiEctqzaxqvYTESBxYGCDRsHupOurWGNd1EwNhrAZem6DvrOP0dW1wc-EatQ0WWRXSMyXMxVgOLk" class="phoneAlsoButt2" id="phoneKosarButt"></a>
+<div class="phone-menu" role="navigation" aria-label="Alsó navigáció">
+    <button onclick="onpagehide()">
+        <img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjWKRjSGDLLZiHXHkVvs17JzH96-r_hTw5IEggJbNOVacw37Vp2BVelLwtoc4KRhvw61tWrgjPqOdFYy5HF_yED3b3JjMWiNvcM3NubgzkjuuvtmEn2pEVUtO6Jn3T-vBUeHytWzNUfliRMC7sPhwZrAiPpuJeW6-jd0vwZlIjfdZLg5FDJL-Jz2tJiajM" alt="Profil" />
+    </button>
+    <a href="index.html" aria-label="Főoldal">
+        <img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjTj_tBeEAlNqVcqK3BqoPRryYKbcv8wNU8j9XzjyGMi4HlppPqyyhTaoLT3vMiTAVshSMVfvFEiLeJN-i2x_wSTMgEps3je7uKuPmR7s6XrVTQ928wPFwyj5-lVChSteg-dzFv76Q_IjNiov2p7cLphdxKF9Ys-mUaiZlEeD6S338zj5nwLyukV9NKgdo" alt="Főoldal" />
+    </a>
+    <a href="" aria-label="Kosár">
+        <img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjnr3paeYkomWqEuLtpy-LUrJtccK4i5TAvsA4fIgCuoEmtgKqU2Nx3n4trTJrgoRU3T4w6qhAG3t7TAzlh8090v8e8luNlBsNdGc0avkHqE65n2omeiEctqzaxqvYTESBxYGCDRsHupOurWGNd1EwNhrAZem6DvrOP0dW1wc-EatQ0WWRXSMyXMxVgOLk" alt="Kosár" />
+    </a>
 </div>
 
-<img src="" alt="">
+
+
+<div class="bejelentkez" id="hidden">
+
+    <div class="container"> <!-- nagy doboz -->
+
+
+        <div class="form-box">
+            <button onclick="onpagehide()"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEhfXyeodalT28Ou8nclrJXon1pZPWjN0NvQP9HeTYNOZVmPw_vuRzdebd0D79YmXx_8jeZ8euHEGTRyb1_EXkw5X50pXkdQ4TZYxC6DPAhvJfz8DIHGDBtAJpvmCcyPWBFpaLSM4DF-itbtZ_F9dPvduWkYGy2d5mLXkin1x-JzLfQg5Ssu5L3aVhsXcE4" class="close"></button>
+            <div class="header"> <!-- fejléc -->
+                <div class="avatar">
+                    <i class="fa-solid fa-user"></i> <!-- kis ember ikon -->
+                </div>
+                <h2>Üdvözlünk</h2>
+                <p>Jelentkezz be a fiókodba</p>
+            </div>
+            <div class="tab-buttons">
+                <button >Bejelentkezés</button>
+            </div>
+
+            <form> <!-- összes mező és gomb -->
+                <label for="email">Email cím</label> <!-- kis szöveg -->
+                <div class="input-box">
+                    <i class="fa-solid fa-envelope"></i> <!-- kis ikon -->
+                    <input type="email" id="email" placeholder="pelda@email.com" required> <!-- mező -->
+                </div>
+
+                <label for="password">Jelszó</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i> <!-- bal oldali lakat ikon -->
+                    <input type="password" id="password" placeholder="Minimum 8 karakter" required> <!-- mező -->
+                    <i class="fa-solid fa-eye" id="togglePassword"></i><!-- jobb oldali szem ikon -->
+                </div>
+
+                <div class="options">
+                    <label><input type="checkbox"> Emlékezz rám</label> <!-- szöveg + kis doboz -->
+                    <a href="#">Elfelejtett jelszó?</a>
+                </div>
+
+                <button class="login-btn" onclick="onpagehide()">Bejelentkezés <i class="fa-solid fa-arrow-right"></i></button>
+            </form>
+
+            <p class="signup-text">Nincs még fiókod? <a href="reg.html">Regisztrálj itt</a></p>
+
+            <div class="divider">
+                <span>vagy</span>
+            </div>
+
+            <div class="social-buttons">
+                <button><i class="fa-brands fa-google"></i> Google</button>
+                <button><i class="fa-brands fa-facebook"></i> Facebook</button>
+            </div>
+        </div>
+
+        <p class="footer-text">
+            A folytatással elfogadod az <a href="szerzodesek.html">Általános Szerződési Feltételeket</a>
+            és az <a href="szerzodesek.html">Adatvédelmi Szabályzatot</a>
+        </p>
+    </div>
+
+
+
+    <script src="script.js"></script>
+</div>
+
+<img class="menuPict" id="gym" src="https://blogger.googleusercontent.com/img/a/AVvXsEjSNdi9MuOfp7YTqtAoiIDlpHiFM6y_q0nbTprCwgSDMebDdtGJMSrK8_0bJ3jtdtzxRIccU2FtO4HLbvRC37g3AK47Pdq430Ad68i2RoEGyk0FumoDbQiEhdRnqd0ErNLndKxFehiLHY1YBYOh_nF6zmd47LmFiFm0nKsuZ4tdR_WqAc97wqos_q16zsiI">
+<img class="menuPict" id="shop" src="https://blogger.googleusercontent.com/img/a/AVvXsEjzXAvzZls6OS8J1VNGbRsQzAJY49gNTXwzt-N5H5jEeflkIKRbAa-1avrQqjLbiSP-lA1lhL-8sQt3RxDGJYh9_x8SUuYRtFB6AoeGJtqIZEYq0MSZVyL9rqj5mq06EVDES_prl7ZXLUxzIckn2WCp38TLq9sbZ5LpHOCf74xodvsXZ9d8iwAaDWPzvUoH">
+<img class="menuPict" id="food" src="https://blogger.googleusercontent.com/img/a/AVvXsEishqVLc6at1jnwA4M1rSyWJeIousezjLsB1bjnMBk5Qta5lr1NYUHLRPYDVgE8RLa4H1S-V4xcVhkT0BCzJMfeCV2ruDX9mABhEJ_1pfQ7z78gazVAA3VVLMo5B5QbdvAtl4Q32o5xHNk2KurrbS1Gw6TBW0-Ry3ETROZ-MKPF2CHDtvUQ4_tvmMYd1yey">
+
+
 
 </body>
 

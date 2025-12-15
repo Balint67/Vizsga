@@ -1,54 +1,51 @@
 body {
 
     margin: 0;
-    background-color: #0f1c2e;
+    background-color: #0f1a27;
     font-family: Arial, sans-serif;
 }
 #hidden {
     display: none;
 }
-
-
-
-.phoneAlsoMenu {
-    background-color: #0d1928;
+/* ====== Alsó mobil navigáció (phone-menu) ====== */
+.phone-menu {
     position: fixed;
     bottom: 0;
-    left: 0;
+    left: -2%;
     width: 100%;
-    height: 70px;
-    z-index: 1000;
+    height: 64px;
+    background: #0d1928;
+    z-index: 900;
     display: flex;
-    padding: 0 20px;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.phoneAlsoButt {
-    width: 50px;
-    height: auto;
-}
-
-.phoneAlsoButt2 {
+/* Az ikonok mérete és megjelenése */
+.phone-menu__icon {
     width: 40px;
     height: auto;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.9;
+    cursor: pointer;
 }
 
-#phoneKosarButt {
-    margin-left: 30%;
-    margin-top: 10px;
+.phone-menu__icon:hover {
+    transform: translateY(-3px);
+    opacity: 1;
 }
 
-#phoneHomeButt {
-    margin-left: 30%;
-    margin-top: 10px;
-}
-
-#phoneProfilButt {
-    margin-left: 10px;
-    margin-top: 10px;
+/* Csak mobil nézetben jelenjen meg (pl. 768px alatt) */
+@media (min-width: 1400px) {
+    .phone-menu {
+        display: none;
+    }
 }
 
 .top-bar {
-    background-color: #0f1c2e;
+    background-color: #0f1a27;
     position: fixed;
     top: 0;
     left: 0;
@@ -131,7 +128,21 @@ body {
 
 }
 
+.bejelentkezBtn{
+    display: flex;
 
+    position: absolute;        /* jobbra pozicionálás */
+
+    right: 70px;
+
+    top: 25%;
+}
+.logoVid {
+    user-select: none;
+    -webkit-user-drag: none;
+    height: 150px;
+    width: auto;
+}
 
 
 .right-icons {
@@ -192,7 +203,7 @@ body {
     width: 42px; height: 42px;
     border-radius: 10px;
     border: 1px solid rgba(255,255,255,0.08);
-    background: #0f1c2e;
+    background: #0f1a27;
     cursor: pointer;
     flex-direction: column;
     align-items: center;
@@ -216,7 +227,7 @@ body {
 
 /* --- RESPONSÍV --- */
 
-@media (max-width: 600px) {
+@media (max-width: 1400px) {
 
     .top-bar {
 
@@ -277,4 +288,45 @@ body {
         display: inline;
     }
 
+}
+
+
+/* MODÁL: mindig minden fölött */
+.bejelentkez{
+    position: fixed;     /* fontos! */
+    inset: 0;            /* top:0; right:0; bottom:0; left:0 */
+    z-index: 9999;       /* magasabb mint bármi más */
+    display: grid;       /* középre igazítás egyszerűen */
+    place-items: center;
+    background: rgba(0,0,0,.6); /* sötét háttér */
+}
+
+/* ha kell, a belső dobozt is biztosítsd */
+.bejelentkez .container{
+    position: relative;
+    z-index: 10000;      /* a hátterén is felül legyen */
+}
+
+/* ha a #hidden miatt nem látszik, kényszerítsd felül: */
+#hidden{ display: none; }
+.bejelentkez.is-open{ display: grid !important; }  /* JS-ből tedd rá az .is-open-t */
+
+.close{
+    width: 15px;
+    height: auto;
+    margin-right: -330px;
+
+}
+
+.close:hover {
+    content: url("https://blogger.googleusercontent.com/img/a/AVvXsEjW1eh4XMzv_xq4grUCetunCqFjnuisYQFnwUWO0OUGcRzejN-kEjC6kXBs0Af_KXU27CqSAMZbKzcUvGwOEV8wb3KiSQlIUC8EUwIqqaEZbBT21t3fUCYkUaMiswMFp69HZT3z5YrwFWHD8nLkJcl7pe7sdp5v5lsJtj3E191zR81S982VODmq3rR5hlM");
+}
+
+
+button {
+    background: none;     /* eltávolítja a háttérszínt */
+    border: none;         /* eltünteti a keretet is */
+    box-shadow: none;     /* ha volt árnyék, az is eltűnik */
+    color: inherit;       /* a szöveg színét örökli a szülőtől */
+    cursor: pointer;      /* maradjon kattintható */
 }
