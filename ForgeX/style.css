@@ -287,6 +287,10 @@ body {
     #hidden {
         display: inline;
     }
+    .slider {
+        /* Itt visszatérünk a széles, panoráma nézethez */
+        aspect-ratio: 9 / 16;
+    }
 
 }
 
@@ -332,26 +336,49 @@ button {
 }
 
 .container-slide{
-    padding: 2rem;
+margin-top: 150px;
 }
 .slider-wrapper {
     position: relative;
-    max-width: 70rem;
+    max-width: 100%;
 
     margin: 0 auto;
 }
 .slider {
     display: flex;
-    aspect-ratio: 16 / 9;
+
+    /* --- MOBIL NÉZET (Alapértelmezett) --- */
+    /* Itt állítsd be a 4 / 3 -at (vagy 1 / 1 -et, ha nagyobbat akarsz) */
+    aspect-ratio: 1 / 1;
+
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);
+    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;   /* IE/Edge */
 }
-.slider img{
+
+/* --- ASZTALI NÉZET (Tablet és PC) --- */
+/* 768 pixel szélesség felett átváltunk a széles panorámára */
+@media (min-width: 768px) {
+    .slider {
+        aspect-ratio: 16 / 5;
+    }
+}
+
+/* Chrome görgetősáv eltüntetése (marad a fájl végén) */
+.slider::-webkit-scrollbar {
+    display: none;
+}
+
+.slider img {
     flex: 1 0 100%;
     scroll-snap-align: start;
     object-fit: cover;
+
+    /* --- EZT A SORT ADD HOZZÁ: --- */
+    object-position: center center;
 }
 .slider-nav{
     display: flex;
@@ -363,8 +390,8 @@ button {
     z-index: 1;
 }
 .slider-nav a{
-    width: 0.5rem;
-    height: 0.5rem;
+    width: 1rem;
+    height: 1rem;
     border-radius: 50%;
     background-color: #ffffff;
     opacity: 0.75;
@@ -372,4 +399,20 @@ button {
 }
 .slider-nav a:hover{
     opacity: 1;
+}
+
+#slide-1{
+    margin-top: -200px;
+}
+#slide-2{
+    margin-bottom: -50px;
+}
+#slide-3{
+    margin-top: -50px;
+}
+
+.tiszta-link {
+    text-decoration: none; /* Eltünteti az aláhúzást */
+    color: inherit;        /* Örökli a szülő elem színét (nem lesz kék) */
+    cursor: pointer;       /* Megtartja a kéz ikont (javasolt!) */
 }
