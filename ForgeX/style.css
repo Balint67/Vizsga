@@ -335,18 +335,26 @@ button {
     cursor: pointer;      /* maradjon kattintható */
 }
 
+
+/* Slide Show */
+
 .container-slide{
-margin-top: 150px;
+    margin-top: 150px;
+    width: 100%;
+    overflow: hidden; /* Ez biztosítja, hogy ne lógjon ki semmi */
 }
 .slider-wrapper {
     position: relative;
     max-width: 100%;
-
+    width: 100%;
     margin: 0 auto;
 }
 .slider {
     display: flex;
-
+    width: 100%;
+    height: auto;
+    overflow-y: hidden; /* NINCS GÖRGETÉS (sem le, sem fel, sem oldalra kézzel) */
+    position: relative;
     /* --- MOBIL NÉZET (Alapértelmezett) --- */
     /* Itt állítsd be a 4 / 3 -at (vagy 1 / 1 -et, ha nagyobbat akarsz) */
     aspect-ratio: 1 / 1;
@@ -357,6 +365,8 @@ margin-top: 150px;
     box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);
     scrollbar-width: none;      /* Firefox */
     -ms-overflow-style: none;   /* IE/Edge */
+    cursor: pointer;
+
 }
 
 /* --- ASZTALI NÉZET (Tablet és PC) --- */
@@ -376,13 +386,16 @@ margin-top: 150px;
     flex: 1 0 100%;
     scroll-snap-align: start;
     object-fit: cover;
-
-    /* --- EZT A SORT ADD HOZZÁ: --- */
+    -webkit-user-drag: none;
+    pointer-events: none;
     object-position: center center;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
 }
 .slider-nav{
     display: flex;
-    colimn-gap: 1rem;
+    column-gap: 0.5rem;
     position: absolute;
     bottom: 1.25rem;
     left: 50%;
@@ -410,6 +423,15 @@ margin-top: 150px;
 #slide-3{
     margin-top: -50px;
 }
+.slider.active {
+    cursor: grabbing;
+
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+}
+
+
+
 
 .tiszta-link {
     text-decoration: none; /* Eltünteti az aláhúzást */

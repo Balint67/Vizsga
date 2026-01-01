@@ -31,3 +31,38 @@ if (video) {
         video.currentTime = video.duration;
     });
 }
+
+// Slide Show
+const slider = document.querySelector('.slider');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+// 1. Egér lenyomása
+slider.addEventListener('mousedown', (e) => {
+    isDown = true;
+    slider.classList.add('active');
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+});
+
+// 2. Egér felengedése - JAVÍTVA
+// Most már a 'window'-t figyeljük, nem a 'slider'-t.
+// Így bárhol engeded el a gombot, megáll a húzás.
+window.addEventListener('mouseup', () => {
+    isDown = false;
+    slider.classList.remove('active');
+});
+
+// 3. Egér mozgatása
+slider.addEventListener('mousemove', (e) => {
+    if (!isDown) return; // Ha nincs lenyomva, nem csinál semmit
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 2; // A *2 a sebesség, növelheted, ha gyorsabbat akarsz
+    slider.scrollLeft = scrollLeft - walk;
+});
+slider.addEventListener('dragstart', (e) => {
+    e.preventDefault();
+});
+
