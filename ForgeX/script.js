@@ -1,5 +1,5 @@
 /* =========================
-   SLIDER (MANUAL + AUTO, TRUE INFINITE, FIXED)
+   SLIDER (MANUAL + AUTO, TRUE INFINITE, FIXED + DOTS)
 ========================= */
 
 const slider = document.querySelector('.slider');
@@ -28,6 +28,19 @@ if (slider) {
 
     slider.scrollLeft = slideWidth * currentIndex;
 
+    // ---- DOT INDICATOR ----
+    const dots = document.querySelectorAll('.slider-nav a');
+
+    function updateDots() {
+        dots.forEach(dot => dot.style.backgroundColor = '#ffffff'); // alap fehér
+        let dotIndex = currentIndex - 1; // a klónokat figyelembe véve
+        if(dotIndex >= dots.length) dotIndex = 0;
+        if(dotIndex < 0) dotIndex = dots.length - 1;
+        dots[dotIndex].style.backgroundColor = '#00ca65'; // aktív zöld
+    }
+
+    updateDots(); // kezdeti állapot
+
     // ---- MOVE FUNCTION ----
     function moveToSlide(index) {
         slider.scrollTo({
@@ -35,16 +48,17 @@ if (slider) {
             behavior: 'smooth'
         });
         currentIndex = index;
+        updateDots(); // minden slide váltásnál frissítjük a pöttyöket
     }
 
     // ---- AUTO SLIDE ----
     function nextSlide() { moveToSlide(currentIndex + 1); }
     function prevSlide() { moveToSlide(currentIndex - 1); }
+
     function startAutoSlide() {
-        stopAutoSlide(); // biztosítjuk, hogy ne legyen több intervall
+        stopAutoSlide();
         autoInterval = setInterval(() => {
-            // mindig 1 képpel megy előre az aktuális indexhez képest
-            moveToSlide(currentIndex + 1);
+            nextSlide();
         }, autoDelay);
     }
 
@@ -93,18 +107,20 @@ if (slider) {
 
     // ---- LOOP FIX (ONLY ONCE) ----
     slider.addEventListener('scroll', () => {
-        if (isLooping) return; // lock
+        if (isLooping) return;
         if (currentIndex === allSlides.length - 1 && slider.scrollLeft >= slideWidth * (allSlides.length - 1)) {
             isLooping = true;
             slider.style.scrollBehavior = 'auto';
             slider.scrollLeft = slideWidth; // első valódi kép
             currentIndex = 1;
+            updateDots();
             setTimeout(() => { slider.style.scrollBehavior = 'smooth'; isLooping = false; }, 20);
         } else if (currentIndex === 0 && slider.scrollLeft <= 0) {
             isLooping = true;
             slider.style.scrollBehavior = 'auto';
             slider.scrollLeft = slideWidth * (allSlides.length - 2); // utolsó valódi kép
             currentIndex = allSlides.length - 2;
+            updateDots();
             setTimeout(() => { slider.style.scrollBehavior = 'smooth'; isLooping = false; }, 20);
         }
     });
@@ -113,4 +129,9 @@ if (slider) {
     slider.addEventListener('mouseleave', startAutoSlide);
 
     startAutoSlide();
+
+    // ---- DOT CLICK (opcionális, ha szeretnéd) ----
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => moveToSlide(i + 1)); // +1 mert az első slide klón miatt
+    });
 }

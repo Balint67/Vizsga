@@ -426,6 +426,9 @@ button {
 #slide-3{
     margin-top: -50px;
 }
+#slide-3{
+    margin-left: -20px;
+}
 .slider.active {
     cursor: grabbing;
     scroll-snap-type: none;
