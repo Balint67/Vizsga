@@ -358,16 +358,18 @@ button {
     /* --- MOBIL NÉZET (Alapértelmezett) --- */
     /* Itt állítsd be a 4 / 3 -at (vagy 1 / 1 -et, ha nagyobbat akarsz) */
     aspect-ratio: 1 / 1;
-
+    touch-action: pan-x;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
+
     scroll-behavior: smooth;
     box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);
     scrollbar-width: none;      /* Firefox */
     -ms-overflow-style: none;   /* IE/Edge */
     cursor: pointer;
+    scroll-padding-inline: 0;
 
 }
+
 
 /* --- ASZTALI NÉZET (Tablet és PC) --- */
 /* 768 pixel szélesség felett átváltunk a széles panorámára */
@@ -384,7 +386,7 @@ button {
 
 .slider img {
     flex: 1 0 100%;
-    scroll-snap-align: start;
+
     object-fit: cover;
     -webkit-user-drag: none;
     pointer-events: none;
@@ -392,6 +394,7 @@ button {
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
+
 }
 .slider-nav{
     display: flex;
@@ -425,7 +428,6 @@ button {
 }
 .slider.active {
     cursor: grabbing;
-
     scroll-snap-type: none;
     scroll-behavior: auto;
 }
