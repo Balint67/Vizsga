@@ -1,0 +1,225 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0f1c2e;
+    font-family: Arial, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #0d1928;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 420px;
+    padding: 30px;
+    text-align: center;
+}
+
+/* Fejléc */
+.header .avatar {
+    background: linear-gradient(135deg, #4CAF50, #007524);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px auto;
+}
+
+.header .avatar i {
+    font-size: 30px;
+    color: white;
+}
+
+.header h2 {
+    margin: 10px 0 5px 0;
+    font-size: 26px;
+}
+
+.header p {
+    color: #aaa;
+    font-size: 15px;
+}
+
+/* Űrlap */
+.form-box {
+    margin-top: 25px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.input-box {
+    background-color: #16263a;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #1f324d;
+    transition: 0.3s;
+}
+
+.input-box:hover {
+    border-color: #00ca65;
+}
+
+.input-box i {
+    color: #aaa;
+    margin-right: 10px;
+}
+
+.input-box input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: white;
+    outline: none;
+    font-size: 15px;
+}
+
+#togglePassword {
+    cursor: pointer;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.options a {
+    color: #00ca65;
+    text-decoration: none;
+}
+
+.options a:hover {
+    text-decoration: underline;
+}
+
+/* Gomb */
+.login-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #4CAF50, #007524);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+}
+
+.signup-text {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.signup-text a {
+    color: #00ca65;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-text a:hover {
+    text-decoration: underline;
+}
+
+/* Elválasztó */
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 25px 0;
+    color: #aaa;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    height: 1px;
+    width: 40%;
+    background-color: #2b3c54;
+    margin: 0 10px;
+}
+
+/* Közösségi gombok */
+.social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.social-buttons button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #16263a;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.social-buttons button i {
+    margin-right: 8px;
+}
+
+.social-buttons button:hover {
+    background-color: #00ca65;
+}
+
+.footer-text {
+    margin-top: 25px;
+    font-size: 12px;
+    color: #aaa;
+}
+
+.footer-text a {
+    color: #00ca65;
+    text-decoration: none;
+}
+
+.footer-text a:hover {
+    text-decoration: underline;
+}
+
+/* Mobil nézet */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+        width: 95%;
+    }
+
+    .header h2 {
+        font-size: 22px;
+    }
+
+    .login-btn {
+        font-size: 15px;
+    }
+}
