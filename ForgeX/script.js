@@ -1,6 +1,36 @@
 /* =========================
    SLIDER (MANUAL + AUTO, TRUE INFINITE, FIXED + DOTS + RESIZE FIX)
 ========================= */
+let startX = 0;
+let startY = 0;
+let isDragging = false;
+
+document.querySelectorAll('.slider img').forEach(img => {
+
+    img.addEventListener('mousedown', e => {
+        startX = e.clientX;
+        startY = e.clientY;
+        isDragging = false;
+    });
+
+    img.addEventListener('mousemove', e => {
+        const dx = Math.abs(e.clientX - startX);
+        const dy = Math.abs(e.clientY - startY);
+
+        // ha elmozdulás nagyobb mint 5–10px → dragnek tekintjük
+        if (dx > 8 || dy > 8) {
+            isDragging = true;
+        }
+    });
+
+    img.addEventListener('mouseup', e => {
+        if (!isDragging) {
+            // tényleges kattintás
+            const link = img.getAttribute('data-link');
+            if (link) location.href = link;
+        }
+    });
+});
 
 const slider = document.querySelector('.slider');
 

@@ -453,3 +453,11 @@ button {
     color: inherit;        /* Örökli a szülő elem színét (nem lesz kék) */
     cursor: pointer;       /* Megtartja a kéz ikont (javasolt!) */
 }
+
+
+.container-bottom{
+    width: 100%;
+    height: auto;
+    background-color: black;
+    padding: 20px 20%;
+}
