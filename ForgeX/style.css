@@ -461,3 +461,40 @@ button {
     background-color: black;
     padding: 20px 20%;
 }
+
+.igLogo{
+    width: 30px;
+    height: auto;
+    position: absolute;
+    margin-top: -7px;
+    margin-left: 10px;
+}
+.faceLogo{
+    width: 60px;
+    height: auto;
+    position: absolute;
+    margin-top: -7px;
+    margin-left: -4px;
+}
+.tiktokLogo{
+    width: 40px;
+    height: auto;
+    position: absolute;
+    margin-top: -14px;
+    margin-left: 35px;
+}
+.animation{
+    transition: transform 0.2s ease;
+}
+.animation:hover{
+    transform: translateY(-2px);
+}
+.space{
+    padding-top: 5px;
+}
+#tiktok{
+    padding-top: 10px;
+}
+.kihagyás{
+    padding-top: 5px;
+}
