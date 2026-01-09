@@ -1,0 +1,27 @@
+# --- JetBrains (WebStorm) beállítások ---
+# Ez a legfontosabb sor, ez tiltja le a teljes mappát:
+.idea/
+
+# WebStorm projekt fájlok (ha nem mappában lennének)
+*.iws
+*.iml
+*.ipr
+
+# --- Operációs rendszer szemetek ---
+# Mac-eseknek (ha a barátod vagy te Mac-et használtok)
+.DS_Store
+
+# Windows-osoknak
+Thumbs.db
+ehthumbs.db
+
+# --- Webes dolgok (biztonság kedvéért) ---
+# Ha használtok csomagkezelőt, a node_modules sose legyen gitben
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# --- VS Code ---
+# Ha te esetleg VS Code-ot használsz, akkor ezt is tedd bele,
+# hogy te se szemeteld tele az ő gépét a te beállításaiddal:
+.vscode/

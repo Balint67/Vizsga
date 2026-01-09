@@ -1,0 +1,350 @@
+body {
+
+    margin: 0;
+    background-color: white;
+    font-family: Arial, sans-serif;
+}
+
+
+
+.top-bar {
+    background-color: #0f1c2e;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+
+}
+
+.site-header {
+    padding: 20px;
+}
+
+.nav-list{
+    display: flex;
+    align-items: center;
+    gap: 4.3rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.btn{
+    background: linear-gradient(135deg, #4CAF50, #007524); /* színátmenet */
+    font-family: 'Open Sans', sans-serif;
+    font-size: 23px;
+    font-weight: 700;
+    color: white;
+    padding: 12px 28px;
+    border: 0px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    padding: 12px 48px;
+}
+
+.singIn-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+}
+
+.singIn-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.text {
+    font-weight: 500;
+    font-size: 20px;
+    color: white;
+    transition: transform 0.2s ease;
+}
+
+.text:hover {
+    transform: translateY(-2px);
+}
+
+.text a {
+    text-decoration: none; /* leveszi az aláhúzást */
+    color: inherit;        /* átveszi a szöveg színét */
+}
+
+
+.text a:hover {
+    color: #00ca65; /* opcionális hover szín */
+}
+
+/* Középre a logo */
+
+.logoIMG {
+    z-index: 600;
+    height: 80px;
+
+    width: auto;
+
+
+}
+
+
+
+/* Jobbra lévő ikonok */
+
+.right-icons {
+    margin-right: 20px;
+    display: flex;
+
+    position: absolute;        /* jobbra pozicionálás */
+
+    right: 20px;
+
+    top: 55%;
+
+    transform: translateY(-50%);
+
+}
+
+
+
+.right-icons img {
+
+    height: 40px;
+
+    width: auto;
+
+    transition: transform 0.2s ease;
+
+    margin-right: 50px; /* kisebb margó mobilon is */
+
+}
+
+
+
+.right-icons img:hover {
+
+    transform: translateY(-5px);
+
+}
+
+
+
+/* Külön szabály a kisebb like ikonhoz */
+
+.likeIMG {
+
+    height: 40px;
+
+}
+
+
+
+
+
+
+
+
+
+/* --- RESPONSÍV --- */
+
+@media (max-width: 600px) {
+
+    .top-bar {
+
+        flex-direction: column;  /* logo felül, ikonok alul */
+
+        height: auto;
+
+        padding: 10px;
+
+    }
+
+    .menuPont {
+        padding: 0px;
+    }
+
+
+    .right-icons {
+
+        position: static;        /* abszolút helyett normál flow */
+
+        transform: none;
+
+        margin-top: 10px;
+
+    }
+
+
+
+    .right-icons img {
+
+        height: 35px;
+
+        margin-right: 15px;
+
+    }
+
+
+
+    .logoIMG {
+
+        height: 40px;
+
+    }
+
+}
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f1c2e, #0f1c2e);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Kártya */
+.card {
+    background: #1e293b;
+    padding: 40px 30px;
+    border-radius: 18px;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+
+/* Ikon */
+.icon span {
+    font-size: 56px;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+/* Cím és leírás */
+.card h2 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.card p {
+    font-size: 15px;
+    color: #cbd5e1;
+    margin-bottom: 24px;
+}
+
+/* Input mezők */
+form label {
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #cbd5e1;
+    font-weight: 500;
+}
+
+form input {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    background: #243447;
+    color: #aaa;
+    transition: all 0.3s ease;
+}
+
+form input:focus {
+    outline: 2px solid #22c55e;
+}
+
+
+
+form button:hover {
+    background: #16a34a;
+}
+
+/* Eredmény */
+#result {
+    margin-top: 24px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.result-box {
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.result-under { background: #3b82f620; color: #3b82f6; }
+.result-normal { background: #22c55e20; color: #22c55e; }
+.result-over { background: #eab30820; color: #eab308; }
+.result-obese { background: #ef444420; color: #ef4444; }
+
+
+/* === ÚJ BMI FEJLESZTÉSEK === */
+
+.chart-container {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.progress-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(#22c55e 0deg, #333 0deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #fff;
+    font-weight: bold;
+    transition: background 0.8s ease;
+}
+
+#bmiValue {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.bmi-desc {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #cbd5e1;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.bmi-desc.show {
+    opacity: 1;
+}
+
+@keyframes fadeInResult {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
