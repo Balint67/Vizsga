@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    /* Slide Show */
+    .container-slide {
+        margin-top: 150px;
+        width: 100%;
+        overflow: hidden; /* Ez biztosítja, hogy ne lógjon ki semmi */
+    }
+
+    .slider-wrapper {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .slider {
+        /* A látható ablak */
+        width: 100%;
+        height: auto;
+        overflow: hidden; /* NINCS GÖRGETÉS (sem le, sem fel, sem oldalra kézzel) */
+        position: relative;
+
+        /* Mobil nézet arány */
+        aspect-ratio: 1 / 1;
+    }
+
+    /* Tablet és PC nézet */
+    @media (min-width: 768px) {
+        .slider {
+            aspect-ratio: 16 / 5;
+        }
+    }
+
+    .slide-track {
+        display: flex;
+        /* Számítás: Van 6 képünk (3 eredeti + 3 másolat).
+           Ha azt akarjuk, hogy egyszerre kb 1 látszódjon mobilon,
+           vagy 3 PC-n, a flex gondoskodik róla, de a tracknek szélesnek kell lennie.
+           Beállítjuk a szélességet 200%-ra (mivel 2 szett kép van) */
+        width: 200%;
+        animation: scroll 20s linear infinite; /* 20 másodperc alatt ér körbe */
+    }
+
+    /* Ha ráviszed az egeret, megáll az animáció (opcionális, de hasznos) */
+    .slide-track:hover {
+        animation-play-state: paused;
+    }
+
+    .slide {
+        width: 100%; /* Egyenlően elosztja a helyet */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden; /* Képvágás biztonság kedvéért */
+    }
+
+    .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none; /* Kép ne legyen kijelölhető */
+    }
+
+    /* --- KÉPEK EGYEDI POZÍCIÓI (marginok megtartása) --- */
+    /* Az ID-k helyett most class-okat használunk, hogy a másolatokra is hasson */
+    .img-pos-1 {
+        margin-top: -200px;
+    }
+
+    .img-pos-2 {
+        margin-bottom: -50px;
+    }
+
+    .img-pos-3 {
+        margin-top: -50px;
+    }
+
+    /* --- ANIMÁCIÓ --- */
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            /* A feléig megyünk el (-50%), mert ott kezdődik a duplikált sor,
+               így a visszaugrás észrevétlen lesz. */
+            transform: translateX(-50%);
+        }
+    }
+
+    /* A slider-nav (pöttyök) törölve lettek, mert automata slide-nál nem szokás */
+</style>
+
+
+<section class="container-slide">
+    <div class="slider-wrapper">
+        <div class="slider">
+            <div class="slide-track">
+
+                <div class="slide">
+                    <img class="img-pos-1" src="https://blogger.googleusercontent.com/img/a/AVvXsEj8rFe3hRWQ4OzpyMiMt1DoS4ZNejncvR7MmmIdMmKEZubx4d7lokNmJ_DBIciSPUxDuzXzgZV3SDVPzAUpM_BOP6HmeBlQpc-2Mz0e4EqanXrZOjfmnPkyirG0K0lzXuFa3GAQPUex8Ef35k4YECSsrcq_DQpbnfZ7RGW1ZT-Cb3sBB0nwGkwK1ScEmxM" alt="Workouts">
+                </div>
+                <div class="slide">
+                    <img class="img-pos-2" src="https://blogger.googleusercontent.com/img/a/AVvXsEiSg6LpdcbDoYfQt0_7p82ymenWGf_ezD9jSQePOkRnfppQIEXSSP4DNwMAU-DN6xVovUtpXFG77fX46L1N6nFplbq61bn6eG856vEQSGEtFihlSZpxpyaXXQV1jseNbyV527HNq5Ga1DUI1r0FgbJuEJdMtvRvH9aNKhCqmgCZ8dMVD9Mfux0NT6G9ROE" alt="Shop">
+                </div>
+                <div class="slide">
+                    <img class="img-pos-3" src="https://blogger.googleusercontent.com/img/a/AVvXsEiqRK9BUikTmSVoxg_8InhCfLf9FbOBqkztZbIL12WCyttX4fvWA0Yyoilf84udqHX789IhfI72FTONBs1hZ4YEnyXgpMDmu5PsgtrQtRfFZMBOo_M8MTwWARlrxXZx_kdI4TRCxG3714iREiEvI15qUZ7po17eJXqH1RFaQdvP0Y9zSOqmRWWt344qIMI" alt="Food">
+                </div>
+
+                <div class="slide">
+                    <img class="img-pos-1" src="https://blogger.googleusercontent.com/img/a/AVvXsEj8rFe3hRWQ4OzpyMiMt1DoS4ZNejncvR7MmmIdMmKEZubx4d7lokNmJ_DBIciSPUxDuzXzgZV3SDVPzAUpM_BOP6HmeBlQpc-2Mz0e4EqanXrZOjfmnPkyirG0K0lzXuFa3GAQPUex8Ef35k4YECSsrcq_DQpbnfZ7RGW1ZT-Cb3sBB0nwGkwK1ScEmxM" alt="Workouts">
+                </div>
+                <div class="slide">
+                    <img class="img-pos-2" src="https://blogger.googleusercontent.com/img/a/AVvXsEiSg6LpdcbDoYfQt0_7p82ymenWGf_ezD9jSQePOkRnfppQIEXSSP4DNwMAU-DN6xVovUtpXFG77fX46L1N6nFplbq61bn6eG856vEQSGEtFihlSZpxpyaXXQV1jseNbyV527HNq5Ga1DUI1r0FgbJuEJdMtvRvH9aNKhCqmgCZ8dMVD9Mfux0NT6G9ROE" alt="Shop">
+                </div>
+                <div class="slide">
+                    <img class="img-pos-3" src="https://blogger.googleusercontent.com/img/a/AVvXsEiqRK9BUikTmSVoxg_8InhCfLf9FbOBqkztZbIL12WCyttX4fvWA0Yyoilf84udqHX789IhfI72FTONBs1hZ4YEnyXgpMDmu5PsgtrQtRfFZMBOo_M8MTwWARlrxXZx_kdI4TRCxG3714iREiEvI15qUZ7po17eJXqH1RFaQdvP0Y9zSOqmRWWt344qIMI" alt="Food">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elérhetőségek | [Webshop Neve]</title>
+  <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="elerhetosegek.css">
+</head>
+<body>
+
+<header class="top-bar">
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+
+  <label for="nav-toggle" class="nav-toggle-btn">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </label>
+
+  <div class="site-header">
+    <img src="[LOGO KÉP ELÉRÉSI ÚTJA]" alt="Webshop Logó" class="logoIMG">
+  </div>
+
+  <nav id="site-nav" class="site-nav" role="navigation" aria-label="Fő navigáció">
+    <ul class="nav-list">
+      <li>
+
+      </li>
+      <li class="nav-link active"><div class="text">
+        <a href=""><p>Kezdőlap</p></a>
+      </div></li>
+      <li class="nav-link"><div class="text">
+        <a href=""><p>Termékek</p></a>
+      </div>
+      </li>
+      <li class="nav-link"><div class="text">
+        <a href=""><p>Edzések</p></a>
+      </div>
+      </li>
+      <li class="nav-link"><div class="text">
+        <a href=""><p>Étrend</p></a>
+      </div>
+      </li>
+      <li class="nav-link"><div class="text">
+        <a href=""><p>Kalkulátor</p></a>
+      </div>
+      </li>
+      <li class="nav-link"><div class="text">
+        <a href=""><p>Mérföldkövek</p></a>
+      </div>
+      </li>
+      <li class="nav-link"><div class="text">
+        <a href=""><p>Edzők</p></a>
+      </div>
+      </li>
+      <li class="nav-link"><div class="text">
+        <a href=""><p>Elérhetőségek</p></a>
+      </div>
+      </li>
+      <li class="bejelentkezBtn"><div class="text">
+        <a href="#"><button class="btn" href="" onclick="showIcons()">Bejelentkezés</button></a>
+      </div>
+      </li>
+
+    </ul>
+  </nav>
+
+  <div class="right-icons">
+    <img src="[KOSÁR KÉP ELÉRÉSI ÚTJA]" alt="Kosár" class="cartIMG">
+    <img src="[KEDVENCEK KÉP ELÉRÉSI ÚTJA]" alt="Kedvencek" class="likeIMG">
+  </div>
+
+  <div class="bejelentkezBtn">
+    <button class="btn">Bejelentkezés</button>
+  </div>
+</header>
+
+<main class="contact-page-content">
+  <section class="contact-intro">
+    <h1>Kapcsolatfelvétel</h1>
+    <p>Kérdése van, segítségre van szüksége, vagy együttműködési lehetőségeket keres? Forduljon hozzánk bizalommal az alábbi elérhetőségeken!</p>
+  </section>
+
+  <section class="contact-info-grid">
+    <div class="info-card location">
+      <img src="[IKON ELÉRÉSI ÚTJA: CÍM]" alt="Cím Ikon" class="card-icon">
+      <h2>Címünk és Nyitvatartás</h2>
+      <p><strong>Cím:</strong> 1234 Budapest, Példa utca 5. emelet 2/A</p>
+      <p><strong>Raktár/Átvétel:</strong> 1235 Budapest, Gyűjtő út 10. (Bejárat a hátsó udvar felől)</p>
+      <p><strong>Személyes ügyintézés:</strong></p>
+      <ul>
+        <li>Hétfő - Péntek: <strong>9:00 - 16:00</strong></li>
+        <li>Szombat - Vasárnap: Zárva</li>
+      </ul>
+    </div>
+
+    <div class="info-card support">
+      <img src="[IKON ELÉRÉSI ÚTJA: TELEFON/MAIL]" alt="Ügyfélszolgálat Ikon" class="card-icon">
+      <h2>Ügyfélszolgálat</h2>
+      <p><strong>Telefon:</strong> <span class="highlight-text">+36 30 123 4567</span> (Hétköznap 9:00 - 17:00)</p>
+      <p><strong>E-mail:</strong> <a href="mailto:info@peldawebshop.hu" class="highlight-text">info@peldawebshop.hu</a> (Általános kérdések)</p>
+      <p><strong>Garancia / Reklamáció:</strong> <a href="mailto:garancia@peldawebshop.hu" class="highlight-text">garancia@peldawebshop.hu</a></p>
+      <p class="small-text">Várható válaszidő e-mailben: 24 óra (munkanapokon).</p>
+    </div>
+
+    <div class="contact-form-container">
+      <h2>Írjon Nekünk Üzenetet</h2>
+      <form action="[ÜZENETKÜLDŐ SZCRIPT ELÉRÉSI ÚTJA]" method="POST" class="contact-form">
+        <input type="text" name="nev" placeholder="Teljes név" required>
+        <input type="email" name="email" placeholder="E-mail cím" required>
+        <select name="tárgy" required>
+          <option value="" disabled selected>Válasszon tárgyat</option>
+          <option value="Általános Kérdés">Általános Kérdés</option>
+          <option value="Rendeléssel Kapcsolatos">Rendeléssel Kapcsolatos</option>
+          <option value="Garancia/Reklamáció">Garancia/Reklamáció</option>
+          <option value="Együttműködés">Együttműködés</option>
+        </select>
+        <textarea name="üzenet" rows="5" placeholder="Üzenetének tartalma" required></textarea>
+        <button type="submit" class="btn send-btn">Üzenet Küldése</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="map-section">
+    <h2>Hol Talál Meg Minket?</h2>
+    <div class="map-placeholder">
+      <p>Google Térkép Beágyazás Helye (Pl. raktár/átvételi pont címe)</p>
+    </div>
+  </section>
+</main>
+
+<nav class="phone-menu">
+  <img src="[MOBIL IKON 1]" alt="Főoldal" class="phone-menu__icon">
+  <img src="[MOBIL IKON 2]" alt="Keresés" class="phone-menu__icon">
+  <img src="[MOBIL IKON 3]" alt="Fiók" class="phone-menu__icon">
+  <img src="[MOBIL IKON 4]" alt="Kosár" class="phone-menu__icon">
+</nav>
+
+</body>
+</html>
