@@ -456,7 +456,7 @@ button {
 
 
 .container-bottom{
-    width: 100%;
+    width: auto;
     height: auto;
     background-color: black;
     padding: 20px 20%;
