@@ -123,17 +123,21 @@ document.addEventListener("DOMContentLoaded", () => {
         modalPrice.innerText = prices[0].toLocaleString() + " Ft";
     }
 
-    // -------- TERMÉKRE KATTINTÁS --------
+// -------- TERMÉKRE KATTINTÁS --------
     document.querySelectorAll(".product-card").forEach(card => {
         card.addEventListener("click", (e) => {
-            // Ha a "Kosárba" gombra kattintunk, ne nyíljon meg a modal
+            const title = card.querySelector("h3").innerText;
+            const data = productData[title];
+
+            // Ha a "Kosárba" gombra kattintunk a főoldalon
             if (e.target.classList.contains('login-btn')) {
-                alert("Termék a kosárba került!");
+                // Meghívjuk a mentés funkciót az első mérettel és árral
+                addToCart(title, data.prices[0], data.sizes[0], data.images[0]);
+                alert(title + " bekerült a kosárba!");
                 return;
             }
 
-            const title = card.querySelector("h3").innerText;
-            const data = productData[title];
+            // Ha nem a gombra, hanem a kártyára kattintunk, nyílik a modal
             if (!data) return;
 
             modalTitle.innerText = title;
@@ -143,10 +147,54 @@ document.addEventListener("DOMContentLoaded", () => {
             modalImg.src = currentImages[0];
 
             updateSizeSelector(data.sizes, data.prices);
-
             modal.style.display = "flex";
         });
     });
+
+    // -------- KOSÁR KEZELÉS FUNKCIÓK --------
+
+    // Ez a gomb a MODAL-on belül van
+    const modalAddToCartBtn = modal.querySelector(".login-btn");
+    modalAddToCartBtn.addEventListener("click", () => {
+        const title = modalTitle.innerText;
+        const priceText = modalPrice.innerText;
+        const price = parseInt(priceText.replace(/[^0-9]/g, ""));
+        const activeSize = sizeContainer.querySelector(".size-option.active").innerText;
+        const image = modalImg.src;
+
+        addToCart(title, price, activeSize, image);
+        modal.style.display = "none";
+        alert(title + " (" + activeSize + ") bekerült a kosárba!");
+    });
+
+    // Funkció, ami elmenti az adatokat a böngészőbe
+    function addToCart(title, price, size, image) {
+        const product = {
+            id: Date.now(), 
+            title: title,
+            price: price,
+            size: size,
+            image: image
+        };
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        updateCartCount();
+    }
+
+    // Funkció, ami frissíti a piros számot az ikon felett
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const countElement = document.getElementById("cart-count");
+        if (countElement) {
+            countElement.innerText = cart.length;
+        }
+    }
+
+    // Frissítés indításkor is
+    updateCartCount();
 
     // -------- BEZÁRÁS --------
     modal.querySelector(".close-btn").addEventListener("click", () => {

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kosár - ForgeX</title>
+    <link rel="stylesheet" href="kosar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="avatar">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <h2>Kosarad</h2>
+            <p><a href="shop.html" style="color: #00ca65; text-decoration: none;"><i class="fa-solid fa-arrow-left"></i> Vissza a boltba</a></p>
+        </div>
+
+        <div class="form-box">
+            <div id="cart-items-container">
+                <p style="text-align: center;">A kosarad jelenleg üres.</p>
+            </div>
+
+            <div class="cart-summary">
+                <hr style="border: 0.5px solid #3a4a5d; margin: 20px 0;">
+                <div style="display: flex; justify-content: space-between; font-size: 20px; font-weight: bold;">
+                    <span>Összesen:</span>
+                    <span id="total-price">0 Ft</span>
+                </div>
+                <button class="login-btn" id="checkout-btn" style="margin-top: 20px; width: 100%;">Fizetés</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="kosar.js"></script>
+</body>
+</html>

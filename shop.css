@@ -287,3 +287,41 @@ body {
     color: #ef4444;     /* Piros lesz, ha rátartod az egeret */
     transform: scale(1.2); /* Kicsit megnő */
 }
+
+/* --- KOSÁR IKON STÍLUSA --- */
+.cart-icon-container {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    font-size: 28px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s ease;
+    background: #1e293b;
+    padding: 12px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.cart-icon-container:hover {
+    transform: scale(1.1);
+    color: #00ca65;
+}
+
+#cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ef4444; /* Piros jelző */
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+    border: 2px solid #0f1c2e;
+}

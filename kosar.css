@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0f1c2e;
+    color: #fff;
+    margin: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.header { text-align: center; margin-bottom: 30px; }
+
+.header .avatar {
+    background: linear-gradient(135deg, #4CAF50, #007524);
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    margin: 0 auto 15px;
+    font-size: 24px;
+}
+
+.form-box {
+    background: #1e293b;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* Egy termék sorának stílusa a kosárban */
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #3a4a5d;
+}
+
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    background: #243447;
+    border-radius: 8px;
+}
+
+.item-info { flex: 1; margin: 0 15px; }
+.item-info h3 { margin: 0; font-size: 16px; }
+.item-info p { margin: 5px 0 0; color: #cbd5e1; font-size: 13px; }
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* A shop.css-ből már ismert gomb stílus */
+.login-btn {
+    background: linear-gradient(135deg, #4CAF50, #007524);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
