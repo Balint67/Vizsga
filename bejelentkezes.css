@@ -163,3 +163,7 @@ label {
     background-color: #1f324d;
     border-color: #00ca65;
 }
+
+#togglePassword {
+    cursor: pointer; /* Mutassa a kis kezet, ha fölé viszik az egeret */
+}
