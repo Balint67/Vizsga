@@ -89,35 +89,60 @@
 
   </div>
 
-  <div class="container">
-    <div class="card">
-      <div class="icon">
-        <span>⚖️</span>
+  <div class="bmi-main-container">
+      <div class="bmi-wrapper">
+          <div class="card calculator-card">
+              <div class="card-header">
+                  <div class="icon-circle">⚖️</div>
+                  <h2>BMI Index</h2>
+                  <p>Tudatosítsd az egészséged egy gyors méréssel.</p>
+              </div>
+
+              <form id="bmiForm">
+                  <div class="input-group">
+                      <label for="weight">Testsúly (kg)</label>
+                      <input type="number" id="weight" step="0.1" placeholder="0" required>
+                  </div>
+
+                  <div class="input-group">
+                      <label for="height">Magasság (cm)</label>
+                      <input type="number" id="height" step="1" placeholder="0" required>
+                  </div>
+
+                  <button class="btn btn-full" type="submit">Számítás futtatása</button>
+              </form>
+
+              <div class="result-area">
+                  <div class="progress-container">
+                      <svg class="progress-ring" width="120" height="120">
+                          <circle class="progress-ring__circle-bg" stroke="rgba(255,255,255,0.1)" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
+                          <circle id="bmiCircle" class="progress-ring__circle" stroke="#00ca65" stroke-width="8" stroke-dasharray="326.72" stroke-dashoffset="326.72" fill="transparent" r="52" cx="60" cy="60"/>
+                      </svg>
+                      <div id="bmiValue" class="bmi-number">--</div>
+                  </div>
+                  <div class="result-text">
+                      <h3 id="bmiStatus">Készen állsz?</h3>
+                      <p id="bmiDescription">Add meg az adataidat a pontos elemzéshez.</p>
+                  </div>
+              </div>
+          </div>
+
+          <div class="card info-card">
+              <h3>Mi az a BMI?</h3>
+              <p>A Body Mass Index egy nemzetközileg elismert mérőszám, amely a súlyt és a magasságot veti össze.</p>
+
+              <div class="category-list">
+                  <div class="cat-item"><span class="dot blue"></span> &lt; 18.5 <span>Sovány</span></div>
+                  <div class="cat-item"><span class="dot green"></span> 18.5 - 25 <span>Normál</span></div>
+                  <div class="cat-item"><span class="dot yellow"></span> 25 - 30 <span>Túlsúly</span></div>
+                  <div class="cat-item"><span class="dot red"></span> &gt; 30 <span>Elhízás</span></div>
+              </div>
+
+              <div class="info-footer">
+                  <p><strong>Megjegyzés:</strong> Ez az érték tájékoztató jellegű. Ha életmódváltásba kezdenél, javasoljuk, hogy konzultálj edzőinkkel vagy egy szakemberrel a személyre szabott étrend és edzésterv érdekében.</p>
+              </div>
+          </div>
       </div>
-      <h2>BMI Kalkulátor</h2>
-      <p>Számold ki a testtömegindexedet!</p>
-
-      <form id="bmiForm">
-        <label for="weight">Testsúly (kg)</label>
-        <input type="number" id="weight" placeholder="pl. 70" required>
-
-        <label for="height">Magasság (cm)</label>
-        <input type="number" id="height" placeholder="pl. 175" required>
-
-        <button class="btn" type="submit">Számítás</button>
-      </form>
-
-      <div id="result"></div>
-
-      <!-- ÚJ: kördiagram és leírás -->
-      <div class="chart-container">
-        <div class="progress-circle" id="progressCircle">
-          <span id="bmiValue">--</span>
-        </div>
-      </div>
-
-      <p id="bmiDescription" class="bmi-desc"></p>
-    </div>
   </div>
 
   <script src="script.js"></script>

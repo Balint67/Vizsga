@@ -210,3 +210,70 @@ if (slider) {
   });
 
 }
+
+/* =========================
+   BMI KALKULÁTOR RÉSZ (JAVÍTOTT)
+========================= */
+document.addEventListener('DOMContentLoaded', () => {
+    const bmiForm = document.getElementById('bmiForm');
+    const bmiCircle = document.getElementById('bmiCircle');
+    const bmiValueEl = document.getElementById('bmiValue');
+    const bmiStatusEl = document.getElementById('bmiStatus');
+    const bmiDescriptionEl = document.getElementById('bmiDescription');
+
+    const circumference = 326.72; // Az SVG stroke-dasharray értéke
+
+    if (bmiForm) {
+        bmiForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Adatok kinyerése
+            const weight = parseFloat(document.getElementById('weight').value.toString().replace(',', '.'));
+            const heightCm = parseFloat(document.getElementById('height').value.toString().replace(',', '.'));
+
+            if (weight > 0 && heightCm > 0) {
+                // PONTOS KISZÁMÍTÁS
+                const heightInMeters = heightCm / 100;
+                const bmi = weight / (heightInMeters * heightInMeters);
+
+                // Tizedesjegyre kerekítés (Pl: 24.738 -> 24.7)
+                const finalBmi = Number(Math.round(bmi + 'e1') + 'e-1');
+
+                updateUI(finalBmi);
+            }
+        });
+    }
+
+    function updateUI(bmi) {
+        // Érték kiírása vesszővel elválasztva a kör közepére
+        bmiValueEl.innerText = bmi.toString().replace('.', ',');
+
+        let status = "";
+        let color = "";
+        let desc = "";
+
+        // Orvosi határértékek
+        if (bmi < 18.5) {
+            status = "Sovány"; color = "#3498db"; desc = "Fokozott tápanyagbevitel javasolt.";
+        } else if (bmi < 25) {
+            status = "Normál"; color = "#2ecc71"; desc = "Optimális testsúly, gratulálunk!";
+        } else if (bmi < 30) {
+            status = "Túlsúly"; color = "#f1c40f"; desc = "Figyelj oda a mozgásra és az étrendre.";
+        } else {
+            status = "Elhízás"; color = "#e74c3c"; desc = "Életmódváltás és szakember javasolt.";
+        }
+
+        // Megjelenítés frissítése
+        bmiStatusEl.innerText = status;
+        bmiStatusEl.style.color = color;
+        bmiDescriptionEl.innerText = desc;
+        bmiValueEl.style.color = color; // A szám színe megegyezik a kategóriával
+
+        // KÖR ANIMÁCIÓ (Max 40-es BMI-ig skálázva)
+        const percentage = Math.min(bmi / 40, 1);
+        const offset = circumference - (percentage * circumference);
+
+        bmiCircle.style.strokeDashoffset = offset;
+        bmiCircle.style.stroke = color;
+    }
+});
