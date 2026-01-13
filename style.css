@@ -599,7 +599,7 @@ button {
 
 .input-group input {
     width: 100%;
-    background: rgba(0, 0, 0, 0.7) !important;
+    background: rgb(36, 52, 71) !important;
     border: 1.5px solid var(--border-color);
     border-radius: 12px;
     padding: 16px;
