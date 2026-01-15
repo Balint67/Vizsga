@@ -1,0 +1,22 @@
+Git parancsok
+
+Legfrissebb munka letöltése:
+terminalgit pull origin main	ENTER
+
+Feltöltés:
+terminal
+git add . 	ENTER
+git commit -m ”Ide kell beírni mit változtattál”	ENTER
+git push origin main	ENTER
+
+Hasznos parancsok:
+git status
+Megmutatja milyen fájlok módosultak (piros) melyek vannak hozzáadva a projekthez (zöld) vagy, hogy van-e ütközés.
+
+git restore .
+Minden módosítást ami még nincs elmentve visszaállítja a legutóbbi mentésre.
+
+git reset –hard HEAD
+Ha el vannak mentve a változtatások akkor ezzel vissza lehet menni az egyel előbbi mentéshez és az előző mentést törli.
+
+
