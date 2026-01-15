@@ -498,3 +498,104 @@ button {
 .kihagyás{
     padding-top: 5px;
 }
+
+/* --- Trainers Section Design --- */
+
+.trainersContainer {
+    width: 100%;
+    max-width: 1200px; /* Szélesség korlátozása, hogy ne folyjon szét nagyon nagy monitoron */
+    margin: 50px auto; /* Középre igazítás és távolság fentről-lentről */
+    padding: 0 20px;
+    box-sizing: border-box;
+    font-family: sans-serif; /* Vagy ami az oldalad alap betűtípusa */
+}
+
+/* Címsor stílusa */
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: #ffffff; /* Sötétszürke szöveg */
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.divider-line {
+    width: 80px;
+    height: 4px;
+    background-color: #00ca65; /* Piros díszcsík, cseréld a te színvilágodra */
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+/* Rács elrendezés (Grid) */
+.trainers-grid {
+    display: grid;
+    /* Automatikusan 4 oszlop, de ha kicsi a hely, csökken */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px; /* Távolság a kártyák között */
+}
+
+/* Kártya stílusa */
+.trainer-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+/* Hover effekt a kártyára */
+.trainer-card:hover {
+    transform: translateY(-10px); /* Kicsit felugrik */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+/* Kép tartó */
+.card-image {
+    width: 100%;
+    height: 600px; /* Fix magasság, hogy egyformák legyenek */
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Kitölti a keretet torzítás nélkül */
+    transition: transform 0.5s ease;
+}
+
+/* Kép nagyítása hoverkor */
+.trainer-card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+/* Szöveges rész */
+.card-content {
+    padding: 20px;
+    text-align: center;
+    background: #fff;
+    position: relative;
+    z-index: 2;
+}
+
+.card-content h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #222;
+    font-weight: 700;
+}
+
+.card-content p {
+    margin: 5px 0 0;
+    font-size: 0.9rem;
+    color: #666;
+    text-transform: uppercase;
+    font-weight: 500;
+}
