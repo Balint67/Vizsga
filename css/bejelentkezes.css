@@ -167,3 +167,27 @@ label {
 #togglePassword {
     cursor: pointer; /* Mutassa a kis kezet, ha fölé viszik az egeret */
 }
+
+/* 1. Fontos: A containernek relatívnak kell lennie,
+   hogy a gomb ehhez képest igazodjon */
+.container {
+    position: relative;
+    /* ... a többi meglévő stílusod itt marad ... */
+}
+
+/* 2. A vissza gomb stílusa */
+.vissza-gomb {
+    position: absolute; /* Kiveszi a normál szövegfolyamból */
+    top: 20px;          /* Távolság a tetejétől */
+    left: 20px;         /* Távolság a bal széltől */
+    font-size: 1.5rem;  /* Ikon mérete */
+    color: #333;        /* Ikon színe (állítsd be a designodhoz illően) */
+    text-decoration: none; /* Aláhúzás eltüntetése */
+    transition: 0.3s;   /* Finom átmenet hover esetén */
+}
+
+/* Opcionális: Ha ráviszed az egeret, változzon a színe */
+.vissza-gomb:hover {
+    color: #00ca65; /* Például kék szín, vagy a te témád színe */
+    transform: translateX(-3px); /* Kicsit balra mozdul effekt */
+}
