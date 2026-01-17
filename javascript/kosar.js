@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const cartItemsContainer = document.getElementById("cart-items-container");
+    const cartItemsContainer = document.getElementById("cart-items-container-shop");
     const totalPriceElement = document.getElementById("total-price");
     const checkoutBtn = document.getElementById("checkout-btn");
 
