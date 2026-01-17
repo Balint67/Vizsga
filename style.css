@@ -1288,3 +1288,12 @@ button {
         padding: 10px 20px;
     }
 }
+
+
+.leiras {
+    font-size: 25px;
+    font-weight: 500;
+    color: #ffffff;
+    max-width: 1000px;
+    text-align: left;
+}

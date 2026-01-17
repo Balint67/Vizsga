@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Title</title>
+
+  <link rel="stylesheet" href="style.css">
+
+
+  <link rel="stylesheet" href="asd.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+</head>
+<body>
+
+
+<div class="top-bar">
+  <div class="left-spacer">
+    <a href="index.html">
+      <video
+              src="logo.mp4"
+              autoplay
+              muted
+              playsinline
+              class="logoVid"
+      ></video>
+    </a>
+  </div>
+  <header class="site-header">
+    <div class="container nav-container">
+      <!-- lenyíló menu -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true"/>
+      <label for="nav-toggle" class="nav-toggle-btn">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </label>
+
+
+      <nav id="site-nav" class="site-nav" role="navigation" aria-label="Fő navigáció">
+        <ul class="nav-list">
+          <li>
+
+          </li>
+          <li class="nav-link active">
+            <div class="text">
+              <a href="index.html"><p>Kezdőlap</p></a>
+            </div>
+          </li>
+          <li class="nav-link">
+            <div class="text">
+              <a href="shop.html"><p>Termékek</p></a>
+            </div>
+          </li>
+          <li class="nav-link">
+            <div class="text">
+              <a href=""><p>Edzések</p></a>
+            </div>
+          </li>
+          <li class="nav-link">
+            <div class="text">
+              <a href=""><p>Étrend</p></a>
+            </div>
+          </li>
+          <li class="nav-link">
+            <div class="text">
+              <a href="kalkulatorok.html"><p>Kalkulátor</p></a>
+            </div>
+          </li>
+          <li class="nav-link">
+            <div class="text">
+              <a href=""><p>Mérföldkövek</p></a>
+            </div>
+          </li>
+          <li class="nav-link">
+            <div class="text">
+              <a href="trainers.html"><p>Edzők</p></a>
+            </div>
+          </li>
+          <li class="nav-link">
+            <div class="text">
+              <a href=""><p>Elérhetőségek</p></a>
+            </div>
+          </li>
+          <li class="bejelentkezBtn">
+            <div class="text">
+              <a href="bejelentkezes.html">
+                <button class="btn" href="" onclick="showIcons()">Bejelentkezés</button>
+              </a>
+            </div>
+          </li>
+
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="right-icons" style="display: none;">
+
+    <a href=""><img
+            src="https://blogger.googleusercontent.com/img/a/AVvXsEgJFzFfHiQVUYwzahvNBeriW2rB8HZ-XDg8KkQ_cP2rFBkF8OrApJS2YUjHFemxb29mnWVzaULETwXtnGNM91eGQS6xhhQuiGPlLlnMDcy-lZfVq6pc6gzkOwoyLeGNJbCnlVLtzAbEKdx6lAUlfqb2CKIlrNIpkYg6mb8lzRGq6t-fr9ODlt49KSWxQ2g"
+            class="likeIMG" alt="like"></a>
+    <a href=""><img
+            src="https://blogger.googleusercontent.com/img/a/AVvXsEjWKRjSGDLLZiHXHkVvs17JzH96-r_hTw5IEggJbNOVacw37Vp2BVelLwtoc4KRhvw61tWrgjPqOdFYy5HF_yED3b3JjMWiNvcM3NubgzkjuuvtmEn2pEVUtO6Jn3T-vBUeHytWzNUfliRMC7sPhwZrAiPpuJeW6-jd0vwZlIjfdZLg5FDJL-Jz2tJiajM"
+            class="userIMG" alt="user"></a>
+    <a href=""><img
+            src="https://blogger.googleusercontent.com/img/a/AVvXsEjnr3paeYkomWqEuLtpy-LUrJtccK4i5TAvsA4fIgCuoEmtgKqU2Nx3n4trTJrgoRU3T4w6qhAG3t7TAzlh8090v8e8luNlBsNdGc0avkHqE65n2omeiEctqzaxqvYTESBxYGCDRsHupOurWGNd1EwNhrAZem6DvrOP0dW1wc-EatQ0WWRXSMyXMxVgOLk"
+            class="cartIMG" alt="kosár"></a>
+
+  </div>
+
+
+</div>
+
+
+<div class="phone-menu" role="navigation" aria-label="Alsó navigáció">
+  <button onclick="onpagehide()">
+    <img class="phone-menu__icon"
+         src="https://blogger.googleusercontent.com/img/a/AVvXsEjWKRjSGDLLZiHXHkVvs17JzH96-r_hTw5IEggJbNOVacw37Vp2BVelLwtoc4KRhvw61tWrgjPqOdFYy5HF_yED3b3JjMWiNvcM3NubgzkjuuvtmEn2pEVUtO6Jn3T-vBUeHytWzNUfliRMC7sPhwZrAiPpuJeW6-jd0vwZlIjfdZLg5FDJL-Jz2tJiajM"
+         alt="Profil"/>
+  </button>
+  <a href="index.html" aria-label="Főoldal">
+    <img class="phone-menu__icon"
+         src="https://blogger.googleusercontent.com/img/a/AVvXsEjTj_tBeEAlNqVcqK3BqoPRryYKbcv8wNU8j9XzjyGMi4HlppPqyyhTaoLT3vMiTAVshSMVfvFEiLeJN-i2x_wSTMgEps3je7uKuPmR7s6XrVTQ928wPFwyj5-lVChSteg-dzFv76Q_IjNiov2p7cLphdxKF9Ys-mUaiZlEeD6S338zj5nwLyukV9NKgdo"
+         alt="Főoldal"/>
+  </a>
+  <a href="" aria-label="Kosár">
+    <img class="phone-menu__icon"
+         src="https://blogger.googleusercontent.com/img/a/AVvXsEjnr3paeYkomWqEuLtpy-LUrJtccK4i5TAvsA4fIgCuoEmtgKqU2Nx3n4trTJrgoRU3T4w6qhAG3t7TAzlh8090v8e8luNlBsNdGc0avkHqE65n2omeiEctqzaxqvYTESBxYGCDRsHupOurWGNd1EwNhrAZem6DvrOP0dW1wc-EatQ0WWRXSMyXMxVgOLk"
+         alt="Kosár"/>
+  </a>
+</div>
+
+
+<div class="bejelentkez" id="hidden">
+
+  <div class="container"> <!-- nagy doboz -->
+
+
+    <div class="form-box">
+      <button onclick="onpagehide()"><img
+              src="https://blogger.googleusercontent.com/img/a/AVvXsEhfXyeodalT28Ou8nclrJXon1pZPWjN0NvQP9HeTYNOZVmPw_vuRzdebd0D79YmXx_8jeZ8euHEGTRyb1_EXkw5X50pXkdQ4TZYxC6DPAhvJfz8DIHGDBtAJpvmCcyPWBFpaLSM4DF-itbtZ_F9dPvduWkYGy2d5mLXkin1x-JzLfQg5Ssu5L3aVhsXcE4"
+              class="close"></button>
+      <div class="header"> <!-- fejléc -->
+        <div class="avatar">
+          <i class="fa-solid fa-user"></i> <!-- kis ember ikon -->
+        </div>
+        <h2>Üdvözlünk</h2>
+        <p>Jelentkezz be a fiókodba</p>
+      </div>
+      <div class="tab-buttons">
+        <button>Bejelentkezés</button>
+      </div>
+
+      <form> <!-- összes mező és gomb -->
+        <label for="email">Email cím</label> <!-- kis szöveg -->
+        <div class="input-box">
+          <i class="fa-solid fa-envelope"></i> <!-- kis ikon -->
+          <input type="email" id="email" placeholder="pelda@email.com" required> <!-- mező -->
+        </div>
+
+        <label for="password">Jelszó</label>
+        <div class="input-box">
+          <i class="fa-solid fa-lock"></i> <!-- bal oldali lakat ikon -->
+          <input type="password" id="password" placeholder="Minimum 8 karakter" required> <!-- mező -->
+          <i class="fa-solid fa-eye" id="togglePassword"></i><!-- jobb oldali szem ikon -->
+        </div>
+
+        <div class="options">
+          <label><input type="checkbox"> Emlékezz rám</label> <!-- szöveg + kis doboz -->
+          <a href="#">Elfelejtett jelszó?</a>
+        </div>
+
+        <button class="login-btn" onclick="onpagehide()">Bejelentkezés <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </form>
+
+      <p class="signup-text">Nincs még fiókod? <a href="reg.html">Regisztrálj itt</a></p>
+
+      <div class="divider">
+        <span>vagy</span>
+      </div>
+
+      <div class="social-buttons">
+        <button><i class="fa-brands fa-google"></i> Google</button>
+        <button><i class="fa-brands fa-facebook"></i> Facebook</button>
+      </div>
+    </div>
+
+    <p class="footer-text">
+      A folytatással elfogadod az <a href="szerzodesek.html">Általános Szerződési Feltételeket</a>
+      és az <a href="szerzodesek.html">Adatvédelmi Szabályzatot</a>
+    </p>
+  </div>
+
+
+
+</div>
+<br>
+<br>
+<br>
+<br>
+<div class="trainersContainer">
+  <div class="section-header">
+    <h2>Heath</h2>
+    <div class="divider-line"></div>
+  </div>
+
+
+
+  <div class="trainer-card">
+    <div class="card-image">
+      <img src="images/heath.png" alt="Edző 2">
+    </div>
+    <div class="card-content">
+      <h3>Heath</h3>
+      <p>Erőemelés</p>
+    </div>
+  </div>
+
+  <p class="leiras">
+    Üdv a valóságban. Heath vagyok, a SuperSelf egyik edzője. Nem azért vagyok itt, hogy a kezedet fogjam. Azért jöttem, hogy acélt kovácsoljak belőled. Ha készen állsz arra, hogy túllépj a fájdalmon és elpusztítsd a gyengeségedet, állj be a sorba! Nincs duma. Csak munka.
+  </p>
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<section class="container-bottom" id="contact">
+
+  <div class="animation"><div class="kihagyás"><a href="" class="tiszta-link"><p>Kapcsolat</p></a></div></div>
+  <div class="animation"><div class="kihagyás"><a href="" class="tiszta-link"><p>Általános szerződési feltételek</p></a></div></div>
+  <div class="animation"><div class="kihagyás"><a href="" class="tiszta-link"><p>Vélemények</p></a></div></div>
+  <div class="animation"><div class="kihagyás"><a href="" class="tiszta-link"><p>Gyakran ismételt kérdések</p></a></div></div>
+  <div class="animation"><div class="kihagyás"><a href="" class="tiszta-link"><p>Süti beállítások</p></a></div></div>
+  <div class="animation"><div class="kihagyás"><div class="space"><a href="https://www.instagram.com/forgex._?igsh=ZHR1NnNxMWd5dWZ2&utm_source=qr" class="tiszta-link"><p>Instagram <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" class="igLogo" alt="instaLogo"></p></a></div></div></div>
+  <div class="animation"><div class="kihagyás"><div class="space"><a href="https://www.facebook.com/share/1Dwr4nD67j/?mibextid=wwXIfr" class="tiszta-link"><p>Facebook <img src="https://1000logos.net/wp-content/uploads/2017/02/Facebook-Logosu.png" class="faceLogo" alt="FacebookLogo"></p></a></div></div></div>
+  <div class="animation"><div class="kihagyás"><div class="space" id="tiktok"><a href="https://www.tiktok.com/@forgex97?_r=1&_t=ZN-92zJPgXtPzK" class="tiszta-link"><p>Tiktok <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgZczqhf9-ciDl5_atJ6sQPIZNCwqKYOhfm4LkbKiFyiR9_HRrW7BJ7cNb55lbxZchDVBDwt5-olPIRhMClgLL8UON6c0AQybZYHaOji70nhooShz9RpZVU1lPZFcmzoi-Sd1gB1jhlRvXCKENeX4R-Lj7WFZDfEjzsBPIX5ipnQ43R1O7AmmQjESxVaSo" class="tiktokLogo" alt="TiktokLogo"></p></a></div></div></div>
+
+
+</section>
+
+
+
+
+<script src="script.js"></script>
+</body>
+</html>
