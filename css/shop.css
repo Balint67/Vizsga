@@ -338,15 +338,3 @@ body {
     color: #00ca65;
 }
 
-#cart-count {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background: #ef4444; /* Piros jelző */
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 2px 6px;
-    border-radius: 50%;
-    border: 2px solid #0f1c2e;
-}

@@ -55,7 +55,7 @@ body {
 }
 
 .top-bar {
-
+    background-color: #000000;
     position: fixed;
     top: 0;
     left: 0;
@@ -115,6 +115,11 @@ body {
 
 .text:hover {
     transform: translateY(-2px);
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
 }
 
 .text a {
@@ -187,7 +192,7 @@ body {
 
 .right-icons img:hover {
 
-    transform: translateY(-5px);
+
 
 }
 
@@ -497,8 +502,22 @@ button {
     transition: transform 0.2s ease;
 }
 .animation:hover{
-    transform: translateY(-2px);
+    transform: translateY(-5px);
 }
+
+/* ... előtte lévő kódok ... */
+
+.animation-bottom {
+    transition: transform 0.2s ease;
+    width: fit-content; /* <--- EZT A SORT ADD HOZZÁ */
+}
+
+.animation-bottom:hover {
+    transform: translateY(-2px);
+    color: #00ca65;
+}
+
+/* ... utána lévő kódok ... */
 .space{
     padding-top: 5px;
 }
@@ -1296,4 +1315,68 @@ button {
     color: #ffffff;
     max-width: 1000px;
     text-align: left;
+}
+
+#cart-count {
+    position: absolute;
+    top: -5px;
+    right: 35px;
+    background: #ef4444; /* Piros jelző */
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+    border: 2px solid #0f1c2e;
+}
+.header-shop{
+    transition: transform 0.2s ease;
+}
+.header-shop:hover{
+    transform: translateY(-5px);
+}
+.bekezdés{
+    width: 400px;
+}
+.container-runner {
+    width: 100%;
+    /* Opcionális: maximális szélesség megadása, ha nem akarod, hogy
+       óriási monitorokon túl nagy legyen (pl. max-width: 1200px;) */
+}
+
+/* A kép stílusozása */
+.container-runner img {
+    width: 100%;    /* Kitölti a konténer teljes szélességét */
+    height: auto;   /* Megtartja az eredeti méretarányt (nem torzul) */
+    display: block; /* Eltünteti a kép alatti apró "hézagot", ami alapértelmezett */
+}
+.runner-szöveg {
+    z-index: 2000;
+    position: absolute;
+    margin-top: -30%;
+    margin-left: 5%;
+    font-size: 40px;
+}
+
+
+
+
+.tartalom{
+    margin-top: -100px;
+}
+
+.runner-shopBtn{
+    color: #9a9a9a;
+    text-decoration: underline;
+    text-decoration-thickness: 4px; /* Itt állítod a vastagságot (akár 0.5px is lehet) */
+    text-underline-offset: 4px;     /* Ezzel tolod lejjebb a vonalat a betűtől */
+    text-decoration-color: #9a9a9a;    /* Külön színe is lehet */
+    font-size: 25px;
+    margin-top: 20px;
+    position: absolute;
+    margin-left: 20px;
+}
+.runner-shopBtn:hover{
+
+    color: white;
 }
