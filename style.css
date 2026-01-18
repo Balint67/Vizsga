@@ -24,7 +24,7 @@ body {
     left: -2%;
     width: 100%;
     height: 64px;
-    background: #0d1928;
+    background: #000000;
     z-index: 900;
     display: flex;
     align-items: center;
@@ -1186,10 +1186,15 @@ button {
 /* Kapcsolati űrlap stílusa */
 .contact-form-container {
     grid-column: 1 / -1; /* Az űrlap a teljes szélességet foglalja el */
-    background-color: #1a2b3c; /* Enyhén eltérő háttér a kártyákhoz képest */
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: var(--shadow);
 }
 
 .contact-form input[type="text"],
@@ -1201,7 +1206,7 @@ button {
     margin-bottom: 15px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
-    background-color: #0d1928;
+    background-color: #0f3739;
     color: white;
     font-size: 1rem;
     box-sizing: border-box; /* padding és border a width-ben maradjon */
@@ -1243,7 +1248,7 @@ button {
 
 .map-placeholder {
     height: 400px;
-    background-color: #0d1928; /* Sötét háttér a térkép helyére */
+    background-color: #0f3739; /* Sötét háttér a térkép helyére */
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     display: flex;
