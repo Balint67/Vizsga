@@ -20,6 +20,7 @@
 </head>
 <body>
 
+<!--------------------------------FEJLÉC------------------------------------->
 
 <div class="top-bar">
     <header class="site-header">
@@ -67,9 +68,19 @@
         </div>
     </header>
 
+    <div class="nyelvek">
+        <div class="nyelvvalaszto">
+            <button onclick="valtsNyelvet('hu')" class="nyelv">Magyar</button>
+            <button onclick="valtsNyelvet('en')" class="nyelv">English</button>
+            <button onclick="valtsNyelvet('de')" class="nyelv">Deutsch</button>
+        </div>
+
+        <div id="google_translate_element" style="display:none;"></div>
+    </div>
+
     <div class="right-icons">
         <div class="animation">
-            <a href="shop.html"><img
+            <a href="bejelentkezes.html"><img
                     src="https://blogger.googleusercontent.com/img/a/AVvXsEgJFzFfHiQVUYwzahvNBeriW2rB8HZ-XDg8KkQ_cP2rFBkF8OrApJS2YUjHFemxb29mnWVzaULETwXtnGNM91eGQS6xhhQuiGPlLlnMDcy-lZfVq6pc6gzkOwoyLeGNJbCnlVLtzAbEKdx6lAUlfqb2CKIlrNIpkYg6mb8lzRGq6t-fr9ODlt49KSWxQ2g"
                     class="likeIMG" alt="like">
             </a>
@@ -116,6 +127,9 @@
              alt="Kosár"/>
     </a>
 </div>
+
+<!--------------------------------FEJLÉC------------------------------------->
+
 
 <div class="tartalom-index">
 
@@ -181,9 +195,6 @@
     </div>
 
 
-
-
-
     <section class="container-slide">
         <div class="fadeIn">
             <div class="slider-wrapper">
@@ -203,7 +214,7 @@
 
                     <img id="slide-4"
                          src="images/bmiCalculator.jpg"
-                         alt="Slide picture for BMI" draggable="false" data-link="kalkulator.html">
+                         alt="Slide picture for BMI" draggable="false" data-link="kalkulatorok.html">
 
                 </div>
                 <div class="slider-nav">
@@ -285,7 +296,8 @@
 
 </div>
 
-
 <script src="script.js"></script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>

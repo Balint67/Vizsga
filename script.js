@@ -285,3 +285,25 @@ const observer = new IntersectionObserver((entries) => {
 
 const hiddenElements = document.querySelectorAll('.fadeIn');
 hiddenElements.forEach((el) => observer.observe(el));
+
+/* --- Google Translate Inicializálás --- */
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'hu',      // Az oldalad eredeti nyelve
+        includedLanguages: 'en,de,hu', // Támogatott nyelvek
+        autoDisplay: false       // Ne dobja fel a sávot automatikusan
+    }, 'google_translate_element');
+}
+
+/* --- Egyedi gomb vezérlő függvény --- */
+function valtsNyelvet(nyelvKod) {
+    // Megkeressük a Google által generált rejtett legördülő listát
+    var selectMezo = document.querySelector(".goog-te-combo");
+
+    if (selectMezo) {
+        selectMezo.value = nyelvKod; // Beállítjuk a kiválasztott nyelvet
+
+        // "Becsapjuk" a rendszert, mintha a felhasználó kattintott volna
+        selectMezo.dispatchEvent(new Event('change'));
+    }
+}

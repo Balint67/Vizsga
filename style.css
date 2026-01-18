@@ -1637,7 +1637,7 @@ button {
 }
 .trainHard{
     position: absolute;
-    margin-left: 46%;
+    margin-left: 47%;
 }
 .sleepWell{
     margin-left: 75%;
@@ -1672,4 +1672,15 @@ button {
 .sleepWell img{
     width: 160px;
     height: auto;
+}
+
+.nyelvek{
+    position: absolute;        /* jobbra pozicionálás */
+    padding: 20px;
+    right: 420px;
+
+}
+.nyelv:hover{
+    cursor: pointer;
+    color: green;
 }
