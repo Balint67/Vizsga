@@ -1172,12 +1172,6 @@ button {
 
 
 
-.card-icon {
-    width: 40px;
-    height: auto;
-    margin-bottom: 15px;
-    filter: invert(70%) sepia(50%) saturate(1500%) hue-rotate(100deg) brightness(110%); /* Zöld színezés az ikonnak */
-}
 
 .info-card ul {
     list-style: none;
