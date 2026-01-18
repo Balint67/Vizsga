@@ -529,6 +529,11 @@ button {
     padding-top: 5px;
 }
 
+
+
+
+
+
 /* --- Trainers Section Design --- */
 
 .trainersContainer {
@@ -629,6 +634,209 @@ button {
     text-transform: uppercase;
     font-weight: 500;
 }
+
+
+
+
+       /* --- EGYEDI PROFIL DESIGN (Csak a bemutatkozó oldalakon) --- */
+
+   .single-trainer-page .trainer-split-layout {
+       display: flex;
+       gap: 40px;
+       align-items: stretch;
+       margin-top: 20px;
+       text-align: left; /* Hogy ne örökölje a center igazítást */
+   }
+
+.single-trainer-page .trainer-image-side {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.single-trainer-page .trainer-card-v2 {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    height: 550px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.single-trainer-page .trainer-card-v2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.single-trainer-page .image-overlay-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: white;
+}
+
+.single-trainer-page .trainer-info-side {
+    flex: 1.2;
+    display: flex;
+    align-items: center;
+}
+
+.single-trainer-page .glass-content {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    max-width: 650px;
+}
+
+.single-trainer-page .gold-quote {
+    color: #00ca65;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.single-trainer-page .moto {
+    font-size: 1.8rem;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.single-trainer-page .description {
+    font-size: 1rem; /* Kicsit kisebb, hogy a több szöveg kényelmesen elférjen */
+    line-height: 1.7;
+    color: #ddd;
+    margin-bottom: 15px; /* Távolság a bekezdések között */
+}
+
+.single-trainer-page .benefit-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.single-trainer-page .benefit-list li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.single-trainer-page .benefit-list i {
+    color: #00ca65;
+}
+
+.single-trainer-page .cta-button {
+    display: inline-block;
+    padding: 15px 40px;
+    background: #00ca65;
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 50px;
+    transition: 0.3s ease;
+    text-transform: uppercase;
+}
+
+.single-trainer-page .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 202, 101, 0.3);
+    background: #fff;
+}
+
+/* Mobil nézet javítása */
+@media (max-width: 900px) {
+    .single-trainer-page .trainer-split-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+    .single-trainer-page .trainer-info-side {
+        width: 100%;
+    }
+}
+
+/* Konténer a képnek és az alatta lévő infónak */
+.single-trainer-page .trainer-profile-box {
+    width: 100%;
+    max-width: 450px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* A kép magassága marad, de levesszük róla az overlay-t */
+.single-trainer-page .trainer-card-v2 {
+    height: 500px;
+    border-radius: 0; /* A külső konténer kerekít, itt nem kell */
+    box-shadow: none;
+}
+
+/* Információs rész a kép alatt */
+.single-trainer-page .trainer-under-info {
+    padding: 25px;
+    color: white;
+}
+
+.single-trainer-page .trainer-under-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.single-trainer-page .specialization {
+    color: #00ca65;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Elérhetőségek listája */
+.single-trainer-page .trainer-contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+}
+
+.single-trainer-page .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: #ccc;
+}
+
+.single-trainer-page .contact-row i {
+    color: #00ca65;
+    width: 20px;
+    text-align: center;
+}
+
+.single-trainer-page .contact-row a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.single-trainer-page .contact-row a:hover {
+    color: #00ca65;
+}
+
+
+
+
 
 /* BMI Kalkulátor Modern Design - Clean Code szemléletben */
 
