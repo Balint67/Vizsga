@@ -271,3 +271,17 @@ document.addEventListener('DOMContentLoaded', () => {
         bmiCircle.style.stroke = color;
     }
 });
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show'); // Hozzáadjuk az osztályt
+            // observer.unobserve(entry.target); // Ha csak egyszer akarod lejátszani, vedd ki a kommentet
+        } else {
+            entry.target.classList.remove('show'); // Ha azt akarod, hogy újra eltűnjön kigörgetéskor
+        }
+    });
+});
+
+const hiddenElements = document.querySelectorAll('.fadeIn');
+hiddenElements.forEach((el) => observer.observe(el));

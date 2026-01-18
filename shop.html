@@ -11,9 +11,6 @@
 </head>
 <body>
 <div class="top-bar">
-    <div class="left-spacer">
-
-    </div>
     <header class="site-header">
         <div class="container nav-container">
             <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true"/>
@@ -41,22 +38,7 @@
                     </li>
                     <li class="nav-link">
                         <div class="text">
-                            <a href=""><p>Edzések</p></a>
-                        </div>
-                    </li>
-                    <li class="nav-link">
-                        <div class="text">
-                            <a href=""><p>Étrend</p></a>
-                        </div>
-                    </li>
-                    <li class="nav-link">
-                        <div class="text">
                             <a href="kalkulatorok.html"><p>Kalkulátor</p></a>
-                        </div>
-                    </li>
-                    <li class="nav-link">
-                        <div class="text">
-                            <a href=""><p>Mérföldkövek</p></a>
                         </div>
                     </li>
                     <li class="nav-link">
@@ -66,7 +48,7 @@
                     </li>
                     <li class="nav-link">
                         <div class="text">
-                            <a href=""><p>Elérhetőségek</p></a>
+                            <a href="elerhetosegek.html"><p>Elérhetőségek</p></a>
                         </div>
                     </li>
                 </ul>
@@ -75,17 +57,25 @@
     </header>
 
     <div class="right-icons">
-
-        <a href="shop.html"><img
-                src="https://blogger.googleusercontent.com/img/a/AVvXsEgJFzFfHiQVUYwzahvNBeriW2rB8HZ-XDg8KkQ_cP2rFBkF8OrApJS2YUjHFemxb29mnWVzaULETwXtnGNM91eGQS6xhhQuiGPlLlnMDcy-lZfVq6pc6gzkOwoyLeGNJbCnlVLtzAbEKdx6lAUlfqb2CKIlrNIpkYg6mb8lzRGq6t-fr9ODlt49KSWxQ2g"
-                class="likeIMG" alt="like"></a>
-        <a href="shop.html"><img
-                src="https://blogger.googleusercontent.com/img/a/AVvXsEjWKRjSGDLLZiHXHkVvs17JzH96-r_hTw5IEggJbNOVacw37Vp2BVelLwtoc4KRhvw61tWrgjPqOdFYy5HF_yED3b3JjMWiNvcM3NubgzkjuuvtmEn2pEVUtO6Jn3T-vBUeHytWzNUfliRMC7sPhwZrAiPpuJeW6-jd0vwZlIjfdZLg5FDJL-Jz2tJiajM"
-                class="userIMG" alt="user"></a>
-        <div class="header-shop" style="position: relative;">
+        <div class="animation">
+            <a href="shop.html"><img
+                    src="https://blogger.googleusercontent.com/img/a/AVvXsEgJFzFfHiQVUYwzahvNBeriW2rB8HZ-XDg8KkQ_cP2rFBkF8OrApJS2YUjHFemxb29mnWVzaULETwXtnGNM91eGQS6xhhQuiGPlLlnMDcy-lZfVq6pc6gzkOwoyLeGNJbCnlVLtzAbEKdx6lAUlfqb2CKIlrNIpkYg6mb8lzRGq6t-fr9ODlt49KSWxQ2g"
+                    class="likeIMG" alt="like">
+            </a>
+        </div>
+        <div class="animation">
+            <a href="shop.html"><img
+                    src="https://blogger.googleusercontent.com/img/a/AVvXsEjWKRjSGDLLZiHXHkVvs17JzH96-r_hTw5IEggJbNOVacw37Vp2BVelLwtoc4KRhvw61tWrgjPqOdFYy5HF_yED3b3JjMWiNvcM3NubgzkjuuvtmEn2pEVUtO6Jn3T-vBUeHytWzNUfliRMC7sPhwZrAiPpuJeW6-jd0vwZlIjfdZLg5FDJL-Jz2tJiajM"
+                    class="userIMG" alt="user">
+            </a>
+        </div>
+        <div class="header-shop" >
             <a href="kosar.html" class="container-shop">
+
+                <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjnr3paeYkomWqEuLtpy-LUrJtccK4i5TAvsA4fIgCuoEmtgKqU2Nx3n4trTJrgoRU3T4w6qhAG3t7TAzlh8090v8e8luNlBsNdGc0avkHqE65n2omeiEctqzaxqvYTESBxYGCDRsHupOurWGNd1EwNhrAZem6DvrOP0dW1wc-EatQ0WWRXSMyXMxVgOLk"
+                     class="cartIMG" alt="kosár">
+
                 <span id="cart-count">0</span>
-                <i class="fa-solid fa-cart-shopping"></i>
             </a>
 
 
@@ -96,95 +86,113 @@
 
 
 </div>
-<br>
-<br>
-<br>
-<br>
-<div class="container-shop"> <div class="section-header">
-    <h2>Termékek</h2>
-    <div class="divider-line"></div>
-</div>
-    <div class="container-shop">
-        <div class="form-box">
-            <div class="products-grid">
-                <div class="product-card">
-                    <img src="images/shaker1.png" alt="shaker" class="product-image">
-                    <h3>Shaker</h3>
-                    <p class="product-description">ForgeX shaker</p>
-                    <p class="product-price">2990 Ft</p>
-                    <button class="login-btn">Kosárba</button>
-                </div>
+<div class="tartalom">
+    <div class="phone-menu" role="navigation" aria-label="Alsó navigáció">
+        <button onclick="onpagehide()">
+            <img class="phone-menu__icon"
+                 src="https://blogger.googleusercontent.com/img/a/AVvXsEjWKRjSGDLLZiHXHkVvs17JzH96-r_hTw5IEggJbNOVacw37Vp2BVelLwtoc4KRhvw61tWrgjPqOdFYy5HF_yED3b3JjMWiNvcM3NubgzkjuuvtmEn2pEVUtO6Jn3T-vBUeHytWzNUfliRMC7sPhwZrAiPpuJeW6-jd0vwZlIjfdZLg5FDJL-Jz2tJiajM"
+                 alt="Profil"/>
+        </button>
+        <a href="index.html" aria-label="Főoldal">
+            <img class="phone-menu__icon"
+                 src="https://blogger.googleusercontent.com/img/a/AVvXsEjTj_tBeEAlNqVcqK3BqoPRryYKbcv8wNU8j9XzjyGMi4HlppPqyyhTaoLT3vMiTAVshSMVfvFEiLeJN-i2x_wSTMgEps3je7uKuPmR7s6XrVTQ928wPFwyj5-lVChSteg-dzFv76Q_IjNiov2p7cLphdxKF9Ys-mUaiZlEeD6S338zj5nwLyukV9NKgdo"
+                 alt="Főoldal"/>
+        </a>
+        <a href="" aria-label="Kosár">
+            <img class="phone-menu__icon"
+                 src="https://blogger.googleusercontent.com/img/a/AVvXsEjnr3paeYkomWqEuLtpy-LUrJtccK4i5TAvsA4fIgCuoEmtgKqU2Nx3n4trTJrgoRU3T4w6qhAG3t7TAzlh8090v8e8luNlBsNdGc0avkHqE65n2omeiEctqzaxqvYTESBxYGCDRsHupOurWGNd1EwNhrAZem6DvrOP0dW1wc-EatQ0WWRXSMyXMxVgOLk"
+                 alt="Kosár"/>
+        </a>
+    </div>
+    <br>
 
-                <div class="product-card">
-                    <img src="images/shirt1.png" alt="póló" class="product-image">
-                    <h3>Póló</h3>
-                    <p class="product-description">ForgeX póló edzéshez</p>
-                    <p class="product-price">3990 Ft</p>
-                    <button class="login-btn">Kosárba</button>
-                </div>
 
-                <div class="product-card">
-                    <img src="images/eper.png" alt="protein" class="product-image">
-                    <h3>Protein por</h3>
-                    <p class="product-description">ForgeX whey protein 1kg</p>
-                    <p class="product-price">24 990 Ft</p>
-                    <button class="login-btn">Kosárba</button>
-                </div>
+    <div class="container-shop"> <div class="section-header">
+        <h2>Termékek</h2>
+        <div class="divider-line"></div>
+    </div>
+        <div class="container-shop">
+            <div class="form-box">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <img src="images/shaker1.png" alt="shaker" class="product-image">
+                        <h3>Shaker</h3>
+                        <p class="product-description">ForgeX shaker</p>
+                        <p class="product-price">2990 Ft</p>
+                        <button class="login-btn">Kosárba</button>
+                    </div>
 
-                <div class="product-card">
-                    <img src="images/creatine.png" alt="kreatin" class="product-image">
-                    <h3>Kreatin</h3>
-                    <p class="product-description">100% kreatin-monohidrát 500g</p>
-                    <p class="product-price">6 990 Ft</p>
-                    <button class="login-btn">Kosárba</button>
-                </div>
+                    <div class="product-card">
+                        <img src="images/shirt1.png" alt="póló" class="product-image">
+                        <h3>Póló</h3>
+                        <p class="product-description">ForgeX póló edzéshez</p>
+                        <p class="product-price">3990 Ft</p>
+                        <button class="login-btn">Kosárba</button>
+                    </div>
 
-                <div class="product-card">
-                    <img src="images/gatya1.jpeg" alt="Nadrág" class="product-image">
-                    <h3>Nadrág</h3>
-                    <p class="product-description">ForgeX női sport nadrág</p>
-                    <p class="product-price">4 990 Ft</p>
-                    <button class="login-btn">Kosárba</button>
-                </div>
+                    <div class="product-card">
+                        <img src="images/eper.png" alt="protein" class="product-image">
+                        <h3>Protein por</h3>
+                        <p class="product-description">ForgeX whey protein 1kg</p>
+                        <p class="product-price">24 990 Ft</p>
+                        <button class="login-btn">Kosárba</button>
+                    </div>
 
-                <div class="product-card">
-                    <img src="images/cipo.png" alt="Sportcipő" class="product-image">
-                    <h3>Sportcipő</h3>
-                    <p class="product-description">ForgeX futócipő</p>
-                    <p class="product-price">12 990 Ft</p>
-                    <button class="login-btn">Kosárba</button>
-                </div>
+                    <div class="product-card">
+                        <img src="images/creatine.png" alt="kreatin" class="product-image">
+                        <h3>Kreatin</h3>
+                        <p class="product-description">100% kreatin-monohidrát 500g</p>
+                        <p class="product-price">6 990 Ft</p>
+                        <button class="login-btn">Kosárba</button>
+                    </div>
 
-                <div class="product-card">
-                    <img src="images/sapka1.jpeg" alt="Sapka" class="product-image">
-                    <h3>Sapka</h3>
-                    <p class="product-description">ForgeX sapka</p>
-                    <p class="product-price">3 990 Ft</p>
-                    <button class="login-btn">Kosárba</button>
-                </div>
+                    <div class="product-card">
+                        <img src="images/gatya1.jpeg" alt="Nadrág" class="product-image">
+                        <h3>Nadrág</h3>
+                        <p class="product-description">ForgeX női sport nadrág</p>
+                        <p class="product-price">4 990 Ft</p>
+                        <button class="login-btn">Kosárba</button>
+                    </div>
 
-                <div class="product-card">
-                    <img src="images/bag1.jpg" alt="Sporttáska" class="product-image">
-                    <h3>Sporttáska</h3>
-                    <p class="product-description">ForgeX sporttáska</p>
-                    <p class="product-price">17 990 Ft</p>
-                    <button class="login-btn">Kosárba</button>
-                </div>
+                    <div class="product-card">
+                        <img src="images/cipo.png" alt="Sportcipő" class="product-image">
+                        <h3>Sportcipő</h3>
+                        <p class="product-description">ForgeX futócipő</p>
+                        <p class="product-price">12 990 Ft</p>
+                        <button class="login-btn">Kosárba</button>
+                    </div>
 
-                <div class="product-card">
-                    <img src="images/csoki1.jpg" alt="Fehérje szelet" class="product-image">
-                    <h3>Fehérje szelet</h3>
-                    <p class="product-description">Fehérje szelet</p>
-                    <p class="product-price">990 Ft</p>
-                    <button class="login-btn">Kosárba</button>
+                    <div class="product-card">
+                        <img src="images/sapka1.jpeg" alt="Sapka" class="product-image">
+                        <h3>Sapka</h3>
+                        <p class="product-description">ForgeX sapka</p>
+                        <p class="product-price">3 990 Ft</p>
+                        <button class="login-btn">Kosárba</button>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="images/bag1.jpg" alt="Sporttáska" class="product-image">
+                        <h3>Sporttáska</h3>
+                        <p class="product-description">ForgeX sporttáska</p>
+                        <p class="product-price">17 990 Ft</p>
+                        <button class="login-btn">Kosárba</button>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="images/csoki1.jpg" alt="Fehérje szelet" class="product-image">
+                        <h3>Fehérje szelet</h3>
+                        <p class="product-description">Fehérje szelet</p>
+                        <p class="product-price">990 Ft</p>
+                        <button class="login-btn">Kosárba</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
 
-        <div class="footer-text">
-            <p>© 2024 Termékek. Minden jog fenntartva.</p>
-            <p><a href="szerzodesek.html">Adatvédelmi szabályzat</a> | <a href="szerzodesek.html">Felhasználási feltételek</a></p>
+            <div class="footer-text">
+                <p>© 2024 Termékek. Minden jog fenntartva.</p>
+                <p><a href="szerzodesek.html">Adatvédelmi szabályzat</a> | <a href="szerzodesek.html">Felhasználási feltételek</a></p>
+            </div>
         </div>
     </div>
 </div>

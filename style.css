@@ -160,6 +160,7 @@ a{
 }
 
 
+
 .right-icons {
     margin-right: 20px;
     display: flex;
@@ -660,7 +661,7 @@ button {
     width: 100%;
 
     /* EZ TOLJA LE: Ha még mindig kevés, írd át 300px-re */
-    margin: 250px auto 100px auto;
+    margin: 150px auto 100px auto;
 
     align-items: stretch;
     position: relative;
@@ -1351,18 +1352,24 @@ button {
     display: block; /* Eltünteti a kép alatti apró "hézagot", ami alapértelmezett */
 }
 .runner-szöveg {
-    z-index: 2000;
+    z-index: 200;
     position: absolute;
     margin-top: -30%;
     margin-left: 5%;
     font-size: 40px;
 }
+.runner-szöveg2 {
+    margin-top: -20%;
+}
 
 
 
 
-.tartalom{
+.tartalom-index{
     margin-top: -100px;
+}
+.tartalom{
+    margin-top: 100px;
 }
 
 .runner-shopBtn{
@@ -1379,4 +1386,32 @@ button {
 .runner-shopBtn:hover{
 
     color: white;
+}
+
+.logoVid-Runner{
+    user-select: none;
+    -webkit-user-drag: none;
+    height: 130px;
+    width: auto;
+    position: absolute;
+    z-index: 200;
+    margin-top: -42%;
+    margin-left: -3%;
+
+}
+.fadeIn{
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease-out; /* Simán vált át */
+}
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.backToShopBtn{
+    font-size: 25px;
+    color: #00ca65;
+}
+.backToShopBtn:hover{
+    color: #00ae55;
 }
