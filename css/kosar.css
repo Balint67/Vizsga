@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #0f1c2e;
+    background-color: #ffffff;
     color: #fff;
     margin: 0;
 }
@@ -22,12 +22,7 @@ body {
     font-size: 24px;
 }
 
-.form-box {
-    background: #1e293b;
-    border-radius: 18px;
-    padding: 25px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-}
+
 
 /* Egy termék sorának stílusa a kosárban */
 .cart-item {
@@ -35,14 +30,14 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 15px 0;
-    border-bottom: 1px solid #3a4a5d;
+    border-bottom: 1px solid #ffffff;
 }
 
 .cart-item img {
     width: 60px;
     height: 60px;
     object-fit: contain;
-    background: #243447;
+    background: #0f3739;
     border-radius: 8px;
 }
 

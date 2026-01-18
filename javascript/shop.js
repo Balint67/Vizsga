@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
             prices: [24990, 39990]
         },
         "Kreatin": {
-            images: ["images/creatine.png"],
+            images: ["images/kreatin.jpg"],
             description: "100% kreatin-monohidrát 500g – teljesítménynövelésre.",
             sizes: ["500g", "1kg"],
             prices: [6990, 12990]

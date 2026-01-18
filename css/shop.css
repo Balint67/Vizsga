@@ -37,6 +37,7 @@ body {
     margin: 40px auto;
     text-align: center;
     padding: 0 20px;
+
 }
 
 /* --- FEJLÉC ÉS AVATAR --- */
@@ -82,12 +83,18 @@ body {
 
 /* --- TERMÉK KÁRTYA --- */
 .product-card {
-    background: #1e293b; /* Kártya háttérszíne a BMI/Login alapján */
+
     border-radius: 18px; /* Egységes lekerekítés */
     padding: 25px;
     text-align: center;
     transition: all 0.3s ease;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: var(--shadow);
 }
 
 .product-card:hover {
@@ -99,7 +106,7 @@ body {
     width: 100%;
     height: 250px;
     object-fit: contain; /* 'contain' szebb, ha nem egyforma méretűek a képek */
-    background: #243447; /* Enyhe háttér a képeknek */
+    background: rgba(0, 0, 0, 0.2); /* Enyhe háttér a képeknek */
     border-radius: 12px;
     margin-bottom: 20px;
 }
@@ -167,7 +174,7 @@ body {
 
 /* ----- MODAL CONTENT (A kis ablak) ----- */
 .modal-content {
-    background: #1e293b;
+    background: #124245;
     padding: 30px;
     border-radius: 18px;
     width: 90%;
@@ -187,7 +194,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #243447; /* Sötét háttér a kép mögött */
+    background-color: #0f3739; /* Sötét háttér a kép mögött */
     border-radius: 12px;
     margin-bottom: 20px;
     overflow: hidden; /* Ami kilógna, azt levágja */
@@ -252,7 +259,7 @@ body {
     align-items: center;    /* Függőlegesen közép */
     justify-content: center; /* Vízszintesen közép */
 
-    background-color: #243447; /* Sötétkék háttér */
+    background-color: #0f3739; /* Sötétkék háttér */
     border: 2px solid #3a4a5d;
     border-radius: 8px;     /* Enyhén lekerekített sarkok */
 
@@ -313,28 +320,5 @@ body {
     transform: scale(1.2); /* Kicsit megnő */
 }
 
-/* --- KOSÁR IKON STÍLUSA --- */
-.cart-icon-container-shop {
-    position: absolute;
-    top: 20px;
-    right: 40px;
-    font-size: 28px;
-    color: white;
-    text-decoration: none;
-    transition: 0.3s ease;
-    background: #1e293b;
-    padding: 12px;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
 
-.cart-icon-container-shop:hover {
-    transform: scale(1.1);
-    color: #00ca65;
-}
 
