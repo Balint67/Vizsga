@@ -3,10 +3,20 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif; /* Egységesített betűtípus */
-    color: white;
+    background-image: url("https://blogger.googleusercontent.com/img/a/AVvXsEhEcgu1Gpium4cmGVhaC1k44k7lGd87H7o_02bxbYm4iCJtJ8Dt8QVQzQHtPd3YU6aJ27_eLPCAMFG6Wm8DjRxVdf1uFirwQnJbTOLxq-kZJqpVMZfPhKo2KrKdbjvQB5olNF3Xd8EaR5oqIIW7yuvbYQsUQp5J9LsEaUXXQXLL1CVh8xKftdUBVXDo--Y");
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
+    color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+
+    /* Fixálja a hátteret, így görgetéskor nem "csúszik el" */
+    background-attachment: fixed;
+
+    /* Biztosítja, hogy a háttér legalább a képernyő magasságát kitöltse */
     min-height: 100vh;
 }
 
