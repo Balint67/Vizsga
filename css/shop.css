@@ -1,4 +1,4 @@
-/* --- ALAPOK (style.css alapján) --- */
+
 body {
     margin: 0;
     background-image: url("https://blogger.googleusercontent.com/img/a/AVvXsEhEcgu1Gpium4cmGVhaC1k44k7lGd87H7o_02bxbYm4iCJtJ8Dt8QVQzQHtPd3YU6aJ27_eLPCAMFG6Wm8DjRxVdf1uFirwQnJbTOLxq-kZJqpVMZfPhKo2KrKdbjvQB5olNF3Xd8EaR5oqIIW7yuvbYQsUQp5J9LsEaUXXQXLL1CVh8xKftdUBVXDo--Y");
@@ -6,30 +6,28 @@ body {
     background-size: cover;
     background-position: center center;
     color: white;
-    /* Fixálja a hátteret, így görgetéskor nem "csúszik el" */
     background-attachment: fixed;
 
-    /* Biztosítja, hogy a háttér legalább a képernyő magasságát kitöltse */
     min-height: 100vh;
 
     font-family: Arial, sans-serif;
 }
 
-/* 2. A vissza gomb stílusa */
+/* vissza gomb stílus */
 .vissza-gomb {
-    position: absolute; /* Kiveszi a normál szövegfolyamból */
-    top: 20px;          /* Távolság a tetejétől */
-    left: 20px;         /* Távolság a bal széltől */
-    font-size: 1.5rem;  /* Ikon mérete */
-    color: #333;        /* Ikon színe (állítsd be a designodhoz illően) */
-    text-decoration: none; /* Aláhúzás eltüntetése */
-    transition: 0.3s;   /* Finom átmenet hover esetén */
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.5rem;
+    color: #333;
+    text-decoration: none;
+    transition: 0.3s;
 }
 
-/* Opcionális: Ha ráviszed az egeret, változzon a színe */
+
 .vissza-gomb:hover {
-    color: #00ca65; /* Például kék szín, vagy a te témád színe */
-    transform: translateX(-3px); /* Kicsit balra mozdul effekt */
+    color: #00ca65; /
+    transform: translateX(-3px);
 }
 
 .container-shop {
@@ -40,9 +38,9 @@ body {
 
 }
 
-/* --- FEJLÉC ÉS AVATAR --- */
+/* --- Fejléc --- */
 .header-shop .avatar-shop {
-    background: linear-gradient(135deg, #4CAF50, #007524); /* Főoldali zöld gradient */
+    background: linear-gradient(135deg, #4CAF50, #007524);
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -61,15 +59,15 @@ body {
 }
 
 .header-shop p {
-    color: #cbd5e1; /* Világosabb szürke a főoldalról */
+    color: #cbd5e1;
     font-size: 15px;
 }
 
-/* --- TERMÉKEK RÁCS (GRID) --- */
+/* --- Termék rácsok --- */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px; /* Kicsit nagyobb hely a kártyák között */
+    gap: 30px;
     margin-top: 30px;
 }
 
@@ -81,10 +79,10 @@ body {
     .products-grid { grid-template-columns: 1fr; }
 }
 
-/* --- TERMÉK KÁRTYA --- */
+
 .product-card {
 
-    border-radius: 18px; /* Egységes lekerekítés */
+    border-radius: 18px;
     padding: 25px;
     text-align: center;
     transition: all 0.3s ease;
@@ -105,8 +103,8 @@ body {
 .product-image {
     width: 100%;
     height: 250px;
-    object-fit: contain; /* 'contain' szebb, ha nem egyforma méretűek a képek */
-    background: rgba(0, 0, 0, 0.2); /* Enyhe háttér a képeknek */
+    object-fit: contain;
+    background: rgba(0, 0, 0, 0.2);
     border-radius: 12px;
     margin-bottom: 20px;
 }
@@ -121,17 +119,17 @@ body {
     color: #cbd5e1;
     font-size: 14px;
     margin: 10px 0;
-    min-height: 40px; /* Hogy a gombok egy vonalban legyenek */
+    min-height: 40px;
 }
 
 .product-price {
-    color: #00ca65; /* A főoldali élénk zöld */
+    color: #00ca65;
     font-size: 22px;
     font-weight: bold;
     margin: 15px 0;
 }
 
-/* --- A GOMB (Pontosan mint a style.css-ben) --- */
+
 .login-btn {
     width: 100%;
     background: linear-gradient(135deg, #4CAF50, #007524);
@@ -157,22 +155,22 @@ body {
     transform: translateY(1px);
 }
 
-/* ----- MODAL (A sötét háttér, ami középre igazít) ----- */
+
 .modal {
-    display: none;        /* JS kapcsolja */
-    position: fixed;      /* Fixen a képernyőn marad */
-    z-index: 10000;       /* Minden felett */
+    display: none;
+    position: fixed;
+    z-index: 10000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
-    display: none;        /* Alapból rejtve */
+    display: none;
     justify-content: center;
     align-items: center;
 }
 
-/* ----- MODAL CONTENT (A kis ablak) ----- */
+/* ----- A kis ablak ----- */
 .modal-content {
     background: #124245;
     padding: 30px;
@@ -184,31 +182,31 @@ body {
     box-shadow: 0 15px 50px rgba(0,0,0,0.6);
     animation: zoomIn 0.3s ease; /* Kicsi úszó animáció */
 }
-/* --- MODAL KÉPEK FORMÁZÁSA --- */
+/* --- KÉPEK --- */
 
 /* A konténer, amiben a kép és a nyilak vannak */
 .modal-images {
     position: relative;
     width: 100%;
-    max-height: 400px; /* Megadjuk a maximális magasságot */
+    max-height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0f3739; /* Sötét háttér a kép mögött */
+    background-color: #0f3739;
     border-radius: 12px;
     margin-bottom: 20px;
-    overflow: hidden; /* Ami kilógna, azt levágja */
+    overflow: hidden;
 }
 
 /* Maga a kép a felugró ablakban */
 #modal-img {
-    max-width: 100%;    /* Ne legyen szélesebb, mint az ablak */
-    max-height: 350px;  /* Ne legyen magasabb, mint 350px */
-    object-fit: contain; /* Megtartja az arányokat és nem torzít */
+    max-width: 100%;
+    max-height: 350px;
+    object-fit: contain;
     display: block;
 }
 
-/* Nyilak igazítása, hogy ne takarják el a képet */
+
 .prev-img, .next-img {
     position: absolute;
     top: 50%;
@@ -236,32 +234,32 @@ body {
 .prev-img { left: 10px; }
 .next-img { right: 10px; }
 
-/* Animáció definíciója */
+/* Animáció */
 @keyframes zoomIn {
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
 
-/* --- MÉRETVÁLASZTÓ ELRENDEZÉSE --- */
+/* --- MÉRETVÁLASZTÓ --- */
 .size-selector {
-    display: flex;          /* Egymás mellé rakja a gombokat */
-    flex-wrap: wrap;        /* Ha nem férnek el, új sort kezd */
-    justify-content: center; /* Középre igazítja a csoportot */
-    gap: 10px;              /* Távolság a négyzetek között */
-    margin: 20px 0;         /* Távolság a leírás és az ár között */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
 }
 
-/* --- A KIS NÉGYZETEK STÍLUSA --- */
-.size-option {
-    width: 45px;            /* Fix szélesség */
-    height: 45px;           /* Fix magasság -> így lesz négyzet */
-    display: flex;          /* Tartalom középre igazításához */
-    align-items: center;    /* Függőlegesen közép */
-    justify-content: center; /* Vízszintesen közép */
 
-    background-color: #0f3739; /* Sötétkék háttér */
+.size-option {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #0f3739;
     border: 2px solid #3a4a5d;
-    border-radius: 8px;     /* Enyhén lekerekített sarkok */
+    border-radius: 8px;
 
     color: white;
     font-weight: bold;
@@ -270,10 +268,10 @@ body {
 }
 
 .size-option:hover {
-    border-color: #00ca65;  /* Zöld keret, ha ráviszed az egeret */
+    border-color: #00ca65;
 }
 
-/* --- AKTÍV ÉS EGYÉB ELEMEK (Amit találtál, ide beleolvasztva) --- */
+
 .size-option.active {
     background: linear-gradient(135deg, #4CAF50, #007524);
     border-color: transparent;
@@ -284,7 +282,7 @@ body {
     background: linear-gradient(135deg, #4CAF50, #007524);
 }
 
-/* --- LÁBLÉC --- */
+
 .footer-text {
     margin-top: 50px;
     padding-bottom: 30px;
@@ -301,23 +299,23 @@ body {
     text-decoration: underline;
 }
 
-/* --- BEZÁRÓ GOMB (X) POZICIONÁLÁSA --- */
+/* --- Bezáró Btn (X) Pozíció --- */
 .close-btn {
-    position: absolute; /* Kiszakítja a gombot a szövegek közül */
-    top: 15px;          /* Távolság fentről */
-    right: 20px;        /* Távolság jobbról */
-    font-size: 35px;    /* Legyen jó nagy */
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 35px;
     font-weight: bold;
-    color: #cbd5e1;     /* Világosszürke szín */
+    color: #cbd5e1;
     cursor: pointer;
     line-height: 1;
-    z-index: 1000;      /* Hogy minden más (kép, szöveg) felett legyen */
+    z-index: 1000;
     transition: 0.3s ease;
 }
 
 .close-btn:hover {
-    color: #ef4444;     /* Piros lesz, ha rátartod az egeret */
-    transform: scale(1.2); /* Kicsit megnő */
+    color: #ef4444;
+    transform: scale(1.2);
 }
 
 

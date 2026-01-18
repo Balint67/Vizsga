@@ -1,8 +1,8 @@
-/* Általános beállítások a style.css alapján */
+
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif; /* Egységesített betűtípus */
+    font-family: Arial, sans-serif;
     background-image: url("https://blogger.googleusercontent.com/img/a/AVvXsEhEcgu1Gpium4cmGVhaC1k44k7lGd87H7o_02bxbYm4iCJtJ8Dt8QVQzQHtPd3YU6aJ27_eLPCAMFG6Wm8DjRxVdf1uFirwQnJbTOLxq-kZJqpVMZfPhKo2KrKdbjvQB5olNF3Xd8EaR5oqIIW7yuvbYQsUQp5J9LsEaUXXQXLL1CVh8xKftdUBVXDo--Y");
     display: flex;
     justify-content: center;
@@ -13,14 +13,14 @@ body {
     background-size: cover;
     background-position: center center;
 
-    /* Fixálja a hátteret, így görgetéskor nem "csúszik el" */
+
     background-attachment: fixed;
 
-    /* Biztosítja, hogy a háttér legalább a képernyő magasságát kitöltse */
+
     min-height: 100vh;
 }
 
-/* A bejelentkező kártya stílusa */
+/* A bejelentkező blokk */
 .container {
     background-color: #124245; /* A style.css kártya színe */
     border-radius: 18px; /* Lekerekítés a style.css alapján */
@@ -31,7 +31,7 @@ body {
     text-align: center;
 }
 
-/* Fejléc ikon/avatar */
+/* Fejléc ikon */
 .header .avatar {
     background: linear-gradient(135deg, #4CAF50, #007524); /* A főoldali zöld színátmenet */
     width: 70px;
@@ -51,7 +51,7 @@ body {
 }
 
 .header p {
-    color: #cbd5e1; /* A főoldali világosszürke szövegszín */
+    color: #cbd5e1;
     font-size: 15px;
 }
 
@@ -70,7 +70,7 @@ label {
 }
 
 .input-box {
-    background-color: #0f3739; /* Sötétebb input háttér a style.css-ből */
+    background-color: #0f3739;
     display: flex;
     align-items: center;
     border-radius: 10px;
@@ -81,7 +81,7 @@ label {
 }
 
 .input-box:focus-within {
-    outline: 2px solid #22c55e; /* Fókusz keret a főoldalról */
+    outline: 2px solid #22c55e;
 }
 
 .input-box input {
@@ -100,7 +100,7 @@ label {
 
 /* Linkek színe */
 .options a, .signup-text a, .footer-text a {
-    color: #00ca65; /* A főoldali hover zöld szín */
+    color: #00ca65;
     text-decoration: none;
     transition: 0.3s;
 }
@@ -110,7 +110,7 @@ label {
     filter: brightness(1.2);
 }
 
-/* A GOMB - Ez most pontosan olyan, mint a főoldalon */
+
 .login-btn {
     width: 100%;
     background: linear-gradient(135deg, #4CAF50, #007524);
@@ -174,29 +174,26 @@ label {
 }
 
 #togglePassword {
-    cursor: pointer; /* Mutassa a kis kezet, ha fölé viszik az egeret */
+    cursor: pointer;
 }
 
-/* 1. Fontos: A containernek relatívnak kell lennie,
-   hogy a gomb ehhez képest igazodjon */
 .container {
     position: relative;
-    /* ... a többi meglévő stílusod itt marad ... */
 }
 
-/* 2. A vissza gomb stílusa */
+/* 2. A vissza gomb */
 .vissza-gomb {
-    position: absolute; /* Kiveszi a normál szövegfolyamból */
-    top: 20px;          /* Távolság a tetejétől */
-    left: 20px;         /* Távolság a bal széltől */
-    font-size: 1.5rem;  /* Ikon mérete */
-    color: #ffffff;        /* Ikon színe (állítsd be a designodhoz illően) */
-    text-decoration: none; /* Aláhúzás eltüntetése */
-    transition: 0.3s;   /* Finom átmenet hover esetén */
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.5rem;
+    color: #ffffff;
+    text-decoration: none;
+    transition: 0.3s;
 }
 
-/* Opcionális: Ha ráviszed az egeret, változzon a színe */
+
 .vissza-gomb:hover {
-    color: #00ca65; /* Például kék szín, vagy a te témád színe */
-    transform: translateX(-3px); /* Kicsit balra mozdul effekt */
+    color: #00ca65;
+    transform: translateX(-3px);
 }

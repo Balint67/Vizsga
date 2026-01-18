@@ -6,10 +6,10 @@ body {
     background-size: cover;
     background-position: center center;
 
-    /* Fixálja a hátteret, így görgetéskor nem "csúszik el" */
+    /* Fix háttér, görgetéskor nem csúszik */
     background-attachment: fixed;
 
-    /* Biztosítja, hogy a háttér legalább a képernyő magasságát kitöltse */
+
     min-height: 100vh;
 
     font-family: Arial, sans-serif;
@@ -33,7 +33,7 @@ body {
     border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Az ikonok mérete és megjelenése */
+
 .phone-menu__icon {
     width: 40px;
     height: auto;
@@ -47,7 +47,7 @@ body {
     opacity: 1;
 }
 
-/* Csak mobil nézetben jelenjen meg (pl. 768px alatt) */
+/* Mobil */
 @media (min-width: 1400px) {
     .phone-menu {
         display: none;
@@ -146,7 +146,7 @@ a{
 .bejelentkezBtn{
     display: flex;
 
-    position: absolute;        /* jobbra pozicionálás */
+    position: absolute;
 
     right: 70px;
 
@@ -165,7 +165,7 @@ a{
     margin-right: 20px;
     display: flex;
 
-    position: absolute;        /* jobbra pozicionálás */
+    position: absolute;
 
     right: 20px;
 
@@ -206,7 +206,6 @@ a{
 
 }
 
-/* Hamburger alapok */
 .nav-toggle {
     display: none;
 }
@@ -215,7 +214,7 @@ a{
     position: absolute;
     top: 10px;
     left: 20px;
-    display: none;               /* desktopon rejtve */
+    display: none;
     width: 42px; height: 42px;
     border-radius: 10px;
     border: 1px solid rgba(255,255,255,0.08);
@@ -241,14 +240,13 @@ a{
 
 
 
-/* --- RESPONSÍV --- */
+/* --- Mobil --- */
 
 @media (max-width: 1400px) {
 
     .top-bar {
 
-        flex-direction: column;  /* logo felül, ikonok alul */
-
+        flex-direction: column;
         height: auto;
 
         padding: 10px;
@@ -290,46 +288,45 @@ a{
         flex-direction: column;
         align-items: stretch;
         gap: 0.5rem;
-        display: none; /* alapból elrejtve */
+        display: none;
     }
 
     .nav-toggle:checked ~ .site-nav .nav-list{
-        display: flex; /* checkbox pipálására látszik */
+        display: flex;
         position: absolute;
-        left: 30px;     /* bal szélhez közelebb */
-        width: 200px;   /* menü szélessége */
+        left: 30px;
+        width: 200px;
         transform-origin: top left;
     }
     #hidden {
         display: inline;
     }
     .slider {
-        /* Itt visszatérünk a széles, panoráma nézethez */
         aspect-ratio: 9 / 16;
     }
 
 }
 
 
-/* MODÁL: mindig minden fölött */
+
 .bejelentkez{
-    position: fixed;     /* fontos! */
-    inset: 0;            /* top:0; right:0; bottom:0; left:0 */
-    z-index: 9999;       /* magasabb mint bármi más */
-    display: grid;       /* középre igazítás egyszerűen */
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
     place-items: center;
-    background: rgba(0,0,0,.6); /* sötét háttér */
+    background: rgba(0,0,0,.6);
 }
 
-/* ha kell, a belső dobozt is biztosítsd */
+
 .bejelentkez .container{
     position: relative;
-    z-index: 10000;      /* a hátterén is felül legyen */
+    z-index: 10000;
 }
 
-/* ha a #hidden miatt nem látszik, kényszerítsd felül: */
+
 #hidden{ display: none; }
-.bejelentkez.is-open{ display: grid !important; }  /* JS-ből tedd rá az .is-open-t */
+.bejelentkez.is-open{ display: grid !important; }
 
 .close{
     width: 15px;
@@ -344,11 +341,11 @@ a{
 
 
 button {
-    background: none;     /* eltávolítja a háttérszínt */
-    border: none;         /* eltünteti a keretet is */
-    box-shadow: none;     /* ha volt árnyék, az is eltűnik */
-    color: inherit;       /* a szöveg színét örökli a szülőtől */
-    cursor: pointer;      /* maradjon kattintható */
+    background: none;
+    border: none;
+    box-shadow: none;
+    color: inherit;
+    cursor: pointer;
 }
 
 
@@ -357,7 +354,7 @@ button {
 .container-slide{
     margin-top: 150px;
     width: 100%;
-    overflow: hidden; /* Ez biztosítja, hogy ne lógjon ki semmi */
+    overflow: hidden;
 }
 .slider-wrapper {
     position: relative;
@@ -369,10 +366,8 @@ button {
     display: flex;
     width: 100%;
     height: auto;
-    overflow-y: hidden; /* NINCS GÖRGETÉS (sem le, sem fel, sem oldalra kézzel) */
+    overflow-y: hidden;
     position: relative;
-    /* --- MOBIL NÉZET (Alapértelmezett) --- */
-    /* Itt állítsd be a 4 / 3 -at (vagy 1 / 1 -et, ha nagyobbat akarsz) */
     aspect-ratio: 1 / 1;
     touch-action: pan-x;
     overflow-x: auto;
@@ -395,7 +390,7 @@ button {
     }
 }
 
-/* Chrome görgetősáv eltüntetése (marad a fájl végén) */
+
 .slider::-webkit-scrollbar {
     display: none;
 }
@@ -434,7 +429,7 @@ button {
 }
 
 .slider a {
-    display: contents;   /* az <a> nem hoz létre saját dobozt */
+    display: contents;
 }
 
 
@@ -445,7 +440,7 @@ button {
 }
 
 
-/* SLIDER képek mindig középre igazítva, elcsúszás nélkül */
+
 .container-slide,
 .slider-wrapper,
 .slider {
@@ -453,11 +448,11 @@ button {
     height: 100%;
 }
 
-/* A képek kitöltik a rendelkezésre álló teret, középről vágva */
+
 .slider img {
     width: 100%;
-    object-fit: cover;          /* kitölti a keretet */
-    object-position: center;    /* mindig középen marad */
+    object-fit: cover;
+    object-position: center;
     user-select: none;
     -webkit-user-drag: none;
     display: block;
@@ -465,9 +460,9 @@ button {
 
 
 .tiszta-link {
-    text-decoration: none; /* Eltünteti az aláhúzást */
-    color: inherit;        /* Örökli a szülő elem színét (nem lesz kék) */
-    cursor: pointer;       /* Megtartja a kéz ikont (javasolt!) */
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
 }
 
 
@@ -506,11 +501,10 @@ button {
     transform: translateY(-5px);
 }
 
-/* ... előtte lévő kódok ... */
 
 .animation-bottom {
     transition: transform 0.2s ease;
-    width: fit-content; /* <--- EZT A SORT ADD HOZZÁ */
+    width: fit-content;
 }
 
 .animation-bottom:hover {
@@ -518,7 +512,7 @@ button {
     color: #00ca65;
 }
 
-/* ... utána lévő kódok ... */
+
 .space{
     padding-top: 5px;
 }
@@ -534,18 +528,18 @@ button {
 
 
 
-/* --- Trainers Section Design --- */
+/* --- Trainers Design --- */
 
 .trainersContainer {
     width: 100%;
-    max-width: 1200px; /* Szélesség korlátozása, hogy ne folyjon szét nagyon nagy monitoron */
-    margin: 50px auto; /* Középre igazítás és távolság fentről-lentről */
+    max-width: 1200px;
+    margin: 50px auto;
     padding: 0 20px;
     box-sizing: border-box;
-    font-family: sans-serif; /* Vagy ami az oldalad alap betűtípusa */
+    font-family: sans-serif;
 }
 
-/* Címsor stílusa */
+
 .section-header {
     text-align: center;
     margin-bottom: 40px;
@@ -553,7 +547,7 @@ button {
 
 .section-header h2 {
     font-size: 2.5rem;
-    color: #ffffff; /* Sötétszürke szöveg */
+    color: #ffffff;
     margin-bottom: 10px;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -562,20 +556,19 @@ button {
 .divider-line {
     width: 80px;
     height: 4px;
-    background-color: #00ca65; /* Piros díszcsík, cseréld a te színvilágodra */
+    background-color: #00ca65;
     margin: 0 auto;
     border-radius: 2px;
 }
 
-/* Rács elrendezés (Grid) */
 .trainers-grid {
     display: grid;
-    /* Automatikusan 4 oszlop, de ha kicsi a hely, csökken */
+    /* ha kicsi a hely, csökken */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px; /* Távolság a kártyák között */
+    gap: 30px;
 }
 
-/* Kártya stílusa */
+
 .trainer-card {
     position: relative;
     border-radius: 15px;
@@ -586,32 +579,32 @@ button {
     cursor: pointer;
 }
 
-/* Hover effekt a kártyára */
+
 .trainer-card:hover {
-    transform: translateY(-10px); /* Kicsit felugrik */
+    transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 
 /* Kép tartó */
 .card-image {
     width: 100%;
-    height: 600px; /* Fix magasság, hogy egyformák legyenek */
+    height: 600px;
     overflow: hidden;
 }
 
 .card-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Kitölti a keretet torzítás nélkül */
+    object-fit: cover;
     transition: transform 0.5s ease;
 }
 
-/* Kép nagyítása hoverkor */
+
 .trainer-card:hover .card-image img {
     transform: scale(1.1);
 }
 
-/* Szöveges rész */
+
 .card-content {
     padding: 20px;
     text-align: center;
@@ -638,15 +631,14 @@ button {
 
 
 
-       /* --- EGYEDI PROFIL DESIGN (Csak a bemutatkozó oldalakon) --- */
 
-   .single-trainer-page .trainer-split-layout {
-       display: flex;
-       gap: 40px;
-       align-items: stretch;
-       margin-top: 20px;
-       text-align: left; /* Hogy ne örökölje a center igazítást */
-   }
+.single-trainer-page .trainer-split-layout {
+    display: flex;
+    gap: 40px;
+    align-items: stretch;
+    margin-top: 20px;
+    text-align: left;
+}
 
 .single-trainer-page .trainer-image-side {
     flex: 1;
@@ -712,10 +704,10 @@ button {
 }
 
 .single-trainer-page .description {
-    font-size: 1rem; /* Kicsit kisebb, hogy a több szöveg kényelmesen elférjen */
+    font-size: 1rem;
     line-height: 1.7;
     color: #ddd;
-    margin-bottom: 15px; /* Távolság a bekezdések között */
+    margin-bottom: 15px;
 }
 
 .single-trainer-page .benefit-list {
@@ -753,7 +745,7 @@ button {
     background: #fff;
 }
 
-/* Mobil nézet javítása */
+/* Mobil */
 @media (max-width: 900px) {
     .single-trainer-page .trainer-split-layout {
         flex-direction: column;
@@ -774,10 +766,10 @@ button {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* A kép magassága marad, de levesszük róla az overlay-t */
+
 .single-trainer-page .trainer-card-v2 {
     height: 500px;
-    border-radius: 0; /* A külső konténer kerekít, itt nem kell */
+    border-radius: 0;
     box-shadow: none;
 }
 
@@ -801,7 +793,7 @@ button {
     font-weight: 600;
 }
 
-/* Elérhetőségek listája */
+/* Elérhetőségek */
 .single-trainer-page .trainer-contact-list {
     display: flex;
     flex-direction: column;
@@ -838,24 +830,20 @@ button {
 
 
 
-/* BMI Kalkulátor Modern Design - Clean Code szemléletben */
+/* BMI Kalkulátor Design */
 
-/* --- Globális változók a tiszta kódért --- */
-/* --- Globális változók és Olvashatóság --- */
 :root {
     --bg-dark: #0f1a27;
     --card-bg: rgba(255, 255, 255, 0.05);
     --border-color: rgba(255, 255, 255, 0.2);
     --accent: #00ca65;
     --text-main: #ffffff;
-    /* Világosabb szürke az alcímeknek a jobb olvashatóságért */
     --text-dim: #e2e8f0;
     --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
 }
 
-/* --- Teljes képernyős középre igazítás --- */
 .bmi-main-container {
-    display: block; /* Flex helyett sima blokk, hogy a margin működjön */
+    display: block;
     width: 100%;
     min-height: 100vh;
     padding: 20px;
@@ -867,8 +855,6 @@ button {
     gap: 20px;
     max-width: 1000px;
     width: 100%;
-
-    /* EZ TOLJA LE: Ha még mindig kevés, írd át 300px-re */
     margin: 150px auto 100px auto;
 
     align-items: stretch;
@@ -889,7 +875,7 @@ button {
 
 .calculator-card {
     flex: 1.2;
-    text-align: center; /* Ez középre igazítja a h2-t és a p-t */
+    text-align: center;
 }
 
 .info-card {
@@ -897,10 +883,9 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: var(--card-bg); /* Beállítva ugyanarra a színre */
+    background: var(--card-bg); /* Azonos szín */
 }
 
-/* --- Szöveg stílusok --- */
 .card h2 {
     margin-top: 0;
     color: var(--text-main);
@@ -913,16 +898,16 @@ button {
     font-size: 1rem;
 }
 
-/* --- Inputok IGAZÍTÁSA --- */
+/* --- Inputok --- */
 #bmiForm {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Ez igazítja középre az input-group-okat és a gombot */
+    align-items: center;
 }
 
 .input-group {
     margin-bottom: 25px;
-    width: 100%; /* Megtartja az eredeti szélességet a wrapperen belül */
+    width: 100%;
 }
 
 .input-group label {
@@ -933,7 +918,7 @@ button {
     margin-bottom: 10px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    text-align: center; /* Felirat középre */
+    text-align: center;
 }
 
 .input-group input {
@@ -956,46 +941,40 @@ button {
     box-shadow: 0 0 15px rgba(0, 202, 101, 0.3);
 }
 
-/* Gomb középre igazítása */
 #bmiForm .btn {
     margin: 0 auto;
 }
 
 /* --- Eredmény Szekció --- */
 .result-area {
-    margin: 35px auto 0 auto; /* Középre teszi a teljes eredmény-blokkot a kártyán */
+    margin: 35px auto 0 auto; /* Közép eredmény-blokkot a kártya */
     padding-top: 30px;
     border-top: 1px solid var(--border-color);
     display: flex;
     align-items: center;
-    justify-content: center; /* A kört és a szöveget egymáshoz igazítja */
+    justify-content: center;
     gap: 25px;
-
-    /* Ez a két sor biztosítja, hogy a blokk középen legyen, de ne nyúljon el */
     width: fit-content;
-    min-width: 280px; /* Megadunk egy minimum szélességet a stabilitásért */
+    min-width: 280px;
 }
 
 .bmi-number {
     position: absolute;
-    /* A flexbox a szülőn (progress-container) középre teszi,
-       de az absolute + transform a legbiztosabb fixálás: */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    width: 100%;       /* Kitölti a konténert */
-    text-align: center; /* Belül középre zár */
+    width: 100%;
+    text-align: center;
 
     margin: 0;
     font-size: 1.8rem;
     font-weight: 800;
     line-height: 1;
     z-index: 5;
-    white-space: nowrap; /* Megakadályozza a törést */
+    white-space: nowrap; /* Nincs törést */
 }
 
-/* --- Kategória Színjelzések --- */
 .category-list { margin: 25px 0; }
 .cat-item {
     display: flex;
@@ -1013,7 +992,7 @@ button {
     flex-shrink: 0;
 }
 
-/* Színkódok */
+
 .blue { background: #3498db; box-shadow: 0 0 10px rgba(52, 152, 219, 0.5); }
 .green { background: #2ecc71; box-shadow: 0 0 10px rgba(46, 204, 113, 0.5); }
 .yellow { background: #f1c40f; box-shadow: 0 0 10px rgba(241, 196, 15, 0.5); }
@@ -1031,7 +1010,7 @@ button {
     margin: 0;
 }
 
-/* --- Mobil nézet --- */
+/* --- Mobil --- */
 @media (max-width: 850px) {
     .container { padding-top: 120px; }
     .bmi-wrapper { flex-direction: column; }
@@ -1044,10 +1023,9 @@ button {
 }
 .progress-container {
     position: relative;
-    /* Ez a rész garantálja, hogy a kör nem mozdul el */
     width: 120px;
     height: 120px;
-    flex: 0 0 120px; /* Nem engedi se nyúlni, se összenyomódni */
+    flex: 0 0 120px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1061,7 +1039,7 @@ button {
     height: 120px;
     transform: rotate(-90deg);
     transform-origin: center;
-    pointer-events: none; /* Ne zavarja az egérkattintást */
+    pointer-events: none;
 }
 
 /* A szürke háttér kör */
@@ -1079,9 +1057,7 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: left; /* A szöveg balra zárt marad a kör mellett */
-
-    /* Fix szélesség a szövegnek, hogy a váltáskor ne rángassa a kört */
+    text-align: left;
     width: 180px;
 }
 
@@ -1095,7 +1071,7 @@ button {
     --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
 }
 
-    /* --- Teljes képernyős középre igazítás --- */
+    /* --- középre --- */
     .bmi-main-container {
         display: block;
         width: 100%;
@@ -1115,7 +1091,7 @@ button {
         z-index: 2;
     }
 
-    /* --- Kártya Design --- */
+
     .card {
         background: var(--card-bg);
         border: 1px solid var(--border-color);
@@ -1135,11 +1111,11 @@ button {
         flex: 0.8;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start; /* Megváltoztatva, hogy a tartalom felülről induljon */
-        gap: 20px; /* Távolság az elemek között */
+        justify-content: flex-start; /* tartalom felülről induljon */
+        gap: 20px;
     }
 
-    /* --- Szöveg stílusok --- */
+
     .card h2 {
         margin-top: 0;
         color: var(--text-main);
@@ -1152,7 +1128,7 @@ button {
         font-size: 1rem;
     }
 
-    /* --- Inputok IGAZÍTÁSA --- */
+
     #bmiForm {
         display: flex;
         flex-direction: column;
@@ -1192,7 +1168,7 @@ button {
         margin: 0 auto;
     }
 
-    /* --- Eredmény Szekció (Fixált és Középre igazított) --- */
+
     .result-area {
         margin: 35px auto 0 auto;
         padding-top: 30px;
@@ -1251,7 +1227,7 @@ button {
         width: 180px;
     }
 
-    /* --- Kategória Színjelzések --- */
+
     .category-list { margin: 15px 0; }
     .cat-item {
         display: flex;
@@ -1277,10 +1253,10 @@ button {
     /* --- JAVÍTOTT ALSÓ SZÖVEG DESIGN (Info Footer) --- */
     .info-footer {
         margin-top: auto;
-        background: rgba(36, 52, 71, 0.7); /* Sötétebb kék box */
+        background: rgba(36, 52, 71, 0.7);
         padding: 18px;
         border-radius: 12px;
-        border-left: 4px solid var(--accent); /* Zöld hangsúlyos csík */
+        border-left: 4px solid var(--accent);
     }
 
     .info-footer p {
@@ -1291,7 +1267,7 @@ button {
         text-align: left;
     }
 
-    /* --- Mobil nézet --- */
+    /* --- Mobil  --- */
     @media (max-width: 850px) {
         .bmi-wrapper { flex-direction: column; }
         .calculator-card, .info-card { width: 100%; }
@@ -1315,21 +1291,20 @@ button {
 
 
 /* ======================================================= */
-/* ELÉRHETŐSÉGEK.CSS - Különálló stíluslap az elérhetőségek oldalhoz */
+/* ELÉRHETŐSÉGEK.CSS */
 /* ======================================================= */
 
-/* A tartalomnak helyet adunk a fix fejléce miatt */
 .contact-page-content {
-    padding-top: 130px; /* hely a 100px magas fix fejlécnek + kis távolság */
+    padding-top: 130px;
     padding-bottom: 50px;
     max-width: 1400px;
     margin: 0 auto;
-    color: white; /* Alapértelmezett szövegszín */
+    color: white;
     padding-left: 20px;
     padding-right: 20px;
 }
 
-/* Címek általános stílusa */
+
 .contact-page-content h1 {
     font-size: 3rem;
     font-weight: 700;
@@ -1341,7 +1316,7 @@ button {
 .contact-page-content h2 {
     font-size: 1.8rem;
     font-weight: 600;
-    color: #00ca65; /* A fő kiemelő zöld szín */
+    color: #00ca65;
     margin-top: 0;
     margin-bottom: 20px;
 }
@@ -1358,7 +1333,7 @@ button {
     font-weight: bold;
 }
 
-/* Információ kártyák elrendezése (Grid) */
+
 .contact-info-grid {
     display: grid;
     /* Két egyforma oszlop, alul a form (a form 100% széles lesz, de itt definiálunk neki helyet) */
@@ -1367,7 +1342,7 @@ button {
     margin-bottom: 50px;
 }
 
-/* Kártyák stílusa */
+
 .info-card {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -1391,7 +1366,7 @@ button {
     font-size: 1.1rem;
 }
 
-/* Kapcsolati űrlap stílusa */
+/* Kapcsolat */
 .contact-form-container {
     grid-column: 1 / -1; /* Az űrlap a teljes szélességet foglalja el */
     padding: 30px;
@@ -1433,15 +1408,13 @@ button {
 }
 
 .contact-form select {
-    /* Az alap 'select' nyilát elrejtheted és egy saját stílusú nyilat adhatsz neki CSS-el, de most maradjunk a standardnál. */
     -webkit-appearance: none; /* Chrome, Safari */
     -moz-appearance: none;    /* Firefox */
     appearance: none;         /* Standard */
-    /* Kis hely a jobb oldali nyílnak */
     padding-right: 30px;
 }
 
-/* Az űrlap küldő gombja (a főoldali .btn stílusát veszi át, itt csak a méretét állítjuk be) */
+
 .contact-form .send-btn {
     width: 100%;
     margin-top: 10px;
@@ -1456,7 +1429,7 @@ button {
 
 .map-placeholder {
     height: 400px;
-    background-color: #0f3739; /* Sötét háttér a térkép helyére */
+    background-color: #0f3739;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     display: flex;
@@ -1464,7 +1437,7 @@ button {
     align-items: center;
     font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.6);
-    overflow: hidden; /* Ha iframe kerül bele, ez segít */
+    overflow: hidden;
 }
 
 .map-placeholder iframe {
@@ -1474,11 +1447,11 @@ button {
 }
 
 
-/* --- RESPONSIVE - Mobil nézet beállításai --- */
+/* --- Mobil nézet beállításai --- */
 
 @media (max-width: 1400px) {
     .contact-page-content {
-        padding-top: 100px; /* A mobil nézetben összecsukott fejléc kisebb */
+        padding-top: 100px;
 
     }
 }
@@ -1486,11 +1459,10 @@ button {
 
 @media (max-width: 768px) {
     .contact-page-content {
-        padding-top: 80px; /* Még kisebb padding mobilra */
+        padding-top: 80px;
     }
 
     .contact-info-grid {
-        /* Egyetlen oszlop mobil nézetben */
         grid-template-columns: 1fr;
         gap: 20px;
     }
@@ -1507,7 +1479,7 @@ button {
         padding: 20px;
     }
 
-    /* A gomb is igazodik a kisebb képernyőhöz, ha szükséges */
+
     .contact-form .send-btn {
         font-size: 18px;
         padding: 10px 20px;
@@ -1527,7 +1499,7 @@ button {
     position: absolute;
     top: -5px;
     right: 35px;
-    background: #ef4444; /* Piros jelző */
+    background: #ef4444;
     color: white;
     font-size: 12px;
     font-weight: bold;
@@ -1546,15 +1518,13 @@ button {
 }
 .container-runner {
     width: 100%;
-    /* Opcionális: maximális szélesség megadása, ha nem akarod, hogy
-       óriási monitorokon túl nagy legyen (pl. max-width: 1200px;) */
 }
 
-/* A kép stílusozása */
+
 .container-runner img {
-    width: 100%;    /* Kitölti a konténer teljes szélességét */
-    height: auto;   /* Megtartja az eredeti méretarányt (nem torzul) */
-    display: block; /* Eltünteti a kép alatti apró "hézagot", ami alapértelmezett */
+    width: 100%;
+    height: auto;
+    display: block;
 }
 .runner-szöveg {
     z-index: 200;
@@ -1580,9 +1550,9 @@ button {
 .runner-shopBtn{
     color: #9a9a9a;
     text-decoration: underline;
-    text-decoration-thickness: 4px; /* Itt állítod a vastagságot (akár 0.5px is lehet) */
-    text-underline-offset: 4px;     /* Ezzel tolod lejjebb a vonalat a betűtől */
-    text-decoration-color: #9a9a9a;    /* Külön színe is lehet */
+    text-decoration-thickness: 4px;
+    text-underline-offset: 4px;
+    text-decoration-color: #9a9a9a;
     font-size: 25px;
     margin-top: 20px;
     position: absolute;
@@ -1607,7 +1577,7 @@ button {
 .fadeIn{
     opacity: 0;
     transform: translateY(50px);
-    transition: all 1s ease-out; /* Simán vált át */
+    transition: all 1s ease-out;
 }
 .show {
     opacity: 1;
@@ -1675,7 +1645,7 @@ button {
 }
 
 .nyelvek{
-    position: absolute;        /* jobbra pozicionálás */
+    position: absolute;
     padding: 20px;
     right: 420px;
 

@@ -24,7 +24,7 @@ body {
 
 
 
-/* Egy termék sorának stílusa a kosárban */
+/* termék sor stílus a kosárban */
 .cart-item {
     display: flex;
     align-items: center;
