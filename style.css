@@ -730,7 +730,7 @@ button {
 
 .input-group input {
     width: 100%;
-    background: rgb(36, 52, 71) !important;
+    background: #0f3739 !important;
     border: 1.5px solid var(--border-color);
     border-radius: 12px;
     padding: 16px;
@@ -812,7 +812,7 @@ button {
 .red { background: #e74c3c; box-shadow: 0 0 10px rgba(231, 76, 60, 0.5); }
 
 .info-footer {
-    background: rgb(36, 52, 71);
+    background: #0f3739;
     padding: 15px;
     border-radius: 12px;
     border-left: 4px solid var(--accent);
@@ -969,7 +969,7 @@ button {
 
     .input-group input {
         width: 100%;
-        background: rgb(36, 52, 71) !important;
+        background: #0f3739 !important;
         border: 1.5px solid var(--border-color);
         border-radius: 12px;
         padding: 16px;
@@ -1161,18 +1161,16 @@ button {
 
 /* Kártyák stílusa */
 .info-card {
-    background-color: #0d1928; /* Sötétebb kártya háttér, mint a body */
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 40px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: var(--shadow);
 }
 
-.info-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-}
+
 
 .card-icon {
     width: 40px;
