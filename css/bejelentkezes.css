@@ -2,7 +2,6 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #0f1c2e; /* A barátod sötétkék színe */
     font-family: Arial, sans-serif; /* Egységesített betűtípus */
     color: white;
     display: flex;
@@ -13,7 +12,7 @@ body {
 
 /* A bejelentkező kártya stílusa */
 .container {
-    background-color: #1e293b; /* A style.css kártya színe */
+    background-color: #124245; /* A style.css kártya színe */
     border-radius: 18px; /* Lekerekítés a style.css alapján */
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
     width: 90%;
@@ -61,7 +60,7 @@ label {
 }
 
 .input-box {
-    background-color: #243447; /* Sötétebb input háttér a style.css-ből */
+    background-color: #0f3739; /* Sötétebb input háttér a style.css-ből */
     display: flex;
     align-items: center;
     border-radius: 10px;
@@ -147,7 +146,7 @@ label {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #243447;
+    background-color: #0f3739;
     border: 1px solid #1f324d;
     border-radius: 10px;
     padding: 10px;
