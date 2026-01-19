@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
             prices: [3990, 3990, 3990, 3990]
         },
         "Protein por": {
-            images: ["images/eper.png", "images/vanilla.png"],
+            images: ["images/proteinEper1kg.jpg", "images/proteinVanillia1kg.jpg"],
             description: "ForgeX whey protein 1kg – csokoládé és vanília ízben.",
             sizes: ["1kg", "2kg"],
             prices: [24990, 39990]
