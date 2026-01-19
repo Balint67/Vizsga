@@ -1,19 +1,58 @@
-/* ======================================================= */
-/* ELÉRHETŐSÉGEK.CSS - Különálló stíluslap az elérhetőségek oldalhoz */
-/* ======================================================= */
 
-/* A tartalomnak helyet adunk a fix fejléce miatt */
 .contact-page-content {
-    padding-top: 130px; /* hely a 100px magas fix fejlécnek + kis távolság */
+    padding-top: 130px;
     padding-bottom: 50px;
     max-width: 1400px;
     margin: 0 auto;
-    color: white; /* Alapértelmezett szövegszín */
+    color: white;
     padding-left: 20px;
     padding-right: 20px;
 }
 
-/* Címek általános stílusa */
+.info-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 40px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: var(--shadow);
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 40px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: var(--shadow);
+}
+
+.calculator-card {
+    flex: 1.2;
+    text-align: center;
+}
+
+.info-card {
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--card-bg); /* Azonos szín */
+}
+
+.card h2 {
+    margin-top: 0;
+    color: var(--text-main);
+    font-size: 1.8rem;
+}
+
+.card p {
+    color: var(--text-dim);
+    line-height: 1.6;
+    font-size: 1rem;
+}
 .contact-page-content h1 {
     font-size: 3rem;
     font-weight: 700;
@@ -25,7 +64,7 @@
 .contact-page-content h2 {
     font-size: 1.8rem;
     font-weight: 600;
-    color: #00ca65; /* A fő kiemelő zöld szín */
+    color: #00ca65;
     margin-top: 0;
     margin-bottom: 20px;
 }
@@ -42,7 +81,7 @@
     font-weight: bold;
 }
 
-/* Információ kártyák elrendezése (Grid) */
+
 .contact-info-grid {
     display: grid;
     /* Két egyforma oszlop, alul a form (a form 100% széles lesz, de itt definiálunk neki helyet) */
@@ -51,27 +90,10 @@
     margin-bottom: 50px;
 }
 
-/* Kártyák stílusa */
-.info-card {
-    background-color: #0d1928; /* Sötétebb kártya háttér, mint a body */
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-}
 
-.info-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-}
 
-.card-icon {
-    width: 40px;
-    height: auto;
-    margin-bottom: 15px;
-    filter: invert(70%) sepia(50%) saturate(1500%) hue-rotate(100deg) brightness(110%); /* Zöld színezés az ikonnak */
-}
+
+
 
 .info-card ul {
     list-style: none;
@@ -83,13 +105,18 @@
     font-size: 1.1rem;
 }
 
-/* Kapcsolati űrlap stílusa */
+/* Kapcsolat */
 .contact-form-container {
     grid-column: 1 / -1; /* Az űrlap a teljes szélességet foglalja el */
-    background-color: #1a2b3c; /* Enyhén eltérő háttér a kártyákhoz képest */
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: var(--shadow);
 }
 
 .contact-form input[type="text"],
@@ -101,7 +128,7 @@
     margin-bottom: 15px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
-    background-color: #0d1928;
+    background-color: #0f3739;
     color: white;
     font-size: 1rem;
     box-sizing: border-box; /* padding és border a width-ben maradjon */
@@ -120,15 +147,13 @@
 }
 
 .contact-form select {
-    /* Az alap 'select' nyilát elrejtheted és egy saját stílusú nyilat adhatsz neki CSS-el, de most maradjunk a standardnál. */
     -webkit-appearance: none; /* Chrome, Safari */
     -moz-appearance: none;    /* Firefox */
     appearance: none;         /* Standard */
-    /* Kis hely a jobb oldali nyílnak */
     padding-right: 30px;
 }
 
-/* Az űrlap küldő gombja (a főoldali .btn stílusát veszi át, itt csak a méretét állítjuk be) */
+
 .contact-form .send-btn {
     width: 100%;
     margin-top: 10px;
@@ -143,7 +168,7 @@
 
 .map-placeholder {
     height: 400px;
-    background-color: #0d1928; /* Sötét háttér a térkép helyére */
+    background-color: #0f3739;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     display: flex;
@@ -151,7 +176,7 @@
     align-items: center;
     font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.6);
-    overflow: hidden; /* Ha iframe kerül bele, ez segít */
+    overflow: hidden;
 }
 
 .map-placeholder iframe {
@@ -161,11 +186,11 @@
 }
 
 
-/* --- RESPONSIVE - Mobil nézet beállításai --- */
+/* --- Mobil nézet beállításai --- */
 
 @media (max-width: 1400px) {
     .contact-page-content {
-        padding-top: 100px; /* A mobil nézetben összecsukott fejléc kisebb */
+        padding-top: 100px;
 
     }
 }
@@ -173,11 +198,10 @@
 
 @media (max-width: 768px) {
     .contact-page-content {
-        padding-top: 80px; /* Még kisebb padding mobilra */
+        padding-top: 80px;
     }
 
     .contact-info-grid {
-        /* Egyetlen oszlop mobil nézetben */
         grid-template-columns: 1fr;
         gap: 20px;
     }
@@ -194,7 +218,7 @@
         padding: 20px;
     }
 
-    /* A gomb is igazodik a kisebb képernyőhöz, ha szükséges */
+
     .contact-form .send-btn {
         font-size: 18px;
         padding: 10px 20px;

@@ -307,3 +307,39 @@ function valtsNyelvet(nyelvKod) {
         selectMezo.dispatchEvent(new Event('change'));
     }
 }
+function showInfo(type) {
+    const modal = document.getElementById('infoModal');
+    const title = document.getElementById('modalTitle');
+    const text = document.getElementById('modalText');
+
+    const infoData = {
+        'eatClean': {
+            title: 'Eat Clean',
+            text: 'A tiszta étkezés az egészséges életmód alapja. Fókuszálj a feldolgozatlan élelmiszerekre, sok zöldségre, minőségi fehérjére és komplex szénhidrátokra. Kerüld a hozzáadott cukrot és a mesterséges adalékanyagokat.'
+        },
+        'trainHard': {
+            title: 'Work Hard',
+            text: 'A következetes edzés kulcsfontosságú a fejlődéshez. Legyen szó súlyzós edzésről vagy kardióról, a lényeg a progresszió és a kitartás. Ne felejtsd el: az eredményekért meg kell dolgozni!'
+        },
+        'sleepWell': {
+            title: 'Sleep Well',
+            text: 'A regeneráció legalább olyan fontos, mint az edzés. Napi 7-9 óra minőségi alvás szükséges az izmok épüléséhez, a hormonháztartás egyensúlyához és a mentális frissességhez.'
+        }
+    };
+
+    title.innerText = infoData[type].title;
+    text.innerText = infoData[type].text;
+    modal.style.display = 'grid';
+}
+
+function closeInfo() {
+    document.getElementById('infoModal').style.display = 'none';
+}
+
+// Bezárás ha a modál mellé kattintunk
+window.onclick = function(event) {
+    const modal = document.getElementById('infoModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
