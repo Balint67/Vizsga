@@ -89,8 +89,33 @@ document.addEventListener('DOMContentLoaded', function() {
         opt.addEventListener('change', () => renderCourses(opt.value));
     });
 
-    // Kezdőállapot beállítása
-    renderCourses('hayoto');
+
+    // URL és KEZDŐÁLLAPOT
+    function initBooking() {
+        // 1. Megnézzük, van-e paraméter a linkben (pl. ?edzo=maya)
+        const urlParams = new URLSearchParams(window.location.search);
+        const trainerFromUrl = urlParams.get('edzo');
+
+        // 2. Eldöntjük, ki legyen a kiválasztott
+        let selectedTrainer = 'hayoto';
+
+        if (trainerFromUrl && trainerSpecs[trainerFromUrl]) {
+            selectedTrainer = trainerFromUrl;
+        }
+
+        // 3. Bejelöljük a megfelelő gombot a HTML-ben
+        const radioToSelect = document.querySelector(`input[name="trainer"][value="${selectedTrainer}"]`);
+        if (radioToSelect) {
+            radioToSelect.checked = true;
+        }
+
+        // 4. Kirajzoljuk az órákat
+        renderCourses(selectedTrainer);
+    }
+
+    // Indítás
+    initBooking();
+
 
     // 6. FORM BEKÜLDÉSE
     bookingForm.addEventListener('submit', function(e) {
