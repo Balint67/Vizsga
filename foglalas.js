@@ -1,76 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const courseOptions = document.querySelectorAll('input[name="course"]');
-    const timeArea = document.getElementById('time-selection-area');
-    const slotsContainer = document.getElementById('available-slots');
-    const bookingForm = document.getElementById('bookingForm');
-
-    // Időrend (szimulált adat)
-    const schedule = {
-        'rehab': ['08:00', '09:30', '16:00'],
-        'spine': ['10:00', '11:30', '17:00'],
-        'mindful': ['07:30', '18:30', '19:45'],
-        'corrective': ['14:00', '15:15', '20:00']
-    };
-
-    let selectedTime = null;
-
-    // Óra választás esemény
-    courseOptions.forEach(opt => {
-        opt.addEventListener('change', function() {
-            timeArea.style.display = 'block';
-            renderSlots(this.value);
-        });
-    });
-
-    function renderSlots(courseKey) {
-        slotsContainer.innerHTML = '';
-        selectedTime = null;
-
-        schedule[courseKey].forEach(time => {
-            const btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = 'slot';
-            btn.innerText = time;
-
-            btn.onclick = function() {
-                document.querySelectorAll('.slot').forEach(s => s.classList.remove('active'));
-                this.classList.add('active');
-                selectedTime = time;
-            };
-
-            slotsContainer.appendChild(btn);
-        });
-    }
-
-    // Beküldés kezelése
-    bookingForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const trainer = document.querySelector('input[name="trainer"]:checked').value;
-        const course = document.querySelector('input[name="course"]:checked');
-        const date = document.getElementById('booking-date').value;
-
-        if (!course || !date || !selectedTime) {
-            alert("Kérlek válassz órát, dátumot és időpontot is!");
-            return;
-        }
-
-        const courseName = course.parentElement.querySelector('.course-box').innerText;
-        const name = document.getElementById('user-name').value;
-
-        alert(`Sikeres foglalás!\n\nNév: ${name}\nEdző: ${trainer}\nÓra: ${courseName}\nIdőpont: ${date} ${selectedTime}`);
-        // Itt küldheted tovább az adatokat szerverre
-    });
-});
-
-document.addEventListener('DOMContentLoaded', function() {
     const trainerOptions = document.querySelectorAll('input[name="trainer"]');
     const courseContainer = document.getElementById('course-container');
     const timeArea = document.getElementById('time-selection-area');
     const slotsContainer = document.getElementById('available-slots');
     const bookingForm = document.getElementById('bookingForm');
+    const dateInput = document.getElementById('booking-date');
 
-    // Edzők és az ő saját óráik (Specializációik)
+    // 1. NAPTÁR LIMITÁLÁSA (Csak a mai naptól lehessen foglalni)
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.setAttribute('min', today);
+    dateInput.value = today;
+
+    // 2. ADATOK (Edzők és Specializációk)
     const trainerSpecs = {
         'hayoto': [
             "Post-traumás rehabilitáció",
@@ -98,14 +39,13 @@ document.addEventListener('DOMContentLoaded', function() {
         ]
     };
 
-    // Fix időpontok (minden órához ezeket rendeljük most hozzá)
     const times = ['08:00', '10:00', '14:00', '16:00', '18:00'];
     let selectedTime = null;
 
-    // FÜGGVÉNY: Órák (gombok) legenerálása az edző alapján
+    // 3. FÜGGVÉNY: Órák generálása
     function renderCourses(trainerKey) {
-        courseContainer.innerHTML = ''; // Régi órák törlése
-        timeArea.style.display = 'none'; // Időpontok elrejtése az új választásig
+        courseContainer.innerHTML = '';
+        timeArea.style.display = 'none';
 
         trainerSpecs[trainerKey].forEach((spec, index) => {
             const label = document.createElement('label');
@@ -116,7 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="course-box">${spec}</div>
             `;
 
-            // Ha kiválasztanak egy órát, mutassuk az időpontokat
             label.querySelector('input').addEventListener('change', function() {
                 timeArea.style.display = 'block';
                 renderSlots();
@@ -126,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // FÜGGVÉNY: Időpontok kirajzolása
+    // 4. FÜGGVÉNY: Időpontok generálása
     function renderSlots() {
         slotsContainer.innerHTML = '';
         selectedTime = null;
@@ -145,27 +84,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Edző váltás esemény
+    // 5. ESEMÉNYKEZELŐK
     trainerOptions.forEach(opt => {
         opt.addEventListener('change', () => renderCourses(opt.value));
     });
 
-    // Alapértelmezett betöltés (Hayoto órái)
+    // Kezdőállapot beállítása
     renderCourses('hayoto');
 
-    // Beküldés
+    // 6. FORM BEKÜLDÉSE
     bookingForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        const trainer = document.querySelector('input[name="trainer"]:checked').value;
-        const course = document.querySelector('input[name="course"]:checked');
-        const date = document.getElementById('booking-date').value;
 
-        if (!course || !date || !selectedTime) {
+        const selectedTrainerInput = document.querySelector('input[name="trainer"]:checked');
+        const selectedCourseInput = document.querySelector('input[name="course"]:checked');
+        const date = dateInput.value;
+
+        if (!selectedCourseInput || !date || !selectedTime) {
             alert("Kérlek válassz órát, dátumot és időpontot is!");
             return;
         }
 
-        const courseName = course.parentElement.querySelector('.course-box').innerText;
-        alert(`Sikeres foglalás!\n\nEdző: ${trainer}\nÓra: ${courseName}\nIdőpont: ${date} ${selectedTime}`);
+        const trainerName = selectedTrainerInput.parentElement.querySelector('span').innerText;
+        const courseName = selectedCourseInput.parentElement.querySelector('.course-box').innerText;
+        const userName = document.getElementById('user-name').value;
+
+        alert(`Sikeres foglalás!\n\nNév: ${userName}\nEdző: ${trainerName}\nÓra: ${courseName}\nIdőpont: ${date} ${selectedTime}`);
     });
 });

@@ -251,3 +251,70 @@
     color: #ccc;
     margin-top: 10px;
 }
+
+
+
+/* DÁTUMVÁLASZTÓ MODERNIZÁLÁSA */
+.booking-container .date-picker {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    border: 2px solid rgba(0, 202, 101, 0.2);
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.05); /* Sötét, áttetsző háttér */
+    color: white;
+    font-size: 1rem;
+    font-family: 'Segoe UI', sans-serif;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* Ikon színének megváltoztatása (böngésző függő) */
+    color-scheme: dark;
+}
+
+.booking-container .date-picker:focus {
+    border-color: #00ca65;
+    background: rgba(0, 202, 101, 0.1);
+    box-shadow: 0 0 15px rgba(0, 202, 101, 0.2);
+}
+
+/* IDŐPONTOK (SLOTS) DESIGN JAVÍTÁSA */
+.booking-container .time-slots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.booking-container .slot {
+    padding: 12px 5px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 202, 101, 0.3);
+    color: #00ca65;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.booking-container .slot:hover {
+    background: rgba(0, 202, 101, 0.15);
+    transform: translateY(-2px);
+}
+
+.booking-container .slot.active {
+    background: #00ca65;
+    color: #000;
+    box-shadow: 0 5px 15px rgba(0, 202, 101, 0.4);
+    border-color: #00ca65;
+}
+
+/* Kis feliratok a kártyákon belül */
+#time-selection-area p {
+    color: #00ca65;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+
