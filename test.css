@@ -132,17 +132,6 @@ a{
     color: #00ca65;
 }
 
-/* Középre a logo */
-
-.logoIMG {
-    z-index: 600;
-    height: 80px;
-
-    width: auto;
-
-
-}
-
 .bejelentkezBtn{
     display: flex;
 
