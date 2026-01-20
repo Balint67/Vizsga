@@ -44,12 +44,7 @@ body {
     font-size: 14px;
 }
 
-.form-box {
-    background: #1a2a3d;
-    border-radius: 10px;
-    padding: 20px;
-    margin-top: 20px;
-}
+
 
 .tab-buttons {
     display: flex;
@@ -80,28 +75,7 @@ label {
     font-size: 14px;
 }
 
-.input-box {
-    display: flex;
-    align-items: center;
-    background: #243447;
-    border-radius: 5px;
-    padding: 8px;
-    margin-bottom: 15px;
-}
 
-.input-box i {
-    color: #aaa;
-    margin: 0 8px;
-}
-
-.input-box input {
-    border: none;
-    outline: none;
-    flex: 1;
-    background: transparent;
-    color: #fff;
-    font-size: 14px;
-}
 
 .options {
     display: flex;
@@ -166,25 +140,7 @@ label {
     z-index: -1;
 }
 
-.social-buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-}
 
-.social-buttons button {
-    flex: 1;
-    background: #243447;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.social-buttons button:hover {
-    background: #2f4a68;
-}
 
 .footer-text {
     margin-top: 15px;
