@@ -183,3 +183,71 @@
     cursor: pointer;
     text-transform: uppercase;
 }
+
+
+.trainer-details-box {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(0, 202, 101, 0.1);
+    border-left: 4px solid #00ca65;
+    border-radius: 8px;
+    min-height: 120px;
+}
+
+.details-title {
+    font-weight: bold;
+    color: #00ca65;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+#specialty-list {
+    list-style: none;
+    padding: 0;
+}
+
+#specialty-list li {
+    font-size: 0.85rem;
+    color: #eee;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+#specialty-list li::before {
+    content: "•";
+    color: #00ca65;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.section-header {
+    text-align: center;
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem; /* Megnövelt méret, hogy passzoljon a másikhoz */
+    color: white;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0;
+}
+
+/* A zöld aláhúzás pontosan középen */
+.section-header .divider-line {
+    width: 80px;      /* Rövidebb, vastagabb vonal */
+    height: 4px;
+    background-color: #00ca65;
+    margin: 20px auto; /* Középre igazítja és távolságot ad */
+    border-radius: 2px;
+}
+
+.section-header .subtitle {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-top: 10px;
+}

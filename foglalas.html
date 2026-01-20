@@ -149,36 +149,34 @@
                         <span>Maya Williams</span>
                     </div>
                 </label>
+                <label class="trainer-option">
+                    <input type="radio" name="trainer" value="hannah">
+                    <div class="trainer-info">
+                        <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?auto=format&fit=crop&q=80&w=150&h=150" alt="Hannah">
+                        <span>Hannah Bloom</span>
+                    </div>
+                </label>
+                <label class="trainer-option">
+                    <input type="radio" name="trainer" value="heath">
+                    <div class="trainer-info">
+                        <img src="https://images.unsplash.com/photo-1567016520496-0cb37d8467a7?auto=format&fit=crop&q=80&w=150&h=150" alt="Heath">
+                        <span>Heath</span>
+                    </div>
+                </label>
             </div>
         </div>
 
         <div class="booking-card">
             <div class="step-number">02</div>
             <h3>Válassz órát és időt</h3>
-            <div class="course-select-grid">
-                <label class="course-option">
-                    <input type="radio" name="course" value="rehab">
-                    <div class="course-box">Post-traumás rehabilitáció</div>
-                </label>
-                <label class="course-option">
-                    <input type="radio" name="course" value="spine">
-                    <div class="course-box">Ízületi mobilitás & gerinc</div>
-                </label>
-                <label class="course-option">
-                    <input type="radio" name="course" value="mindful">
-                    <div class="course-box">Mindfulness & légzés</div>
-                </label>
-                <label class="course-option">
-                    <input type="radio" name="course" value="corrective">
-                    <div class="course-box">Korrektív gyakorlatok</div>
-                </label>
+            <div class="course-select-grid" id="course-container">
+                <p style="color: #aaa; font-size: 0.8rem;">Betöltés...</p>
             </div>
 
             <div id="time-selection-area" style="display: none; margin-top: 20px;">
                 <p style="font-size: 0.9rem; margin-bottom: 10px; color: #00ca65;">Válassz napot és időpontot:</p>
                 <input type="date" class="date-picker" id="booking-date">
-                <div class="time-slots" id="available-slots">
-                </div>
+                <div class="time-slots" id="available-slots"></div>
             </div>
         </div>
 
