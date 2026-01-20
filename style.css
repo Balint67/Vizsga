@@ -14,12 +14,8 @@ body {
 
     font-family: Arial, sans-serif;
 }
-
-.tartalom-index{
-    margin-top: -100px;
-}
-.tartalom{
-    margin-top: 100px;
+#hidden {
+    display: none;
 }
 /* ====== Alsó mobil navigáció (phone-menu) ====== */
 .phone-menu {
@@ -302,13 +298,46 @@ a{
         width: 200px;
         transform-origin: top left;
     }
-
+    #hidden {
+        display: inline;
+    }
+    .slider {
+        aspect-ratio: 9 / 16;
+    }
 
 }
 
 
 
+.bejelentkez{
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
+    place-items: center;
+    background: rgba(0,0,0,.6);
+}
 
+
+.bejelentkez .container{
+    position: relative;
+    z-index: 10000;
+}
+
+
+#hidden{ display: none; }
+.bejelentkez.is-open{ display: grid !important; }
+
+.close{
+    width: 15px;
+    height: auto;
+    margin-right: -330px;
+
+}
+
+.close:hover {
+    content: url("https://blogger.googleusercontent.com/img/a/AVvXsEjW1eh4XMzv_xq4grUCetunCqFjnuisYQFnwUWO0OUGcRzejN-kEjC6kXBs0Af_KXU27CqSAMZbKzcUvGwOEV8wb3KiSQlIUC8EUwIqqaEZbBT21t3fUCYkUaMiswMFp69HZT3z5YrwFWHD8nLkJcl7pe7sdp5v5lsJtj3E191zR81S982VODmq3rR5hlM");
+}
 
 
 button {
@@ -320,6 +349,114 @@ button {
 }
 
 
+/* Slide Show */
+
+.container-slide{
+    margin-top: 150px;
+    width: 100%;
+    overflow: hidden;
+}
+.slider-wrapper {
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
+.slider {
+    display: flex;
+    width: 100%;
+    height: auto;
+    overflow-y: hidden;
+    position: relative;
+    aspect-ratio: 1 / 1;
+    touch-action: pan-x;
+    overflow-x: auto;
+
+    scroll-behavior: smooth;
+    box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);
+    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;   /* IE/Edge */
+    cursor: pointer;
+    scroll-padding-inline: 0;
+
+}
+
+
+/* --- ASZTALI NÉZET (Tablet és PC) --- */
+/* 768 pixel szélesség felett átváltunk a széles panorámára */
+@media (min-width: 768px) {
+    .slider {
+        aspect-ratio: 16 / 5;
+    }
+}
+
+
+.slider::-webkit-scrollbar {
+    display: none;
+}
+
+.slider img {
+    flex: 1 0 100%;
+
+    object-fit: cover;
+    -webkit-user-drag: none;
+
+    object-position: center center;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+
+}
+.slider-nav{
+    display: flex;
+    column-gap: 0.5rem;
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+.slider-nav a{
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: #ffffff;
+    opacity: 0.75;
+    transition: opacity ease 250ms;
+}
+.slider-nav a:hover{
+    opacity: 1;
+}
+
+.slider a {
+    display: contents;
+}
+
+
+.slider.active {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+}
+
+
+
+.container-slide,
+.slider-wrapper,
+.slider {
+    width: 100%;
+    height: 100%;
+}
+
+
+.slider img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    user-select: none;
+    -webkit-user-drag: none;
+    display: block;
+}
 
 
 .tiszta-link {
@@ -695,6 +832,458 @@ button {
 
 /* BMI Kalkulátor Design */
 
+:root {
+    --bg-dark: #0f1a27;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --border-color: rgba(255, 255, 255, 0.2);
+    --accent: #00ca65;
+    --text-main: #ffffff;
+    --text-dim: #e2e8f0;
+    --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+}
+
+.bmi-main-container {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.bmi-wrapper {
+    display: flex;
+    gap: 20px;
+    max-width: 1000px;
+    width: 100%;
+    margin: 150px auto 100px auto;
+
+    align-items: stretch;
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Kártya Design --- */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 40px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: var(--shadow);
+}
+
+.calculator-card {
+    flex: 1.2;
+    text-align: center;
+}
+
+.info-card {
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--card-bg); /* Azonos szín */
+}
+
+.card h2 {
+    margin-top: 0;
+    color: var(--text-main);
+    font-size: 1.8rem;
+}
+
+.card p {
+    color: var(--text-dim);
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* --- Inputok --- */
+#bmiForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-group {
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.input-group label {
+    display: block;
+    color: var(--text-main);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.input-group input {
+    width: 100%;
+    background: #0f3739 !important;
+    border: 1.5px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px;
+    color: white !important;
+    font-size: 1.1rem;
+    text-align: center;
+    position: relative;
+    z-index: 20;
+    pointer-events: auto;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 15px rgba(0, 202, 101, 0.3);
+}
+
+#bmiForm .btn {
+    margin: 0 auto;
+}
+
+/* --- Eredmény Szekció --- */
+.result-area {
+    margin: 35px auto 0 auto; /* Közép eredmény-blokkot a kártya */
+    padding-top: 30px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    width: fit-content;
+    min-width: 280px;
+}
+
+.bmi-number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    text-align: center;
+
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 1;
+    z-index: 5;
+    white-space: nowrap; /* Nincs törést */
+}
+
+.category-list { margin: 25px 0; }
+.cat-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: var(--text-main);
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+
+.blue { background: #3498db; box-shadow: 0 0 10px rgba(52, 152, 219, 0.5); }
+.green { background: #2ecc71; box-shadow: 0 0 10px rgba(46, 204, 113, 0.5); }
+.yellow { background: #f1c40f; box-shadow: 0 0 10px rgba(241, 196, 15, 0.5); }
+.red { background: #e74c3c; box-shadow: 0 0 10px rgba(231, 76, 60, 0.5); }
+
+.info-footer {
+    background: #0f3739;
+    padding: 15px;
+    border-radius: 12px;
+    border-left: 4px solid var(--accent);
+}
+
+.info-footer p {
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* --- Mobil --- */
+@media (max-width: 850px) {
+    .container { padding-top: 120px; }
+    .bmi-wrapper { flex-direction: column; }
+    .calculator-card, .info-card { width: 100%; }
+}
+.progress-ring__circle {
+    transition: stroke-dashoffset 0.8s ease-in-out, stroke 0.8s ease;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+.progress-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    flex: 0 0 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.progress-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120px;
+    height: 120px;
+    transform: rotate(-90deg);
+    transform-origin: center;
+    pointer-events: none;
+}
+
+/* A szürke háttér kör */
+.circle-bg {
+    stroke: rgba(255, 255, 255, 0.1);
+}
+
+/* Az animált fő kör */
+.circle-main {
+    transition: stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.5s ease;
+}
+
+.result-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    width: 180px;
+}
+
+#bmiStatus {:root {
+    --bg-dark: #0f1a27;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --border-color: rgba(255, 255, 255, 0.2);
+    --accent: #00ca65;
+    --text-main: #ffffff;
+    --text-dim: #e2e8f0;
+    --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+}
+
+    /* --- középre --- */
+    .bmi-main-container {
+        display: block;
+        width: 100%;
+        min-height: 100vh;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .bmi-wrapper {
+        display: flex;
+        gap: 20px;
+        max-width: 1000px;
+        width: 100%;
+        margin: 250px auto 100px auto;
+        align-items: stretch;
+        position: relative;
+        z-index: 2;
+    }
+
+
+    .card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 24px;
+        padding: 40px;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        box-shadow: var(--shadow);
+    }
+
+    .calculator-card {
+        flex: 1.2;
+        text-align: center;
+    }
+
+    .info-card {
+        flex: 0.8;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* tartalom felülről induljon */
+        gap: 20px;
+    }
+
+
+    .card h2 {
+        margin-top: 0;
+        color: var(--text-main);
+        font-size: 1.8rem;
+    }
+
+    .card p {
+        color: var(--text-dim);
+        line-height: 1.6;
+        font-size: 1rem;
+    }
+
+
+    #bmiForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input-group {
+        margin-bottom: 25px;
+        width: 100%;
+    }
+
+    .input-group label {
+        display: block;
+        color: var(--text-main);
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-align: center;
+    }
+
+    .input-group input {
+        width: 100%;
+        background: #0f3739 !important;
+        border: 1.5px solid var(--border-color);
+        border-radius: 12px;
+        padding: 16px;
+        color: white !important;
+        font-size: 1.1rem;
+        text-align: center;
+        position: relative;
+        z-index: 20;
+    }
+
+    #bmiForm .btn {
+        margin: 0 auto;
+    }
+
+
+    .result-area {
+        margin: 35px auto 0 auto;
+        padding-top: 30px;
+        border-top: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 25px;
+        width: fit-content;
+        min-width: 280px;
+    }
+
+    .progress-container {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        flex: 0 0 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .progress-ring {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 120px;
+        height: 120px;
+        transform: rotate(-90deg);
+    }
+
+    .circle-bg { stroke: rgba(255, 255, 255, 0.1); }
+    .circle-main { transition: stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.5s ease; }
+
+    .bmi-number {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        font-size: 1.8rem;
+        font-weight: 800;
+        line-height: 1;
+        z-index: 5;
+        white-space: nowrap;
+    }
+
+    .result-text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
+        width: 180px;
+    }
+
+
+    .category-list { margin: 15px 0; }
+    .cat-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 12px;
+        font-size: 1rem;
+        color: var(--text-main);
+    }
+
+    .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    .blue { background: #3498db; box-shadow: 0 0 10px rgba(52, 152, 219, 0.5); }
+    .green { background: #2ecc71; box-shadow: 0 0 10px rgba(46, 204, 113, 0.5); }
+    .yellow { background: #f1c40f; box-shadow: 0 0 10px rgba(241, 196, 15, 0.5); }
+    .red { background: #e74c3c; box-shadow: 0 0 10px rgba(231, 76, 60, 0.5); }
+
+    /* --- JAVÍTOTT ALSÓ SZÖVEG DESIGN (Info Footer) --- */
+    .info-footer {
+        margin-top: auto;
+        background: rgba(36, 52, 71, 0.7);
+        padding: 18px;
+        border-radius: 12px;
+        border-left: 4px solid var(--accent);
+    }
+
+    .info-footer p {
+        font-size: 0.85rem;
+        color: #cbd5e1;
+        margin: 0;
+        line-height: 1.5;
+        text-align: left;
+    }
+
+    /* --- Mobil  --- */
+    @media (max-width: 850px) {
+        .bmi-wrapper { flex-direction: column; }
+        .calculator-card, .info-card { width: 100%; }
+    }
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+#bmiDescription {
+    margin: 5px 0 0 0;
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    line-height: 1.3;
+}
+
 
 
 
@@ -704,16 +1293,199 @@ button {
 /* ======================================================= */
 /* ELÉRHETŐSÉGEK.CSS */
 /* ======================================================= */
-.close{
-    width: 15px;
-    height: auto;
-    margin-right: -330px;
 
+.contact-page-content {
+    padding-top: 130px;
+    padding-bottom: 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
-.close:hover {
-    content: url("https://blogger.googleusercontent.com/img/a/AVvXsEjW1eh4XMzv_xq4grUCetunCqFjnuisYQFnwUWO0OUGcRzejN-kEjC6kXBs0Af_KXU27CqSAMZbKzcUvGwOEV8wb3KiSQlIUC8EUwIqqaEZbBT21t3fUCYkUaMiswMFp69HZT3z5YrwFWHD8nLkJcl7pe7sdp5v5lsJtj3E191zR81S982VODmq3rR5hlM");
+
+.contact-page-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+    text-align: center;
 }
+
+.contact-page-content h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #00ca65;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.contact-intro {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.highlight-text {
+    color: #00ca65;
+    font-weight: bold;
+}
+
+
+.contact-info-grid {
+    display: grid;
+    /* Két egyforma oszlop, alul a form (a form 100% széles lesz, de itt definiálunk neki helyet) */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+
+.info-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 40px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: var(--shadow);
+}
+
+
+
+
+.info-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.info-card ul li {
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+/* Kapcsolat */
+.contact-form-container {
+    grid-column: 1 / -1; /* Az űrlap a teljes szélességet foglalja el */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: var(--shadow);
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background-color: #0f3739;
+    color: white;
+    font-size: 1rem;
+    box-sizing: border-box; /* padding és border a width-ben maradjon */
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #00ca65;
+    box-shadow: 0 0 5px rgba(0, 202, 101, 0.5);
+}
+
+.contact-form select {
+    -webkit-appearance: none; /* Chrome, Safari */
+    -moz-appearance: none;    /* Firefox */
+    appearance: none;         /* Standard */
+    padding-right: 30px;
+}
+
+
+.contact-form .send-btn {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+/* Térkép szekció */
+.map-section {
+    margin-top: 40px;
+    padding: 20px 0;
+}
+
+.map-placeholder {
+    height: 400px;
+    background-color: #0f3739;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.6);
+    overflow: hidden;
+}
+
+.map-placeholder iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+
+/* --- Mobil nézet beállításai --- */
+
+@media (max-width: 1400px) {
+    .contact-page-content {
+        padding-top: 100px;
+
+    }
+}
+
+
+@media (max-width: 768px) {
+    .contact-page-content {
+        padding-top: 80px;
+    }
+
+    .contact-info-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .contact-page-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .contact-page-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .info-card {
+        padding: 20px;
+    }
+
+
+    .contact-form .send-btn {
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+}
+
 
 .leiras {
     font-size: 25px;
@@ -744,8 +1516,69 @@ button {
 .bekezdés{
     width: 400px;
 }
+.container-runner {
+    width: 100%;
+}
 
 
+.container-runner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.runner-szöveg {
+    z-index: 200;
+    position: absolute;
+    margin-top: -30%;
+    margin-left: 5%;
+    font-size: 40px;
+}
+.runner-szöveg2 {
+    margin-top: -20%;
+}
+
+
+
+
+.tartalom-index{
+    margin-top: -100px;
+}
+.tartalom{
+    margin-top: 100px;
+}
+
+.runner-shopBtn{
+    color: #9a9a9a;
+    text-decoration: underline;
+    text-decoration-thickness: 4px;
+    text-underline-offset: 4px;
+    text-decoration-color: #9a9a9a;
+    font-size: 25px;
+    margin-top: 20px;
+    position: absolute;
+    margin-left: 20px;
+}
+.runner-shopBtn:hover{
+
+    color: white;
+}
+
+.logoVid-Runner{
+    user-select: none;
+    -webkit-user-drag: none;
+    height: 130px;
+    width: auto;
+    position: absolute;
+    z-index: 200;
+    margin-top: -42%;
+    margin-left: -3%;
+
+}
+.fadeIn{
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease-out;
+}
 .show {
     opacity: 1;
     transform: translateY(0);
@@ -757,8 +1590,6 @@ button {
 .backToShopBtn:hover{
     color: #00ae55;
 }
-
-
 
 .nyelvek{
     position: absolute;
