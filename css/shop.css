@@ -52,6 +52,10 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
+h2{
+    font-size: 50px;
+}
+
 .header-shop h2 {
     margin: 5px 0;
     font-size: 28px;
@@ -315,6 +319,16 @@ body {
 .close-btn:hover {
     color: #ef4444;
     transform: scale(1.2);
+}
+
+:root {
+    --bg-dark: #0f1a27;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --border-color: rgba(255, 255, 255, 0.2);
+    --accent: #00ca65;
+    --text-main: #ffffff;
+    --text-dim: #e2e8f0;
+    --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
 }
 
 
