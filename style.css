@@ -1591,58 +1591,6 @@ button {
     color: #00ae55;
 }
 
-.container-importantThings{
-    margin-top: 3%;
-}
-.importantThings-text{
-    margin-top: 10px;
-    font-size: 30px;
-    margin-left: 10px;
-}
-
-
-.eatClean{
-    position: absolute;
-    margin-left: 15%;
-}
-.trainHard{
-    position: absolute;
-    margin-left: 47%;
-}
-.sleepWell{
-    margin-left: 75%;
-
-}
-.imgBackgrounds{
-    border-radius: 50%;
-    background-color: #124245;
-    width: 160px;
-    height: 160px;
-    margin-top: -200px;
-}
-#muscle{
-    margin-left: -50px;
-}
-#sleep{
-    margin-left: 10px;
-
-}
-#trainImg{
-
-}
-.eatClean img{
-    width: 160px;
-    height: auto;
-}
-.trainHard img{
-    width: 160px;
-    height: auto;
-
-}
-.sleepWell img{
-    width: 160px;
-    height: auto;
-}
 
 .nyelvek{
     position: absolute;
