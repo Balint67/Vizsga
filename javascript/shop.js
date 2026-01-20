@@ -17,8 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
             prices: [3990, 3990, 3990, 3990]
         },
         "Protein por": {
-            images: ["images/proteinVanillia1kg.jpg", "images/proteinEper1kg.jpg"],
-            description: "ForgeX whey protein 1kg – csokoládé és vanília ízben.",
+            // Javított sorrend: 1kg Vanília, 1kg Eper, 2kg Vanília, 2kg Eper
+            images: [
+                "images/proteinVanillia1kg.jpg",
+                "images/proteinEper1kg.jpg",
+                "images/proteinVanillia2kg.jpg",
+                "images/proteinEper2kg.jpg"
+            ],
+            description: "ForgeX whey protein – prémium minőségű tejsavó fehérje.",
             sizes: ["1kg", "2kg"],
             color: ["Vanília", "Eper"],
             prices: [24990, 39990]
@@ -66,25 +72,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // -------- MODAL --------
+    // -------- MODAL LÉTREHOZÁSA --------
     const modal = document.createElement("div");
     modal.classList.add("modal");
     modal.innerHTML = `
         <div class="modal-content">
             <span class="close-btn">&times;</span>
-
             <div class="modal-images">
                 <button class="prev-img">&#10094;</button>
                 <img id="modal-img">
                 <button class="next-img">&#10095;</button>
             </div>
-
             <h2 id="modal-title"></h2>
             <p id="modal-description"></p>
-
             <div id="size-selector-container"></div>
             <div id="color-selector-container"></div>
-
             <p id="modal-price"></p>
             <button class="login-btn">Hozzáadás a kosárhoz</button>
         </div>
@@ -98,10 +100,38 @@ document.addEventListener("DOMContentLoaded", () => {
     const sizeContainer = document.getElementById("size-selector-container");
     const colorContainer = document.getElementById("color-selector-container");
 
-    let currentImages = [];
-    let currentIndex = 0;
+    let currentProductData = null;
 
-    // -------- MÉRET --------
+    // -------- KÉP FRISSÍTÉSE A KIVÁLASZTOTT OPCIÓK ALAPJÁN --------
+    function updateProductImage() {
+        if (!currentProductData) return;
+
+        const sizes = sizeContainer.querySelectorAll(".size-option");
+        const colors = colorContainer.querySelectorAll(".size-option");
+
+        let sizeIndex = 0;
+        sizes.forEach((btn, idx) => { if (btn.classList.contains("active")) sizeIndex = idx; });
+
+        let colorIndex = 0;
+        colors.forEach((btn, idx) => { if (btn.classList.contains("active")) colorIndex = idx; });
+
+        // Speciális logika fehérjéhez: (méret index * színek száma) + szín index
+        if (currentProductData.sizes.length > 1 && currentProductData.color && currentProductData.color.length > 1) {
+            const imageIndex = (sizeIndex * currentProductData.color.length) + colorIndex;
+            if (currentProductData.images[imageIndex]) {
+                modalImg.src = currentProductData.images[imageIndex];
+            }
+        } else {
+            // Normál eset: csak szín váltja a képet
+            if (currentProductData.images[colorIndex]) {
+                modalImg.src = currentProductData.images[colorIndex];
+            } else {
+                modalImg.src = currentProductData.images[0];
+            }
+        }
+    }
+
+    // -------- MÉRET VÁLASZTÓ FRISSÍTÉSE --------
     function updateSizeSelector(sizes, prices) {
         sizeContainer.innerHTML = "";
         const wrapper = document.createElement("div");
@@ -117,19 +147,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 wrapper.querySelectorAll(".size-option").forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
                 modalPrice.innerText = prices[index] + " Ft";
+                updateProductImage(); // Kép frissítése méretváltáskor
             });
-
             wrapper.appendChild(btn);
         });
-
         sizeContainer.appendChild(wrapper);
         modalPrice.innerText = prices[0] + " Ft";
     }
 
-    // -------- SZÍN --------
-    function updateColorSelector(colors, images) {
+    // -------- SZÍN VÁLASZTÓ FRISSÍTÉSE --------
+    function updateColorSelector(colors) {
         colorContainer.innerHTML = "";
-
         if (!colors) return;
 
         const wrapper = document.createElement("div");
@@ -144,19 +172,14 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.addEventListener("click", () => {
                 wrapper.querySelectorAll(".size-option").forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
-
-                currentImages = [images[index]];
-                currentIndex = 0;
-                modalImg.src = currentImages[0];
+                updateProductImage(); // Kép frissítése színváltáskor
             });
-
             wrapper.appendChild(btn);
         });
-
         colorContainer.appendChild(wrapper);
     }
 
-    // -------- TERMÉK KATT --------
+    // -------- TERMÉK KATTINTÁS ESEMÉNY --------
     document.querySelectorAll(".product-card").forEach(card => {
         card.addEventListener("click", (e) => {
             const title = card.querySelector("h3").innerText;
@@ -169,23 +192,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
+            currentProductData = data; // Eltároljuk az aktuális terméket
             modalTitle.innerText = title;
             modalDescription.innerText = data.description;
 
-            currentImages = [data.images[0]];
-            modalImg.src = currentImages[0];
-
             updateSizeSelector(data.sizes, data.prices);
-            updateColorSelector(data.color, data.images);
+            updateColorSelector(data.color);
+            updateProductImage(); // Kezdőkép beállítása
 
             modal.style.display = "flex";
         });
     });
 
-    // -------- MODAL KOSÁR --------
+    // -------- KOSÁRBA TÉTEL A MODALBÓL --------
     modal.querySelector(".login-btn").addEventListener("click", () => {
         const title = modalTitle.innerText;
-        const size = sizeContainer.querySelector(".size-option.active").innerText;
+        const sizeEl = sizeContainer.querySelector(".size-option.active");
+        const size = sizeEl ? sizeEl.innerText : "";
 
         const colorEl = colorContainer.querySelector(".size-option.active");
         const color = colorEl ? colorEl.innerText : null;
@@ -195,8 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         addToCart(title, price, size, color, image);
         modal.style.display = "none";
-
-        alert(`${title} ${size} ${color} bekerült a kosárba`);
+        alert(`${title} (${size}, ${color || ''}) bekerült a kosárba`);
     });
 
     function addToCart(title, price, size, color, image) {
