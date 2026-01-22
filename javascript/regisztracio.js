@@ -4,33 +4,45 @@ import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-
 
 const regForm = document.getElementById('regForm');
 
-regForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+if (regForm) {
+    regForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-    // Adatok kinyerése a mezőkből
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const fullname = document.getElementById('fullname').value;
-    const phone = document.getElementById('phone').value;
+        const submitBtn = regForm.querySelector('button');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = "Siker regisztráció!"; // Azonnal látod, ha idáig eljutott
 
-    try {
-        // 1. Felhasználó létrehozása (Email + Jelszó)
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const fullname = document.getElementById('fullname').value;
+        const phone = document.getElementById('phone').value;
 
-        // 2. Extra adatok mentése a Firestore-ba (User ID alapján)
-        await setDoc(doc(db, "users", user.uid), {
-            fullname: fullname,
-            phone: phone,
-            email: email,
-            createdAt: new Date()
-        });
+        try {
+            // 1. Felhasználó létrehozása
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
 
-        alert("Sikeres regisztráció!");
-        window.location.href = "bejelentkezes.html"; // Átirányítás a belépéshez
+            // 2. Adatok mentése
+            await setDoc(doc(db, "users", user.uid), {
+                fullname: fullname,
+                phone: phone,
+                email: email,
+                createdAt: new Date()
+            });
 
-    } catch (error) {
-        console.error("Hiba történt:", error.code);
-        alert("Hiba: " + error.message);
-    }
-});
+            // 3. Közvetlen átirányítás (Alert nélkül, hogy ne akadjon meg)
+            window.location.replace("bejelentkezes.html");
+
+        } catch (error) {
+            console.error("Hiba:", error.code);
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Regisztráció <i class="fa-solid fa-arrow-right"></i>';
+
+            if (error.code === 'auth/email-already-in-use') {
+                alert("Ez az e-mail már foglalt!");
+            } else {
+                alert("Hiba történt: " + error.message);
+            }
+        }
+    });
+}
