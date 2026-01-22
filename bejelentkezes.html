@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bejelentkezés</title>
     <link rel="stylesheet" href="css/bejelentkezes.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
 
 
-    <div class="container"> <!-- nagy doboz -->
+    <div class="container">
          <a href="index.html" class="vissza-gomb">
             <i class="fa-solid fa-arrow-left"></i>
         </a>
-        <div class="header"> <!-- fejléc -->
+        <div class="header">
             <div class="avatar">
-                <i class="fa-solid fa-user"></i> <!-- kis ember ikon -->
+                <i class="fa-solid fa-user"></i> <!-- small person icon -->
             </div>
             <h2>Üdvözlünk</h2>
             <p>Jelentkezz be a fiókodba</p>
@@ -29,37 +29,37 @@
                 
             </div>
 
-            <form> <!-- összes mező és gomb -->
-                <label for="email">Email cím</label> <!-- kis szöveg -->
+            <form>
+                <label for="email">Email cím</label>
                 <div class="input-box">
-                    <i class="fa-solid fa-envelope"></i> <!-- kis ikon -->
+                    <i class="fa-solid fa-envelope"></i> <!-- small icon -->
                     <input type="email" id="email" placeholder="pelda@email.com" required> <!-- mező -->
                 </div>
 
                 <label for="password">Jelszó</label>
                 <div class="input-box">
-                    <i class="fa-solid fa-lock"></i> <!-- bal oldali lakat ikon -->
-                    <input type="password" id="password" placeholder="Minimum 8 karakter" required> <!-- mező -->
-                    <i class="fa-solid fa-eye" id="togglePassword"></i><!-- jobb oldali szem ikon -->
+                    <i class="fa-solid fa-lock"></i> <!-- left side lock icon -->
+                    <input type="password" id="password" placeholder="Minimum 8 karakter" required>
+                    <i class="fa-solid fa-eye" id="togglePassword"></i><!-- right side eye icon -->
                 </div>
 
                 <div class="options">
-                    <label><input type="checkbox"> Emlékezz rám</label> <!-- szöveg + kis doboz -->
+                    <label><input type="checkbox"> Emlékezz rám</label>
                     <a href="elfjelszo.html">Elfelejtetted a jelszavad?</a> 
                 </div>
 
-                <button type="submit" class="login-btn">Bejelentkezés <i class="fa-solid fa-arrow-right"></i></button> <!-- bejelentkezés gomb + kis nyíl -->
+                <button type="submit" class="login-btn">Bejelentkezés <i class="fa-solid fa-arrow-right"></i></button>
             </form>
 
             <p class="signup-text">Nincs még fiókod? <a href="regisztracio.html">Regisztrálj itt</a></p>
 
-            <div class="divider">
+            <div class="divider-logIn">
                 <span>vagy</span>
             </div>
 
             <div class="social-buttons">
-                <button><i class="fa-brands fa-google"></i> Google</button>
-                <button><i class="fa-brands fa-facebook"></i> Facebook</button>
+                <button><img src="images/googleLogo.png" alt="google logo" class="googleMiniImg"> Google</button>
+                <button><img src="images/facebookLogo.png" alt="facebook logo" class="facebookMiniImg"> Facebook</button>
             </div>
         </div>
 

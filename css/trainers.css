@@ -144,7 +144,7 @@
 .single-trainer-page .trainer-info-side {
     flex: 1.2;
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* a tetejére igazodik */
 }
 
 .single-trainer-page .glass-content {
@@ -294,6 +294,5 @@
 .single-trainer-page .contact-row a:hover {
     color: #00ca65;
 }
-
 
 

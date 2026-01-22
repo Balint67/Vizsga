@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elérhetőségek | [Webshop Neve]</title>
-    <link rel="stylesheet" href="elerhetosegek.css">
+
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="asd.css">
     <link rel="stylesheet" href="foglalas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/foglalas.css">
+
 </head>
 <body>
 
@@ -52,6 +56,11 @@
                     <li class="nav-link">
                         <div class="text">
                             <a href="elerhetosegek.html"><p>Elérhetőségek</p></a>
+                        </div>
+                    </li>
+                    <li class="nav-link">
+                        <div class="text">
+                            <a href="foglalas.html"><p>Időpontfoglalás</p></a>
                         </div>
                     </li>
                 </ul>
@@ -119,80 +128,151 @@
     </a>
 </div>
 
+<!--------------------------------FEJLÉC------------------------------------->
 
 
+    <br><br>
 
 
-<div class="booking-container">
-    <div class="section-header">
-        <h2>Időpontfoglalás</h2>
-        <div class="divider-line"></div>
-        <p class="subtitle">Válaszd ki a számodra megfelelő edzőt és órát!</p>
-    </div>
-
-    <div class="booking-wrapper">
-        <div class="booking-card">
-            <div class="step-number">01</div>
-            <h3>Válassz edzőt</h3>
-            <div class="trainer-select-grid">
-                <label class="trainer-option">
-                    <input type="radio" name="trainer" value="hayoto" checked>
-                    <div class="trainer-info">
-                        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgnIhSdrzKDdNkllRqdV7IG3WTZ5zo_wlBKqrNANkKkDNPtPJhaf9c4FFSDkWcg-KHRuCaAC1uJuc8kqlFb2U4ZAceONQXjUIllqKYpm0u6o7bUsPOHQqx8R0ot9UatveFCiYW6c7PfZNnyEmMcT9_EsLG0ImCc38nbgLqj2RtHG4ut0w8SggfLwvnq7QQ" alt="Hayoto">
-                        <span>Sensei Hayoto</span>
-                    </div>
-                </label>
-                <label class="trainer-option">
-                    <input type="radio" name="trainer" value="maya">
-                    <div class="trainer-info">
-                        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEisZDZwv8xEYQnTv1dMQTB5mF2MNGXhtrc_M4_M0I-Nt2bVtqP0tVu7HC1QHxVx2YlYIGh4MRJ10H_fiNtt8fGnaideWeFzCHuMqWy3uo9VZHNZr5VgjJrXbT_1apdDs3-FkNXLv-X1LI7rBtR_2yA7vkb4pVkd9bdfDq_b5_2of3i-zsAGyvNFUArGDQo" alt="Maya">
-                        <span>Maya Williams</span>
-                    </div>
-                </label>
-            </div>
+    <div class="booking-container">
+        <div class="section-header">
+            <h2>Időpontfoglalás</h2>
+            <div class="divider-line"></div>
+            <p class="subtitle">Válaszd ki a számodra megfelelő edzőt és órát!</p>
         </div>
 
-        <div class="booking-card">
-            <div class="step-number">02</div>
-            <h3>Válassz órát és időt</h3>
-            <div class="course-select-grid">
-                <label class="course-option">
-                    <input type="radio" name="course" value="rehab">
-                    <div class="course-box">Post-traumás rehabilitáció</div>
-                </label>
-                <label class="course-option">
-                    <input type="radio" name="course" value="spine">
-                    <div class="course-box">Ízületi mobilitás & gerinc</div>
-                </label>
-                <label class="course-option">
-                    <input type="radio" name="course" value="mindful">
-                    <div class="course-box">Mindfulness & légzés</div>
-                </label>
-                <label class="course-option">
-                    <input type="radio" name="course" value="corrective">
-                    <div class="course-box">Korrektív gyakorlatok</div>
-                </label>
-            </div>
-
-            <div id="time-selection-area" style="display: none; margin-top: 20px;">
-                <p style="font-size: 0.9rem; margin-bottom: 10px; color: #00ca65;">Válassz napot és időpontot:</p>
-                <input type="date" class="date-picker" id="booking-date">
-                <div class="time-slots" id="available-slots">
+        <div class="booking-wrapper">
+            <div class="booking-card">
+                <div class="step-number">01</div>
+                <h3>Válassz edzőt</h3>
+                <div class="trainer-select-grid">
+                    <label class="trainer-option">
+                        <input type="radio" name="trainer" value="hayoto" checked>
+                        <div class="trainer-info">
+                            <img src="images/SenseiHayoto.jpg" alt="Heath">
+                            <div class="trainer-text-content">
+                                <span class="trainer-name">Sensei Hayoto</span>
+                                <div class="trainer-contact-list-besideTrainers">
+                                    <div class="contact-row">
+                                        <i class="fa-solid fa-phone"></i> +36 70 123 4567
+                                    </div>
+                                    <div class="contact-row">
+                                        <i class="fa-solid fa-envelope"></i> hayoto.sensei@superself.hu
+                                    </div>
+                                    <div class="contact-row">
+                                        <i class="fa-solid fa-location-dot"></i> SuperSelf Dojo - Budapest
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="trainer-option">
+                        <input type="radio" name="trainer" value="maya">
+                        <div class="trainer-info">
+                            <img src="images/maya.jpeg" alt="Heath">
+                            <div class="trainer-text-content">
+                                <span class="trainer-name">Maya Williams</span>
+                                <div class="trainer-contact-list-besideTrainers">
+                                    <div class="contact-row">
+                                        <i class="fa-solid fa-phone"></i> +36 70 987 6543
+                                    </div>
+                                    <div class="contact-row">
+                                        <i class="fa-solid fa-envelope"></i> maya.williams@superself.hu
+                                    </div>
+                                    <div class="contact-row">
+                                        <i class="fa-solid fa-location-dot"></i> SuperSelf Gym - Pest
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="trainer-option">
+                        <input type="radio" name="trainer" value="hannah">
+                        <div class="trainer-info">
+                            <img src="images/hannah.png" alt="Heath">
+                            <div class="trainer-text-content">
+                                <span class="trainer-name">Hannah Montana</span>
+                                <div class="trainer-contact-list-besideTrainers">
+                                    <div class="contact-row">
+                                        <i class="fa-solid fa-phone"></i> +36 70 555 6677
+                                    </div>
+                                    <div class="contact-row">
+                                        <i class="fa-solid fa-envelope"></i> hannah.montana@superself.hu
+                                    </div>
+                                    <div class="contact-row">
+                                        <i class="fa-solid fa-location-dot"></i> SuperSelf Cardio Zone
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="trainer-option">
+                        <input type="radio" name="trainer" value="heath">
+                        <div class="trainer-info">
+                            <img src="images/heath.png" alt="Heath">
+                            <div class="trainer-text-content">
+                                <span class="trainer-name">Heath</span>
+                                <div class="trainer-contact-list-besideTrainers">
+                                    <div class="contact-row">
+                                        <i class="fa-solid fa-phone"></i> +36 70 222 3344
+                                    </div>
+                                    <div class="contact-row">
+                                        <i class="fa-solid fa-envelope"></i> heath@superself.hu
+                                    </div>
+                                    <div class="contact-row">
+                                        <i class="fa-solid fa-location-dot"></i> SuperSelf Power Dungeon
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
                 </div>
             </div>
-        </div>
 
-        <div class="booking-card">
-            <div class="step-number">03</div>
-            <h3>Személyes adatok</h3>
-            <form class="booking-form" id="bookingForm">
-                <input type="text" id="user-name" placeholder="Teljes név" required>
-                <input type="email" id="user-email" placeholder="E-mail cím" required>
-                <textarea id="user-note" placeholder="Megjegyzés (pl. sérülések, célok)"></textarea>
-                <button type="submit" class="submit-booking">Foglalás megerősítése</button>
-            </form>
+            <div class="booking-card">
+                <div class="step-number">02</div>
+                <h3>Válassz órát és időt</h3>
+                <div class="course-select-grid" id="course-container">
+                    <p style="color: #aaa; font-size: 0.8rem;">Betöltés...</p>
+                </div>
+
+                <div id="time-selection-area" style="display: none; margin-top: 20px;">
+                    <p style="font-size: 0.9rem; margin-bottom: 10px; color: #00ca65;">Válassz napot és időpontot:</p>
+                    <input type="date" class="date-picker" id="booking-date">
+                    <div class="time-slots" id="available-slots"></div>
+                </div>
+            </div>
+
+            <div class="booking-card">
+                <div class="step-number">03</div>
+                <h3>Személyes adatok</h3>
+                <form class="booking-form" id="bookingForm">
+                    <input type="text" id="user-name" placeholder="Teljes név" required>
+                    <input type="email" id="user-email" placeholder="E-mail cím" required>
+                    <textarea id="user-note" placeholder="Megjegyzés (pl. sérülések, célok)"></textarea>
+                    <button type="submit" class="submit-booking">Foglalás megerősítése</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-<script src="foglalas.js"></script>
+<section class="container-bottom" id="contact">
+    <div class="bekezdés">
+        <div class="animation-bottom"><div class="kihagyás"><a href="" class="tiszta-link"><p>Kapcsolat</p></a></div></div>
+        <div class="animation-bottom"><div class="kihagyás"><a href="szerzodesek.html" class="tiszta-link"><p>Általános szerződési feltételek</p></a></div></div>
+        <div class="animation-bottom"><div class="kihagyás"><a href="" class="tiszta-link"><p>Vélemények</p></a></div></div>
+        <div class="animation-bottom"><div class="kihagyás"><a href="" class="tiszta-link"><p>Gyakran ismételt kérdések</p></a></div></div>
+        <div class="animation-bottom"><div class="kihagyás"><a href="" class="tiszta-link"><p>Süti beállítások</p></a></div></div>
+        <div class="animation-bottom"><div class="kihagyás"><div class="space"><a href="https://www.instagram.com/forgex._?igsh=ZHR1NnNxMWd5dWZ2&utm_source=qr" class="tiszta-link"><p>Instagram <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" class="igLogo" alt="instaLogo"></p></a></div></div></div>
+        <div class="animation-bottom"><div class="kihagyás"><div class="space"><a href="https://www.facebook.com/share/1Dwr4nD67j/?mibextid=wwXIfr" class="tiszta-link"><p>Facebook <img src="https://1000logos.net/wp-content/uploads/2017/02/Facebook-Logosu.png" class="faceLogo" alt="FacebookLogo"></p></a></div></div></div>
+        <div class="animation-bottom"><div class="kihagyás"><div class="space" id="tiktok"><a href="https://www.tiktok.com/@forgex97?_r=1&_t=ZN-92zJPgXtPzK" class="tiszta-link"><p>Tiktok <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgZczqhf9-ciDl5_atJ6sQPIZNCwqKYOhfm4LkbKiFyiR9_HRrW7BJ7cNb55lbxZchDVBDwt5-olPIRhMClgLL8UON6c0AQybZYHaOji70nhooShz9RpZVU1lPZFcmzoi-Sd1gB1jhlRvXCKENeX4R-Lj7WFZDfEjzsBPIX5ipnQ43R1O7AmmQjESxVaSo" class="tiktokLogo" alt="TiktokLogo"></p></a></div></div></div>
+
+    </div>
+
+
+</section>
+<script src="js/foglalas.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>

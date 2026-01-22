@@ -1,0 +1,300 @@
+.booking-container {
+    max-width: 1200px;
+    margin: 100px auto 60px;
+    padding: 0 20px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.booking-container .subtitle {
+    text-align: center;
+    color: #ccc;
+    margin-top: -10px;
+    margin-bottom: 50px;
+}
+
+.booking-container .booking-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(800px, 1fr));
+    gap: 30px;
+    align-items: start;
+}
+
+.booking-container .booking-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    color: white;
+}
+
+.booking-container .step-number {
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    background: #00ca65;
+    color: black;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.booking-container .booking-card h3 {
+    margin-bottom: 25px;
+    font-size: 2rem;
+    border-bottom: 1px solid rgba(0, 202, 101, 0.3);
+    padding-bottom: 10px;
+    color: white;
+}
+
+/* --- EDZŐ VÁLASZTÓ ÉS ELRENDEZÉS --- */
+.booking-container .trainer-select-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.booking-container .trainer-option input {
+    display: none;
+}
+
+.booking-container .trainer-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 25px;
+}
+
+.booking-container .trainer-info img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.trainer-text-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* A nevet balra, az elérhetőséget jobbra tolja */
+    align-items: center;
+    width: 100%;
+}
+
+.trainer-name {
+    flex: 1; /* Elfoglalja a helyet, de hagy helyet a fix elérhetőségnek */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 20px;
+}
+
+.trainer-contact-list-besideTrainers {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 16px;
+    /* FIX SZÉLESSÉG: Ez biztosítja, hogy minden edzőnél ugyanott kezdődjön a csík */
+    width: 280px;
+    flex-shrink: 0;
+}
+
+.contact-row-besideTrainers, .contact-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start; /* Az ikonok egymás alá kerülnek az oszlop elején */
+    gap: 12px;
+}
+
+/* Fix szélesség az ikonoknak, hogy a szöveg ne csússzon el */
+.contact-row i, .contact-row-besideTrainers i {
+    width: 20px;
+    text-align: center;
+    color: #00ca65;
+    flex-shrink: 0;
+}
+
+.booking-container .trainer-option input:checked + .trainer-info {
+    background: rgba(0, 202, 101, 0.2);
+    border-color: #00ca65;
+}
+
+/* --- ÓRA VÁLASZTÓ --- */
+.booking-container .course-select-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.booking-container .course-option input {
+    display: none;
+}
+
+.booking-container .course-box {
+    padding: 15px 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 202, 101, 0.3);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.booking-container .course-option input:checked + .course-box {
+    background: #00ca65;
+    color: black;
+    font-weight: bold;
+}
+
+/* --- DÁTUM ÉS IDŐPONT --- */
+.booking-container .date-picker {
+    width: 97%;
+    padding: 15px;
+    border-radius: 12px;
+    border: 2px solid rgba(0, 202, 101, 0.2);
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-size: 1rem;
+    font-family: 'Segoe UI', sans-serif;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color-scheme: dark;
+}
+
+.booking-container .date-picker:focus {
+    border-color: #00ca65;
+    background: rgba(0, 202, 101, 0.1);
+    box-shadow: 0 0 15px rgba(0, 202, 101, 0.2);
+}
+
+.booking-container .time-slots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.booking-container .slot {
+    padding: 12px 5px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 202, 101, 0.3);
+    color: #00ca65;
+    border-radius: 10px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1.3rem;
+}
+
+.booking-container .slot:hover {
+    background: rgba(0, 202, 101, 0.15);
+    transform: translateY(-2px);
+}
+
+.booking-container .slot.active {
+    background: #00ca65;
+    color: #000;
+    box-shadow: 0 5px 15px rgba(0, 202, 101, 0.4);
+    border-color: #00ca65;
+}
+
+/* --- FORM --- */
+.booking-container .booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.booking-container .booking-form input,
+.booking-container .booking-form textarea {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(0,0,0,0.3);
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.booking-container .submit-booking {
+    padding: 15px;
+    background: #00ca65;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+/* --- EGYÉB ELEMEK --- */
+.section-header {
+    text-align: center;
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: white;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0;
+}
+
+.section-header .divider-line {
+    width: 80px;
+    height: 4px;
+    background-color: #00ca65;
+    margin: 20px auto;
+    border-radius: 2px;
+}
+
+#time-selection-area p {
+    color: #00ca65;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+/* Reszponzivitás javítása: Mobilon egymás alá kerüljenek */
+@media (max-width: 768px) {
+    .trainer-text-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .trainer-contact-list-besideTrainers {
+        width: 100%; /* Mobilon ne legyen fix szélesség, töltse ki a helyet */
+        text-align: left;
+    }
+    .contact-row, .contact-row-besideTrainers {
+        justify-content: flex-start;
+    }
+    .booking-container .booking-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
