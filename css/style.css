@@ -273,6 +273,7 @@ label {
     font-size: 20px;
     color: white;
     transition: transform 0.2s ease;
+    white-space: nowrap;
 }
 
 .text:hover {
@@ -376,57 +377,115 @@ a{
 
 /* --- Mobil --- */
 
+/* --- Mobil (max-width: 1400px alatt) --- */
 @media (max-width: 1400px) {
 
+    /* 1. A felső sáv elrendezése */
     .top-bar {
-
-        flex-direction: column;
-        height: auto;
-
-        padding: 10px;
-
-    }
-
-    .menuPont {
-        padding: 0px;
-    }
-
-
-    .right-icons {
-
-        display: none;
-    }
-
-
-
-    .right-icons img {
-
-        display: none;
-
-    }
-
-
-    .nav-toggle-btn{
         display: flex;
-        margin-bottom: 10px;
+        flex-direction: row; /* Sorba rendezzük a hamburgert és a logót/egyebeket */
+        align-items: center;
+        justify-content: space-between;
+        height: 80px; /* Fix magasság, hogy ne ugráljon */
+        padding: 0 20px;
+        position: fixed;
     }
 
-    .nav-list{
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.5rem;
+    /* 2. A navigációs konténer igazítása */
+    .nav-container {
+        position: static; /* Fontos, hogy a menü a top-barhoz igazodjon */
+        width: 100%;
+    }
+
+    /* 3. Hamburger ikon megjelenítése és pozicionálása */
+    .nav-toggle-btn {
+        display: flex;
+        position: relative; /* Abszolút helyett relatív, hogy a flexbox kezelje */
+        top: auto;
+        left: auto;
+        margin: 0;
+        z-index: 1100; /* Legyen legfelül */
+        border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Az eredeti checkbox elrejtése */
+    .nav-toggle {
         display: none;
     }
 
-    .nav-toggle:checked ~ .site-nav .nav-list{
-        display: flex;
+    /* 4. A lenyíló menü stílusa (alapból rejtett) */
+    .nav-list {
+        display: none; /* Rejtve */
+        flex-direction: column;
         position: absolute;
-        left: 30px;
-        width: 200px;
-        transform-origin: top left;
+        top: 80px; /* A top-bar magassága alá kerül */
+        left: 0;
+        width: 100%;
+        background-color: #000000; /* Fekete háttér */
+        padding: 20px 0;
+        border-top: 1px solid #333;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+        gap: 0; /* Reset */
     }
+
+    /* 5. A menü elemek stílusa mobilon */
+    .nav-list li {
+        width: 100%;
+        text-align: center;
+        padding: 15px 0;
+        border-bottom: 1px solid #1a1a1a;
+    }
+
+    .nav-list li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-list .text a {
+        display: block;
+        width: 100%;
+        font-size: 18px;
+    }
+
+    /* 6. A varázslat: Amikor a checkbox be van pipálva, megjelenik a menü */
+    .nav-toggle:checked ~ .site-nav .nav-list {
+        display: flex;
+        animation: slideDown 0.3s ease forwards;
+    }
+
+    /* Animáció a szép lenyíláshoz */
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 7. Egyéb elemek elrejtése vagy áthelyezése mobilon */
+    .right-icons {
+        display: none; /* Ikonok elrejtése, mert van alsó menü */
+    }
+
+    /* A nyelválasztó gombok igazítása mobilon */
+    .nyelvek {
+        position: absolute;
+        right: 20px;
+        top: 25px; /* Középre igazítás a sávban */
+        padding: 0;
+        display: flex;
+        gap: 10px;
+    }
+
+    .nyelv {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    /* Ha van "hidden" ID-d valahol, itt kezelheted */
     #hidden {
         display: inline;
+    }
+
+    /* A tartalom ne csússzon be a fejléc alá */
+    .tartalom {
+        margin-top: 100px;
     }
 }
 

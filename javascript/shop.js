@@ -10,14 +10,13 @@ document.addEventListener("DOMContentLoaded", () => {
             prices: [2990, 3990]
         },
         "Póló": {
-            images: ["images/shirt2.png", "images/shirt1.png"],
+            images: ["images/shirt-white.jpg", "images/shirt-black.png"],
             description: "ForgeX edzőpóló – légáteresztő, gyorsan száradó anyag.",
             sizes: ["S", "M", "L", "XL"],
             color: ["Fehér", "Fekete"],
             prices: [3990, 3990, 3990, 3990]
         },
         "Protein por": {
-            // Javított sorrend: 1kg Vanília, 1kg Eper, 2kg Vanília, 2kg Eper
             images: [
                 "images/proteinVanillia1kg.jpg",
                 "images/proteinEper1kg.jpg",
@@ -36,35 +35,39 @@ document.addEventListener("DOMContentLoaded", () => {
             prices: [6990, 12990]
         },
         "Nadrág": {
-            images: ["images/gatya2.jpeg", "images/gatya1.jpeg"],
+            images: ["images/pants-white.png", "images/pants-black.jpeg"],
             description: "ForgeX női sportnadrág – kényelmes és rugalmas.",
             sizes: ["XS", "S", "M", "L"],
             color: ["Fehér", "Fekete"],
             prices: [4990, 4990, 4990, 4990]
         },
         "Sportcipő": {
-            images: ["images/cipo2.png", "images/cipo.png"],
+            images: ["images/shoe-white.png", "images/shoe-black.png"],
             description: "ForgeX futócipő – könnyű, rugalmas talp.",
             sizes: ["38", "39", "40", "41", "42", "43", "44", "45"],
             color: ["Fehér", "Fekete"],
             prices: [12990, 12990, 12990, 12990, 12990, 12990, 12990, 12990]
         },
         "Sapka": {
-            images: ["images/sapka1.jpeg", "images/sapka2.jpeg"],
+            images: [
+                "images/hat-white.jpg",
+                "images/hat-black.jpeg",
+                "images/hat-green.jpeg",
+            ],
             description: "ForgeX sapka – stílusos és kényelmes.",
             sizes: ["M", "L"],
-            color: ["Fekete", "Zöld"],
+            color: ["Fehér", "Fekete", "Zöld"],
             prices: [3990, 3990]
         },
         "Sporttáska": {
-            images: ["images/bag1.jpg", "images/bag2.jpg"],
+            images: ["images/bag-black.jpg", "images/bag-green.jpg"],
             description: "ForgeX sporttáska – sok zsebbel, tartós anyagból.",
             sizes: ["25L", "45L"],
             color: ["Fekete", "Zöld"],
             prices: [17990, 27990]
         },
         "Fehérje szelet": {
-            images: ["images/csoki1.jpg", "images/csoki2.jpg"],
+            images: ["images/proteinBarCoconut.jpg", "images/proteinBarWhiteChoclate.jpg", "images/proteinBar100g.jpg"],
             description: "ForgeX fehérje szelet – energiadús snack.",
             sizes: ["50g", "100g"],
             color: ["Kókuszos", "Fehércsokis"],
@@ -102,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let currentProductData = null;
 
-    // -------- KÉP FRISSÍTÉSE A KIVÁLASZTOTT OPCIÓK ALAPJÁN --------
+    // -------- KÉP FRISSÍTÉSE A KIVÁLASZTOTT OPCIÓK ALAPJÁN (JAVÍTOTT) --------
     function updateProductImage() {
         if (!currentProductData) return;
 
@@ -115,19 +118,29 @@ document.addEventListener("DOMContentLoaded", () => {
         let colorIndex = 0;
         colors.forEach((btn, idx) => { if (btn.classList.contains("active")) colorIndex = idx; });
 
-        // Speciális logika fehérjéhez: (méret index * színek száma) + szín index
-        if (currentProductData.sizes.length > 1 && currentProductData.color && currentProductData.color.length > 1) {
-            const imageIndex = (sizeIndex * currentProductData.color.length) + colorIndex;
-            if (currentProductData.images[imageIndex]) {
-                modalImg.src = currentProductData.images[imageIndex];
-            }
-        } else {
-            // Normál eset: csak szín váltja a képet
-            if (currentProductData.images[colorIndex]) {
-                modalImg.src = currentProductData.images[colorIndex];
-            } else {
-                modalImg.src = currentProductData.images[0];
-            }
+        // Hány szín variáció van? Ha nincs szín, akkor 1-nek vesszük.
+        const colorCount = currentProductData.color ? currentProductData.color.length : 1;
+
+        // 1. opció: Teljes mátrix keresés (Méret + Szín kombináció)
+        // Ezt használja pl. a Protein por (ahol a méret miatt más a csomagolás képe)
+        const complexIndex = (sizeIndex * colorCount) + colorIndex;
+
+        // 2. opció: Egyszerű szín keresés
+        // Ezt használja a Cipő, Póló, Sapka (ahol a méret nem változtat a képen)
+        const simpleIndex = colorIndex;
+
+        // LOGIKA:
+        // Megnézzük, létezik-e kép a "bonyolult" (méret+szín) indexen.
+        if (currentProductData.images[complexIndex] !== undefined) {
+            modalImg.src = currentProductData.images[complexIndex];
+        }
+        // Ha nem létezik (pl. cipőnél a 42-es méret indexe túl nagy), akkor megnézzük a sima szín indexet.
+        else if (currentProductData.images[simpleIndex] !== undefined) {
+            modalImg.src = currentProductData.images[simpleIndex];
+        }
+        // Ha semmi nem jön be, marad az alapértelmezett első kép.
+        else {
+            modalImg.src = currentProductData.images[0];
         }
     }
 
