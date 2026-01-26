@@ -3,10 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // -------- TERMÉK ADATOK --------
     const productData = {
         "Shaker": {
-            images: ["images/shaker2.png", "images/shaker1.png"],
+            images: ["images/shaker-white.png", "images/shaker-black.png"],
             description: "ForgeX shaker 0,7L – prémium minőségű, BPA-mentes műanyag, tökéletes edzéshez.",
             sizes: ["0.7L", "1L"],
-            color: ["Fekete", "Fehér"],
+            color: ["Fehér", "Fekete"],
             prices: [2990, 3990]
         },
         "Póló": {
