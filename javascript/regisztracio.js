@@ -31,7 +31,7 @@ if (regForm) {
             });
 
             // 3. Közvetlen átirányítás (Alert nélkül, hogy ne akadjon meg)
-            window.location.replace("bejelentkezes.html");
+            window.location.replace("signIn.html");
 
         } catch (error) {
             console.error("Hiba:", error.code);
