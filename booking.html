@@ -194,9 +194,27 @@
                 </div>
 
                 <div id="time-selection-area" style="display: none; margin-top: 20px;">
-                    <p style="font-size: 0.9rem; margin-bottom: 10px; color: #00ca65;">Válassz napot és időpontot:</p>
-                    <input type="date" class="date-picker" id="booking-date">
-                    <div class="time-slots" id="available-slots"></div>
+                    <p class="selection-title">Válassz napot és időpontot:</p>
+
+                    <div class="datetime-picker-wrapper">
+                        <div class="calendar-side">
+                            <div class="custom-calendar" id="calendar-container">
+                                <div class="calendar-header">
+                                    <button id="prevMonth" type="button">&lt;</button>
+                                    <span id="currentMonthYear"></span>
+                                    <button id="nextMonth" type="button">&gt;</button>
+                                </div>
+                                <div class="calendar-weekdays">
+                                    <div>H</div><div>K</div><div>Sze</div><div>Cs</div><div>P</div><div>Szo</div><div>V</div>
+                                </div>
+                                <div class="calendar-days" id="calendar-days"></div>
+                            </div>
+                        </div>
+
+                        <div class="slots-side">
+                            <div class="time-slots" id="available-slots"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

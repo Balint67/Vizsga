@@ -4,75 +4,87 @@ document.addEventListener('DOMContentLoaded', function() {
     const timeArea = document.getElementById('time-selection-area');
     const slotsContainer = document.getElementById('available-slots');
     const bookingForm = document.getElementById('bookingForm');
-    const dateInput = document.getElementById('booking-date');
 
-    // 1. NAPTÁR LIMITÁLÁSA (Csak a mai naptól lehessen foglalni)
-    const today = new Date().toISOString().split('T')[0];
-    dateInput.setAttribute('min', today);
-    dateInput.value = today;
+    // Naptár elemei
+    const calendarDays = document.getElementById('calendar-days');
+    const monthYearText = document.getElementById('currentMonthYear');
+    const prevBtn = document.getElementById('prevMonth');
+    const nextBtn = document.getElementById('nextMonth');
 
-    // 2. ADATOK (Edzők és Specializációk)
+    // --- ADATOK (Meglévő edzők és órák) ---
     const trainerSpecs = {
-        'hayoto': [
-            "Post-traumás rehabilitáció",
-            "Ízületi mobilitás & gerinc",
-            "Mindfulness & légzés",
-            "Korrektív gyakorlatok"
-        ],
-        'maya': [
-            "Testtartás javítás",
-            "Súlykontroll és alakformálás",
-            "Funkcionális köredzések",
-            "Kezdők felépítése az alapoktól"
-        ],
-        'hannah': [
-            "HIIT (Intervallum edzés)",
-            "Szálkásítás és alakformálás",
-            "Állóképesség fejlesztés",
-            "Dinamikus nyújtás és core"
-        ],
-        'heath': [
-            "Erőemelő felkészítés",
-            "Izomtömeg-növelés",
-            "Táplálkozási tanácsadás",
-            "Periodizált edzéstervezés"
-        ]
+        'hayoto': ["Post-traumás rehabilitáció", "Ízületi mobilitás & gerinc", "Mindfulness & légzés", "Korrektív gyakorlatok"],
+        'maya': ["Testtartás javítás", "Súlykontroll és alakformálás", "Funkcionális köredzések", "Kezdők felépítése az alapoktól"],
+        'hannah': ["HIIT (Intervallum edzés)", "Szálkásítás és alakformálás", "Állóképesség fejlesztés", "Dinamikus nyújtás és core"],
+        'heath': ["Erőemelő felkészítés", "Izomtömeg-növelés", "Táplálkozási tanácsadás", "Periodizált edzéstervezés"]
     };
 
     const times = ['08:00', '10:00', '14:00', '16:00', '18:00'];
+
+    // Állapotváltozók
+    let currentViewDate = new Date(); // Amit épp nézünk a naptárban
+    let selectedDate = new Date();    // Amit kiválasztott a felhasználó
     let selectedTime = null;
 
-    // 3. FÜGGVÉNY: Órák generálása
-    function renderCourses(trainerKey) {
-        courseContainer.innerHTML = '';
-        timeArea.style.display = 'none';
+    // --- 1. FUNKCIÓ: EGYEDI NAPTÁR GENERÁLÁSA ---
+    function renderCalendar() {
+        if (!calendarDays) return;
+        calendarDays.innerHTML = '';
 
-        trainerSpecs[trainerKey].forEach((spec, index) => {
-            const label = document.createElement('label');
-            label.className = 'course-option';
+        const year = currentViewDate.getFullYear();
+        const month = currentViewDate.getMonth();
 
-            label.innerHTML = `
-                <input type="radio" name="course" value="course-${index}">
-                <div class="course-box">${spec}</div>
-            `;
+        // Hónap és év kiírása
+        const monthName = new Intl.DateTimeFormat('hu-HU', { month: 'long', year: 'numeric' }).format(currentViewDate);
+        monthYearText.innerText = monthName.charAt(0).toUpperCase() + monthName.slice(1);
 
-            label.querySelector('input').addEventListener('change', function() {
-                timeArea.style.display = 'block';
-                renderSlots();
-            });
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-            courseContainer.appendChild(label);
-        });
+        // Hétfői kezdéshez igazítás (JS-ben a vasárnap 0)
+        let emptySlots = firstDay === 0 ? 6 : firstDay - 1;
+        for (let i = 0; i < emptySlots; i++) {
+            const emptyDiv = document.createElement('div');
+            emptyDiv.classList.add('calendar-day', 'empty');
+            calendarDays.appendChild(emptyDiv);
+        }
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dayDiv = document.createElement('div');
+            dayDiv.classList.add('calendar-day');
+            dayDiv.innerText = day;
+
+            const checkDate = new Date(year, month, day);
+
+            if (checkDate < today) {
+                dayDiv.classList.add('past');
+            } else {
+                if (checkDate.toDateString() === selectedDate.toDateString()) {
+                    dayDiv.classList.add('selected');
+                }
+                dayDiv.onclick = () => {
+                    selectedDate = new Date(checkDate);
+                    renderCalendar();
+                    renderSlots(); // Újrarajzoljuk az időpontokat a választott naphoz
+                };
+                if (checkDate.toDateString() === today.toDateString()) {
+                    dayDiv.classList.add('today');
+                }
+            }
+            calendarDays.appendChild(dayDiv);
+        }
     }
 
-    // 4. FÜGGVÉNY: Időpontok generálása
+    // --- 2. FUNKCIÓ: IDŐPONTOK GENERÁLÁSA ---
     function renderSlots() {
         slotsContainer.innerHTML = '';
         selectedTime = null;
 
         times.forEach(time => {
-            const btn = document.createElement('button');
-            btn.type = 'button';
+            const btn = document.createElement('div');
             btn.className = 'slot';
             btn.innerText = time;
             btn.onclick = function() {
@@ -84,56 +96,88 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 5. ESEMÉNYKEZELŐK
+    // --- 3. FUNKCIÓ: ÓRÁK GENERÁLÁSA (Meglévő logikád) ---
+    function renderCourses(trainerKey) {
+        courseContainer.innerHTML = '';
+        timeArea.style.display = 'none';
+
+        trainerSpecs[trainerKey].forEach((spec, index) => {
+            const label = document.createElement('label');
+            label.className = 'course-option';
+            label.innerHTML = `
+                <input type="radio" name="course" value="course-${index}">
+                <div class="course-box">${spec}</div>
+            `;
+
+            label.querySelector('input').addEventListener('change', function() {
+                timeArea.style.display = 'block';
+                renderCalendar(); // Megjelenítéskor generáljuk a naptárat
+                renderSlots();    // És az időpontokat
+            });
+
+            courseContainer.appendChild(label);
+        });
+    }
+
+    // --- 4. ESEMÉNYKEZELŐK A NAPTÁRHOZ ---
+    if(prevBtn) {
+        prevBtn.onclick = (e) => {
+            e.preventDefault();
+            currentViewDate.setMonth(currentViewDate.getMonth() - 1);
+            renderCalendar();
+        };
+    }
+
+    if(nextBtn) {
+        nextBtn.onclick = (e) => {
+            e.preventDefault();
+            currentViewDate.setMonth(currentViewDate.getMonth() + 1);
+            renderCalendar();
+        };
+    }
+
+    // Edző választás figyelése
     trainerOptions.forEach(opt => {
         opt.addEventListener('change', () => renderCourses(opt.value));
     });
 
-
-    // URL és KEZDŐÁLLAPOT
+    // URL alapú kezdőállapot (Meglévő logikád)
     function initBooking() {
-        // 1. Megnézzük, van-e paraméter a linkben (pl. ?edzo=maya)
         const urlParams = new URLSearchParams(window.location.search);
         const trainerFromUrl = urlParams.get('edzo');
-
-        // 2. Eldöntjük, ki legyen a kiválasztott
         let selectedTrainer = 'hayoto';
 
         if (trainerFromUrl && trainerSpecs[trainerFromUrl]) {
             selectedTrainer = trainerFromUrl;
         }
 
-        // 3. Bejelöljük a megfelelő gombot a HTML-ben
         const radioToSelect = document.querySelector(`input[name="trainer"][value="${selectedTrainer}"]`);
         if (radioToSelect) {
             radioToSelect.checked = true;
         }
 
-        // 4. Kirajzoljuk az órákat
         renderCourses(selectedTrainer);
     }
 
-    // Indítás
     initBooking();
 
-
-    // 6. FORM BEKÜLDÉSE
+    // --- 5. FORM BEKÜLDÉSE ---
     bookingForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
         const selectedTrainerInput = document.querySelector('input[name="trainer"]:checked');
         const selectedCourseInput = document.querySelector('input[name="course"]:checked');
-        const date = dateInput.value;
 
-        if (!selectedCourseInput || !date || !selectedTime) {
-            alert("Kérlek válassz órát, dátumot és időpontot is!");
+        if (!selectedCourseInput || !selectedDate || !selectedTime) {
+            alert("Kérlek válassz órát, napot és időpontot is!");
             return;
         }
 
-        const trainerName = selectedTrainerInput.parentElement.querySelector('span').innerText;
+        const trainerName = selectedTrainerInput.parentElement.querySelector('.trainer-name').innerText;
         const courseName = selectedCourseInput.parentElement.querySelector('.course-box').innerText;
         const userName = document.getElementById('user-name').value;
+        const formattedDate = selectedDate.toLocaleDateString('hu-HU');
 
-        alert(`Sikeres foglalás!\n\nNév: ${userName}\nEdző: ${trainerName}\nÓra: ${courseName}\nIdőpont: ${date} ${selectedTime}`);
+        alert(`Sikeres foglalás!\n\nNév: ${userName}\nEdző: ${trainerName}\nÓra: ${courseName}\nIdőpont: ${formattedDate} ${selectedTime}`);
     });
 });
