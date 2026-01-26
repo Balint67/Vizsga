@@ -1,0 +1,119 @@
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #0b2426; /* Sötét teal háttér a kép alapján */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.profile-card {
+    background-color: #163336; /* A doboz színe */
+    width: 100%;
+    max-width: 400px; /* Keskenyebb, mint a korábbi, hogy hasonlítson a képre */
+    border-radius: 20px;
+    padding: 40px 30px;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    text-align: center;
+    color: white;
+}
+
+/* Vissza gomb a bal felső sarokban */
+.vissza-ikon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+/* Kör alakú ikon a tetején */
+.profile-avatar {
+    width: 60px;
+    height: 60px;
+    background-color: #2e7d32; /* Zöld kör */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px auto;
+    font-size: 24px;
+}
+
+.profile-header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.profile-header p {
+    font-size: 14px;
+    color: #a0a0a0;
+    margin: 5px 0 30px 0;
+}
+
+/* Adat mezők stílusa - hasonlít az input mezőkhöz a képen */
+.user-details {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.detail-item {
+    margin-bottom: 15px;
+}
+
+.detail-item label {
+    font-size: 12px;
+    color: #a0a0a0;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.detail-value {
+    background-color: #0f2b2d;
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Zöld gomb a kép alapján */
+.action-btn {
+    background-color: #2ecc71; /* Élénk zöld */
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.action-btn:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+}
+
+.bookings-preview h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #2ecc71;
+}
+
+.bookings-list {
+    font-size: 13px;
+    color: #a0a0a0;
+    padding: 15px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
