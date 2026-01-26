@@ -163,7 +163,9 @@ ul {
    3. TARTALOM SZEKCIÓK
    ========================================================================== */
 .tartalom-index { margin-top: -100px; } /* Header átfedés kompenzálás */
-
+.tartalom{
+    margin-top: 120px;
+}
 /* Runner Hero */
 .container-runner {
     width: 100%;
@@ -300,7 +302,7 @@ ul {
     background-color: black;
     padding: 20px 20%;
 }
-.bekezdés { width: 400px; }
+.bekezdés { width: 400px;}
 .kihagyás, .space { padding-top: 5px; }
 #tiktok { padding-top: 10px; }
 
