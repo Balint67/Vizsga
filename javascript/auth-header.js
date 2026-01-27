@@ -9,6 +9,6 @@ onAuthStateChanged(auth, (user) => {
         authLink.href = "profil.html";
     } else {
         console.log("Nincs bejelentkezett felhasználó.");
-        authLink.href = "bejelentkezes.html";
+        authLink.href = "signIn.html";
     }
 });
