@@ -1,3 +1,8 @@
+import { auth, db } from './firebase.js';
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+// Hozzáadtuk: collection, addDoc, serverTimestamp
+import { doc, getDoc, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
 document.addEventListener('DOMContentLoaded', function() {
     const trainerOptions = document.querySelectorAll('input[name="trainer"]');
     const courseContainer = document.getElementById('course-container');
@@ -22,43 +27,58 @@ document.addEventListener('DOMContentLoaded', function() {
     const times = ['08:00', '10:00', '14:00', '16:00', '18:00'];
 
     // Állapotváltozók
-    let currentViewDate = new Date(); // Amit épp nézünk a naptárban
-    let selectedDate = new Date();    // Amit kiválasztott a felhasználó
+    let currentViewDate = new Date();
+    let selectedDate = new Date();
     let selectedTime = null;
 
-    // --- 1. FUNKCIÓ: EGYEDI NAPTÁR GENERÁLÁSA ---
+    // --- ÚJ FUNKCIÓ: AUTOMATIKUS KITÖLTÉS ---
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            console.log("Felhasználó felismerve, adatok lekérése...");
+            try {
+                const userRef = doc(db, "users", user.uid);
+                const docSnap = await getDoc(userRef);
+
+                if (docSnap.exists()) {
+                    const userData = docSnap.data();
+                    // Kitöltjük a form mezőit a Firestore-ból
+                    if(document.getElementById('user-name')) document.getElementById('user-name').value = userData.fullname || "";
+                    if(document.getElementById('user-email')) document.getElementById('user-email').value = userData.email || user.email;
+                    console.log("Mezők automatikusan kitöltve.");
+                }
+            } catch (error) {
+                console.error("Hiba az adatok előtöltésekor:", error);
+            }
+        } else {
+            // Opcionális: Ha nincs belépve, átküldheted a loginra,
+            // hogy ne is tudjon foglalni
+            console.log("Nincs bejelentkezve felhasználó.");
+        }
+    });
+
+    // --- 1. FUNKCIÓ: EGYEDI NAPTÁR GENERÁLÁSA (Változatlan) ---
     function renderCalendar() {
         if (!calendarDays) return;
         calendarDays.innerHTML = '';
-
         const year = currentViewDate.getFullYear();
         const month = currentViewDate.getMonth();
-
-        // Hónap és év kiírása
         const monthName = new Intl.DateTimeFormat('hu-HU', { month: 'long', year: 'numeric' }).format(currentViewDate);
         monthYearText.innerText = monthName.charAt(0).toUpperCase() + monthName.slice(1);
-
         const firstDay = new Date(year, month, 1).getDay();
         const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-        // Hétfői kezdéshez igazítás (JS-ben a vasárnap 0)
         let emptySlots = firstDay === 0 ? 6 : firstDay - 1;
         for (let i = 0; i < emptySlots; i++) {
             const emptyDiv = document.createElement('div');
             emptyDiv.classList.add('calendar-day', 'empty');
             calendarDays.appendChild(emptyDiv);
         }
-
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-
         for (let day = 1; day <= daysInMonth; day++) {
             const dayDiv = document.createElement('div');
             dayDiv.classList.add('calendar-day');
             dayDiv.innerText = day;
-
             const checkDate = new Date(year, month, day);
-
             if (checkDate < today) {
                 dayDiv.classList.add('past');
             } else {
@@ -68,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 dayDiv.onclick = () => {
                     selectedDate = new Date(checkDate);
                     renderCalendar();
-                    renderSlots(); // Újrarajzoljuk az időpontokat a választott naphoz
+                    renderSlots();
                 };
                 if (checkDate.toDateString() === today.toDateString()) {
                     dayDiv.classList.add('today');
@@ -78,11 +98,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // --- 2. FUNKCIÓ: IDŐPONTOK GENERÁLÁSA ---
+    // --- 2. FUNKCIÓ: IDŐPONTOK GENERÁLÁSA (Változatlan) ---
     function renderSlots() {
         slotsContainer.innerHTML = '';
         selectedTime = null;
-
         times.forEach(time => {
             const btn = document.createElement('div');
             btn.className = 'slot';
@@ -96,11 +115,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- 3. FUNKCIÓ: ÓRÁK GENERÁLÁSA (Meglévő logikád) ---
+    // --- 3. FUNKCIÓ: ÓRÁK GENERÁLÁSA (Változatlan) ---
     function renderCourses(trainerKey) {
         courseContainer.innerHTML = '';
         timeArea.style.display = 'none';
-
         trainerSpecs[trainerKey].forEach((spec, index) => {
             const label = document.createElement('label');
             label.className = 'course-option';
@@ -108,18 +126,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 <input type="radio" name="course" value="course-${index}">
                 <div class="course-box">${spec}</div>
             `;
-
             label.querySelector('input').addEventListener('change', function() {
                 timeArea.style.display = 'block';
-                renderCalendar(); // Megjelenítéskor generáljuk a naptárat
-                renderSlots();    // És az időpontokat
+                renderCalendar();
+                renderSlots();
             });
-
             courseContainer.appendChild(label);
         });
     }
 
-    // --- 4. ESEMÉNYKEZELŐK A NAPTÁRHOZ ---
+    // --- 4. ESEMÉNYKEZELŐK A NAPTÁRHOZ (Változatlan) ---
     if(prevBtn) {
         prevBtn.onclick = (e) => {
             e.preventDefault();
@@ -127,7 +143,6 @@ document.addEventListener('DOMContentLoaded', function() {
             renderCalendar();
         };
     }
-
     if(nextBtn) {
         nextBtn.onclick = (e) => {
             e.preventDefault();
@@ -136,35 +151,31 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 
-    // Edző választás figyelése
     trainerOptions.forEach(opt => {
         opt.addEventListener('change', () => renderCourses(opt.value));
     });
 
-    // URL alapú kezdőállapot (Meglévő logikád)
     function initBooking() {
         const urlParams = new URLSearchParams(window.location.search);
         const trainerFromUrl = urlParams.get('edzo');
         let selectedTrainer = 'hayoto';
-
         if (trainerFromUrl && trainerSpecs[trainerFromUrl]) {
             selectedTrainer = trainerFromUrl;
         }
-
         const radioToSelect = document.querySelector(`input[name="trainer"][value="${selectedTrainer}"]`);
         if (radioToSelect) {
             radioToSelect.checked = true;
         }
-
         renderCourses(selectedTrainer);
     }
 
     initBooking();
 
-    // --- 5. FORM BEKÜLDÉSE ---
-    bookingForm.addEventListener('submit', function(e) {
+// --- 5. FORM BEKÜLDÉSE ( Firestore mentéssel) ---
+    bookingForm.addEventListener('submit', async function(e) {
         e.preventDefault();
 
+        // 1. Adatok összegyűjtése a formról
         const selectedTrainerInput = document.querySelector('input[name="trainer"]:checked');
         const selectedCourseInput = document.querySelector('input[name="course"]:checked');
 
@@ -176,8 +187,43 @@ document.addEventListener('DOMContentLoaded', function() {
         const trainerName = selectedTrainerInput.parentElement.querySelector('.trainer-name').innerText;
         const courseName = selectedCourseInput.parentElement.querySelector('.course-box').innerText;
         const userName = document.getElementById('user-name').value;
-        const formattedDate = selectedDate.toLocaleDateString('hu-HU');
+        const userEmail = document.getElementById('user-email').value;
+        const userNote = document.getElementById('user-note').value;
 
-        alert(`Sikeres foglalás!\n\nNév: ${userName}\nEdző: ${trainerName}\nÓra: ${courseName}\nIdőpont: ${formattedDate} ${selectedTime}`);
+        // Dátum formázása (ÉÉÉÉ-HH-NN)
+        const formattedDate = selectedDate.toISOString().split('T')[0];
+
+        // 2. Ellenőrizzük, hogy be van-e jelentkezve a mentés pillanatában
+        const user = auth.currentUser;
+        if (!user) {
+            alert("A foglaláshoz be kell jelentkezned!");
+            return;
+        }
+
+        try {
+            // 3. MENTÉS A FIRESTORE-BA
+            // Létrehozunk egy dokumentumot a 'bookings' gyűjteményben
+            const docRef = await addDoc(collection(db, "bookings"), {
+                userId: user.uid,      // Ez alapján fogjuk tudni a profil oldalon, hogy kié a foglalás
+                userName: userName,
+                userEmail: userEmail,
+                trainer: trainerName,
+                course: courseName,
+                date: formattedDate,
+                time: selectedTime,
+                note: userNote,
+                createdAt: serverTimestamp() // Automatikus időbélyeg a mentésről
+            });
+
+            console.log("Foglalás sikeres, ID: ", docRef.id);
+            alert("Sikeres foglalás! Az adataidat elmentettük.");
+
+            // 4. Átirányítás a profil oldalra, hogy lássuk az eredményt
+            window.location.href = "profil.html";
+
+        } catch (error) {
+            console.error("Hiba a mentés során: ", error);
+            alert("Hiba történt a mentéskor. Kérlek nézd meg a konzolt!");
+        }
     });
 });
