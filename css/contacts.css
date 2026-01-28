@@ -438,3 +438,38 @@
     font-size: 1.4rem;
     font-weight: 700;
 }
+
+
+/* Térkép szekció */
+.map-section {
+    margin-top: 40px;
+    padding: 20px 0;
+}
+
+.map-placeholder {
+    height: 400px;
+    background-color: #0f3739;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.6);
+    overflow: hidden;
+    position: relative; /* Új: biztosítja a megfelelő pozicionálást */
+}
+
+/* Térkép iframe stílusok */
+.map-placeholder iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    filter: grayscale(20%) invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%);
+    /* Ez a filter segít, hogy a Google Maps sötét módúbb legyen, illeszkedve a weboldaladhoz */
+}
+
+.map-placeholder iframe:hover {
+    filter: none; /* Hoverre visszajönnek az eredeti színek */
+    transition: 0.5s ease;
+}
