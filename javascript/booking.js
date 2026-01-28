@@ -1,4 +1,6 @@
 import { auth, db } from './firebase.js';
+// Import the custom modal tool
+import { forgeXModal } from './utils.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 // Hozzáadtuk: collection, addDoc, serverTimestamp
 import { doc, getDoc, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -171,16 +173,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     initBooking();
 
-// --- 5. FORM BEKÜLDÉSE ( Firestore mentéssel) ---
+// --- 5. FORM SUBMISSION (Updated with Glassmorphism Modal) ---
     bookingForm.addEventListener('submit', async function(e) {
         e.preventDefault();
 
-        // 1. Adatok összegyűjtése a formról
+        // 1. Collect data
         const selectedTrainerInput = document.querySelector('input[name="trainer"]:checked');
         const selectedCourseInput = document.querySelector('input[name="course"]:checked');
 
+        // 2. Validation with custom modal
         if (!selectedCourseInput || !selectedDate || !selectedTime) {
-            alert("Kérlek válassz órát, napot és időpontot is!");
+            // Await the modal so the code pauses until the user clicks OK
+            await forgeXModal("Figyelem", "Kérlek válassz órát, napot és időpontot is!");
             return;
         }
 
@@ -190,21 +194,21 @@ document.addEventListener('DOMContentLoaded', function() {
         const userEmail = document.getElementById('user-email').value;
         const userNote = document.getElementById('user-note').value;
 
-        // Dátum formázása (ÉÉÉÉ-HH-NN)
+        // Format date
         const formattedDate = selectedDate.toISOString().split('T')[0];
 
-        // 2. Ellenőrizzük, hogy be van-e jelentkezve a mentés pillanatában
+        // 3. Auth check
         const user = auth.currentUser;
         if (!user) {
-            alert("A foglaláshoz be kell jelentkezned!");
+            await forgeXModal("Bejelentkezés szükséges", "A foglaláshoz kérlek jelentkezz be!");
+            window.location.href = "bejelentkezes.html";
             return;
         }
 
         try {
-            // 3. MENTÉS A FIRESTORE-BA
-            // Létrehozunk egy dokumentumot a 'bookings' gyűjteményben
+            // 4. Save to Firestore
             const docRef = await addDoc(collection(db, "bookings"), {
-                userId: user.uid,      // Ez alapján fogjuk tudni a profil oldalon, hogy kié a foglalás
+                userId: user.uid,
                 userName: userName,
                 userEmail: userEmail,
                 trainer: trainerName,
@@ -212,18 +216,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 date: formattedDate,
                 time: selectedTime,
                 note: userNote,
-                createdAt: serverTimestamp() // Automatikus időbélyeg a mentésről
+                createdAt: serverTimestamp()
             });
 
-            console.log("Foglalás sikeres, ID: ", docRef.id);
-            alert("Sikeres foglalás! Az adataidat elmentettük.");
+            // 5. Success message with Glassmorphism
+            // The code waits here for the user to click "OK" before redirecting
+            await forgeXModal(
+                "Sikeres foglalás!",
+                `Kedves ${userName}, rögzítettük az időpontodat a(z) ${trainerName} edzőhöz.`
+            );
 
-            // 4. Átirányítás a profil oldalra, hogy lássuk az eredményt
+            // 6. Redirect to profile page
             window.location.href = "profil.html";
 
         } catch (error) {
-            console.error("Hiba a mentés során: ", error);
-            alert("Hiba történt a mentéskor. Kérlek nézd meg a konzolt!");
+            console.error("Firebase save error: ", error);
+            await forgeXModal("Hiba", "Sajnos nem sikerült elmenteni a foglalást. Próbáld újra!");
         }
     });
 });

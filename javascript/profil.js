@@ -1,6 +1,21 @@
+// 1. Import local config and custom tools
 import { auth, db } from './firebase.js';
+import { forgeXModal } from './utils.js';
+
+// 2. Import Firebase Authentication functions
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { doc, getDoc, collection, query, where, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+// 3. Import Firestore functions (THIS WAS MISSING OR INCOMPLETE!)
+import {
+    doc,
+    getDoc,
+    collection,
+    query,
+    where,
+    getDocs,
+    deleteDoc
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
 
 onAuthStateChanged(auth, async (user) => {
     if (user) {
@@ -61,11 +76,31 @@ async function loadUserBookings(uid) {
             bookingsContainer.appendChild(bookingItem);
         });
 
+        // Inside the querySnapshot.forEach loop where you create buttons:
         document.querySelectorAll('.delete-booking-btn').forEach(button => {
             button.addEventListener('click', async (e) => {
+                // Get the booking ID from the data attribute
                 const bId = e.currentTarget.getAttribute('data-id');
-                if (confirm("Biztosan törölni szeretnéd ezt a foglalást?")) {
-                    await deleteBooking(bId, uid);
+                console.log("Delete button clicked for ID:", bId); // Debug log
+
+                const confirmed = await forgeXModal(
+                    "Törlés megerősítése",
+                    "Biztosan törölni szeretnéd ezt a foglalást?",
+                    true
+                );
+
+                console.log("Modal result:", confirmed); // Debug log: Check if it's true or false
+
+                if (confirmed) {
+                    // Get the current user directly from auth to be safe
+                    const currentUser = auth.currentUser;
+
+                    if (currentUser) {
+                        console.log("Starting deletion for user:", currentUser.uid); // Debug log
+                        await deleteBooking(bId, currentUser.uid);
+                    } else {
+                        console.error("No user logged in during deletion!");
+                    }
                 }
             });
         });
