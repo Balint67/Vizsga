@@ -1,6 +1,74 @@
-document.addEventListener("DOMContentLoaded", () => {
+import { auth, db } from './firebase.js';
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { forgeXModal } from './utils.js';
 
-    // -------- TERMÉK ADATOK --------
+document.addEventListener("DOMContentLoaded", () => {
+    let currentUserId = null;
+    // Ezt a sort add hozzá:
+    const profileLink = document.getElementById('profile-link');
+
+
+    // --- 1. FIRESTORE SZINKRONIZÁCIÓ ---
+
+    // Listen for login state and load cart from cloud
+// --- 1. FIRESTORE SZINKRONIZÁCIÓ ---
+
+    // Listen for login state and load cart from cloud
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            currentUserId = user.uid;
+
+            // --- ÚJ: Profil link átállítása ---
+            if (profileLink) profileLink.href = "profil.html";
+
+            console.log("User logged in, syncing cart...");
+            await syncCartFromFirestore();
+        } else {
+            currentUserId = null;
+
+            // --- ÚJ: Bejelentkezés link visszaállítása ---
+            if (profileLink) profileLink.href = "signIn.html";
+
+            updateCartCount();
+        }
+    });
+
+    // Save local cart to Firestore if logged in
+    async function saveCartToCloud() {
+        if (!currentUserId) return;
+
+        const localCart = JSON.parse(localStorage.getItem("cart")) || [];
+        try {
+            await setDoc(doc(db, "carts", currentUserId), {
+                items: localCart,
+                updatedAt: new Date()
+            });
+            console.log("Cart saved to cloud.");
+        } catch (error) {
+            console.error("Error saving cart to cloud:", error);
+        }
+    }
+
+    // Load cart from Firestore and merge with local storage
+    async function syncCartFromFirestore() {
+        if (!currentUserId) return;
+
+        try {
+            const cartSnap = await getDoc(doc(db, "carts", currentUserId));
+            if (cartSnap.exists()) {
+                const cloudCart = cartSnap.data().items || [];
+                // Here we prioritize the cloud cart
+                localStorage.setItem("cart", JSON.stringify(cloudCart));
+                updateCartCount();
+                console.log("Cart loaded from cloud.");
+            }
+        } catch (error) {
+            console.error("Error loading cart from cloud:", error);
+        }
+    }
+
+    // -------- TERMÉK ADATOK (Változatlan) --------
     const productData = {
         "Shaker": {
             images: ["images/shaker-white.png", "images/shaker-black.png"],
@@ -49,11 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
             prices: [12990, 12990, 12990, 12990, 12990, 12990, 12990, 12990]
         },
         "Sapka": {
-            images: [
-                "images/hat-white.jpg",
-                "images/hat-black.jpeg",
-                "images/hat-green.jpeg",
-            ],
+            images: ["images/hat-white.jpg", "images/hat-black.jpeg", "images/hat-green.jpeg"],
             description: "ForgeX sapka – stílusos és kényelmes.",
             sizes: ["M", "L"],
             color: ["Fehér", "Fekete", "Zöld"],
@@ -75,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // -------- MODAL LÉTREHOZÁSA --------
+    // -------- MODAL LÉTREHOZÁSA (Változatlan) --------
     const modal = document.createElement("div");
     modal.classList.add("modal");
     modal.innerHTML = `
@@ -105,62 +169,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let currentProductData = null;
 
-    // -------- KÉP FRISSÍTÉSE A KIVÁLASZTOTT OPCIÓK ALAPJÁN (JAVÍTOTT) --------
     function updateProductImage() {
         if (!currentProductData) return;
-
         const sizes = sizeContainer.querySelectorAll(".size-option");
         const colors = colorContainer.querySelectorAll(".size-option");
-
         let sizeIndex = 0;
         sizes.forEach((btn, idx) => { if (btn.classList.contains("active")) sizeIndex = idx; });
-
         let colorIndex = 0;
         colors.forEach((btn, idx) => { if (btn.classList.contains("active")) colorIndex = idx; });
-
-        // Hány szín variáció van? Ha nincs szín, akkor 1-nek vesszük.
         const colorCount = currentProductData.color ? currentProductData.color.length : 1;
-
-        // 1. opció: Teljes mátrix keresés (Méret + Szín kombináció)
-        // Ezt használja pl. a Protein por (ahol a méret miatt más a csomagolás képe)
         const complexIndex = (sizeIndex * colorCount) + colorIndex;
-
-        // 2. opció: Egyszerű szín keresés
-        // Ezt használja a Cipő, Póló, Sapka (ahol a méret nem változtat a képen)
         const simpleIndex = colorIndex;
 
-        // LOGIKA:
-        // Megnézzük, létezik-e kép a "bonyolult" (méret+szín) indexen.
         if (currentProductData.images[complexIndex] !== undefined) {
             modalImg.src = currentProductData.images[complexIndex];
-        }
-        // Ha nem létezik (pl. cipőnél a 42-es méret indexe túl nagy), akkor megnézzük a sima szín indexet.
-        else if (currentProductData.images[simpleIndex] !== undefined) {
+        } else if (currentProductData.images[simpleIndex] !== undefined) {
             modalImg.src = currentProductData.images[simpleIndex];
-        }
-        // Ha semmi nem jön be, marad az alapértelmezett első kép.
-        else {
+        } else {
             modalImg.src = currentProductData.images[0];
         }
     }
 
-    // -------- MÉRET VÁLASZTÓ FRISSÍTÉSE --------
     function updateSizeSelector(sizes, prices) {
         sizeContainer.innerHTML = "";
         const wrapper = document.createElement("div");
         wrapper.classList.add("size-selector");
-
         sizes.forEach((size, index) => {
             const btn = document.createElement("div");
             btn.classList.add("size-option");
             btn.innerText = size;
             if (index === 0) btn.classList.add("active");
-
             btn.addEventListener("click", () => {
                 wrapper.querySelectorAll(".size-option").forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
                 modalPrice.innerText = prices[index] + " Ft";
-                updateProductImage(); // Kép frissítése méretváltáskor
+                updateProductImage();
             });
             wrapper.appendChild(btn);
         });
@@ -168,86 +211,87 @@ document.addEventListener("DOMContentLoaded", () => {
         modalPrice.innerText = prices[0] + " Ft";
     }
 
-    // -------- SZÍN VÁLASZTÓ FRISSÍTÉSE --------
     function updateColorSelector(colors) {
         colorContainer.innerHTML = "";
         if (!colors) return;
-
         const wrapper = document.createElement("div");
         wrapper.classList.add("size-selector");
-
         colors.forEach((color, index) => {
             const btn = document.createElement("div");
             btn.classList.add("size-option");
             btn.innerText = color;
             if (index === 0) btn.classList.add("active");
-
             btn.addEventListener("click", () => {
                 wrapper.querySelectorAll(".size-option").forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
-                updateProductImage(); // Kép frissítése színváltáskor
+                updateProductImage();
             });
             wrapper.appendChild(btn);
         });
         colorContainer.appendChild(wrapper);
     }
 
-    // -------- TERMÉK KATTINTÁS ESEMÉNY --------
+    // -------- TERMÉK KATTINTÁS ESEMÉNY (Frissítve) --------
     document.querySelectorAll(".product-card").forEach(card => {
-        card.addEventListener("click", (e) => {
+        card.addEventListener("click", async (e) => {
             const title = card.querySelector("h3").innerText;
             const data = productData[title];
             if (!data) return;
 
             if (e.target.classList.contains("login-btn")) {
-                addToCart(title, data.prices[0], data.sizes[0], data.color ? data.color[0] : null, data.images[0]);
-                alert("Kosárba téve!");
+                await addToCart(title, data.prices[0], data.sizes[0], data.color ? data.color[0] : null, data.images[0]);
                 return;
             }
 
-            currentProductData = data; // Eltároljuk az aktuális terméket
+            currentProductData = data;
             modalTitle.innerText = title;
             modalDescription.innerText = data.description;
-
             updateSizeSelector(data.sizes, data.prices);
             updateColorSelector(data.color);
-            updateProductImage(); // Kezdőkép beállítása
-
+            updateProductImage();
             modal.style.display = "flex";
         });
     });
 
-    // -------- KOSÁRBA TÉTEL A MODALBÓL --------
-    modal.querySelector(".login-btn").addEventListener("click", () => {
+    // -------- KOSÁRBA TÉTEL A MODALBÓL (Frissítve) --------
+    modal.querySelector(".login-btn").addEventListener("click", async () => {
         const title = modalTitle.innerText;
         const sizeEl = sizeContainer.querySelector(".size-option.active");
         const size = sizeEl ? sizeEl.innerText : "";
-
         const colorEl = colorContainer.querySelector(".size-option.active");
         const color = colorEl ? colorEl.innerText : null;
-
         const price = parseInt(modalPrice.innerText.replace(/\D/g, ""));
         const image = modalImg.src;
 
-        addToCart(title, price, size, color, image);
+        await addToCart(title, price, size, color, image);
         modal.style.display = "none";
-        alert(`${title} (${size}, ${color || ''}) bekerült a kosárba`);
     });
 
-    function addToCart(title, price, size, color, image) {
+    // --- KOSÁR LOGIKA (Adatbázis támogatással) ---
+    async function addToCart(title, price, size, color, image) {
         const product = {
             id: Date.now(),
             title: `${title} ${size}${color ? " " + color : ""}`,
             price,
             size,
             color,
-            image
+            image,
+            quantity: 1
         };
 
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
         cart.push(product);
         localStorage.setItem("cart", JSON.stringify(cart));
+
         updateCartCount();
+
+        // Sync with Firestore if user is logged in
+        if (currentUserId) {
+            await saveCartToCloud();
+        }
+
+        // Custom ForgeX Modal for confirmation
+        await forgeXModal("Kosárba téve", `${product.title} bekerült a kosaradba!`);
     }
 
     function updateCartCount() {
@@ -256,8 +300,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (el) el.innerText = cart.length;
     }
 
-    updateCartCount();
-
+    // Modal closing logic
     modal.querySelector(".close-btn").onclick = () => modal.style.display = "none";
     window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+
+    updateCartCount();
 });
