@@ -23,7 +23,7 @@
     /* Méretek & Elrendezés */
     --header-height: 100px;
     --header-height-mobile: 80px;
-    --spacer-block-height: 80vh; /* A rengeteg <br> helyett */
+    --spacer-block-height: 40vh; /* A rengeteg <br> helyett */
 }
 
 * {
@@ -570,4 +570,8 @@ ul {
 }
 #topLine{
     border: 1px solid #c5c5c5;
+}
+.gymVid{
+    width: 100%;
+    height: auto;
 }
