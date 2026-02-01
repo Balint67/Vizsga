@@ -87,81 +87,94 @@
 
 
 
-
-<div class="bmi-main-container">
-    <div class="bmi-wrapper">
-        <div class="card calculator-card">
-            <div class="card-header">
-                <h2>BMI Index</h2>
-                <p>Egyszerű és gyors elemzés</p>
-            </div>
-
-            <form id="bmiForm">
-                <div class="input-group">
-                    <label>Testsúly (kg)</label>
-                    <input type="number" id="weight" step="0.1" placeholder="0" required>
+<div class="content">
+    <div class="bmi-main-container">
+        <div class="bmi-wrapper">
+            <div class="card calculator-card">
+                <div class="card-header">
+                    <h2>BMI Index</h2>
+                    <p>Egyszerű és gyors elemzés</p>
                 </div>
 
-                <div class="input-group">
-                    <label>Magasság (cm)</label>
-                    <input type="number" id="height" step="1" placeholder="0" required>
-                </div>
+                <form id="bmiForm">
+                    <div class="input-group">
+                        <label>Testsúly (kg)</label>
+                        <input type="number" id="weight" step="0.1" placeholder="0" required>
+                    </div>
 
-                <button class="btn btn-full" type="submit">Számítás</button>
-            </form>
+                    <div class="input-group">
+                        <label>Magasság (cm)</label>
+                        <input type="number" id="height" step="1" placeholder="0" required>
+                    </div>
 
-            <div class="result-area">
-                <div class="progress-container">
-                    <svg class="progress-ring" width="120" height="120">
-                        <circle class="circle-bg" cx="60" cy="60" r="52" stroke-width="8" fill="transparent"/>
-                        <circle id="bmiCircle" class="circle-main" cx="60" cy="60" r="52" stroke-width="8" fill="transparent" stroke-dasharray="326.72" stroke-dashoffset="326.72"/>
-                    </svg>
-                    <div id="bmiValue" class="bmi-number">--</div>
-                </div>
-                <div class="result-text">
-                    <h3 id="bmiStatus">Készen állsz?</h3>
-                    <p id="bmiDescription">Add meg az adataidat.</p>
+                    <button class="btn btn-full" type="submit">Számítás</button>
+                </form>
+
+                <div class="result-area">
+                    <div class="progress-container">
+                        <svg class="progress-ring" width="120" height="120">
+                            <circle class="circle-bg" cx="60" cy="60" r="52" stroke-width="8" fill="transparent"/>
+                            <circle id="bmiCircle" class="circle-main" cx="60" cy="60" r="52" stroke-width="8" fill="transparent" stroke-dasharray="326.72" stroke-dashoffset="326.72"/>
+                        </svg>
+                        <div id="bmiValue" class="bmi-number">--</div>
+                    </div>
+                    <div class="result-text">
+                        <h3 id="bmiStatus">Készen állsz?</h3>
+                        <p id="bmiDescription">Add meg az adataidat.</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card info-card">
-            <h3>Információ</h3>
+            <div class="card info-card">
+                <h3>Információ</h3>
 
-            <div class="info-text-section">
-                <p>A <strong>Body Mass Index (BMI)</strong> egy széles körben használt statisztikai mérőszám, amely a testsúly és a magasság arányát veti össze az egészségi állapot felméréséhez.</p>
-            </div>
+                <div class="info-text-section">
+                    <p>A <strong>Body Mass Index (BMI)</strong> egy széles körben használt statisztikai mérőszám, amely a testsúly és a magasság arányát veti össze az egészségi állapot felméréséhez.</p>
+                </div>
 
-            <div class="category-list">
-                <div class="cat-item"><span class="dot blue"></span> &lt; 18.5 <span>Sovány</span></div>
-                <div class="cat-item"><span class="dot green"></span> 18.5 - 25 <span>Normál</span></div>
-                <div class="cat-item"><span class="dot yellow"></span> 25 - 30 <span>Túlsúly</span></div>
-                <div class="cat-item"><span class="dot red"></span> &gt; 30 <span>Elhízás</span></div>
-            </div>
+                <div class="category-list">
+                    <div class="cat-item"><span class="dot blue"></span> &lt; 18.5 <span>Sovány</span></div>
+                    <div class="cat-item"><span class="dot green"></span> 18.5 - 25 <span>Normál</span></div>
+                    <div class="cat-item"><span class="dot yellow"></span> 25 - 30 <span>Túlsúly</span></div>
+                    <div class="cat-item"><span class="dot red"></span> &gt; 30 <span>Elhízás</span></div>
+                </div>
 
-            <div class="info-footer">
-                <p><strong>Fontos:</strong> Ez az érték csak tájékoztató jellegű. Nem veszi figyelembe a testösszetételt (izom/zsír arány), ezért sportolók esetén eltérő lehet. Életmódváltás előtt konzultáljon szakemberrel!</p>
+                <div class="info-footer">
+                    <p><strong>Fontos:</strong> Ez az érték csak tájékoztató jellegű. Nem veszi figyelembe a testösszetételt (izom/zsír arány), ezért sportolók esetén eltérő lehet. Életmódváltás előtt konzultáljon szakemberrel!</p>
+                </div>
             </div>
         </div>
     </div>
+
+    <footer class="container-bottom" id="contact">
+        <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Kapcsolat</p></a></div></div>
+        <div class="animation-bottom"><div class="space"><a href="contracts.html" class="tiszta-link"><p>Általános szerződési feltételek</p></a></div></div>
+        <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Vélemények</p></a></div></div>
+        <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Gyakran ismételt kérdések</p></a></div></div>
+        <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Süti beállítások</p></a></div></div>
+        <div class="animation-bottom">
+            <div class="space">
+                <a href="https://www.instagram.com/forgex._" class="tiszta-link" target="_blank">
+                    <p>Instagram <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" class="igLogo" alt="Instagram Logo"></p>
+                </a>
+            </div>
+        </div>
+        <div class="animation-bottom">
+            <div class="space">
+                <a href="https://www.facebook.com/share/1Dwr4nD67j" class="tiszta-link" target="_blank">
+                    <p>Facebook <img src="https://1000logos.net/wp-content/uploads/2017/02/Facebook-Logosu.png" class="faceLogo" alt="Facebook Logo"></p>
+                </a>
+            </div>
+        </div>
+        <div class="animation-bottom">
+            <div class="space" id="tiktok">
+                <a href="https://www.tiktok.com/@forgex97" class="tiszta-link" target="_blank">
+                    <p>Tiktok <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgZczqhf9-ciDl5_atJ6sQPIZNCwqKYOhfm4LkbKiFyiR9_HRrW7BJ7cNb55lbxZchDVBDwt5-olPIRhMClgLL8UON6c0AQybZYHaOji70nhooShz9RpZVU1lPZFcmzoi-Sd1gB1jhlRvXCKENeX4R-Lj7WFZDfEjzsBPIX5ipnQ43R1O7AmmQjESxVaSo" class="tiktokLogo" alt="Tiktok Logo"></p>
+                </a>
+            </div>
+        </div>
+    </footer>
 </div>
-
-<section class="container-bottom" id="contact">
-    <div class="bekezdés">
-        <div class="animation-bottom"><div class="kihagyás"><a href="" class="tiszta-link"><p>Kapcsolat</p></a></div></div>
-        <div class="animation-bottom"><div class="kihagyás"><a href="contracts.html" class="tiszta-link"><p>Általános szerződési feltételek</p></a></div></div>
-        <div class="animation-bottom"><div class="kihagyás"><a href="" class="tiszta-link"><p>Vélemények</p></a></div></div>
-        <div class="animation-bottom"><div class="kihagyás"><a href="" class="tiszta-link"><p>Gyakran ismételt kérdések</p></a></div></div>
-        <div class="animation-bottom"><div class="kihagyás"><a href="" class="tiszta-link"><p>Süti beállítások</p></a></div></div>
-        <div class="animation-bottom"><div class="kihagyás"><div class="space"><a href="https://www.instagram.com/forgex._?igsh=ZHR1NnNxMWd5dWZ2&utm_source=qr" class="tiszta-link"><p>Instagram <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" class="igLogo" alt="instaLogo"></p></a></div></div></div>
-        <div class="animation-bottom"><div class="kihagyás"><div class="space"><a href="https://www.facebook.com/share/1Dwr4nD67j/?mibextid=wwXIfr" class="tiszta-link"><p>Facebook <img src="https://1000logos.net/wp-content/uploads/2017/02/Facebook-Logosu.png" class="faceLogo" alt="FacebookLogo"></p></a></div></div></div>
-        <div class="animation-bottom"><div class="kihagyás"><div class="space" id="tiktok"><a href="https://www.tiktok.com/@forgex97?_r=1&_t=ZN-92zJPgXtPzK" class="tiszta-link"><p>Tiktok <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgZczqhf9-ciDl5_atJ6sQPIZNCwqKYOhfm4LkbKiFyiR9_HRrW7BJ7cNb55lbxZchDVBDwt5-olPIRhMClgLL8UON6c0AQybZYHaOji70nhooShz9RpZVU1lPZFcmzoi-Sd1gB1jhlRvXCKENeX4R-Lj7WFZDfEjzsBPIX5ipnQ43R1O7AmmQjESxVaSo" class="tiktokLogo" alt="TiktokLogo"></p></a></div></div></div>
-
-    </div>
-
-
-</section>
-
 <script src="javascript/index.js"></script>
 <script src="javascript/calculatorBmi.js"></script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

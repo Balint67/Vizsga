@@ -43,7 +43,19 @@ body {
     background-attachment: fixed;
     overflow-x: hidden;
 }
+h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
 
+
+
+}
 a {
     text-decoration: none;
     color: inherit;
@@ -162,10 +174,8 @@ ul {
 /* ==========================================================================
    3. TARTALOM SZEKCIÓK
    ========================================================================== */
-.tartalom-index { margin-top: -100px; } /* Header átfedés kompenzálás */
-.tartalom{
-    margin-top: 120px;
-}
+.content-index { margin-top: -100px; }
+.content{ margin-top: 120px; }
 /* Runner Hero */
 .container-runner {
     width: 100%;
@@ -185,8 +195,10 @@ ul {
 
 
 .divider-line {
+    width: 80px;
     height: 4px;
-    background-color: var(--primary-accent);
+    background-color: #00ca65;
+    margin: 0 auto;
     border-radius: 2px;
 }
 .divider-large { width: 350px; margin: 0 auto 50px auto; }
@@ -303,7 +315,8 @@ ul {
     padding: 20px 20%;
 }
 .bekezdés { width: 400px;}
-.kihagyás, .space { padding-top: 5px; }
+.space { padding-top: 5px; }
+
 #tiktok { padding-top: 10px; }
 
 .igLogo { width: 30px; margin-top: -7px; margin-left: 10px; }
@@ -426,8 +439,16 @@ ul {
     .bekezdés { width: 100%; text-align: center; }
     .igLogo, .faceLogo, .tiktokLogo { position: relative; margin: 0 0 0 10px; vertical-align: middle; top: 0; }
 }
+.container-bottom {
+    width: auto; height: auto;
+    background-color: black;
+    padding: 20px 20%;
+}
 
-
+.igLogo, .faceLogo, .tiktokLogo { position: absolute; height: auto; }
+.igLogo { width: 30px; margin-top: -7px; margin-left: 10px; }
+.faceLogo { width: 60px; margin-top: -7px; margin-left: -4px; }
+.tiktokLogo { width: 40px; margin-top: -14px; margin-left: 35px; }
 @media (max-width: 1400px) {
     .container-bottom {
         display: none;
@@ -545,4 +566,11 @@ ul {
 
 .modal-btn-secondary:hover {
     background: rgba(255, 255, 255, 0.2);
+}
+.topText{
+    margin-top: 40px;
+    color: rgba(234, 0, 0, 0.6);
+}
+#topLine{
+    border: 1px solid #c5c5c5;
 }
