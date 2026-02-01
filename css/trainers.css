@@ -65,7 +65,8 @@
 .card-content {
     padding: 20px;
     text-align: center;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
     position: relative;
     z-index: 2;
 }
@@ -73,14 +74,14 @@
 .card-content h3 {
     margin: 0;
     font-size: 1.2rem;
-    color: #222;
+    color: #ffffff;
     font-weight: 700;
 }
 
 .card-content p {
     margin: 5px 0 0;
     font-size: 0.9rem;
-    color: #666;
+    color: #00ca65;
     text-transform: uppercase;
     font-weight: 500;
 }
