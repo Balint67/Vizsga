@@ -19,20 +19,24 @@ document.addEventListener("DOMContentLoaded", () => {
         if (user) {
             currentUserId = user.uid;
 
-            // --- ÚJ: Profil link átállítása ---
+            // 🔥 FONTOS: régi user kosarának törlése
+            localStorage.removeItem("cart");
+
             if (profileLink) profileLink.href = "profil.html";
 
-            console.log("User logged in, syncing cart...");
             await syncCartFromFirestore();
         } else {
             currentUserId = null;
 
-            // --- ÚJ: Bejelentkezés link visszaállítása ---
+            // 🔥 Kijelentkezéskor is ürítünk
+            localStorage.removeItem("cart");
+
             if (profileLink) profileLink.href = "signIn.html";
 
             updateCartCount();
         }
     });
+
 
     // Save local cart to Firestore if logged in
     async function saveCartToCloud() {
@@ -270,7 +274,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- KOSÁR LOGIKA (Adatbázis támogatással) ---
     async function addToCart(title, price, size, color, image) {
         const product = {
-            id: Date.now(),
+            id: `${title}_${size}_${color ?? "no-color"}`,
             title: `${title} ${size}${color ? " " + color : ""}`,
             price,
             size,
