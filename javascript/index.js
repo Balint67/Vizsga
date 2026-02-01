@@ -116,7 +116,7 @@ function initSlider() {
         slider.scrollLeft = scrollLeft - walk;
     });
 
-    // Érintőképernyő támogatás
+    // touchpad
     slider.addEventListener('touchstart', stopAutoSlide);
     slider.addEventListener('touchend', () => {
         snapToSlide();
@@ -125,11 +125,21 @@ function initSlider() {
 
     function snapToSlide() {
         const exactIndex = slider.scrollLeft / slideWidth;
-        const newIndex = Math.round(exactIndex);
+        const diff = exactIndex - currentIndex;
+
+        let newIndex = currentIndex;
+        const sensitivity = 0.05;
+
+        if (diff > sensitivity) {
+            newIndex = currentIndex + 1;
+        } else if (diff < -sensitivity) {
+            newIndex = currentIndex - 1;
+        }
+
         moveToSlide(newIndex, true);
     }
 
-    // Végtelenítés logika (Loop)
+    // Loop
     slider.addEventListener('scroll', () => {
         if (slider.scrollLeft <= 0) {
             slider.style.scrollBehavior = 'auto';
