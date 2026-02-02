@@ -189,7 +189,7 @@ function initModals() {
         },
         'trainHard': {
             title: 'Work Hard',
-            text: 'A következetes edzés kulcsfontosságú a fejlődéshez. Legyen szó súlyzós edzésről vagy kardióról, a lényeg a progresszió és a kitartás. Ne felejtsd el: az eredményekért meg kell dolgozni!'
+            text: 'A következetes edzés kulcsfontosságú a fejlődéshez. Legyen szó súlyzós edzésről vagy kardióról, a lényeg a progresszió és a kitartás. Ne felejtsd el, az eredményekért meg kell dolgozni!'
         },
         'sleepWell': {
             title: 'Sleep Well',
@@ -280,3 +280,30 @@ function initScrollAnimations() {
     const hiddenElements = document.querySelectorAll('.fadeIn');
     hiddenElements.forEach((el) => observer.observe(el));
 }
+
+/* =========================
+   5. recommendation table
+   ========================= */
+document.addEventListener('DOMContentLoaded', () => {
+    const table = document.getElementById('selecterTable');
+    const display = document.getElementById('display-box');
+
+    if (table) {
+        table.addEventListener('click', (event) => {
+            const row = event.target.closest('tr');
+
+            if (row && row.parentNode.tagName === 'TBODY') {
+                // 1. Előző kijelölés törlése minden sorról a body-ban
+                const allRows = table.querySelectorAll('tbody tr');
+                allRows.forEach(r => r.classList.remove('selected'));
+
+                // 2. Az aktuális sor kijelölése
+                row.classList.add('selected');
+
+                // 3. Információ kiírása
+                const info = row.getAttribute('data-info');
+                display.innerHTML = `<strong>Részletek:</strong> ${info}`;
+            }
+        });
+    }
+});

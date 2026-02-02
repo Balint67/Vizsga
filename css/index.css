@@ -1,8 +1,6 @@
-/* ==========================================================================
-   1. VÁLTOZÓK ÉS TÉMA BEÁLLÍTÁSOK
-   ========================================================================== */
+
 :root {
-    /* Színek */
+    /* colors */
     --primary-black: #000000;
     --primary-dark: #0f1a27;
     --primary-accent: #00ca65;
@@ -13,23 +11,22 @@
     --text-dim: #e2e8f0;
     --alert-red: #ef4444;
 
-    /* Kártya stílusok */
+    /* card styles */
     --card-bg: rgba(255, 255, 255, 0.05);
     --border-color: rgba(255, 255, 255, 0.2);
     --glass-blur: blur(15px);
     --shadow-main: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
     --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.2);
 
-    /* Méretek & Z-indexek */
+    /* sizes, and Z-indexes */
     --header-height: 100px;
     --header-height-mobile: 70px;
     --z-modal: 9999;
     --z-overlay: 1000;
+    --recommendations-table-fonts-Acumin-Pro-Wide: Acumin Pro Wide, sans-serif;
 }
 
-/* ==========================================================================
-   2. RESET ÉS GLOBÁLIS STÍLUSOK
-   ========================================================================== */
+
 * {
     box-sizing: border-box;
 }
@@ -39,11 +36,6 @@ body {
     min-height: 100vh;
     font-family: Arial, sans-serif;
     color: var(--text-white);
-    background-image: url("https://blogger.googleusercontent.com/img/a/AVvXsEhEcgu1Gpium4cmGVhaC1k44k7lGd87H7o_02bxbYm4iCJtJ8Dt8QVQzQHtPd3YU6aJ27_eLPCAMFG6Wm8DjRxVdf1uFirwQnJbTOLxq-kZJqpVMZfPhKo2KrKdbjvQB5olNF3Xd8EaR5oqIIW7yuvbYQsUQp5J9LsEaUXXQXLL1CVh8xKftdUBVXDo--Y");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    background-attachment: fixed;
     overflow-x: hidden;
 }
 
@@ -265,7 +257,6 @@ ul {
    5. SLIDER (KÉPLAPOZÓ)
    ========================================================================== */
 .container-slide {
-    margin-top: 150px;
     width: 100%;
     overflow: hidden;
     height: 100%;
@@ -335,7 +326,7 @@ ul {
    6. FONTOS DOLGOK (KÁRTYÁK)
    ========================================================================== */
 .container-importantThings {
-    margin-top: 3%;
+    margin: 50px 0px 100px 0px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -847,14 +838,42 @@ ul {
     position: relative;
     top: 3px;
 }
+/* ==========================================================================
+   12. TABLES
+   ========================================================================== */
+table{
+    border-spacing: 0; /* Ez helyettesíti a collapse-ot, így működik a kerekítés */
+
+    border: 2px solid #cccccc;      /* A keret vastagsága és színe */
+    border-radius: 15px;         /* A kerekítés mértéke */
+    border-spacing: 0;           /* Hogy ne legyen rés a cellák között */
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.10);
+    margin: 50px auto; /* Középre igazításhoz */
+}
+
+.recommendations-table {
 
 
 
-
+}
+.recommendations-table td {
+    border-spacing: 0;
+}
+.recommendations-table td {
+    padding: 80px;
+    text-align: center;
+}
+#selecterTable{
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-family: var(--recommendations-table-fonts-Acumin-Pro-Wide);
+    cursor: pointer;
+}
 
 
 /* ==========================================================================
-   12. MEDIA QUERIES (RESZPONZIVITÁS)
+   13. MEDIA QUERIES (RESZPONZIVITÁS)
    ========================================================================== */
 
 /* --- Desktop Nézetek (min-width) --- */

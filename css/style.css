@@ -36,7 +36,7 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    background-image: url("https://blogger.googleusercontent.com/img/a/AVvXsEhEcgu1Gpium4cmGVhaC1k44k7lGd87H7o_02bxbYm4iCJtJ8Dt8QVQzQHtPd3YU6aJ27_eLPCAMFG6Wm8DjRxVdf1uFirwQnJbTOLxq-kZJqpVMZfPhKo2KrKdbjvQB5olNF3Xd8EaR5oqIIW7yuvbYQsUQp5J9LsEaUXXQXLL1CVh8xKftdUBVXDo--Y");
+    background-image: url("../images/bg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -256,53 +256,6 @@ ul {
 .modal-title { color: var(--primary-accent); text-align: center; margin: 0 0 10px 0; }
 .modal-text { color: white; line-height: 1.6; text-align: justify; }
 
-/* ==========================================================================
-   5. SLIDER
-   ========================================================================== */
-.container-slide {
-    margin-top: 150px;
-    width: 100%;
-    overflow: hidden;
-}
-.slider-wrapper {
-    position: relative;
-    width: 100%;
-    margin: 0 auto;
-}
-.slider {
-    display: flex;
-    width: 100%;
-    aspect-ratio: 16 / 5;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    cursor: pointer;
-}
-.slider::-webkit-scrollbar { display: none; }
-.slider img {
-    flex: 1 0 100%;
-    width: 100%;
-    object-fit: cover;
-    user-select: none;
-    -webkit-user-drag: none;
-}
-.slider-nav {
-    display: flex;
-    column-gap: 0.5rem;
-    position: absolute;
-    bottom: 1.25rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-}
-.slider-nav a {
-    width: 1rem; height: 1rem;
-    border-radius: 50%;
-    background-color: #ffffff;
-    opacity: 0.75;
-    transition: opacity 250ms ease;
-}
-.slider-nav a:hover { opacity: 1; }
 
 /* ==========================================================================
    6. FOOTER
