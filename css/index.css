@@ -951,14 +951,6 @@ table{
     font-size: 1rem;
 }
 
-.recommendations-awards {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 30px;
-    color: #555;
-    font-size: 1.5rem;
-}
-
 .recommendations-learn-more {
     border: 1px solid #fff;
     padding: 10px 20px;
@@ -970,7 +962,7 @@ table{
 }
 
 .recommendations-learn-more:hover {
-    background: #fff;
+    background: #00ca65;
     color: #000;
 }
 
