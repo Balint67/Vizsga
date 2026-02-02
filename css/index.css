@@ -260,6 +260,7 @@ ul {
     width: 100%;
     overflow: hidden;
     height: 100%;
+
 }
 
 .slider-wrapper {
@@ -300,6 +301,8 @@ ul {
     user-select: none;
     -webkit-user-drag: none;
     display: block;
+    border-bottom: 2px solid #00ca65;
+    border-top: 2px solid #00ca65;
 }
 
 .slider-nav {
@@ -841,36 +844,166 @@ ul {
 /* ==========================================================================
    12. TABLES
    ========================================================================== */
-table{
-    border-spacing: 0; /* Ez helyettesíti a collapse-ot, így működik a kerekítés */
+/* A meglévő kódod megtartása mellett */
 
-    border: 2px solid #cccccc;      /* A keret vastagsága és színe */
-    border-radius: 15px;         /* A kerekítés mértéke */
-    border-spacing: 0;           /* Hogy ne legyen rés a cellák között */
+
+
+#selecterTable img {
+    width: 600px;
+    height: auto;
+    position: relative;
+    top: -60px;
+}
+
+/* Fontos: az id-k (@selecterTable) egyediek kellene legyenek,
+ha többször használod, érdemesebb class-t használni helyette! */
+table{
+    border-spacing: 0; /* instead of collapse*/
+
+    border: 2px solid #cccccc;
+    border-radius: 15px;
+    border-spacing: 0;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.10);
-    margin: 50px auto; /* Középre igazításhoz */
+    margin: 50px auto; /* center */
 }
 
 .recommendations-table {
 
-
-
 }
 .recommendations-table td {
     border-spacing: 0;
-}
-.recommendations-table td {
-    padding: 80px;
     text-align: center;
+    padding-left: 30px;
+
+}
+.recommendations-table-border{
+    border-right: 0.5px solid #cccccc;
+    border-bottom: 0.5px solid #cccccc;
 }
 #selecterTable{
     font-size: 1.5rem;
+    line-height: 1.125rem;
     text-transform: uppercase;
     font-family: var(--recommendations-table-fonts-Acumin-Pro-Wide);
     cursor: pointer;
 }
+.recommendations-table-text{
+    font-size: 1rem;
+    width: 20rem !important;
+}
 
+.recommendations-container {
+    display: grid;
+    grid-template-columns: 350px 1fr 1fr;
+    background: #000;
+    margin: 80px auto;
+    max-width: 1200px;
+    border: 1px solid #333;
+    overflow: hidden;
+    min-height: 450px;
+}
+
+.recommendations-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.recommendations-menu-item {
+    padding: 40px 30px;
+    color: #fff;
+    font-family: var(--recommendations-table-fonts-Acumin-Pro-Wide);
+    font-weight: bold;
+    border-bottom: 1px solid #222;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    background: #111;
+}
+
+.recommendations-menu-item.active {
+    background: #00ca65;
+    color: #000;
+}
+
+.recommendations-content {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #111;
+    border-left: 1px solid #222;
+}
+
+.recommendations-title {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.recommendations-description {
+    color: #999;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    font-size: 1rem;
+}
+
+.recommendations-awards {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    color: #555;
+    font-size: 1.5rem;
+}
+
+.recommendations-learn-more {
+    border: 1px solid #fff;
+    padding: 10px 20px;
+    width: fit-content;
+    color: #fff;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+
+.recommendations-learn-more:hover {
+    background: #fff;
+    color: #000;
+}
+
+.recommendations-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 992px) {
+    .recommendations-container {
+        grid-template-columns: 1fr;
+    }
+    .recommendations-menu {
+        flex-direction: row;
+        overflow-x: auto;
+    }
+}
+
+/* Reszponzivitás */
+@media (max-width: 992px) {
+    .techno-container {
+        grid-template-columns: 1fr;
+    }
+    .techno-menu {
+        flex-direction: row;
+        overflow-x: auto;
+    }
+    .techno-menu-item {
+        padding: 20px;
+        white-space: nowrap;
+    }
+}
 
 /* ==========================================================================
    13. MEDIA QUERIES (RESZPONZIVITÁS)

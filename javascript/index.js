@@ -284,26 +284,54 @@ function initScrollAnimations() {
 /* =========================
    5. recommendation table
    ========================= */
-document.addEventListener('DOMContentLoaded', () => {
-    const table = document.getElementById('selecterTable');
-    const display = document.getElementById('display-box');
-
-    if (table) {
-        table.addEventListener('click', (event) => {
-            const row = event.target.closest('tr');
-
-            if (row && row.parentNode.tagName === 'TBODY') {
-                // 1. Előző kijelölés törlése minden sorról a body-ban
-                const allRows = table.querySelectorAll('tbody tr');
-                allRows.forEach(r => r.classList.remove('selected'));
-
-                // 2. Az aktuális sor kijelölése
-                row.classList.add('selected');
-
-                // 3. Információ kiírása
-                const info = row.getAttribute('data-info');
-                display.innerHTML = `<strong>Részletek:</strong> ${info}`;
-            }
-        });
+const recommendationsData = {
+    treadmill: {
+        title: "A VILÁG ELSŐ SZÁMÚ DESIGN DÍJAS FUTÓPADJA",
+        description: "Letisztult, minimál design, egyéni edzésprogramok és egy futófelület, amely alkalmazkodik a te stílusodhoz.",
+        image: "images/treadmill.JPEG"
+    },
+    bench: {
+        title: "FORGEX BENCH - A KOMPLETT OTTHONI EDZŐTEREM",
+        description: "Több mint 200 gyakorlat egyetlen eszközön. Kompakt, stílusos és mindent tartalmaz, amire a súlyzós edzéshez szükséged van.",
+        image: "images/benchPress.jpg" // Cseréld ki a saját képedre
+    },
+    recline: {
+        title: "RECLINE PERSONAL - KÉNYELEM ÉS TELJESÍTMÉNY",
+        description: "Ergonómikus kialakítás, amely óvja a hátat, miközben maximális kardió élményt nyújt a legmodernebb kijelzővel.",
+        image: "images/recline.jpg"
+    },
+    skillmill: {
+        title: "SKILLMILL - AZ ERŐ ÉS ÁLLÓKÉPESSÉG ÚJ SZINTJE",
+        description: "Motor nélküli futópad, amelyen te vagy az erőforrás. Sprintelj, tolj vagy húzz – korlátok nélkül.",
+        image: "images/skillmill.jpg"
     }
+};
+
+document.querySelectorAll('.recommendations-menu-item').forEach(item => {
+    item.addEventListener('click', function() {
+        // 1. Aktív osztály kezelése a menüben
+        document.querySelectorAll('.recommendations-menu-item').forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
+
+        // 2. Azonosító lekérése a data-target attribútumból
+        const target = this.getAttribute('data-target');
+        const data = recommendationsData[target];
+
+        // 3. Tartalom frissítése animációval (opcionális)
+        const titleEl = document.querySelector('.recommendations-title');
+        const descEl = document.querySelector('.recommendations-description');
+        const imgEl = document.querySelector('#recommendations-display-img');
+
+        // Egyszerű fade-out/fade-in hatás
+        [titleEl, descEl, imgEl].forEach(el => el.style.opacity = 0);
+
+        setTimeout(() => {
+            titleEl.textContent = data.title;
+            descEl.textContent = data.description;
+            imgEl.src = data.image;
+            imgEl.alt = data.title;
+
+            [titleEl, descEl, imgEl].forEach(el => el.style.opacity = 1);
+        }, 300);
+    });
 });
