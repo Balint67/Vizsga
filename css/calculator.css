@@ -90,7 +90,7 @@
 
 .input-group input {
     width: 100%;
-    background: #0f3739 !important;
+    background: rgba(71, 63, 63, 0.28) !important;
     border: 1.5px solid var(--border-color);
     border-radius: 12px;
     padding: 16px;
