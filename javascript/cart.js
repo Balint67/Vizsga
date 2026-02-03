@@ -4,7 +4,7 @@
 import { auth, db } from './firebase.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
+import { forgeXModal } from './utils.js';
 // ===============================
 // 🔹 AKTUÁLIS FELHASZNÁLÓ UID
 // ===============================
@@ -133,11 +133,13 @@ function updateCartCount() {
 }
 
 // ===============================
-// 🔹 FIZETÉS GOMB
+// 🔹 FIZETÉS GOMB (Javítva)
 // ===============================
 const payBtn = document.getElementById("checkout-btn");
+
 if (payBtn) {
-    payBtn.addEventListener("click", () => {
-        alert("A fizetési rendszer hamarosan elérhető!");
+    payBtn.addEventListener("click", async () => {
+        // Két paraméter kell: 1. Cím, 2. Üzenet
+        await forgeXModal("Pénztár", "A fizetési rendszer hamarosan elérhető!");
     });
 }
