@@ -920,6 +920,10 @@ table{
     display: flex;
     align-items: center;
     background: #111;
+    transition: background 0.3s;
+}
+.recommendations-menu-item:hover{
+    background-color: #333333;
 }
 
 .recommendations-menu-item.active {
@@ -972,6 +976,10 @@ table{
     object-fit: cover;
 }
 
+
+
+
+
 @media (max-width: 992px) {
     .recommendations-container {
         grid-template-columns: 1fr;
@@ -994,6 +1002,73 @@ table{
     .techno-menu-item {
         padding: 20px;
         white-space: nowrap;
+    }
+}
+/* Alapbeállítások */
+.hero-section {
+    position: relative;
+    display: flex;
+    color: #ffffff;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.anatomy-text {
+    /* A szöveg a jobb oldalra kerül */
+    margin-left: auto;
+    width: 50%;
+    text-align: left;
+}
+
+.anatomy-text h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.1;
+    letter-spacing: -1px;
+}
+
+.anatomy-text p {
+    font-size: 1.25rem;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 15px 35px;
+    background-color: #ffffff; /* Lehetne egy élénk szín is, pl. #ff4500 */
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255,255,255,0.1);
+}
+
+/* Mobil optimalizálás */
+@media (max-width: 768px) {
+    .anatomy-text {
+        width: 100%;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.6); /* Olvashatóság mobil hatteren */
+        padding: 20px;
+        border-radius: 10px;
+    }
+    .anatomy-text h1 {
+        font-size: 2.5rem;
     }
 }
 

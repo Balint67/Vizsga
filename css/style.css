@@ -117,7 +117,7 @@ ul {
 .nav-list {
     display: flex;
     align-items: center;
-    gap: 4.3rem;
+    gap: 3.5rem;
 }
 
 .text {
@@ -133,14 +133,15 @@ ul {
 /* Nyelvválasztó */
 .nyelvek {
     position: absolute;
-    right: 420px;
+    right: 300px;
     padding: 20px;
+
 }
 .nyelv-btn:hover { color: var(--primary-accent); }
 
 /* Jobb oldali ikonok */
 .right-icons {
-    margin-right: 20px;
+    margin-right: -10px;
     display: flex;
     position: absolute;
     right: 20px;
@@ -366,7 +367,11 @@ ul {
         padding-top: 10px;
     }
     .nyelv-btn {
-        font-size: 12px; padding: 5px; border: 1px solid #333; border-radius: 5px; color: white;
+        font-size: 12px;
+        padding: 5px;
+        border: 1px solid #333;
+        border-radius: 5px;
+        color: white;
     }
 
     /* Hero & Tartalom igazítások */
@@ -527,4 +532,20 @@ ul {
 .gymVid{
     width: 100%;
     height: auto;
+}
+
+.black-container{
+    background: #000;
+}
+.black-manPng{
+    width: 50%;
+    height: auto;
+    position: relative;
+    left: -5%;
+}
+.arnold-img{
+    width: 30%;
+    height: auto;
+    position: relative;
+    right: -70%;
 }
