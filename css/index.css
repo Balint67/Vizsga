@@ -210,6 +210,7 @@ ul {
 .container-runner {
     width: 100%;
     position: relative;
+    border-bottom: 1.5px solid #00ca65;
 }
 
 .container-runner img {
@@ -1007,6 +1008,7 @@ table{
 /* Alapbeállítások */
 /* A fő konténer, ami összefogja a képet és a szöveget */
 .black-container {
+    border-bottom: 1.5px solid #00ca65;
     display: flex;
     align-items: center; /* Függőlegesen középre igazítja a tartalmat */
     justify-content: space-between; /* Szétnyomja a két szélre */
@@ -1057,7 +1059,7 @@ table{
     position: relative;
     z-index: 3;
     height: 100%;
-    width: 1000px;
+    width: 20200px;
     display: flex;
     align-items: center;
     justify-content: flex-start; /* Balra igazított szöveg */
@@ -1124,7 +1126,10 @@ table{
         margin-left: 0; /* Mobilon ne legyen behúzás */
     }
 }
+.container-bottom{
+    border-top: 1.5px solid #00ca65;
 
+}
 /* ==========================================================================
    13. MEDIA QUERIES (RESZPONZIVITÁS)
    ========================================================================== */
