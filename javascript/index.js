@@ -293,7 +293,7 @@ const recommendationsData = {
     bench: {
         title: "FORGEX BENCH - A KOMPLETT OTTHONI EDZŐTEREM",
         description: "Több mint 200 gyakorlat egyetlen eszközön. Kompakt, stílusos és mindent tartalmaz, amire a súlyzós edzéshez szükséged van.",
-        image: "images/benchPress.jpg" // Cseréld ki a saját képedre
+        image: "images/benchPress.jpg"
     },
     recline: {
         title: "RECLINE PERSONAL - KÉNYELEM ÉS TELJESÍTMÉNY",

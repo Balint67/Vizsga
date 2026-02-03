@@ -920,6 +920,10 @@ table{
     display: flex;
     align-items: center;
     background: #111;
+    transition: background 0.3s;
+}
+.recommendations-menu-item:hover{
+    background-color: #333333;
 }
 
 .recommendations-menu-item.active {
@@ -972,6 +976,10 @@ table{
     object-fit: cover;
 }
 
+
+
+
+
 @media (max-width: 992px) {
     .recommendations-container {
         grid-template-columns: 1fr;
@@ -994,6 +1002,126 @@ table{
     .techno-menu-item {
         padding: 20px;
         white-space: nowrap;
+    }
+}
+/* Alapbeállítások */
+/* A fő konténer, ami összefogja a képet és a szöveget */
+.black-container {
+    display: flex;
+    align-items: center; /* Függőlegesen középre igazítja a tartalmat */
+    justify-content: space-between; /* Szétnyomja a két szélre */
+    background-color: #000;
+    width: 100%;
+    min-height: 600px;
+    padding: 50px 10%; /* Oldalsó margó a tartalomnak */
+    overflow: hidden;
+    position: relative;
+}
+
+/* A kép stílusa */
+.black-manPng {
+    width: 45%; /* A konténer közel felét foglalja el */
+    height: auto;
+    object-fit: contain;
+    z-index: 2;
+}
+
+/* A szöveges blokk stílusa */
+.anatomy-text {
+    width: 50%; /* A másik felét foglalja el */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
+    margin-left: 0; /* Töröljük a korábbi margót, ha volt */
+}
+
+/* A videós háttér és overlay igazítása a blokkon belül */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+.video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text-overlay {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    width: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Balra igazított szöveg */
+    background-color: black;
+    color: white;
+    mix-blend-mode: multiply;
+}
+.anatomy-text h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+.anatomy-text p {
+    font-size: 1.25rem;
+    color: #ccc;
+    line-height: 1.6;
+    margin-top: -50px;
+    margin-left: 15px;
+    z-index: 100;
+}
+.text-overlay h1 {
+    margin: 0;
+    font-size: 3rem;
+    text-align: left;
+}
+.black-container-anatomy-Btn {
+    display: inline-block;
+    padding: 15px 35px;
+    background-color: #ffffff; /* Lehetne egy élénk szín is, pl. #ff4500 */
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    transition: background 0.3s;
+    width: fit-content;
+    margin-top: 50px;
+}
+.moveUp{
+    margin-top: -300px;
+}
+.black-container-anatomy-Btn:hover {
+    background-color: #14c96f;
+    box-shadow: 0 10px 20px rgba(255,255,255,0.1);
+    color: #fff;
+}
+/* Mobil nézet korrekciója */
+@media (max-width: 992px) {
+    .black-container {
+        flex-direction: column; /* Mobilon egymás alá kerülnek */
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .black-manPng, .anatomy-text {
+        width: 100%;
+    }
+
+    .anatomy-text p {
+        margin-left: 0; /* Mobilon ne legyen behúzás */
     }
 }
 
