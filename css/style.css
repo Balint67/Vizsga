@@ -435,7 +435,7 @@ ul {
 
 /* Modal box with Glassmorphism effect */
 .custom-modal-box {
-    background: rgba(18, 66, 69, 0.65); /* Semi-transparent ForgeX teal */
+    background: rgba(71, 63, 63, 0.28); /* Semi-transparent ForgeX teal */
     backdrop-filter: blur(20px);      /* Internal frost-glass effect */
     -webkit-backdrop-filter: blur(20px);
     border-radius: 28px;
