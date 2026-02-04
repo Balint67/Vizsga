@@ -286,24 +286,29 @@ function initScrollAnimations() {
    ========================= */
 const recommendationsData = {
     treadmill: {
-        title: "A VILÁG ELSŐ SZÁMÚ DESIGN DÍJAS FUTÓPADJA",
-        description: "Letisztult, minimál design, egyéni edzésprogramok és egy futófelület, amely alkalmazkodik a te stílusodhoz.",
+        title: "FORGEX TREADMILL - AZ ERŐ ÉS ÁLLÓKÉPESSÉG ÚJ SZINTJE",
+        description: "A világ első számú futópadjai. Ergonómikus kialakítás, miközben maximális kardió élményt nyújt a legmodernebb kijelzővel.",
         image: "images/treadmill.JPEG"
     },
     bench: {
-        title: "FORGEX BENCH - A KOMPLETT OTTHONI EDZŐTEREM",
-        description: "Több mint 200 gyakorlat egyetlen eszközön. Kompakt, stílusos és mindent tartalmaz, amire a súlyzós edzéshez szükséged van.",
+        title: "FORGEX BENCH - AZ ELSŐ LÁTÁSRA SZERELEM",
+        description: "",
         image: "images/benchPress.jpg"
     },
-    recline: {
+    balance: {
         title: "RECLINE PERSONAL - KÉNYELEM ÉS TELJESÍTMÉNY",
-        description: "Ergonómikus kialakítás, amely óvja a hátat, miközben maximális kardió élményt nyújt a legmodernebb kijelzővel.",
-        image: "images/recline.jpg"
+        description: "",
+        image: "images/balance.jpeg"
     },
-    skillmill: {
-        title: "SKILLMILL - AZ ERŐ ÉS ÁLLÓKÉPESSÉG ÚJ SZINTJE",
-        description: "Motor nélküli futópad, amelyen te vagy az erőforrás. Sprintelj, tolj vagy húzz – korlátok nélkül.",
-        image: "images/skillmill.jpg"
+    equipment: {
+        title: "MI NEM RIADUNK EL A VÁLTOZÁSTÓL",
+        description: "",
+        image: "images/equipment.jpeg"
+    },
+    cableMachine: {
+        title: "FORGEX CABLE CROSSOVER - MINDEN EGY HELYEN",
+        description: "Több mint 200 gyakorlat egyetlen eszközön. Kompakt, stílusos és mindent tartalmaz, amire a súlyzós edzéshez szükséged van. Tolj vagy húzz – korlátok nélkül.",
+        image: "images/mayaCable.jpeg"
     }
 };
 
