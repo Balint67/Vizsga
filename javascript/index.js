@@ -290,25 +290,30 @@ const recommendationsData = {
         description: "A világ első számú futópadjai. Ergonómikus kialakítás, miközben maximális kardió élményt nyújt a legmodernebb kijelzővel.",
         image: "images/treadmill.JPEG"
     },
-    bench: {
-        title: "FORGEX BENCH - AZ ELSŐ LÁTÁSRA SZERELEM",
-        description: "",
-        image: "images/benchPress.jpg"
-    },
-    balance: {
-        title: "RECLINE PERSONAL - KÉNYELEM ÉS TELJESÍTMÉNY",
-        description: "",
-        image: "images/balance.jpeg"
+    cableMachine: {
+        title: "FORGEX CABLE CROSSOVER - MINDEN EGY HELYEN",
+        description: "Több mint 200 gyakorlat egyetlen eszközön. Kompakt, stílusos és mindent tartalmaz, amire a súlyzós edzéshez szükséged van. Tolj vagy húzz – korlátok nélkül.",
+        image: "images/mayaCable.jpeg"
     },
     equipment: {
         title: "MI NEM RIADUNK EL A VÁLTOZÁSTÓL",
         description: "",
         image: "images/equipment.jpeg"
     },
-    cableMachine: {
-        title: "FORGEX CABLE CROSSOVER - MINDEN EGY HELYEN",
-        description: "Több mint 200 gyakorlat egyetlen eszközön. Kompakt, stílusos és mindent tartalmaz, amire a súlyzós edzéshez szükséged van. Tolj vagy húzz – korlátok nélkül.",
-        image: "images/mayaCable.jpeg"
+    balance: {
+        title: "RECLINE PERSONAL - KÉNYELEM ÉS TELJESÍTMÉNY",
+        description: "",
+        image: "images/balance.jpeg"
+    },
+    bench: {
+        title: "FORGEX BENCH - AZ ELSŐ LÁTÁSRA SZERELEM",
+        description: "",
+        image: "images/benchPress.jpg"
+    },
+    legPress: {
+        title: "FORGEX TREADMILL - AZ ERŐ ÉS ÁLLÓKÉPESSÉG ÚJ SZINTJE",
+        description: "A világ első számú futópadjai. Ergonómikus kialakítás, miközben maximális kardió élményt nyújt a legmodernebb kijelzővel.",
+        image: "images/legPress.JPG"
     }
 };
 
