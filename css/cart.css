@@ -1,65 +1,93 @@
+/* Global styles for the entire page */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #ffffff;
-    color: #fff;
-    margin: 0;
+    font-family: Arial, sans-serif; /* Set default font */
+    background-color: #ffffff;       /* Page background color */
+    color: #fff;                     /* Default text color */
+    margin: 0;                       /* Remove default margin */
 }
 
+/* Main container for centering content */
 .container {
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 0 20px;
+    max-width: 600px; /* Maximum width of container */
+    margin: 40px auto; /* Center horizontally with top/bottom margin */
+    padding: 0 20px;   /* Horizontal padding */
 }
 
-.header { text-align: center; margin-bottom: 30px; }
+/* Header section styles */
+.header {
+    text-align: center;   /* Center text */
+    margin-bottom: 30px;  /* Space below header */
+}
 
+/* Avatar circle in the header */
 .header .avatar {
-    background: linear-gradient(135deg, #4CAF50, #007524);
-    width: 60px; height: 60px;
-    border-radius: 50%;
-    display: flex; justify-content: center; align-items: center;
-    margin: 0 auto 15px;
-    font-size: 24px;
-}
-
-
-
-/* termék sor stílus a kosárban */
-.cart-item {
+    background: linear-gradient(135deg, #4CAF50, #007524); /* Gradient background */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Make it circular */
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 0;
-    border-bottom: 1px solid #ffffff;
+    justify-content: center; /* Center icon horizontally */
+    align-items: center;     /* Center icon vertically */
+    margin: 0 auto 15px;     /* Center container and add bottom margin */
+    font-size: 24px;         /* Icon size */
 }
 
+/* ------------------------------ */
+/* Cart item styles */
+/* Container for each product in the cart */
+.cart-item {
+    display: flex;                  /* Arrange items in a row */
+    align-items: center;            /* Center vertically */
+    justify-content: space-between; /* Space between image/info/delete */
+    padding: 15px 0;                /* Vertical padding */
+    border-bottom: 1px solid #ffffff; /* Separator line */
+}
+
+/* Product image inside the cart */
 .cart-item img {
     width: 60px;
     height: 60px;
-    object-fit: contain;
-    background: #0f3739;
-    border-radius: 8px;
+    object-fit: contain; /* Keep image proportions */
+    background: #0f3739; /* Background behind image */
+    border-radius: 8px;  /* Rounded corners */
 }
 
-.item-info { flex: 1; margin: 0 15px; }
-.item-info h3 { margin: 0; font-size: 16px; }
-.item-info p { margin: 5px 0 0; color: #cbd5e1; font-size: 13px; }
+/* Container for product details */
+.item-info {
+    flex: 1;             /* Take remaining space */
+    margin: 0 15px;      /* Horizontal margin */
+}
 
+/* Product name */
+.item-info h3 {
+    margin: 0;           /* Remove default margin */
+    font-size: 16px;     /* Font size for product name */
+}
+
+/* Product description or details */
+.item-info p {
+    margin: 5px 0 0;     /* Small top margin */
+    color: #cbd5e1;      /* Lighter text color */
+    font-size: 13px;     /* Smaller font */
+}
+
+/* Delete button for cart items */
 .delete-btn {
-    background: none;
-    border: none;
-    color: #ef4444;
-    cursor: pointer;
-    font-size: 18px;
+    background: none;    /* No background */
+    border: none;        /* Remove border */
+    color: #ef4444;      /* Red color for delete */
+    cursor: pointer;     /* Pointer cursor on hover */
+    font-size: 18px;     /* Icon/button size */
 }
 
-
+/* ------------------------------ */
+/* Login/Register button styles */
 .login-btn {
-    background: linear-gradient(135deg, #4CAF50, #007524);
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
+    background: linear-gradient(135deg, #4CAF50, #007524); /* Gradient button */
+    color: white;             /* Text color */
+    padding: 12px;            /* Padding inside button */
+    border: none;             /* Remove default border */
+    border-radius: 10px;      /* Rounded corners */
+    font-weight: bold;        /* Bold text */
+    cursor: pointer;          /* Pointer cursor on hover */
 }

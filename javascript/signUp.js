@@ -1,47 +1,58 @@
+// Import Firebase authentication and database instances
 import { auth, db } from './firebase.js';
+
+// Import Firebase Authentication function for user registration
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+// Import Firestore functions for saving user data
 import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-const regForm = document.getElementById('regForm');
+// Reference to the registration form
+const registrationForm = document.getElementById('regForm');
 
-if (regForm) {
-    regForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
+if (registrationForm) {
+    registrationForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
 
-        const submitBtn = regForm.querySelector('button');
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = "Siker regisztráció!"; // Azonnal látod, ha idáig eljutott
+        // Disable submit button to prevent multiple submissions
+        const submitButton = registrationForm.querySelector('button');
+        submitButton.disabled = true;
+        submitButton.innerHTML = "Registration successful!";
 
+        // Get form input values
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-        const fullname = document.getElementById('fullname').value;
-        const phone = document.getElementById('phone').value;
+        const fullName = document.getElementById('fullname').value;
+        const phoneNumber = document.getElementById('phone').value;
 
         try {
-            // 1. Felhasználó létrehozása
+            // Create user with Firebase Authentication
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
-            // 2. Adatok mentése
+            // Save additional user data to Firestore
             await setDoc(doc(db, "users", user.uid), {
-                fullname: fullname,
-                phone: phone,
+                fullname: fullName,
+                phone: phoneNumber,
                 email: email,
                 createdAt: new Date()
             });
 
-            // 3. Közvetlen átirányítás (Alert nélkül, hogy ne akadjon meg)
+            // Redirect to login page after successful registration
             window.location.replace("signIn.html");
 
         } catch (error) {
-            console.error("Hiba:", error.code);
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = 'Regisztráció <i class="fa-solid fa-arrow-right"></i>';
+            console.error("Registration error:", error.code);
 
+            // Re-enable submit button on error
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Registration <i class="fa-solid fa-arrow-right"></i>';
+
+            // Handle common registration errors
             if (error.code === 'auth/email-already-in-use') {
-                alert("Ez az e-mail már foglalt!");
+                alert("This email address is already in use!");
             } else {
-                alert("Hiba történt: " + error.message);
+                alert("An error occurred: " + error.message);
             }
         }
     });

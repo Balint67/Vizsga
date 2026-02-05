@@ -1,37 +1,48 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
+    <!-- Basic meta settings -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page title -->
     <title>Kosár - ForgeX</title>
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/cart.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-<!--------------------------------TOP BAR------------------------------------->
+<!-- ============================ TOP BAR / HEADER ============================ -->
 <div class="top-bar">
     <header class="site-header">
         <div class="container nav-container">
-            <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true"/>
+
+            <!-- Mobile navigation toggle -->
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
             <label for="nav-toggle" class="nav-toggle-btn">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
             </label>
 
-            <nav id="site-nav" class="site-nav" role="navigation" aria-label="Fő navigáció">
+            <!-- Main navigation -->
+            <nav id="site-nav" class="site-nav" role="navigation" aria-label="Main navigation">
                 <ul class="nav-list">
-                    <li class="nav-link active"><div class="text"><a href="index.html">Kezdőlap</a></div></li>
-                    <li class="nav-link"><div class="text"><a href="shop.html">Shop</a></div></li>
-                    <li class="nav-link"><div class="text"><a href="gym.html">Edzőtermek</a></div></li>
-                    <li class="nav-link"><div class="text"><a href="anatomy.html">Anatómia</a></div></li>
-                    <li class="nav-link"><div class="text"><a href="calculatorBmi.html">BMI - Kalkulátor</a></div></li>
-                    <li class="nav-link"><div class="text"><a href="trainers.html">Edzők</a></div></li>
-                    <li class="nav-link"><div class="text"><a href="contacts.html">Elérhetőségek</a></div></li>
-                    <li class="nav-link"><div class="text"><a href="booking.html">Időpontfoglalás</a></div></li>
+                    <li class="nav-link active"><a href="index.html">Kezdőlap</a></li>
+                    <li class="nav-link"><a href="shop.html">Shop</a></li>
+                    <li class="nav-link"><a href="gym.html">Edzőtermek</a></li>
+                    <li class="nav-link"><a href="anatomy.html">Anatómia</a></li>
+                    <li class="nav-link"><a href="calculatorBmi.html">BMI - Kalkulátor</a></li>
+                    <li class="nav-link"><a href="trainers.html">Edzők</a></li>
+                    <li class="nav-link"><a href="contacts.html">Elérhetőségek</a></li>
+                    <li class="nav-link"><a href="booking.html">Időpontfoglalás</a></li>
 
+                    <!-- Language selector for mobile -->
                     <li class="mobile-only-languages">
                         <button data-lang="hu" class="nyelv-btn">HU</button>
                         <button data-lang="en" class="nyelv-btn">EN</button>
@@ -42,6 +53,7 @@
         </div>
     </header>
 
+    <!-- Language selector for desktop -->
     <div class="nyelvek desktop-only">
         <div class="nyelvvalaszto">
             <button data-lang="hu" class="nyelv-btn">Magyar</button>
@@ -50,101 +62,97 @@
         </div>
     </div>
 
+    <!-- Header icons (profile, favorites, cart) -->
     <div class="right-icons">
         <div class="animation">
             <a href="signIn.html">
-                <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgJFzFfHiQVUYwzahvNBeriW2rB8HZ-XDg8KkQ_cP2rFBkF8OrApJS2YUjHFemxb29mnWVzaULETwXtnGNM91eGQS6xhhQuiGPlLlnMDcy-lZfVq6pc6gzkOwoyLeGNJbCnlVLtzAbEKdx6lAUlfqb2CKIlrNIpkYg6mb8lzRGq6t-fr9ODlt49KSWxQ2g"
-                     class="likeIMG" alt="like">
+                <img class="likeIMG" src="https://blogger.googleusercontent.com/img/a/AVvXsEgJFzFfHiQVUYwzahvNBeriW2rB8HZ-XDg8KkQ_cP2rFBkF8OrApJS2YUjHFemxb29mnWVzaULETwXtnGNM91eGQS6xhhQuiGPlLlnMDcy-lZfVq6pc6gzkOwoyLeGNJbCnlVLtzAbEKdx6lAUlfqb2CKIlrNIpkYg6mb8lzRGq6t-fr9ODlt49KSWxQ2g" alt="Favorites">
             </a>
         </div>
+
         <div class="animation">
             <a href="signIn.html" id="auth-link">
-                <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjWKRjSGDLLZiHXHkVvs17JzH96-r_hTw5IEggJbNOVacw37Vp2BVelLwtoc4KRhvw61tWrgjPqOdFYy5HF_yED3b3JjMWiNvcM3NubgzkjuuvtmEn2pEVUtO6Jn3T-vBUeHytWzNUfliRMC7sPhwZrAiPpuJeW6-jd0vwZlIjfdZLg5FDJL-Jz2tJiajM"
-                     class="userIMG" alt="Felhasználói profil">
+                <img class="userIMG" src="https://blogger.googleusercontent.com/img/a/AVvXsEjWKRjSGDLLZiHXHkVvs17JzH96-r_hTw5IEggJbNOVacw37Vp2BVelLwtoc4KRhvw61tWrgjPqOdFYy5HF_yED3b3JjMWiNvcM3NubgzkjuuvtmEn2pEVUtO6Jn3T-vBUeHytWzNUfliRMC7sPhwZrAiPpuJeW6-jd0vwZlIjfdZLg5FDJL-Jz2tJiajM" alt="User profile">
             </a>
         </div>
+
         <div class="header-shop">
             <a href="cart.html" class="container-shopBtn">
-                <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjnr3paeYkomWqEuLtpy-LUrJtccK4i5TAvsA4fIgCuoEmtgKqU2Nx3n4trTJrgoRU3T4w6qhAG3t7TAzlh8090v8e8luNlBsNdGc0avkHqE65n2omeiEctqzaxqvYTESBxYGCDRsHupOurWGNd1EwNhrAZem6DvrOP0dW1wc-EatQ0WWRXSMyXMxVgOLk"
-                     class="cartIMG" alt="Kosár">
+                <img class="cartIMG" src="https://blogger.googleusercontent.com/img/a/AVvXsEjnr3paeYkomWqEuLtpy-LUrJtccK4i5TAvsA4fIgCuoEmtgKqU2Nx3n4trTJrgoRU3T4w6qhAG3t7TAzlh8090v8e8luNlBsNdGc0avkHqE65n2omeiEctqzaxqvYTESBxYGCDRsHupOurWGNd1EwNhrAZem6DvrOP0dW1wc-EatQ0WWRXSMyXMxVgOLk" alt="Cart">
                 <span id="cart-count">0</span>
             </a>
         </div>
     </div>
 </div>
+<!-- ============================ TOP BAR END ============================ -->
 
-<div class="phone-menu" role="navigation" aria-label="Alsó navigáció">
-    <a href="signIn.html" aria-label="Profil">
-        <img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjWKRjSGDLLZiHXHkVvs17JzH96-r_hTw5IEggJbNOVacw37Vp2BVelLwtoc4KRhvw61tWrgjPqOdFYy5HF_yED3b3JjMWiNvcM3NubgzkjuuvtmEn2pEVUtO6Jn3T-vBUeHytWzNUfliRMC7sPhwZrAiPpuJeW6-jd0vwZlIjfdZLg5FDJL-Jz2tJiajM" alt="Profil"/>
+<!-- ============================ MOBILE BOTTOM NAV ============================ -->
+<div class="phone-menu" role="navigation" aria-label="Bottom navigation">
+    <a href="signIn.html" aria-label="Profile">
+        <img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjWKRjSGDLLZiHXHkVvs17JzH96-r_hTw5IEggJbNOVacw37Vp2BVelLwtoc4KRhvw61tWrgjPqOdFYy5HF_yED3b3JjMWiNvcM3NubgzkjuuvtmEn2pEVUtO6Jn3T-vBUeHytWzNUfliRMC7sPhwZrAiPpuJeW6-jd0vwZlIjfdZLg5FDJL-Jz2tJiajM" alt="Profile">
     </a>
-    <a href="index.html" aria-label="Főoldal">
-        <img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjTj_tBeEAlNqVcqK3BqoPRryYKbcv8wNU8j9XzjyGMi4HlppPqyyhTaoLT3vMiTAVshSMVfvFEiLeJN-i2x_wSTMgEps3je7uKuPmR7s6XrVTQ928wPFwyj5-lVChSteg-dzFv76Q_IjNiov2p7cLphdxKF9Ys-mUaiZlEeD6S338zj5nwLyukV9NKgdo" alt="Főoldal"/>
+    <a href="index.html" aria-label="Home">
+        <img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjTj_tBeEAlNqVcqK3BqoPRryYKbcv8wNU8j9XzjyGMi4HlppPqyyhTaoLT3vMiTAVshSMVfvFEiLeJN-i2x_wSTMgEps3je7uKuPmR7s6XrVTQ928wPFwyj5-lVChSteg-dzFv76Q_IjNiov2p7cLphdxKF9Ys-mUaiZlEeD6S338zj5nwLyukV9NKgdo" alt="Home">
     </a>
-    <a href="cart.html" aria-label="Kosár">
-        <img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjnr3paeYkomWqEuLtpy-LUrJtccK4i5TAvsA4fIgCuoEmtgKqU2Nx3n4trTJrgoRU3T4w6qhAG3t7TAzlh8090v8e8luNlBsNdGc0avkHqE65n2omeiEctqzaxqvYTESBxYGCDRsHupOurWGNd1EwNhrAZem6DvrOP0dW1wc-EatQ0WWRXSMyXMxVgOLk" alt="Kosár"/>
+    <a href="cart.html" aria-label="Cart">
+        <img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjnr3paeYkomWqEuLtpy-LUrJtccK4i5TAvsA4fIgCuoEmtgKqU2Nx3n4trTJrgoRU3T4w6qhAG3t7TAzlh8090v8e8luNlBsNdGc0avkHqE65n2omeiEctqzaxqvYTESBxYGCDRsHupOurWGNd1EwNhrAZem6DvrOP0dW1wc-EatQ0WWRXSMyXMxVgOLk" alt="Cart">
     </a>
 </div>
-<!--------------------------------TOP BAR END------------------------------------->
+
+<!-- ============================ CART CONTENT ============================ -->
 <div class="content">
     <div class="container">
+
+        <!-- Page header -->
         <div class="header">
-            <h2 style="font-size: 40px">Kosarad</h2>
+            <h2>Kosarad</h2>
             <p><a href="shop.html" class="backToShopBtn">← Vissza a boltba</a></p>
         </div>
-        <br>
 
+        <!-- Cart items container -->
+        <div id="cart-items-container">
+            <p style="text-align: center;">A kosarad jelenleg üres.</p>
+        </div>
 
-
-            <div id="cart-items-container">
-                <p style="text-align: center;">A kosarad jelenleg üres.</p>
+        <!-- Cart summary -->
+        <div class="cart-summary">
+            <hr>
+            <div class="cart-total">
+                <span>Összesen:</span>
+                <span id="total-price">0 Ft</span>
             </div>
 
-            <div class="cart-summary">
-                <hr style="border: 0.5px solid #3a4a5d; margin: 20px 0;">
-                <div style="display: flex; justify-content: space-between; font-size: 20px; font-weight: bold;">
-                    <span>Összesen:</span>
-                    <span id="total-price">0 Ft</span>
-                </div>
-                <button class="login-btn" id="checkout-btn" style="margin-top: 20px; width: 100%;">Fizetés</button>
-            </div>
+            <!-- Checkout button -->
+            <button class="login-btn" id="checkout-btn">Fizetés</button>
+        </div>
+    </div>
 
-    </div>
-    </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <!-- ============================ FOOTER ============================ -->
     <footer class="container-bottom" id="contact">
-        <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Kapcsolat</p></a></div></div>
-        <div class="animation-bottom"><div class="space"><a href="contracts.html" class="tiszta-link"><p>Általános szerződési feltételek</p></a></div></div>
-        <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Vélemények</p></a></div></div>
-        <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Gyakran ismételt kérdések</p></a></div></div>
-        <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Süti beállítások</p></a></div></div>
-        <div class="animation-bottom">
-            <div class="space">
-                <a href="https://www.instagram.com/forgex._" class="tiszta-link" target="_blank">
-                    <p>Instagram <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" class="igLogo" alt="Instagram Logo"></p>
-                </a>
-            </div>
-        </div>
-        <div class="animation-bottom">
-            <div class="space">
-                <a href="https://www.facebook.com/share/1Dwr4nD67j" class="tiszta-link" target="_blank">
-                    <p>Facebook <img src="https://1000logos.net/wp-content/uploads/2017/02/Facebook-Logosu.png" class="faceLogo" alt="Facebook Logo"></p>
-                </a>
-            </div>
-        </div>
-        <div class="animation-bottom">
-            <div class="space" id="tiktok">
-                <a href="https://www.tiktok.com/@forgex97" class="tiszta-link" target="_blank">
-                    <p>Tiktok <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgZczqhf9-ciDl5_atJ6sQPIZNCwqKYOhfm4LkbKiFyiR9_HRrW7BJ7cNb55lbxZchDVBDwt5-olPIRhMClgLL8UON6c0AQybZYHaOji70nhooShz9RpZVU1lPZFcmzoi-Sd1gB1jhlRvXCKENeX4R-Lj7WFZDfEjzsBPIX5ipnQ43R1O7AmmQjESxVaSo" class="tiktokLogo" alt="Tiktok Logo"></p>
-                </a>
-            </div>
-        </div>
+        <a class="tiszta-link" href="#"><p>Kapcsolat</p></a>
+        <a class="tiszta-link" href="contracts.html"><p>Általános szerződési feltételek</p></a>
+        <a class="tiszta-link" href="#"><p>Vélemények</p></a>
+        <a class="tiszta-link" href="#"><p>Gyakran ismételt kérdések</p></a>
+        <a class="tiszta-link" href="#"><p>Süti beállítások</p></a>
+
+        <!-- Social media links -->
+        <a class="tiszta-link" href="https://www.instagram.com/forgex._" target="_blank">
+            <p>Instagram</p>
+        </a>
+        <a class="tiszta-link" href="https://www.facebook.com/share/1Dwr4nD67j" target="_blank">
+            <p>Facebook</p>
+        </a>
+        <a class="tiszta-link" href="https://www.tiktok.com/@forgex97" target="_blank">
+            <p>TikTok</p>
+        </a>
     </footer>
 </div>
+
+<!-- ============================ SCRIPTS ============================ -->
 <script src="javascript/index.js"></script>
 <script type="module" src="javascript/cart.js"></script>
 <script type="module" src="javascript/auth-header.js"></script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>

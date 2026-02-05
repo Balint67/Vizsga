@@ -1,83 +1,91 @@
 // ===============================
-// 🔹 FIREBASE IMPORTOK
+// 🔹 FIREBASE IMPORTS
 // ===============================
 import { auth, db } from './firebase.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { forgeXModal } from './utils.js';
+
 // ===============================
-// 🔹 AKTUÁLIS FELHASZNÁLÓ UID
+// 🔹 CURRENT AUTHENTICATED USER ID
 // ===============================
 let currentUserId = null;
 
 // ===============================
-// 🔹 AUTH FIGYELÉS ÉS FIRESTORE SZINKRON
+// 🔹 AUTH STATE LISTENER & FIRESTORE SYNC
 // ===============================
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         currentUserId = user.uid;
-        console.log("Cart.js – bejelentkezett user:", currentUserId);
+        console.log("Cart.js – logged in user:", currentUserId);
 
-        // 🔹 CSAK LOCALSTORAGE FRISSÍTÉS (DOM kirajzolás később)
-        const snap = await getDoc(doc(db, "carts", currentUserId));
-        if (snap.exists()) {
-            localStorage.setItem("cart", JSON.stringify(snap.data().items || []));
+        // Sync cart data from Firestore to localStorage
+        const cartSnapshot = await getDoc(doc(db, "carts", currentUserId));
+
+        if (cartSnapshot.exists()) {
+            localStorage.setItem(
+                "cart",
+                JSON.stringify(cartSnapshot.data().items || [])
+            );
         } else {
             localStorage.setItem("cart", JSON.stringify([]));
         }
     } else {
+        // User logged out → clear local cart
         currentUserId = null;
         localStorage.removeItem("cart");
     }
 });
 
 // ===============================
-// 🔹 OLDAL BETÖLTÉS
+// 🔹 PAGE LOAD INITIALIZATION
 // ===============================
 document.addEventListener("DOMContentLoaded", () => {
-    const container = document.getElementById("cart-items-container");
-    const totalElem = document.getElementById("total-price");
-    const checkoutBtn = document.getElementById("checkout-btn");
+    const cartContainer = document.getElementById("cart-items-container");
+    const totalPriceElement = document.getElementById("total-price");
+    const checkoutButton = document.getElementById("checkout-btn");
 
-    // 🔹 Kosár kirajzolása
-    if (container) {
-        renderCart(container, totalElem, checkoutBtn);
+    // Render cart if container exists
+    if (cartContainer) {
+        renderCart(cartContainer, totalPriceElement, checkoutButton);
     }
 
     updateCartCount();
 });
 
 // ===============================
-// 🔹 KOSÁR MEGJELENÍTÉSE
+// 🔹 CART RENDERING
 // ===============================
-function renderCart(container, totalElem, checkoutBtn) {
+function renderCart(container, totalElement, checkoutButton) {
     if (!container) return;
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
     container.innerHTML = "";
 
-    if (cart.length === 0) {
+    // Empty cart state
+    if (cartItems.length === 0) {
         container.innerHTML = `
             <p style="text-align:center;padding:20px;font-size:18px;">
                 A kosarad jelenleg üres.
             </p>
         `;
-        if (totalElem) totalElem.innerText = "0 Ft";
-        if (checkoutBtn) checkoutBtn.style.display = "none";
+
+        if (totalElement) totalElement.innerText = "0 Ft";
+        if (checkoutButton) checkoutButton.style.display = "none";
         return;
     }
 
-    if (checkoutBtn) checkoutBtn.style.display = "block";
+    if (checkoutButton) checkoutButton.style.display = "block";
 
-    let total = 0;
+    let totalPrice = 0;
 
-    cart.forEach(item => {
-        total += Number(item.price);
+    cartItems.forEach((item) => {
+        totalPrice += Number(item.price);
 
-        const div = document.createElement("div");
-        div.classList.add("cart-item");
+        const cartItemElement = document.createElement("div");
+        cartItemElement.classList.add("cart-item");
 
-        div.innerHTML = `
+        cartItemElement.innerHTML = `
             <img src="${item.image}" alt="${item.title}">
             <div class="item-info">
                 <h3>${item.title}</h3>
@@ -89,57 +97,62 @@ function renderCart(container, totalElem, checkoutBtn) {
             </button>
         `;
 
-        container.appendChild(div);
+        container.appendChild(cartItemElement);
     });
 
-    if (totalElem) {
-        totalElem.innerText = total.toLocaleString('hu-HU') + " Ft";
+    if (totalElement) {
+        totalElement.innerText = `${totalPrice.toLocaleString('hu-HU')} Ft`;
     }
 }
 
 // ===============================
-// 🔹 TERMÉK TÖRLÉSE
+// 🔹 REMOVE ITEM FROM CART
 // ===============================
-window.removeFromCart = async function(id) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const newCart = cart.filter(item => item.id !== id);
+window.removeFromCart = async function (itemId) {
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    const updatedCart = cartItems.filter(item => item.id !== itemId);
 
-    // LocalStorage frissítés
-    localStorage.setItem("cart", JSON.stringify(newCart));
+    // Update localStorage
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
 
-    // 🔹 Firestore szinkron
+    // Sync updated cart to Firestore
     if (currentUserId) {
         await setDoc(doc(db, "carts", currentUserId), {
-            items: newCart,
+            items: updatedCart,
             updatedAt: new Date()
         });
     }
 
-    const container = document.getElementById("cart-items-container");
-    const totalElem = document.getElementById("total-price");
-    const checkoutBtn = document.getElementById("checkout-btn");
+    const cartContainer = document.getElementById("cart-items-container");
+    const totalPriceElement = document.getElementById("total-price");
+    const checkoutButton = document.getElementById("checkout-btn");
 
-    renderCart(container, totalElem, checkoutBtn);
+    renderCart(cartContainer, totalPriceElement, checkoutButton);
     updateCartCount();
 };
 
 // ===============================
-// 🔹 NAVIGÁCIÓS KOSÁR SZÁMLÁLÓ
+// 🔹 HEADER CART ITEM COUNTER
 // ===============================
 function updateCartCount() {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const el = document.getElementById("cart-count");
-    if (el) el.innerText = cart.length;
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    const counterElement = document.getElementById("cart-count");
+
+    if (counterElement) {
+        counterElement.innerText = cartItems.length;
+    }
 }
 
 // ===============================
-// 🔹 FIZETÉS GOMB (Javítva)
+// 🔹 CHECKOUT BUTTON HANDLER
 // ===============================
-const payBtn = document.getElementById("checkout-btn");
+const checkoutButton = document.getElementById("checkout-btn");
 
-if (payBtn) {
-    payBtn.addEventListener("click", async () => {
-        // Két paraméter kell: 1. Cím, 2. Üzenet
-        await forgeXModal("Pénztár", "A fizetési rendszer hamarosan elérhető!");
+if (checkoutButton) {
+    checkoutButton.addEventListener("click", async () => {
+        await forgeXModal(
+            "Pénztár",
+            "A fizetési rendszer hamarosan elérhető!"
+        );
     });
 }

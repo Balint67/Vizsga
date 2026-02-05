@@ -1,11 +1,20 @@
-// 1. Import local config and custom tools
+// ===============================
+// 🔹 LOCAL IMPORTS
+// ===============================
 import { auth, db } from './firebase.js';
 import { forgeXModal } from './utils.js';
 
-// 2. Import Firebase Authentication functions
-import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+// ===============================
+// 🔹 FIREBASE AUTH IMPORTS
+// ===============================
+import {
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-// 3. Import Firestore functions (THIS WAS MISSING OR INCOMPLETE!)
+// ===============================
+// 🔹 FIRESTORE IMPORTS
+// ===============================
 import {
     doc,
     getDoc,
@@ -16,116 +25,153 @@ import {
     deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-
+// ===============================
+// 🔹 AUTH STATE LISTENER
+// ===============================
 onAuthStateChanged(auth, async (user) => {
-    if (user) {
-        console.log("Profil oldal: Felhasználó azonosítva:", user.uid);
-
-        // 1. Alapadatok betöltése (Név, Email, Telefon)
-        const userRef = doc(db, "users", user.uid);
-        try {
-            const docSnap = await getDoc(userRef);
-            if (docSnap.exists()) {
-                const userData = docSnap.data();
-                document.getElementById('prof-name').innerText = userData.fullname || "Nincs megadva";
-                document.getElementById('prof-email').innerText = userData.email || user.email;
-                document.getElementById('prof-phone').innerText = userData.phone || "Nincs megadva";
-            }
-        } catch (error) {
-            console.error("Hiba az adatok lekérésekor:", error);
-        }
-
-        // 2. FOGLALÁSOK BETÖLTÉSE
-        loadUserBookings(user.uid);
-
-    } else {
+    if (!user) {
+        // Redirect to login page if not authenticated
         window.location.replace("bejelentkezes.html");
+        return;
     }
+
+    console.log("Profile page – authenticated user:", user.uid);
+
+    // Load basic user profile data
+    await loadUserProfile(user);
+
+    // Load user bookings
+    loadUserBookings(user.uid);
 });
 
-async function loadUserBookings(uid) {
-    const bookingsContainer = document.getElementById('user-bookings');
-    if (!bookingsContainer) return;
+// ===============================
+// 🔹 LOAD USER PROFILE DATA
+// ===============================
+async function loadUserProfile(user) {
+    const userRef = doc(db, "users", user.uid);
 
     try {
-        const q = query(collection(db, "bookings"), where("userId", "==", uid));
-        const querySnapshot = await getDocs(q);
+        const snapshot = await getDoc(userRef);
 
-        if (querySnapshot.empty) {
-            bookingsContainer.innerHTML = '<p>Nincsenek aktív foglalásaid.</p>';
+        if (!snapshot.exists()) return;
+
+        const userData = snapshot.data();
+
+        document.getElementById('prof-name').innerText =
+            userData.fullname || "Not provided";
+
+        document.getElementById('prof-email').innerText =
+            userData.email || user.email;
+
+        document.getElementById('prof-phone').innerText =
+            userData.phone || "Not provided";
+
+    } catch (error) {
+        console.error("Error while loading user profile data:", error);
+    }
+}
+
+// ===============================
+// 🔹 LOAD USER BOOKINGS
+// ===============================
+async function loadUserBookings(userId) {
+    const container = document.getElementById('user-bookings');
+    if (!container) return;
+
+    try {
+        const bookingsQuery = query(
+            collection(db, "bookings"),
+            where("userId", "==", userId)
+        );
+
+        const snapshot = await getDocs(bookingsQuery);
+
+        if (snapshot.empty) {
+            container.innerHTML = '<p>You have no active bookings.</p>';
             return;
         }
 
-        bookingsContainer.innerHTML = '';
+        container.innerHTML = "";
 
-        querySnapshot.forEach((doc) => {
-            const booking = doc.data();
-            const bookingId = doc.id;
+        snapshot.forEach((docSnap) => {
+            const bookingData = docSnap.data();
+            const bookingId = docSnap.id;
 
-            const bookingItem = document.createElement('div');
-            bookingItem.className = 'booking-item';
-            bookingItem.innerHTML = `
+            const bookingElement = document.createElement('div');
+            bookingElement.className = 'booking-item';
+            bookingElement.innerHTML = `
                 <div class="booking-info">
-                    <p><strong>${booking.course}</strong></p>
-                    <p>${booking.trainer} - ${booking.date} ${booking.time}</p>
+                    <p><strong>${bookingData.course}</strong></p>
+                    <p>${bookingData.trainer} - ${bookingData.date} ${bookingData.time}</p>
                 </div>
                 <button class="delete-booking-btn" data-id="${bookingId}">
                     <i class="fa-solid fa-trash"></i>
                 </button>
             `;
-            bookingsContainer.appendChild(bookingItem);
+
+            container.appendChild(bookingElement);
         });
 
-        // Inside the querySnapshot.forEach loop where you create buttons:
-        document.querySelectorAll('.delete-booking-btn').forEach(button => {
-            button.addEventListener('click', async (e) => {
-                // Get the booking ID from the data attribute
-                const bId = e.currentTarget.getAttribute('data-id');
-                console.log("Delete button clicked for ID:", bId); // Debug log
-
-                const confirmed = await forgeXModal(
-                    "Törlés megerősítése",
-                    "Biztosan törölni szeretnéd ezt a foglalást?",
-                    true
-                );
-
-                console.log("Modal result:", confirmed); // Debug log: Check if it's true or false
-
-                if (confirmed) {
-                    // Get the current user directly from auth to be safe
-                    const currentUser = auth.currentUser;
-
-                    if (currentUser) {
-                        console.log("Starting deletion for user:", currentUser.uid); // Debug log
-                        await deleteBooking(bId, currentUser.uid);
-                    } else {
-                        console.error("No user logged in during deletion!");
-                    }
-                }
-            });
-        });
+        attachDeleteBookingHandlers(userId);
 
     } catch (error) {
-        console.error("Hiba a foglalások betöltésekor:", error);
-        bookingsContainer.innerHTML = '<p>Hiba történt a foglalások betöltésekor.</p>';
+        console.error("Error while loading bookings:", error);
+        container.innerHTML = '<p>Failed to load bookings.</p>';
     }
 }
 
-async function deleteBooking(id, uid) {
+// ===============================
+// 🔹 ATTACH DELETE BUTTON HANDLERS
+// ===============================
+function attachDeleteBookingHandlers(userId) {
+    document.querySelectorAll('.delete-booking-btn').forEach(button => {
+        button.addEventListener('click', async (event) => {
+            const bookingId = event.currentTarget.getAttribute('data-id');
+
+            const confirmed = await forgeXModal(
+                "Delete confirmation",
+                "Are you sure you want to delete this booking?",
+                true
+            );
+
+            if (!confirmed) return;
+
+            const currentUser = auth.currentUser;
+            if (!currentUser) {
+                console.error("User not authenticated during deletion.");
+                return;
+            }
+
+            await deleteBooking(bookingId, userId);
+        });
+    });
+}
+
+// ===============================
+// 🔹 DELETE BOOKING
+// ===============================
+async function deleteBooking(bookingId, userId) {
     try {
-        await deleteDoc(doc(db, "bookings", id));
-        console.log("Foglalás törölve:", id);
-        // Frissítjük a listát a törlés után
-        loadUserBookings(uid);
+        await deleteDoc(doc(db, "bookings", bookingId));
+        console.log("Booking deleted:", bookingId);
+
+        // Reload bookings after deletion
+        loadUserBookings(userId);
+
     } catch (error) {
-        console.error("Hiba a törlés során:", error);
-        alert("Nem sikerült törölni a foglalást.");
+        console.error("Error while deleting booking:", error);
+        alert("Failed to delete booking.");
     }
 }
 
-const logoutBtn = document.getElementById('logout-btn');
-if (logoutBtn) {
-    logoutBtn.addEventListener('click', () => {
-        signOut(auth).then(() => window.location.replace("index.html"));
+// ===============================
+// 🔹 LOGOUT HANDLER
+// ===============================
+const logoutButton = document.getElementById('logout-btn');
+
+if (logoutButton) {
+    logoutButton.addEventListener('click', async () => {
+        await signOut(auth);
+        window.location.replace("index.html");
     });
 }

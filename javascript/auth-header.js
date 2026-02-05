@@ -1,21 +1,30 @@
-import { auth } from './firebase.js'; // A te meglévő fájlodat használjuk
+import { auth } from './firebase.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
+/**
+ * Handles profile link redirection based on authentication state
+ */
 document.addEventListener('DOMContentLoaded', () => {
-    // Kiválasztjuk az összes ikont/linket, ami alapból a signIn.html-re mutat
-    const profileLinks = document.querySelectorAll('a[href="signIn.html"], #profile-link');
 
+    // Select all links that should redirect to sign-in or profile page
+    const profileLinks = document.querySelectorAll(
+        'a[href="signIn.html"], #profile-link'
+    );
+
+    // Listen for authentication state changes
     onAuthStateChanged(auth, (user) => {
-        profileLinks.forEach(link => {
+
+        profileLinks.forEach((link) => {
             if (user) {
-                // Ha be van jelentkezve: a profilra küldjük
-                link.href = "profil.html";
-                console.log("Státusz: Bejelentkezve -> Cél: profil.html");
+                // User is logged in → redirect to profile page
+                link.href = 'profil.html';
+                console.log('Status: Logged in -> Redirecting to profil.html');
             } else {
-                // Ha nincs bejelentkezve: marad a bejelentkezésnél
-                link.href = "signIn.html";
-                console.log("Státusz: Kijelentkezve -> Cél: signIn.html");
+                // User is logged out → redirect to sign-in page
+                link.href = 'signIn.html';
+                console.log('Status: Logged out -> Redirecting to signIn.html');
             }
         });
+
     });
 });

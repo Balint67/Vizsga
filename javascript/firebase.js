@@ -1,9 +1,13 @@
-// 1. Importáljuk a Firebase modulokat
+// ===============================
+// 🔹 FIREBASE MODULE IMPORTS
+// ===============================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// 2. Konfiguráció
+// ===============================
+// 🔹 FIREBASE CONFIGURATION
+// ===============================
 const firebaseConfig = {
     apiKey: "AIzaSyA-qcUAb6bqjwxfttKBHJOCce0Jw4uGHME",
     authDomain: "forgex-2026.firebaseapp.com",
@@ -13,9 +17,13 @@ const firebaseConfig = {
     appId: "1:73260668042:web:4b29784cde814c3a628973"
 };
 
-// 3. Inicializálás
+// ===============================
+// 🔹 FIREBASE INITIALIZATION
+// ===============================
 const app = initializeApp(firebaseConfig);
 
-// 4. Exportálás
+// ===============================
+// 🔹 EXPORTED FIREBASE SERVICES
+// ===============================
 export const auth = getAuth(app);
 export const db = getFirestore(app);
