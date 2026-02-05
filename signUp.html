@@ -9,94 +9,97 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-<div class="container">
-    <!-- Back button to go to sign in page -->
-    <a href="signIn.html" class="back-button">
-        <i class="fa-solid fa-arrow-left"></i>
-    </a>
+<div id="google_translate_element" style="display:none;"></div>
 
-    <!-- Header section with avatar and title -->
-    <div class="header">
-        <div class="avatar">
-            <i class="fa-solid fa-user-plus"></i>
-        </div>
-        <h2>Registration</h2>
-        <p>Create your account</p>
-    </div>
+<div class="content">
+    <div class="container">
+        <!-- Back button to go to sign in page -->
+        <a href="signIn.html" class="back-button">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
 
-    <!-- Form container -->
-    <div class="form-box">
-        <div class="tab-buttons">
-            <!-- Placeholder for potential tab buttons -->
+        <!-- Header section with avatar and title -->
+        <div class="header">
+            <div class="avatar">
+                <i class="fa-solid fa-user-plus"></i>
+            </div>
+            <h2>Registration</h2>
+            <p>Create your account</p>
         </div>
 
-        <!-- Registration form -->
-        <form id="regForm">
-            <!-- Full name input -->
-            <label for="fullname">Full Name</label>
-            <div class="input-box">
-                <i class="fa-solid fa-user"></i>
-                <input type="text" id="fullname" placeholder="Full Name" required>
+        <!-- Form container -->
+        <div class="form-box">
+            <div class="tab-buttons">
+                <!-- Placeholder for potential tab buttons -->
             </div>
 
-            <!-- Email input -->
-            <label for="email">Email</label>
-            <div class="input-box">
-                <i class="fa-solid fa-envelope"></i>
-                <input type="email" id="email" placeholder="example@email.com" required>
+            <!-- Registration form -->
+            <form id="regForm">
+                <!-- Full name input -->
+                <label for="fullname">Full Name</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="fullname" placeholder="Full Name" required>
+                </div>
+
+                <!-- Email input -->
+                <label for="email">Email</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="email" placeholder="example@email.com" required>
+                </div>
+
+                <!-- Phone input -->
+                <label for="phone">Phone Number</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-phone"></i>
+                    <input type="tel" id="phone" placeholder="06-20-123-4567" required>
+                </div>
+
+                <!-- Password input with toggle visibility -->
+                <label for="password">Password</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="password" placeholder="Minimum 8 characters" required>
+                    <i class="fa-solid fa-eye" id="togglePassword"></i>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="login-btn">
+                    Register <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <!-- Link to sign in if user already has an account -->
+            <p class="signup-text">
+                Already have an account? <a href="signIn.html">Sign In</a>
+            </p>
+
+            <!-- Divider for social login -->
+            <div class="divider-signUp">
+                <span>or</span>
             </div>
 
-            <!-- Phone input -->
-            <label for="phone">Phone Number</label>
-            <div class="input-box">
-                <i class="fa-solid fa-phone"></i>
-                <input type="tel" id="phone" placeholder="06-20-123-4567" required>
+            <!-- Social login buttons -->
+            <div class="social-buttons">
+                <button>
+                    <img src="images/googleLogo.png" alt="google logo" class="googleMiniImg"> Google
+                </button>
+                <button>
+                    <img src="images/facebookLogo.png" alt="facebook logo" class="facebookMiniImg"> Facebook
+                </button>
             </div>
+        </div>
 
-            <!-- Password input with toggle visibility -->
-            <label for="password">Password</label>
-            <div class="input-box">
-                <i class="fa-solid fa-lock"></i>
-                <input type="password" id="password" placeholder="Minimum 8 characters" required>
-                <i class="fa-solid fa-eye" id="togglePassword"></i>
-            </div>
-
-            <!-- Submit button -->
-            <button type="submit" class="login-btn">
-                Register <i class="fa-solid fa-arrow-right"></i>
-            </button>
-        </form>
-
-        <!-- Link to sign in if user already has an account -->
-        <p class="signup-text">
-            Already have an account? <a href="signIn.html">Sign In</a>
+        <!-- Footer with terms and privacy links -->
+        <p class="footer-text">
+            By continuing, you accept the
+            <a href="szerzodesek.html">Terms and Conditions</a>
+            and the <a href="szerzodesek.html">Privacy Policy</a>
         </p>
-
-        <!-- Divider for social login -->
-        <div class="divider-signUp">
-            <span>or</span>
-        </div>
-
-        <!-- Social login buttons -->
-        <div class="social-buttons">
-            <button>
-                <img src="images/googleLogo.png" alt="google logo" class="googleMiniImg"> Google
-            </button>
-            <button>
-                <img src="images/facebookLogo.png" alt="facebook logo" class="facebookMiniImg"> Facebook
-            </button>
-        </div>
     </div>
-
-    <!-- Footer with terms and privacy links -->
-    <p class="footer-text">
-        By continuing, you accept the
-        <a href="szerzodesek.html">Terms and Conditions</a>
-        and the <a href="szerzodesek.html">Privacy Policy</a>
-    </p>
 </div>
 
-<!-- Import JavaScript module for sign up functionality -->
 <script type="module" src="javascript/signUp.js"></script>
 </body>
 </html>

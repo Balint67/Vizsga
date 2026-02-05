@@ -1,279 +1,280 @@
-/* =========================
-   SLIDER (MANUAL + AUTO, TRUE INFINITE, FIXED + DOTS + RESIZE FIX)
-========================= */
-let startX = 0;
-let startY = 0;
-let isDragging = false;
-
-document.querySelectorAll('.slider img').forEach(img => {
-
-  img.addEventListener('mousedown', e => {
-    startX = e.clientX;
-    startY = e.clientY;
-    isDragging = false;
-  });
-
-  img.addEventListener('mousemove', e => {
-    const dx = Math.abs(e.clientX - startX);
-    const dy = Math.abs(e.clientY - startY);
-
-    // ha elmozdulás nagyobb mint 5–10px → dragnek tekintjük
-    if (dx > 8 || dy > 8) {
-      isDragging = true;
-    }
-  });
-
-  img.addEventListener('mouseup', e => {
-    if (!isDragging) {
-      // tényleges kattintás
-      const link = img.getAttribute('data-link');
-      if (link) location.href = link;
-    }
-  });
+document.addEventListener('DOMContentLoaded', () => {
+    initSlider();
+    initModals();
+    initLanguageSelector();
+    initScrollAnimations();
+    initRecommendationTable(); // Új inicializáló a táblázathoz
 });
 
-const slider = document.querySelector('.slider');
+/* =========================
+   1. SLIDER LOGIC
+========================= */
+let startX_click = 0;
+let startY_click = 0;
+let isDragging_click = false;
 
-if (slider) {
-  let isDown = false;
-  let startX = 0;
-  let scrollLeft = 0;
-  let currentIndex = 1;
-  let autoInterval;
-  const autoDelay = 5000;
-  const dragSensitivity = 0.6;
-  let isLooping = false; // lock a jumphoz
+function initSlider() {
+    const slider = document.querySelector('.slider');
+    if (!slider) return;
 
-  // ---- KLÓNOZÁS (Végtelenítéshez) ----
-  const slides = Array.from(slider.children);
+    // Képre kattintás kezelése
+    document.querySelectorAll('.slider img').forEach(img => {
+        img.addEventListener('mousedown', e => {
+            startX_click = e.clientX;
+            startY_click = e.clientY;
+            isDragging_click = false;
+        });
 
-  // Első és utolsó elem másolása
-  const firstClone = slides[0].cloneNode(true);
-  const lastClone = slides[slides.length - 1].cloneNode(true);
+        img.addEventListener('mousemove', e => {
+            const dx = Math.abs(e.clientX - startX_click);
+            const dy = Math.abs(e.clientY - startY_click);
+            if (dx > 8 || dy > 8) isDragging_click = true;
+        });
 
-  firstClone.classList.add('clone');
-  lastClone.classList.add('clone');
-
-  slider.appendChild(firstClone);
-  slider.insertBefore(lastClone, slides[0]);
-
-  const allSlides = slider.querySelectorAll('img');
-
-  // FONTOS: let, hogy frissíthető legyen átméretezéskor
-  let slideWidth = slider.offsetWidth;
-
-  // Kezdő pozíció beállítása (az első valódi képre, ami az 1-es index)
-  slider.scrollLeft = slideWidth * currentIndex;
-
-  // ---- PÖTTYÖK (DOTS) KEZELÉSE ----
-  const dots = document.querySelectorAll('.slider-nav a');
-
-  function updateDots() {
-    dots.forEach(dot => dot.style.backgroundColor = '#ffffff'); // alap fehér
-
-    let dotIndex = currentIndex - 1; // a klónokat figyelembe véve korrigálunk
-
-    // Ha túllépnénk a határokon a klónok miatt:
-    if(dotIndex >= dots.length) dotIndex = 0;
-    if(dotIndex < 0) dotIndex = dots.length - 1;
-
-    // Biztonsági ellenőrzés és színezés
-    if(dots[dotIndex]) {
-      dots[dotIndex].style.backgroundColor = '#00ca65'; // aktív zöld
-    }
-  }
-
-  updateDots(); // kezdeti állapot
-
-  // ---- MOZGATÁS FUNKCIÓ ----
-  function moveToSlide(index) {
-    slider.scrollTo({
-      left: index * slideWidth,
-      behavior: 'smooth'
+        img.addEventListener('mouseup', e => {
+            if (!isDragging_click) {
+                const link = img.getAttribute('data-link');
+                if (link) location.href = link;
+            }
+        });
     });
-    currentIndex = index;
+
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+    let currentIndex = 1;
+    let autoInterval;
+    const autoDelay = 5000;
+    const dragSensitivity = 0.6;
+    let isLooping = false;
+
+    const slides = Array.from(slider.children);
+    const firstClone = slides[0].cloneNode(true);
+    const lastClone = slides[slides.length - 1].cloneNode(true);
+
+    firstClone.classList.add('clone');
+    lastClone.classList.add('clone');
+    slider.appendChild(firstClone);
+    slider.insertBefore(lastClone, slides[0]);
+
+    const allSlides = slider.querySelectorAll('img');
+    let slideWidth = slider.offsetWidth;
+    slider.scrollLeft = slideWidth * currentIndex;
+
+    const dots = document.querySelectorAll('.slider-nav a');
+
+    function updateDots() {
+        dots.forEach(dot => dot.style.backgroundColor = '#ffffff');
+        let dotIndex = currentIndex - 1;
+        if (dotIndex >= dots.length) dotIndex = 0;
+        if (dotIndex < 0) dotIndex = dots.length - 1;
+        if (dots[dotIndex]) dots[dotIndex].style.backgroundColor = '#00ca65';
+    }
+
     updateDots();
-  }
 
-  // ---- AUTOMATIKUS LÉPTETÉS ----
-  function nextSlide() { moveToSlide(currentIndex + 1); }
-  function prevSlide() { moveToSlide(currentIndex - 1); }
-
-  function startAutoSlide() {
-    stopAutoSlide();
-    autoInterval = setInterval(() => {
-      nextSlide();
-    }, autoDelay);
-  }
-
-  function stopAutoSlide() { clearInterval(autoInterval); }
-
-  // ---- MANUÁLIS HÚZÁS (DRAG) ----
-  slider.addEventListener('mousedown', (e) => {
-    stopAutoSlide();
-    isDown = true;
-    slider.classList.add('active');
-    slider.style.scrollBehavior = 'auto'; // húzáskor nincs simítás
-    startX = e.pageX;
-    scrollLeft = slider.scrollLeft;
-  });
-
-  slider.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const delta = e.pageX - startX;
-    slider.scrollLeft = scrollLeft - delta * dragSensitivity;
-  });
-
-  window.addEventListener('mouseup', (e) => {
-    if (!isDown) return;
-    isDown = false;
-    slider.classList.remove('active');
-    const dragDistance = e.pageX - startX;
-    snapWithThreshold(dragDistance);
-    startAutoSlide();
-  });
-
-  // Érintőképernyő támogatás
-  slider.addEventListener('touchstart', () => stopAutoSlide());
-  slider.addEventListener('touchend', () => {
-    snapWithThreshold(0); // Itt nem számolunk delta-t külön, csak igazítunk
-    startAutoSlide();
-  });
-
-  slider.addEventListener('dragstart', (e) => e.preventDefault());
-
-  function snapWithThreshold(dragDistance) {
-    const threshold = slideWidth * 0.15; // 15%-ot kell húzni a váltáshoz
-    if (dragDistance < -threshold) nextSlide();
-    else if (dragDistance > threshold) prevSlide();
-    else moveToSlide(currentIndex);
-  }
-
-  // ---- VÉGTELENÍTÉS LOGIKA (LOOP FIX) ----
-  slider.addEventListener('scroll', () => {
-    if (isLooping) return;
-
-    // Ha valamiért 0 lenne a szélesség (ritka hiba), újramérjük
-    if (slideWidth === 0) slideWidth = slider.offsetWidth;
-
-    // Ha az utolsó klónhoz értünk (jobb szél)
-    if (currentIndex >= allSlides.length - 1 && slider.scrollLeft >= slideWidth * (allSlides.length - 1) - 10) {
-      isLooping = true;
-      slider.style.scrollBehavior = 'auto';
-      slider.scrollLeft = slideWidth; // Ugrás az első valódi képre
-      currentIndex = 1;
-      updateDots();
-      setTimeout(() => { slider.style.scrollBehavior = 'smooth'; isLooping = false; }, 20);
+    function moveToSlide(index) {
+        slider.scrollTo({ left: index * slideWidth, behavior: 'smooth' });
+        currentIndex = index;
+        updateDots();
     }
-    // Ha az első klónhoz értünk (bal szél)
-    else if (currentIndex <= 0 && slider.scrollLeft <= 10) {
-      isLooping = true;
-      slider.style.scrollBehavior = 'auto';
-      slider.scrollLeft = slideWidth * (allSlides.length - 2); // Ugrás az utolsó valódi képre
-      currentIndex = allSlides.length - 2;
-      updateDots();
-      setTimeout(() => { slider.style.scrollBehavior = 'smooth'; isLooping = false; }, 20);
+
+    function nextSlide() { moveToSlide(currentIndex + 1); }
+    function prevSlide() { moveToSlide(currentIndex - 1); }
+
+    function startAutoSlide() {
+        stopAutoSlide();
+        autoInterval = setInterval(nextSlide, autoDelay);
     }
-  });
+    function stopAutoSlide() { clearInterval(autoInterval); }
 
-  slider.addEventListener('mouseenter', stopAutoSlide);
-  slider.addEventListener('mouseleave', startAutoSlide);
-
-  // Indítás
-  startAutoSlide();
-
-  // ---- PÖTTYÖKRE KATTINTÁS ----
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', (e) => {
-      e.preventDefault();
-      moveToSlide(i + 1); // +1 a bal oldali klón miatt
+    slider.addEventListener('mousedown', (e) => {
+        stopAutoSlide();
+        isDown = true;
+        slider.classList.add('active');
+        slider.style.scrollBehavior = 'auto';
+        startX = e.pageX;
+        scrollLeft = slider.scrollLeft;
     });
-  });
 
-  // ==========================================
-  // RESIZE FIX: ABLAK ÁTMÉRETEZÉS KEZELÉSE
-  // ==========================================
-  window.addEventListener('resize', () => {
-    // 1. Újraszámoljuk a slider aktuális szélességét
-    slideWidth = slider.offsetWidth;
+    window.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        const delta = e.pageX - startX;
+        slider.scrollLeft = scrollLeft - delta * dragSensitivity;
+    });
 
-    // 2. Azonnal a helyes pozícióba görgetünk animáció nélkül
-    // Így a kép közepe ott marad, ahol lennie kell
-    slider.style.scrollBehavior = 'auto';
-    slider.scrollLeft = currentIndex * slideWidth;
+    window.addEventListener('mouseup', (e) => {
+        if (!isDown) return;
+        isDown = false;
+        slider.classList.remove('active');
+        const dragDistance = e.pageX - startX;
+        if (dragDistance < -(slideWidth * 0.15)) nextSlide();
+        else if (dragDistance > (slideWidth * 0.15)) prevSlide();
+        else moveToSlide(currentIndex);
+        startAutoSlide();
+    });
 
-    // 3. Visszaállítjuk a smooth scrollt egy pillanat múlva
-    setTimeout(() => {
-      slider.style.scrollBehavior = 'smooth';
-    }, 50);
-  });
+    slider.addEventListener('scroll', () => {
+        if (isLooping) return;
+        if (currentIndex >= allSlides.length - 1 && slider.scrollLeft >= slideWidth * (allSlides.length - 1) - 10) {
+            isLooping = true;
+            slider.style.scrollBehavior = 'auto';
+            slider.scrollLeft = slideWidth;
+            currentIndex = 1;
+            updateDots();
+            setTimeout(() => { slider.style.scrollBehavior = 'smooth'; isLooping = false; }, 20);
+        } else if (currentIndex <= 0 && slider.scrollLeft <= 10) {
+            isLooping = true;
+            slider.style.scrollBehavior = 'auto';
+            slider.scrollLeft = slideWidth * (allSlides.length - 2);
+            currentIndex = allSlides.length - 2;
+            updateDots();
+            setTimeout(() => { slider.style.scrollBehavior = 'smooth'; isLooping = false; }, 20);
+        }
+    });
 
+    window.addEventListener('resize', () => {
+        slideWidth = slider.offsetWidth;
+        slider.style.scrollBehavior = 'auto';
+        slider.scrollLeft = currentIndex * slideWidth;
+        setTimeout(() => { slider.style.scrollBehavior = 'smooth'; }, 50);
+    });
+
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', (e) => {
+            e.preventDefault();
+            moveToSlide(i + 1);
+        });
+    });
+
+    startAutoSlide();
 }
 
 /* =========================
-   BMI KALKULÁTOR RÉSZ (JAVÍTOTT)
+   2. MODALS (Popups)
 ========================= */
-document.addEventListener('DOMContentLoaded', () => {
-    const bmiForm = document.getElementById('bmiForm');
-    const bmiCircle = document.getElementById('bmiCircle');
-    const bmiValueEl = document.getElementById('bmiValue');
-    const bmiStatusEl = document.getElementById('bmiStatus');
-    const bmiDescriptionEl = document.getElementById('bmiDescription');
+function initModals() {
+    const modal = document.getElementById('infoModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalText = document.getElementById('modalText');
+    const triggers = document.querySelectorAll('.info-trigger-card');
+    const closeBtn = document.querySelector('.close-modal');
 
-    const circumference = 326.72; // Az SVG stroke-dasharray értéke
+    if (!modal) return;
 
-    if (bmiForm) {
-        bmiForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+    const infoData = {
+        'eatClean': { title: 'Eat Clean', text: 'A tiszta étkezés az egészséges életmód alapja...' },
+        'trainHard': { title: 'Work Hard', text: 'A következetes edzés kulcsfontosságú...' },
+        'sleepWell': { title: 'Sleep Well', text: 'A regeneráció legalább olyan fontos...' }
+    };
 
-            // Adatok kinyerése
-            const weight = parseFloat(document.getElementById('weight').value.toString().replace(',', '.'));
-            const heightCm = parseFloat(document.getElementById('height').value.toString().replace(',', '.'));
-
-            if (weight > 0 && heightCm > 0) {
-                // PONTOS KISZÁMÍTÁS
-                const heightInMeters = heightCm / 100;
-                const bmi = weight / (heightInMeters * heightInMeters);
-
-                // Tizedesjegyre kerekítés (Pl: 24.738 -> 24.7)
-                const finalBmi = Number(Math.round(bmi + 'e1') + 'e-1');
-
-                updateUI(finalBmi);
+    triggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const type = trigger.getAttribute('data-modal');
+            if (infoData[type]) {
+                modalTitle.innerText = infoData[type].title;
+                modalText.innerText = infoData[type].text;
+                modal.classList.add('is-open');
             }
         });
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', () => modal.classList.remove('is-open'));
+    window.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('is-open'); });
+}
+
+/* =========================
+   3. NYELVVÁLASZTÓ (Google Translate)
+========================= */
+function initLanguageSelector() {
+    const buttons = document.querySelectorAll('.nyelv-btn');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const langCode = btn.getAttribute('data-lang');
+            triggerGoogleTranslate(langCode);
+        });
+    });
+}
+
+function triggerGoogleTranslate(langCode) {
+    const select = document.querySelector(".goog-te-combo");
+
+    if (select) {
+        select.value = langCode;
+        select.dispatchEvent(new Event('change'));
+        select.dispatchEvent(new Event('input'));
+    } else {
+        // Ha nem találja, megpróbáljuk megvárni (pl. lassú net esetén)
+        console.warn("Várakozás a Google Translate modulra...");
+
+        // Egyetlen újrapróbálkozás 500ms múlva
+        setTimeout(() => {
+            const retrySelect = document.querySelector(".goog-te-combo");
+            if (retrySelect) {
+                retrySelect.value = langCode;
+                retrySelect.dispatchEvent(new Event('change'));
+            } else {
+                alert("A fordító szolgáltatás jelenleg nem elérhető. Kérjük, frissítse az oldalt!");
+            }
+        }, 500);
     }
+}
 
-    function updateUI(bmi) {
-        // Érték kiírása vesszővel elválasztva a kör közepére
-        bmiValueEl.innerText = bmi.toString().replace('.', ',');
+// Google API inicializáló (globális környzetbe)
+window.googleTranslateElementInit = function() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'hu',
+        includedLanguages: 'en,de,hu',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
 
-        let status = "";
-        let color = "";
-        let desc = "";
+/* =========================
+   4. SCROLL ANIMÁCIÓK
+========================= */
+function initScrollAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add('show');
+        });
+    });
+    document.querySelectorAll('.fadeIn').forEach((el) => observer.observe(el));
+}
 
-        // Orvosi határértékek
-        if (bmi < 18.5) {
-            status = "Sovány"; color = "#3498db"; desc = "Fokozott tápanyagbevitel javasolt.";
-        } else if (bmi < 25) {
-            status = "Normál"; color = "#2ecc71"; desc = "Optimális testsúly, gratulálunk!";
-        } else if (bmi < 30) {
-            status = "Túlsúly"; color = "#f1c40f"; desc = "Figyelj oda a mozgásra és az étrendre.";
-        } else {
-            status = "Elhízás"; color = "#e74c3c"; desc = "Életmódváltás és szakember javasolt.";
-        }
+/* =========================
+   5. RECOMMENDATION TABLE
+========================= */
+function initRecommendationTable() {
+    const recommendationsData = {
+        treadmill: { title: "FORGEX TREADMILL", description: "A világ első számú futópadjai...", image: "images/treadmill.JPEG" },
+        cableMachine: { title: "FORGEX CABLE CROSSOVER", description: "Több mint 200 gyakorlat...", image: "images/mayaCable.jpeg" },
+        equipment: { title: "MI NEM RIADUNK EL A VÁLTOZÁSTÓL", description: "", image: "images/equipment.jpeg" },
+        balance: { title: "RECLINE PERSONAL", description: "", image: "images/balance.jpeg" },
+        bench: { title: "FORGEX BENCH", description: "", image: "images/benchPress.jpg" },
+        legPress: { title: "FORGEX LEG PRESS", description: "Ergonómikus kialakítás...", image: "images/legPress.JPG" }
+    };
 
-        // Megjelenítés frissítése
-        bmiStatusEl.innerText = status;
-        bmiStatusEl.style.color = color;
-        bmiDescriptionEl.innerText = desc;
-        bmiValueEl.style.color = color; // A szám színe megegyezik a kategóriával
+    document.querySelectorAll('.recommendations-menu-item').forEach(item => {
+        item.addEventListener('click', function() {
+            document.querySelectorAll('.recommendations-menu-item').forEach(i => i.classList.remove('active'));
+            this.classList.add('active');
 
-        // KÖR ANIMÁCIÓ (Max 40-es BMI-ig skálázva)
-        const percentage = Math.min(bmi / 40, 1);
-        const offset = circumference - (percentage * circumference);
+            const target = this.getAttribute('data-target');
+            const data = recommendationsData[target];
 
-        bmiCircle.style.strokeDashoffset = offset;
-        bmiCircle.style.stroke = color;
-    }
-});
+            const titleEl = document.querySelector('.recommendations-title');
+            const descEl = document.querySelector('.recommendations-description');
+            const imgEl = document.querySelector('#recommendations-display-img');
+
+            if (data && titleEl) {
+                [titleEl, descEl, imgEl].forEach(el => el.style.opacity = 0);
+                setTimeout(() => {
+                    titleEl.textContent = data.title;
+                    descEl.textContent = data.description;
+                    imgEl.src = data.image;
+                    [titleEl, descEl, imgEl].forEach(el => el.style.opacity = 1);
+                }, 300);
+            }
+        });
+    });
+}
