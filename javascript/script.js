@@ -186,15 +186,39 @@ function initModals() {
 /* =========================
    3. NYELVVÁLASZTÓ (Google Translate)
 ========================= */
+// 1. Módosított nyelvválasztó inicializáló
 function initLanguageSelector() {
     const buttons = document.querySelectorAll('.nyelv-btn');
+
+    // Ellenőrizzük, van-e elmentett nyelv, és ha igen, alkalmazzuk
+    const savedLang = localStorage.getItem('selectedLanguage');
+    if (savedLang) {
+        // Várunk egy kicsit, hogy a Google modul biztosan betöltsön
+        setTimeout(() => {
+            triggerGoogleTranslate(savedLang);
+        }, 1000);
+    }
+
     buttons.forEach(btn => {
         btn.addEventListener('click', () => {
             const langCode = btn.getAttribute('data-lang');
+            // Elmentjük a választott nyelvet
+            localStorage.setItem('selectedLanguage', langCode);
             triggerGoogleTranslate(langCode);
         });
     });
 }
+
+// 2. Extra védelem a visszalépés (BFCache) ellen
+window.addEventListener('pageshow', (event) => {
+    // A persisted igaz, ha az oldal a cache-ből töltődött be (pl. vissza nyíl)
+    if (event.persisted) {
+        const savedLang = localStorage.getItem('selectedLanguage');
+        if (savedLang) {
+            triggerGoogleTranslate(savedLang);
+        }
+    }
+});
 
 function triggerGoogleTranslate(langCode) {
     const select = document.querySelector(".goog-te-combo");
