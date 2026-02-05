@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -11,9 +10,8 @@
 <body>
 <div id="google_translate_element" style="display:none;"></div>
 
-<!--------------------------------TOP BAR------------------------------------->
-<div class="top-bar">
-    <header class="site-header">
+<header class="top-bar">
+    <div class="site-header">
         <div class="container nav-container">
             <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true"/>
             <label for="nav-toggle" class="nav-toggle-btn">
@@ -41,7 +39,7 @@
                 </ul>
             </nav>
         </div>
-    </header>
+    </div>
 
     <div class="nyelvek desktop-only">
         <div class="nyelvvalaszto">
@@ -54,64 +52,48 @@
     <div class="right-icons">
         <div class="animation">
             <a href="signIn.html">
-                <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgJFzFfHiQVUYwzahvNBeriW2rB8HZ-XDg8KkQ_cP2rFBkF8OrApJS2YUjHFemxb29mnWVzaULETwXtnGNM91eGQS6xhhQuiGPlLlnMDcy-lZfVq6pc6gzkOwoyLeGNJbCnlVLtzAbEKdx6lAUlfqb2CKIlrNIpkYg6mb8lzRGq6t-fr9ODlt49KSWxQ2g"
-                     class="likeIMG" alt="like">
+                <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgJFzFfHiQVUYwzahvNBeriW2rB8HZ-XDg8KkQ_cP2rFBkF8OrApJS2YUjHFemxb29mnWVzaULETwXtnGNM91eGQS6xhhQuiGPlLlnMDcy-lZfVq6pc6gzkOwoyLeGNJbCnlVLtzAbEKdx6lAUlfqb2CKIlrNIpkYg6mb8lzRGq6t-fr9ODlt49KSWxQ2g" class="likeIMG" alt="like">
             </a>
         </div>
         <div class="animation">
             <a href="signIn.html" id="auth-link">
-                <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjWKRjSGDLLZiHXHkVvs17JzH96-r_hTw5IEggJbNOVacw37Vp2BVelLwtoc4KRhvw61tWrgjPqOdFYy5HF_yED3b3JjMWiNvcM3NubgzkjuuvtmEn2pEVUtO6Jn3T-vBUeHytWzNUfliRMC7sPhwZrAiPpuJeW6-jd0vwZlIjfdZLg5FDJL-Jz2tJiajM"
-                     class="userIMG" alt="Felhasználói profil">
+                <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjWKRjSGDLLZiHXHkVvs17JzH96-r_hTw5IEggJbNOVacw37Vp2BVelLwtoc4KRhvw61tWrgjPqOdFYy5HF_yED3b3JjMWiNvcM3NubgzkjuuvtmEn2pEVUtO6Jn3T-vBUeHytWzNUfliRMC7sPhwZrAiPpuJeW6-jd0vwZlIjfdZLg5FDJL-Jz2tJiajM" class="userIMG" alt="Felhasználói profil">
             </a>
         </div>
         <div class="header-shop">
             <a href="cart.html" class="container-shopBtn">
-                <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjnr3paeYkomWqEuLtpy-LUrJtccK4i5TAvsA4fIgCuoEmtgKqU2Nx3n4trTJrgoRU3T4w6qhAG3t7TAzlh8090v8e8luNlBsNdGc0avkHqE65n2omeiEctqzaxqvYTESBxYGCDRsHupOurWGNd1EwNhrAZem6DvrOP0dW1wc-EatQ0WWRXSMyXMxVgOLk"
-                     class="cartIMG" alt="Kosár">
+                <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjnr3paeYkomWqEuLtpy-LUrJtccK4i5TAvsA4fIgCuoEmtgKqU2Nx3n4trTJrgoRU3T4w6qhAG3t7TAzlh8090v8e8luNlBsNdGc0avkHqE65n2omeiEctqzaxqvYTESBxYGCDRsHupOurWGNd1EwNhrAZem6DvrOP0dW1wc-EatQ0WWRXSMyXMxVgOLk" class="cartIMG" alt="Kosár">
                 <span id="cart-count">0</span>
             </a>
         </div>
     </div>
-</div>
+</header>
 
-<div class="phone-menu" role="navigation" aria-label="Alsó navigáció">
-    <a href="signIn.html" aria-label="Profil">
-        <img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjWKRjSGDLLZiHXHkVvs17JzH96-r_hTw5IEggJbNOVacw37Vp2BVelLwtoc4KRhvw61tWrgjPqOdFYy5HF_yED3b3JjMWiNvcM3NubgzkjuuvtmEn2pEVUtO6Jn3T-vBUeHytWzNUfliRMC7sPhwZrAiPpuJeW6-jd0vwZlIjfdZLg5FDJL-Jz2tJiajM" alt="Profil"/>
-    </a>
-    <a href="index.html" aria-label="Főoldal">
-        <img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjTj_tBeEAlNqVcqK3BqoPRryYKbcv8wNU8j9XzjyGMi4HlppPqyyhTaoLT3vMiTAVshSMVfvFEiLeJN-i2x_wSTMgEps3je7uKuPmR7s6XrVTQ928wPFwyj5-lVChSteg-dzFv76Q_IjNiov2p7cLphdxKF9Ys-mUaiZlEeD6S338zj5nwLyukV9NKgdo" alt="Főoldal"/>
-    </a>
-    <a href="cart.html" aria-label="Kosár">
-        <img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjnr3paeYkomWqEuLtpy-LUrJtccK4i5TAvsA4fIgCuoEmtgKqU2Nx3n4trTJrgoRU3T4w6qhAG3t7TAzlh8090v8e8luNlBsNdGc0avkHqE65n2omeiEctqzaxqvYTESBxYGCDRsHupOurWGNd1EwNhrAZem6DvrOP0dW1wc-EatQ0WWRXSMyXMxVgOLk" alt="Kosár"/>
-    </a>
-</div>
-<!--------------------------------TOP BAR END------------------------------------->
+<nav class="phone-menu" aria-label="Alsó navigáció">
+    <a href="signIn.html"><img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjWKRjSGDLLZiHXHkVvs17JzH96-r_hTw5IEggJbNOVacw37Vp2BVelLwtoc4KRhvw61tWrgjPqOdFYy5HF_yED3b3JjMWiNvcM3NubgzkjuuvtmEn2pEVUtO6Jn3T-vBUeHytWzNUfliRMC7sPhwZrAiPpuJeW6-jd0vwZlIjfdZLg5FDJL-Jz2tJiajM" alt="Profil"/></a>
+    <a href="index.html"><img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjTj_tBeEAlNqVcqK3BqoPRryYKbcv8wNU8j9XzjyGMi4HlppPqyyhTaoLT3vMiTAVshSMVfvFEiLeJN-i2x_wSTMgEps3je7uKuPmR7s6XrVTQ928wPFwyj5-lVChSteg-dzFv76Q_IjNiov2p7cLphdxKF9Ys-mUaiZlEeD6S338zj5nwLyukV9NKgdo" alt="Főoldal"/></a>
+    <a href="cart.html"><img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjnr3paeYkomWqEuLtpy-LUrJtccK4i5TAvsA4fIgCuoEmtgKqU2Nx3n4trTJrgoRU3T4w6qhAG3t7TAzlh8090v8e8luNlBsNdGc0avkHqE65n2omeiEctqzaxqvYTESBxYGCDRsHupOurWGNd1EwNhrAZem6DvrOP0dW1wc-EatQ0WWRXSMyXMxVgOLk" alt="Kosár"/></a>
+</nav>
 
-
-
-<div class="content">
+<main class="content">
     <div class="bmi-main-container">
         <div class="bmi-wrapper">
-            <div class="card calculator-card">
+            <section class="card calculator-card">
                 <div class="card-header">
                     <h2>BMI Index</h2>
                     <p>Egyszerű és gyors elemzés</p>
                 </div>
-
                 <form id="bmiForm">
                     <div class="input-group">
                         <label>Testsúly (kg)</label>
                         <input type="number" id="weight" step="0.1" placeholder="0" required>
                     </div>
-
                     <div class="input-group">
                         <label>Magasság (cm)</label>
                         <input type="number" id="height" step="1" placeholder="0" required>
                     </div>
-
                     <button class="btn btn-full" type="submit">Számítás</button>
                 </form>
-
                 <div class="result-area">
                     <div class="progress-container">
                         <svg class="progress-ring" width="120" height="120">
@@ -125,26 +107,23 @@
                         <p id="bmiDescription">Add meg az adataidat.</p>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="card info-card">
+            <section class="card info-card">
                 <h3>Információ</h3>
-
                 <div class="info-text-section">
                     <p>A <strong>Body Mass Index (BMI)</strong> egy széles körben használt statisztikai mérőszám, amely a testsúly és a magasság arányát veti össze az egészségi állapot felméréséhez.</p>
                 </div>
-
                 <div class="category-list">
                     <div class="cat-item"><span class="dot blue"></span> &lt; 18.5 <span>Sovány</span></div>
                     <div class="cat-item"><span class="dot green"></span> 18.5 - 25 <span>Normál</span></div>
                     <div class="cat-item"><span class="dot yellow"></span> 25 - 30 <span>Túlsúly</span></div>
                     <div class="cat-item"><span class="dot red"></span> &gt; 30 <span>Elhízás</span></div>
                 </div>
-
                 <div class="info-footer">
                     <p><strong>Fontos:</strong> Ez az érték csak tájékoztató jellegű. Nem veszi figyelembe a testösszetételt (izom/zsír arány), ezért sportolók esetén eltérő lehet. Életmódváltás előtt konzultáljon szakemberrel!</p>
                 </div>
-            </div>
+            </section>
         </div>
     </div>
 
@@ -176,11 +155,11 @@
             </div>
         </div>
     </footer>
-</div>
+</main>
+
 <script src="javascript/index.js"></script>
 <script src="javascript/calculatorBmi.js"></script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script type="module" src="javascript/auth-header.js"></script>
 </body>
 </html>
-
