@@ -13,18 +13,6 @@
     --shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* --- Base Layout --- */
-body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    color: var(--text-main);
-    background-image: url("https://blogger.googleusercontent.com/img/a/AVvXsEhEcgu1Gpium4cmGVhaC1k44k7lGd87H7o_02bxbYm4iCJtJ8Dt8QVQzQHtPd3YU6aJ27_eLPCAMFG6Wm8DjRxVdf1uFirwQnJbTOLxq-kZJqpVMZfPhKo2KrKdbjvQB5olNF3Xd8EaR5oqIIW7yuvbYQsUQp5J9LsEaUXXQXLL1CVh8xKftdUBVXDo--Y");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    background-attachment: fixed;
-}
 
 /* --- Back Button Navigation --- */
 .vissza-gomb {

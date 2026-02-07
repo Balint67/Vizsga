@@ -198,6 +198,7 @@ ul {
     justify-content: center;
     gap: 5px;
 }
+
 .nav-toggle-btn .bar {
     display: block;
     width: 22px; height: 2px;
@@ -213,10 +214,10 @@ ul {
     border-bottom: 1.5px solid #00ca65;
 }
 
-.container-runner img {
+.runnerImgPc {
     width: 100%;
     height: auto;
-    display: block;
+    display: block; /* Eltünteti az inline elemek alatti kis rést */
 }
 
 .runner-szöveg {
@@ -817,23 +818,6 @@ ul {
 .tartalom-index { margin-top: -100px; }
 .tartalom { margin-top: 100px; }
 
-/* Alsó Mobil Menü Sáv (Phone Menu) */
-.phone-menu {
-    position: fixed;
-    bottom: 0; left: -2%;
-    width: 100%; height: 64px;
-    background: #000000;
-    z-index: 900;
-    display: flex; align-items: center; justify-content: space-evenly;
-    padding: 0 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-.phone-menu__icon {
-    width: 40px; height: auto;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-    opacity: 0.9; cursor: pointer;
-}
-.phone-menu__icon:hover { transform: translateY(-3px); opacity: 1; }
 
 .brand-name { font-style: italic; }
 .brand-x {
@@ -981,30 +965,9 @@ table{
 
 
 
-@media (max-width: 992px) {
-    .recommendations-container {
-        grid-template-columns: 1fr;
-    }
-    .recommendations-menu {
-        flex-direction: row;
-        overflow-x: auto;
-    }
-}
 
-/* Reszponzivitás */
-@media (max-width: 992px) {
-    .techno-container {
-        grid-template-columns: 1fr;
-    }
-    .techno-menu {
-        flex-direction: row;
-        overflow-x: auto;
-    }
-    .techno-menu-item {
-        padding: 20px;
-        white-space: nowrap;
-    }
-}
+
+
 /* Alapbeállítások */
 /* A fő konténer, ami összefogja a képet és a szöveget */
 .black-container {
@@ -1110,155 +1073,10 @@ table{
     box-shadow: 0 10px 20px rgba(255,255,255,0.1);
     color: #fff;
 }
-/* Mobil nézet korrekciója */
-@media (max-width: 992px) {
-    .black-container {
-        flex-direction: column; /* Mobilon egymás alá kerülnek */
-        text-align: center;
-        padding: 40px 20px;
+
+
+@media (max-width: 1399px){
+    .runnerImgPc{
+        margin-top: 46%;
     }
-
-    .black-manPng, .anatomy-text {
-        width: 100%;
-    }
-
-    .anatomy-text p {
-        margin-left: 0; /* Mobilon ne legyen behúzás */
-    }
-}
-.container-bottom{
-    border-top: 1.5px solid #00ca65;
-
-}
-/* ==========================================================================
-   13. MEDIA QUERIES (RESZPONZIVITÁS)
-   ========================================================================== */
-
-/* --- Desktop Nézetek (min-width) --- */
-@media (min-width: 768px) {
-    .slider { aspect-ratio: 16 / 5; }
-}
-
-@media (min-width: 1400px) {
-    .phone-menu { display: none; }
-}
-
-/* --- Mobil Nézetek (max-width: 1400px) --- */
-@media (max-width: 1400px) {
-    .slider { aspect-ratio: 9 / 16; }
-
-    /* Header átalakítása */
-    .top-bar {
-        flex-direction: column;
-        height: auto;
-        padding: 10px 15px;
-        justify-content: space-between;
-        position: fixed;
-        width: 100%;
-    }
-    .site-header { width: 100%; padding: 0; }
-    .nav-container { display: flex; align-items: center; width: 100%; }
-
-    /* Hamburger gomb */
-    .nav-toggle-btn {
-        display: flex;
-        position: relative;
-        z-index: 1100;
-        margin-right: auto;
-        margin-bottom: 10px;
-    }
-
-    /* Mobil lenyíló menü */
-    .nav-list {
-        display: none; /* Alapból rejtve */
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.5rem;
-        position: fixed;
-        top: var(--header-height-mobile);
-        left: 0;
-        width: 100%;
-        height: auto;
-        background-color: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(10px);
-        padding: 20px 0;
-        text-align: center;
-        border-bottom: 2px solid var(--primary-accent);
-        z-index: 1000;
-    }
-
-    /* Checkbox hack aktiválás */
-    .nav-toggle:checked ~ .site-nav .nav-list {
-        display: flex;
-        animation: slideDown 0.3s ease-out;
-    }
-    @keyframes slideDown {
-        from { opacity: 0; transform: translateY(-20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    .nav-list li { margin: 15px 0; width: 100%; }
-    .nav-list .text a { font-size: 22px; display: block; padding: 10px; }
-
-    /* Rejtett elemek mobilon */
-    .desktop-only, .right-icons { display: none !important; }
-    .logoIMG { height: 40px; }
-
-    /* Mobil Nyelvek */
-    .mobile-only-languages {
-        display: flex !important;
-        justify-content: center;
-        gap: 20px;
-        margin-top: 20px;
-        border-top: 1px solid rgba(255,255,255,0.1);
-        padding-top: 20px;
-    }
-    .mobile-only-languages .nyelv {
-        font-size: 16px; color: white;
-        border: 1px solid var(--primary-accent);
-        padding: 5px 15px; border-radius: 20px;
-    }
-
-    /* Runner Szekció */
-    .container-runner { margin-top: 70px; }
-    .runner-szöveg {
-        position: relative; margin: 0; padding: 20px;
-        top: auto; left: auto;
-        text-align: center; background: rgba(0,0,0,0.5); width: 100%;
-    }
-    .runner-szöveg p { font-size: 24px !important; }
-    .runner-szöveg2 span { font-size: 30px !important; }
-    .logoVid-Runner { display: none; }
-    .runner-shopBtn { position: static; display: block; margin: 20px auto; text-align: center; }
-
-    /* Cards & Footer */
-    .container-importantThings { flex-direction: column; align-items: center; }
-    .eatClean, .trainHard, .sleepWell { width: 100%; margin-bottom: 40px; }
-    .container-bottom { padding: 20px; padding-bottom: 80px; }
-    .bekezdés { width: 100% !important; text-align: center; }
-    .animation-bottom { width: 100%; }
-    .igLogo, .faceLogo, .tiktokLogo { position: relative; margin: 0 0 0 10px; vertical-align: middle; top: 0; }
-
-    .contact-page-content { padding-top: 100px; }
-}
-
-/* --- Kisebb Mobilok (max-width: 900px, 850px, 768px) --- */
-@media (max-width: 900px) {
-    .single-trainer-page .trainer-split-layout { flex-direction: column; align-items: center; }
-    .single-trainer-page .trainer-info-side { width: 100%; }
-}
-
-@media (max-width: 850px) {
-    .bmi-wrapper { flex-direction: column; }
-    .calculator-card, .info-card { width: 100%; }
-    .container { padding-top: 120px; }
-}
-
-@media (max-width: 768px) {
-    .contact-page-content { padding-top: 80px; }
-    .contact-info-grid { grid-template-columns: 1fr; gap: 20px; }
-    .contact-page-content h1 { font-size: 2.5rem; }
-    .contact-page-content h2 { font-size: 1.5rem; }
-    .info-card { padding: 20px; }
-    .contact-form .send-btn { font-size: 18px; padding: 10px 20px; }
 }

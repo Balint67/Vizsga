@@ -10,8 +10,7 @@
 
 </head>
 <body>
-
-<!-- Hidden Google Translate container -->
+<div class="fixed-bg"></div>
 <div id="google_translate_element" style="display:none;"></div>
 
 <!-- ============================== TOP BAR / HEADER ============================== -->
@@ -112,7 +111,11 @@
 <main class="tartalom-index">
 
     <section class="container-runner">
-        <img src="images/runner.jpg" alt="Futó">
+        <picture>
+            <source srcset="images/runner.jpg" media="(min-width: 1400px)" alt="runnerImgPc">
+
+            <img src="images/runnerMobile.JPEG" class="runnerImgPc" alt="runnerImgMobile">
+        </picture>
         <div class="runner-szöveg">
             <p class="fadeIn">HOZD KI MAGADBÓL A MAXIMUMOD</p>
             <div class="runner-szöveg2">

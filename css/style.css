@@ -36,12 +36,18 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    background-image: url("../images/bg.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    background-attachment: fixed;
     overflow-x: hidden;
+}
+.fixed-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/bg.jpg");
+    background-size: cover;
+    background-position: center;
+    z-index: -1; /* Minden mögé kerül */
 }
 h1 {
     font-size: 3rem;
@@ -273,143 +279,6 @@ ul {
 .igLogo { width: 30px; margin-top: -7px; margin-left: 10px; }
 .faceLogo { width: 60px; margin-top: -7px; margin-left: -4px; }
 .tiktokLogo { width: 40px; margin-top: -14px; margin-left: 35px; }
-
-/* ==========================================================================
-   7. MOBIL NAVIGÁCIÓ (Phone Menu - Alsó sáv)
-   ========================================================================== */
-.phone-menu {
-    position: fixed;
-    bottom: 0; left: -2%;
-    width: 100%; height: 64px;
-    background: #000000;
-    z-index: 900;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    padding: 0 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-.phone-menu__icon {
-    width: 40px; height: auto;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-    opacity: 0.9; cursor: pointer;
-}
-.phone-menu__icon:hover { transform: translateY(-3px); opacity: 1; }
-
-@media (min-width: 1400px) {
-    .phone-menu { display: none; }
-}
-
-/* ==========================================================================
-   8. RESPONSIVE / MEDIA QUERIES
-   ========================================================================== */
-@media (max-width: 1400px) {
-    /* Layout */
-    .slider { aspect-ratio: 9 / 16; }
-    .tartalom-index { margin-top: 100px; }
-
-    /* Header átalakítás */
-    .top-bar {
-        height: 80px;
-        justify-content: space-between;
-    }
-    .nav-container { width: 100%; position: static; }
-    .nav-toggle-btn {
-        display: flex;
-        position: relative;
-        z-index: 1100;
-        border: 1px solid rgba(255,255,255,0.08);
-        background: var(--primary-dark);
-        width: 42px; height: 42px;
-        border-radius: 10px;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-    }
-    .nav-toggle-btn .bar {
-        width: 22px; height: 2px; background: white;
-    }
-
-    /* Mobil lenyíló menü */
-    .nav-list {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 80px; left: 0;
-        width: 100%;
-        background-color: #000000;
-        padding: 20px 0;
-        border-top: 1px solid #333;
-        gap: 0;
-    }
-    .nav-toggle:checked ~ .site-nav .nav-list {
-        display: flex;
-        animation: slideDown 0.3s ease forwards;
-    }
-    .nav-list li {
-        width: 100%; text-align: center; padding: 15px 0;
-        border-bottom: 1px solid #1a1a1a;
-    }
-    .nav-list .text a { font-size: 18px; display: block; width: 100%; }
-
-    @keyframes slideDown {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Rejtett / Megjelenített elemek */
-    .right-icons, .desktop-only { display: none; }
-    .mobile-only-languages {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        padding-top: 10px;
-    }
-    .nyelv-btn {
-        font-size: 12px;
-        padding: 5px;
-        border: 1px solid #333;
-        border-radius: 5px;
-        color: white;
-    }
-
-    /* Hero & Tartalom igazítások */
-    .container-runner { margin-top: 70px; }
-    .runner-szöveg {
-        position: relative; margin: 0; padding: 20px;
-        top: auto; left: auto;
-        text-align: center;
-        background: rgba(0,0,0,0.5);
-        width: 100%;
-    }
-    .runner-szöveg p { font-size: 24px !important; }
-    .brand-x { font-size: 30px; }
-    .logoVid-Runner { display: none; }
-    .runner-shopBtn { position: static; display: block; margin: 20px auto; text-align: center; }
-
-    /* Footer & Kártyák */
-    .container-importantThings { flex-direction: column; align-items: center; }
-    .container-bottom { padding: 20px; padding-bottom: 80px; }
-    .bekezdés { width: 100%; text-align: center; }
-    .igLogo, .faceLogo, .tiktokLogo { position: relative; margin: 0 0 0 10px; vertical-align: middle; top: 0; }
-}
-.container-bottom {
-    width: auto; height: auto;
-    background-color: black;
-    padding: 20px 20%;
-}
-
-.igLogo, .faceLogo, .tiktokLogo { position: absolute; height: auto; }
-.igLogo { width: 30px; margin-top: -7px; margin-left: 10px; }
-.faceLogo { width: 60px; margin-top: -7px; margin-left: -4px; }
-.tiktokLogo { width: 40px; margin-top: -14px; margin-left: 35px; }
-@media (max-width: 1400px) {
-    .container-bottom {
-        display: none;
-    }
-}
-
 /* ==========================================================================
    FORGEX GLASSMORPHISM MODAL (ALERT & CONFIRM)
    ========================================================================== */
@@ -548,4 +417,43 @@ ul {
     height: auto;
     position: relative;
     right: -70%;
+}
+
+
+/* --- Desktop view --- */
+@media (min-width: 1400px) {
+    .slider { aspect-ratio: 16 / 5; }
+    .phone-menu{
+        display: none;
+    }
+}
+
+/* --- Mobile view --- */
+@media (max-width: 1399px) {
+    .phone-menu {
+        display: flex;            /* Vagy block, a designtól függően */
+        position: fixed;          /* Ez rögzíti a képernyőhöz képest */
+        bottom: 0;                /* Teljesen az aljára tolja */
+        left: 0;                  /* Bal szélre igazítja */
+        width: 100%;
+        height: 64px;
+        z-index: 9999;            /* Hogy minden más felett legyen */
+        padding: 0 1rem;
+        background: #000000;
+    }
+    .phone-menu {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 0 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .phone-menu__icon {
+        width: 40px; height: auto;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+        opacity: 0.9; cursor: pointer;
+    }
+    .phone-menu__icon:hover {
+        transform: translateY(-3px); opacity: 1;
+    }
 }

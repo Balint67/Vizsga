@@ -2,23 +2,9 @@
    1. Global Styles & Reset
    ========================================================================== */
 body {
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    font-family: Arial, sans-serif; /* Set default font */
-    color: #ffffff; /* Default text color */
-    min-height: 100vh; /* Ensure full viewport height */
-
-    /* Center content both vertically and horizontally */
     display: flex;
     justify-content: center;
     align-items: center;
-
-    /* Background configuration */
-    background-image: url("https://blogger.googleusercontent.com/img/a/AVvXsEhEcgu1Gpium4cmGVhaC1k44k7lGd87H7o_02bxbYm4iCJtJ8Dt8QVQzQHtPd3YU6aJ27_eLPCAMFG6Wm8DjRxVdf1uFirwQnJbTOLxq-kZJqpVMZfPhKo2KrKdbjvQB5olNF3Xd8EaR5oqIIW7yuvbYQsUQp5J9LsEaUXXQXLL1CVh8xKftdUBVXDo--Y");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
 }
 
 /* ==========================================================================
