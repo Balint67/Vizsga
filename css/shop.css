@@ -172,7 +172,7 @@ h2 {
 }
 
 .modal-content {
-    background: #124245;
+    background: #262626;
     padding: 30px;
     border-radius: 18px;
     width: 90%;
@@ -191,7 +191,7 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0f3739;
+    background-color: #000000;
     border-radius: 12px;
     margin-bottom: 20px;
     overflow: hidden;

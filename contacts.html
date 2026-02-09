@@ -138,22 +138,22 @@
           <p class="small-text">Várható válaszidő e-mailben: 24 óra (munkanapokon).</p>
         </div>
 
-        <div class="contact-form-container">
-          <h2>Írjon Nekünk Üzenetet</h2>
-          <form action="[ÜZENETKÜLDŐ SZCRIPT ELÉRÉSI ÚTJA]" method="POST" class="contact-form">
-            <input type="text" name="nev" placeholder="Teljes név" required>
-            <input type="email" name="email" placeholder="E-mail cím" required>
-            <select name="tárgy" required>
-              <option value="" disabled selected>Válasszon tárgyat</option>
-              <option value="Általános Kérdés">Általános Kérdés</option>
-              <option value="Rendeléssel Kapcsolatos">Rendeléssel Kapcsolatos</option>
-              <option value="Garancia/Reklamáció">Garancia/Reklamáció</option>
-              <option value="Együttműködés">Együttműködés</option>
-            </select>
-            <textarea name="üzenet" rows="5" placeholder="Üzenetének tartalma" required></textarea>
-            <button type="submit" class="btn send-btn">Üzenet Küldése</button>
-          </form>
-        </div>
+          <div class="contact-form-container">
+              <h2>Írjon Nekünk Üzenetet</h2>
+              <form id="contact-form" class="contact-form">
+                  <input type="text" name="user_name" placeholder="Teljes név" required>
+                  <input type="email" name="user_email" placeholder="E-mail cím" required>
+                  <select name="subject" required>
+                      <option value="" disabled selected>Válasszon tárgyat</option>
+                      <option value="Általános Kérdés">Általános Kérdés</option>
+                      <option value="Rendeléssel Kapcsolatos">Rendeléssel Kapcsolatos</option>
+                      <option value="Garancia/Reklamáció">Garancia/Reklamáció</option>
+                      <option value="Együttműködés">Együttműködés</option>
+                  </select>
+                  <textarea name="message" rows="5" placeholder="Üzenetének tartalma" required></textarea>
+                  <button type="submit" id="submit-btn" class="btn send-btn">Üzenet Küldése</button>
+              </form>
+          </div>
       </section>
 
         <section class="map-section">
@@ -203,7 +203,7 @@
 </div>
 <script src="javascript/index.js"></script>
 <script type="module" src="javascript/auth-header.js"></script>
-
+<script src="javascript/contact-sender.js"></script>
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>

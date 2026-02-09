@@ -88,9 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="modal-content">
             <span class="close-btn">&times;</span>
             <div class="modal-images">
-                <button class="prev-img">&#10094;</button>
                 <img id="modal-img">
-                <button class="next-img">&#10095;</button>
             </div>
             <h2 id="modal-title"></h2>
             <p id="modal-description"></p>

@@ -192,7 +192,7 @@ label {
 /* ========================================================================== 
    8. Back Button
    ========================================================================== */
-.vissza-gomb {
+.fa-arrow-left{
     position: absolute;
     top: 20px;
     left: 20px;
@@ -202,7 +202,22 @@ label {
     transition: 0.3s;
 }
 
-.vissza-gomb:hover {
+.fa-house{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.5rem;
+    color: #ffffff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.fa-house:hover {
+    color: #00ca65;
+    transform: translateX(-3px);
+}
+
+.fa-arrow-left:hover {
     color: #00ca65;
     transform: translateX(-3px);
 }

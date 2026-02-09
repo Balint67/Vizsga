@@ -1,5 +1,5 @@
 .contact-form-container {
-    grid-column: 1 / -1; /* Az űrlap a teljes szélességet foglalja el */
+    grid-column: 1 / -1;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
