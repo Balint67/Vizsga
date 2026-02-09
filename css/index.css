@@ -547,7 +547,7 @@ table{
     color: #fff;
 }
 
-
+/*
 @media (max-width: 1199px){
     .runner-szöveg {
         z-index: 200;
@@ -616,12 +616,12 @@ table{
         position: absolute;
         user-select: none;
         -webkit-user-drag: none;
-        height: 80px;
+        height: 40px;
         width: auto;
         position: absolute;
         z-index: 200;
         margin-left: -3%;
-        margin-top: 0px;
+        margin-top: -120%;
     }
     .runner-shopBtn {
         color: var(--text-grey);
@@ -634,4 +634,4 @@ table{
         position: absolute;
         margin-left: 20px;
     }
-}
+}*/
