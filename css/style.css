@@ -549,13 +549,16 @@ ul {
     }
 
     /* Mobil nyelvválasztó a menü alján */
-    .mobile-only-languages {
-        display: flex;
+    .site-nav .nav-list .mobile-only-languages {
+        display: flex !important; /* Az !important garantálja, hogy felülírja a korábbi tiltást */
         gap: 15px;
         margin-top: 30px;
+        padding-bottom: 20px;
+        justify-content: flex-start;
     }
 
-    .nyelv-btn {
+    .mobile-only-languages .nyelv-btn {
+        display: inline-block;
         background: #222;
         color: white;
         border: 1px solid #444;
@@ -633,4 +636,10 @@ ul {
         width: 80%;
         height: auto;
     }
+    .site-nav .nav-list .mobile-only-languages {
+        margin-top: 30px;
+        padding-bottom: 100px; !important;
+
+    }
+
 }

@@ -285,8 +285,7 @@ ul {
 .animation-bottom:hover { transform: translateY(-2px); color: var(--primary-accent); }
 
 
-.nyelvek { position: absolute; padding: 20px; right: 420px; }
-.nyelv:hover { cursor: pointer; color: green; }
+
 
 .tartalom-index { margin-top: -100px; }
 .tartalom { margin-top: 100px; }
