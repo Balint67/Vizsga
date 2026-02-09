@@ -428,34 +428,209 @@ ul {
     }
 }
 
-/* --- Mobile view --- */
-@media (max-width: 799px) {
-    .phone-menu {
-        display: flex;            /* Vagy block, a designtól függően */
-        position: fixed;          /* Ez rögzíti a képernyőhöz képest */
-        bottom: 0;                /* Teljesen az aljára tolja */
-        left: 0;                  /* Bal szélre igazítja */
-        width: 100%;
-        height: 64px;
-        z-index: 9999;            /* Hogy minden más felett legyen */
-        padding: 0 1rem;
-        background: #000000;
+/* ==========================================================================
+   MINDEN ESZKÖZRE ÉRVÉNYES ALAPOK
+   ========================================================================== */
+.nav-toggle {
+    display: none; /* A checkboxot mindenhol elrejtjük */
+}
+/* ==========================================================================
+
+   ========================================================================== */
+@media (max-width: 1740px) and (min-device-width: 1550px) {
+    .nav-toggle-btn, .mobile-only-languages{
+        display: none;
     }
+
+    .nav-list {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+    }
+}
+@media (min-width: 1550px) {
+    .logoVid-Mobile{
+        display: none;
+    }
+}
+@media (max-width: 1549px) {
+    .logoVid-Mobile {
+        display: block;
+        width: 120px; /* Állítsd be a kívánt méretre */
+        height: auto;
+        position: absolute;
+        left: 50%;
+        top: 37px;
+        transform: translateX(-50%);
+    }
+    /* Fejléc elrendezés: Hamburger balra, ikonok jobbra */
+    .nav-container {
+        display: flex;
+        flex-direction: row-reverse; /* Megcseréli a sorrendet a HTML módosítása nélkül */
+        justify-content: flex-end;    /* Balra tolja a gombot */
+        align-items: center;
+        padding: 10px 15px;
+        gap: 15px;
+        position: relative;
+        margin-left: -25px;
+    }
+
+    /* Hamburger Gomb Stílusa */
+    .nav-toggle-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 28px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 10001; /* A sötétítés felett kell legyen */
+        order: -1;      /* Biztosítja a bal szélső helyet */
+    }
+
+    .nav-toggle-btn .bar {
+        width: 100%;
+        height: 3px;
+        background-color: #ffffff;
+        border-radius: 3px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* A Menü Panel (Balról úszik be) */
+    .site-nav {
+        position: fixed;
+        top: 0;
+        left: -300px; /* Alaphelyzetben kint van balra */
+        width: 280px;
+        height: 100vh;
+        background-color: #111111;
+        padding: 80px 25px 30px 25px;
+        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 10000;
+        overflow-y: auto;
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    /* SÖTÉTÍTŐ OVERLAY (Pszeudo-elem a menühöz kötve) */
+    .site-nav::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.7); /* Mennyire legyen sötét (0.7 = 70%) */
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease;
+        z-index: -1; /* A menüpanel mögött, de a weboldal előtt */
+        pointer-events: none;
+    }
+
+    /* Navigációs lista elemei */
+    .nav-list {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav-link {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 1.1rem;
+        padding: 15px 0;
+        display: block;
+        transition: color 0.2s;
+    }
+
+    /* Mobil nyelvválasztó a menü alján */
+    .mobile-only-languages {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+    }
+
+    .nyelv-btn {
+        background: #222;
+        color: white;
+        border: 1px solid #444;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    /* -----------------------------------------------------------
+       AKTÍV ÁLLAPOTOK (Amikor a checkbox be van pipálva)
+       ----------------------------------------------------------- */
+
+    /* Menü beúsztatása */
+    .nav-toggle:checked ~ .site-nav {
+        left: 0;
+    }
+
+    /* Sötétítés megjelenítése */
+    .nav-toggle:checked ~ .site-nav::before {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    /* Hamburger ikon X-szé alakítása */
+    .nav-toggle:checked + .nav-toggle-btn .bar:nth-child(1) {
+        transform: translateY(8.5px) rotate(45deg);
+    }
+
+    .nav-toggle:checked + .nav-toggle-btn .bar:nth-child(2) {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    .nav-toggle:checked + .nav-toggle-btn .bar:nth-child(3) {
+        transform: translateY(-8.5px) rotate(-45deg);
+    }
+
+    /* Egyéb mobil igazítások */
+    .desktop-only {
+        display: none !important;
+    }
+}
+
+
+/* ==========================================================================
+
+   ========================================================================== */
+@media (max-width: 899px) {
+    .right-icons{
+        display: none;
+    }
+    .logoVid-Runner {
+        display: none;
+    }
+
     .phone-menu {
         display: flex;
-        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0px;
+        width: 105%;
+        height: 80px;
+        background: #000000;
+        z-index: 9999;
         justify-content: space-evenly;
-        padding: 0 1rem;
+        align-items: center;
         border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
-    .phone-menu__icon {
-        width: 40px; height: auto;
-        transition: transform 0.2s ease, opacity 0.2s ease;
-        opacity: 0.9; cursor: pointer;
+    .phone-menu img{
+        width: 60%;
+        height: auto;
     }
-    .phone-menu__icon:hover {
-        transform: translateY(-3px); opacity: 1;
+    #phone-home-img{
+        width: 80%;
+        height: auto;
     }
-    .slider { aspect-ratio: 16 / 10; }
-
 }
