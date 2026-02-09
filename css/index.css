@@ -99,24 +99,15 @@ ul {
 .runner-szöveg {
     z-index: 200;
     position: absolute;
-    margin-top: -22%;
+    margin-top: -25%;
     margin-left: 7%;
-    font-size: 40px;
+    font-size: 30px;
 }
 .runner-szöveg2 {
-    margin-top: -20%;
+    margin-top: -35px;
 }
 
-.logoVid-Runner {
-    user-select: none;
-    -webkit-user-drag: none;
-    height: 130px;
-    width: auto;
-    position: absolute;
-    z-index: 200;
-    margin-top: -42%;
-    margin-left: -3%;
-}
+
 
 .runner-shopBtn {
     color: var(--text-grey);
@@ -125,13 +116,29 @@ ul {
     text-underline-offset: 4px;
     text-decoration-color: var(--text-grey);
     font-size: 25px;
-    margin-top: 20px;
+    margin-top: -20px;
     position: absolute;
     margin-left: 20px;
 }
-.runner-shopBtn:hover { color: var(--text-white); }
-.backToShopBtn { font-size: 25px; color: var(--primary-accent); }
-.backToShopBtn:hover { color: var(--primary-accent-hover); }
+.runner-shopBtn:hover {
+    color: var(--text-white);
+}
+.logoVid-Runner {
+    user-select: none;
+    -webkit-user-drag: none;
+    height: 130px;
+    width: auto;
+    position: absolute;
+    z-index: 200;
+    margin-top: -32%;
+    margin-left: 5%;
+}
+.backToShopBtn {
+    font-size: 25px; color: var(--primary-accent);
+}
+.backToShopBtn:hover {
+    color: var(--primary-accent-hover);
+}
 
 /* ==========================================================================
    5. SLIDER (KÉPLAPOZÓ)
@@ -156,7 +163,6 @@ ul {
     width: 100%;
     height: auto;
     position: relative;
-    aspect-ratio: 1 / 1;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
@@ -294,7 +300,7 @@ ul {
 .brand-name { font-style: italic; }
 .brand-x {
     color: var(--primary-accent);
-    font-size: 50px;
+    font-size: 40px;
     position: relative;
     top: 3px;
 }
@@ -546,16 +552,81 @@ table{
     color: #fff;
 }
 
+
+
 @media (max-width: 1740px) and (min-device-width: 1550px) {
     .slider { aspect-ratio: 16 / 5; }
 }
-
-@media (max-width: 899px) {
-    .slider { aspect-ratio: 16 / 10; }
+@media (max-width: 799px) {
+    .sizeHelperSpace{
+        margin-top: -150px;
+    }
+    .slider {
+        aspect-ratio: 16 / 10;
+    }
+    .logoVid-Runner {
+        display: none;
+    }
+    .runner-szöveg{
+        margin-top: -50%;
+        font-size: 1.2rem;
+    }
+    .runner-szöveg2{
+        margin-top: -20px;
+    }
+    .brand-x{
+        font-size: 1.4rem;
+        top: 1px;
+    }
+    .runner-shopBtn{
+        margin-top: 0px;
+        font-size: 1.2rem;
+    }
 }
 
+@media (max-width: 499px) {
 
+    .sizeHelperSpace{
+        margin-top: 200px;
+    }
+    .runner-szöveg{
+        margin-top: -125%;
+        font-size: 1.2rem;
+    }
+    .runner-szöveg2{
+        margin-top: -20px;
+    }
+    .brand-x{
+        font-size: 1.4rem;
+        top: 1px;
+    }
+    .runner-shopBtn{
+        margin-top: 20px;
+        font-size: 1.2rem;
+    }
 
+}
+
+@media (max-width: 1799px) and (min-width: 799px) {
+
+    .runner-szöveg {
+        font-size: 1.4rem;
+        margin-top: -23%;
+    }
+    .runner-szöveg2{
+        margin-top: -35px;
+    }
+    .logoVid-Runner {
+        height: 10%;
+        width: auto;
+        margin-top: -30%;
+    }
+}
+@media (max-width: 1199px) and (min-width: 800px) {
+    .runnerImgPc{
+        margin-top: 50px;
+    }
+}
 
 
 
