@@ -80,130 +80,6 @@ ul {
     transform: translateY(-5px);
 }
 
-/* ==========================================================================
-   3. HEADER ÉS NAVIGÁCIÓ
-   ========================================================================== */
-.top-bar {
-    background-color: var(--primary-black);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: var(--header-height);
-    z-index: var(--z-overlay);
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-}
-
-.site-header { padding: 20px; }
-
-.nav-list {
-    display: flex;
-    align-items: center;
-    gap: 4.3rem;
-}
-
-/* Menüpontok */
-.text {
-    font-weight: 500;
-    font-size: 20px;
-    color: var(--text-white);
-    transition: transform 0.2s ease;
-}
-.text:hover { transform: translateY(-2px); }
-.text a:hover { color: var(--primary-accent); }
-
-/* Gombok */
-.btn {
-    background: linear-gradient(135deg, #4CAF50, #007524);
-    font-family: 'Open Sans', sans-serif;
-    font-size: 23px;
-    font-weight: 700;
-    color: white;
-    padding: 12px 48px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(0,0,0,0.3);
-}
-.btn:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-
-/* Jobb oldali ikonok és Bejelentkezés */
-.bejelentkezBtn {
-    display: flex;
-    position: absolute;
-    right: 70px;
-    top: 25%;
-}
-
-.logoVid {
-    height: 150px;
-    width: auto;
-    user-select: none;
-    -webkit-user-drag: none;
-}
-
-.right-icons {
-    margin-right: 20px;
-    display: flex;
-    position: absolute;
-    right: 20px;
-    top: 55%;
-    transform: translateY(-50%);
-}
-
-.right-icons img {
-    height: 40px;
-    width: auto;
-    transition: transform 0.2s ease;
-    margin-right: 50px;
-}
-.likeIMG { height: 40px; }
-
-#cart-count {
-    position: absolute;
-    top: -5px;
-    right: 35px;
-    background: var(--alert-red);
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 2px 6px;
-    border-radius: 50%;
-    border: 2px solid var(--primary-dark);
-}
-
-/* Mobil Hamburger Menü Gomb */
-.nav-toggle { display: none; }
-.nav-toggle-btn {
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    display: none;
-    width: 42px; height: 42px;
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.08);
-    background: var(--primary-dark);
-    cursor: pointer;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-}
-
-.nav-toggle-btn .bar {
-    display: block;
-    width: 22px; height: 2px;
-    background: white;
-}
 
 /* ==========================================================================
    4. HERO / RUNNER SZEKCIÓ
@@ -227,7 +103,9 @@ ul {
     margin-left: 7%;
     font-size: 40px;
 }
-.runner-szöveg2 { margin-top: -20%; }
+.runner-szöveg2 {
+    margin-top: -20%;
+}
 
 .logoVid-Runner {
     user-select: none;
@@ -395,406 +273,6 @@ ul {
     content: url("https://blogger.googleusercontent.com/img/a/AVvXsEjW1eh4XMzv_xq4grUCetunCqFjnuisYQFnwUWO0OUGcRzejN-kEjC6kXBs0Af_KXU27CqSAMZbKzcUvGwOEV8wb3KiSQlIUC8EUwIqqaEZbBT21t3fUCYkUaMiswMFp69HZT3z5YrwFWHD8nLkJcl7pe7sdp5v5lsJtj3E191zR81S982VODmq3rR5hlM");
 }
 
-/* ==========================================================================
-   8. TRAINERS (EDZŐK) OLDAL
-   ========================================================================== */
-.trainersContainer {
-    width: 100%;
-    max-width: 1200px;
-    margin: 50px auto;
-    padding: 0 20px;
-}
-
-.section-header { text-align: center; margin-bottom: 40px; }
-.section-header h2 {
-    font-size: 2.5rem;
-    color: var(--text-white);
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.divider-line {
-    width: 80px;
-    height: 4px;
-    background-color: var(--primary-accent);
-    margin: 0 auto;
-    border-radius: 2px;
-}
-
-.trainers-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-}
-
-/* Edző Kártya */
-.trainer-card {
-    position: relative;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-}
-.trainer-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-hover);
-}
-
-.card-image {
-    width: 100%;
-    height: 600px;
-    overflow: hidden;
-}
-.card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-.trainer-card:hover .card-image img { transform: scale(1.1); }
-
-.card-content {
-    padding: 20px;
-    text-align: center;
-    background: #fff;
-    position: relative;
-    z-index: 2;
-}
-.card-content h3 {
-    margin: 0;
-    font-size: 1.2rem;
-    color: #222;
-    font-weight: 700;
-}
-.card-content p {
-    margin: 5px 0 0;
-    font-size: 0.9rem;
-    color: #666;
-    text-transform: uppercase;
-    font-weight: 500;
-}
-
-/* Edző Részletes Oldal (Single Trainer) */
-.single-trainer-page .trainer-split-layout {
-    display: flex;
-    gap: 40px;
-    align-items: stretch;
-    margin-top: 20px;
-    text-align: left;
-}
-.single-trainer-page .trainer-image-side { flex: 1; display: flex; justify-content: flex-end; }
-.single-trainer-page .trainer-info-side { flex: 1.2; display: flex; align-items: center; }
-
-.single-trainer-page .trainer-card-v2 {
-    position: relative;
-    width: 100%;
-    max-width: 450px;
-    height: 550px;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-}
-.single-trainer-page .trainer-card-v2 img { width: 100%; height: 100%; object-fit: cover; }
-.single-trainer-page .image-overlay-text {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    padding: 30px;
-    background: linear-gradient(transparent, rgba(0,0,0,0.8));
-    color: white;
-}
-
-.single-trainer-page .glass-content {
-    background: var(--card-bg);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    padding: 40px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: white;
-    max-width: 650px;
-}
-.single-trainer-page .gold-quote {
-    color: var(--primary-accent);
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    display: block;
-}
-.single-trainer-page .moto { font-size: 1.8rem; line-height: 1.3; margin-bottom: 20px; font-weight: 600; }
-.single-trainer-page .description { font-size: 1rem; line-height: 1.7; color: #ddd; margin-bottom: 15px; }
-
-.single-trainer-page .benefit-list { margin-bottom: 30px; }
-.single-trainer-page .benefit-list li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
-.single-trainer-page .benefit-list i { color: var(--primary-accent); }
-
-.single-trainer-page .cta-button {
-    display: inline-block;
-    padding: 15px 40px;
-    background: var(--primary-accent);
-    color: #000;
-    font-weight: 700;
-    border-radius: 50px;
-    transition: 0.3s ease;
-    text-transform: uppercase;
-}
-.single-trainer-page .cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 202, 101, 0.3);
-    background: #fff;
-}
-
-.single-trainer-page .trainer-profile-box {
-    width: 100%; max-width: 450px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 20px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.single-trainer-page .trainer-under-info { padding: 25px; color: white; }
-.single-trainer-page .specialization {
-    color: var(--primary-accent);
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-    font-weight: 600;
-}
-.single-trainer-page .contact-row {
-    display: flex; align-items: center; gap: 12px;
-    font-size: 0.95rem; color: #ccc; margin-top: 15px;
-}
-.single-trainer-page .contact-row i { color: var(--primary-accent); width: 20px; text-align: center; }
-.single-trainer-page .contact-row a { color: #ccc; transition: color 0.3s ease; }
-.single-trainer-page .contact-row a:hover { color: var(--primary-accent); }
-
-/* ==========================================================================
-   9. BMI KALKULÁTOR
-   ========================================================================== */
-.bmi-main-container {
-    display: block;
-    width: 100%;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-.bmi-wrapper {
-    display: flex;
-    gap: 20px;
-    max-width: 1000px;
-    width: 100%;
-    margin: 150px auto 100px auto;
-    align-items: stretch;
-    position: relative;
-    z-index: 2;
-}
-
-/* Általános kártya stílus (BMI, Contact) */
-.card, .info-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 24px;
-    padding: 40px;
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    box-shadow: var(--shadow-main);
-}
-
-.calculator-card { flex: 1.2; text-align: center; }
-.info-card {
-    flex: 0.8;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 20px;
-}
-
-.card h2 { margin-top: 0; color: var(--text-white); font-size: 1.8rem; }
-.card p { color: var(--text-dim); line-height: 1.6; font-size: 1rem; }
-
-#bmiForm { display: flex; flex-direction: column; align-items: center; }
-
-.input-group { margin-bottom: 25px; width: 100%; }
-.input-group label {
-    display: block;
-    color: var(--text-white);
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-align: center;
-}
-.input-group input {
-    width: 100%;
-    background: var(--input-bg) !important;
-    border: 1.5px solid var(--border-color);
-    border-radius: 12px;
-    padding: 16px;
-    color: white !important;
-    font-size: 1.1rem;
-    text-align: center;
-    position: relative;
-    z-index: 20;
-}
-.input-group input:focus {
-    outline: none;
-    border-color: var(--primary-accent);
-    box-shadow: 0 0 15px rgba(0, 202, 101, 0.3);
-}
-
-.result-area {
-    margin: 35px auto 0 auto;
-    padding-top: 30px;
-    border-top: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 25px;
-    width: fit-content;
-    min-width: 280px;
-}
-
-/* BMI Kör diagram */
-.progress-container {
-    position: relative;
-    width: 120px; height: 120px;
-    flex: 0 0 120px;
-    display: flex; justify-content: center; align-items: center;
-}
-.progress-ring {
-    position: absolute;
-    top: 0; left: 0;
-    width: 120px; height: 120px;
-    transform: rotate(-90deg);
-    pointer-events: none;
-}
-.progress-ring__circle {
-    transition: stroke-dashoffset 0.8s ease-in-out, stroke 0.8s ease;
-    transform: rotate(-90deg);
-    transform-origin: 50% 50%;
-}
-.circle-bg { stroke: rgba(255, 255, 255, 0.1); }
-.circle-main { transition: stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.5s ease; }
-
-.bmi-number {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    text-align: center;
-    margin: 0;
-    font-size: 1.8rem;
-    font-weight: 800;
-    line-height: 1;
-    z-index: 5;
-    white-space: nowrap;
-}
-
-.result-text {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: left;
-    width: 180px;
-}
-#bmiStatus { margin: 0; font-size: 1.4rem; font-weight: 700; }
-#bmiDescription { margin: 5px 0 0 0; font-size: 0.95rem; color: var(--text-dim); line-height: 1.3; }
-
-/* Kategória lista */
-.category-list { margin: 25px 0; }
-.cat-item {
-    display: flex; align-items: center; gap: 15px;
-    margin-bottom: 15px; font-size: 1rem; color: var(--text-white);
-}
-.dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
-.blue { background: #3498db; box-shadow: 0 0 10px rgba(52, 152, 219, 0.5); }
-.green { background: #2ecc71; box-shadow: 0 0 10px rgba(46, 204, 113, 0.5); }
-.yellow { background: #f1c40f; box-shadow: 0 0 10px rgba(241, 196, 15, 0.5); }
-.red { background: #e74c3c; box-shadow: 0 0 10px rgba(231, 76, 60, 0.5); }
-
-.info-footer {
-    background: rgba(36, 52, 71, 0.7);
-    padding: 18px;
-    border-radius: 12px;
-    border-left: 4px solid var(--primary-accent);
-    margin-top: auto;
-}
-.info-footer p {
-    font-size: 0.85rem; color: #cbd5e1;
-    margin: 0; line-height: 1.5; text-align: left;
-}
-
-/* ==========================================================================
-   10. KAPCSOLAT (CONTACT) OLDAL
-   ========================================================================== */
-.contact-page-content {
-    padding-top: 130px;
-    padding-bottom: 50px;
-    max-width: 1400px;
-    margin: 0 auto;
-    color: white;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-.contact-page-content h1 { font-size: 3rem; font-weight: 700; text-align: center; margin-bottom: 10px; }
-.contact-page-content h2 { font-size: 1.8rem; font-weight: 600; color: var(--primary-accent); margin-top: 0; margin-bottom: 20px; }
-.contact-intro { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-.highlight-text { color: var(--primary-accent); font-weight: bold; }
-
-.contact-info-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    margin-bottom: 50px;
-}
-.info-card ul li { margin-bottom: 8px; font-size: 1.1rem; }
-
-.contact-form-container {
-    grid-column: 1 / -1;
-    padding: 30px;
-    border-radius: 10px;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    box-shadow: var(--shadow-main);
-}
-.contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form select,
-.contact-form textarea {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    background-color: var(--input-bg);
-    color: white;
-    font-size: 1rem;
-}
-.contact-form textarea { resize: vertical; }
-.contact-form input:focus,
-.contact-form select:focus,
-.contact-form textarea:focus {
-    outline: none;
-    border-color: var(--primary-accent);
-    box-shadow: 0 0 5px rgba(0, 202, 101, 0.5);
-}
-.contact-form .send-btn { width: 100%; margin-top: 10px; font-size: 20px; }
-
-.map-section { margin-top: 40px; padding: 20px 0; }
-.map-placeholder {
-    height: 400px;
-    background-color: var(--input-bg);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    display: flex; justify-content: center; align-items: center;
-    font-size: 1.2rem; color: rgba(255, 255, 255, 0.6);
-    overflow: hidden;
-}
-.map-placeholder iframe { width: 100%; height: 100%; border: none; }
 
 /* ==========================================================================
    11. FOOTER & EGYÉB ELEMEK
@@ -807,11 +285,6 @@ ul {
 .animation-bottom:hover { transform: translateY(-2px); color: var(--primary-accent); }
 
 
-.leiras {
-    font-size: 25px; font-weight: 500;
-    color: #ffffff;
-    max-width: 1000px; text-align: left;
-}
 .nyelvek { position: absolute; padding: 20px; right: 420px; }
 .nyelv:hover { cursor: pointer; color: green; }
 
@@ -1075,8 +548,90 @@ table{
 }
 
 
-@media (max-width: 1399px){
+@media (max-width: 1199px){
+    .runner-szöveg {
+        z-index: 200;
+        position: absolute;
+        margin-top: -22%;
+        margin-left: 7%;
+        font-size: 20px;
+    }
+    .runner-szöveg2 {
+        margin-top: -22%;
+    }
+    .brand-x{
+        position: relative;
+        top: 2px;
+        font-size: 25px;
+    }
+    .sizeHelperSpace{
+        margin-top: 5rem;
+    }
+    .logoVid-Runner {
+        user-select: none;
+        -webkit-user-drag: none;
+        height: 80px;
+        width: auto;
+        position: absolute;
+        z-index: 200;
+        margin-top: -40%;
+        margin-left: -3%;
+    }
+    .runner-shopBtn {
+        color: var(--text-grey);
+        text-decoration: underline;
+        text-decoration-thickness: 4px;
+        text-underline-offset: 4px;
+        text-decoration-color: var(--text-grey);
+        font-size: 17px;
+        margin-top: 20px;
+        position: absolute;
+        margin-left: 20px;
+    }
+}
+
+@media (max-width: 899px){
     .runnerImgPc{
-        margin-top: 46%;
+        margin-top: 160px;
+    }
+    .runner-szöveg {
+        z-index: 200;
+        position: absolute;
+        margin-top: -22%;
+        margin-left: 7%;
+        font-size: 20px;
+    }
+    .runner-szöveg2 {
+        margin-top: -22%;
+    }
+    .brand-x{
+        position: relative;
+        top: 2px;
+        font-size: 25px;
+    }
+    .sizeHelperSpace{
+        margin-top: 5rem;
+    }
+    .logoVid-Runner {
+        position: absolute;
+        user-select: none;
+        -webkit-user-drag: none;
+        height: 80px;
+        width: auto;
+        position: absolute;
+        z-index: 200;
+        margin-left: -3%;
+        margin-top: 0px;
+    }
+    .runner-shopBtn {
+        color: var(--text-grey);
+        text-decoration: underline;
+        text-decoration-thickness: 4px;
+        text-underline-offset: 4px;
+        text-decoration-color: var(--text-grey);
+        font-size: 17px;
+        margin-top: 20px;
+        position: absolute;
+        margin-left: 20px;
     }
 }

@@ -421,7 +421,7 @@ ul {
 
 
 /* --- Desktop view --- */
-@media (min-width: 1400px) {
+@media (min-width: 800px) {
     .slider { aspect-ratio: 16 / 5; }
     .phone-menu{
         display: none;
@@ -429,7 +429,7 @@ ul {
 }
 
 /* --- Mobile view --- */
-@media (max-width: 1399px) {
+@media (max-width: 799px) {
     .phone-menu {
         display: flex;            /* Vagy block, a designtól függően */
         position: fixed;          /* Ez rögzíti a képernyőhöz képest */
@@ -456,4 +456,6 @@ ul {
     .phone-menu__icon:hover {
         transform: translateY(-3px); opacity: 1;
     }
+    .slider { aspect-ratio: 16 / 10; }
+
 }
