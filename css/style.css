@@ -422,7 +422,6 @@ ul {
 
 /* --- Desktop view --- */
 @media (min-width: 800px) {
-    .slider { aspect-ratio: 16 / 5; }
     .phone-menu{
         display: none;
     }
@@ -607,14 +606,10 @@ ul {
 /* ==========================================================================
 
    ========================================================================== */
-@media (max-width: 899px) {
+@media (max-width: 799px) {
     .right-icons{
         display: none;
     }
-    .logoVid-Runner {
-        display: none;
-    }
-
     .phone-menu {
         display: flex;
         position: fixed;
