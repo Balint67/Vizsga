@@ -302,6 +302,53 @@ h2 {
     transform: scale(1.2);
 }
 
+/* --- Modal Actions (Favorite & Add to Cart Buttons) --- */
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.modal-actions .login-btn {
+    width: 100%;
+    flex: 1;
+    min-width: 200px;
+    margin: 0;
+}
+
+.favorite-btn {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-main);
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.favorite-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--accent-green);
+    transform: scale(1.1);
+}
+
+.favorite-btn i {
+    transition: color 0.3s ease;
+}
+
+.favorite-btn.active i {
+    color: #ff3333 !important;
+}
+
 /* --- Animations --- */
 @keyframes zoomIn {
     from { transform: scale(0.8); opacity: 0; }
