@@ -133,7 +133,7 @@ h2 {
 
 /* --- Action Buttons --- */
 .login-btn {
-    width: 90%;
+    width: 100%;
     background: var(--accent-gradient);
     font-family: 'Open Sans', sans-serif;
     font-size: 18px;
