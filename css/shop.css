@@ -283,6 +283,9 @@ h2 {
     text-decoration: underline;
 }
 
+
+
+
 /* --- Modal Close UI --- */
 .close-btn {
     position: absolute;
@@ -296,6 +299,114 @@ h2 {
     z-index: 1000;
     transition: color 0.3s ease, transform 0.3s ease;
 }
+
+/* --- Oldalsó rögzített szűrő stílusok --- */
+.side-filter-container {
+    position: absolute;
+    left: 30px;
+    top: 185px; /* A header alá pozicionálva */
+    width: 340px;
+    z-index: 999;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 20px;
+    box-shadow: var(--shadow-standard);
+}
+
+.side-filter-content h3 {
+    color: var(--text-main);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.side-filter-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.side-filter-group label {
+    display: block;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-box i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent-green);
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px 10px 10px 35px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: white;
+}
+
+.category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cat-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: left;
+    transition: 0.3s;
+}
+
+.cat-btn:hover {
+    border-color: var(--accent-green);
+}
+
+.cat-btn.active {
+    background: var(--accent-gradient);
+    border: none;
+    color: white;
+}
+
+.side-select {
+    width: 100%;
+    padding: 10px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid var(--border-color);
+    color: white;
+    border-radius: 8px;
+}
+
+.side-filter-separator {
+    height: 1px;
+    background: var(--border-color);
+    margin-bottom: 20px;
+}
+
+/* Mobilon elrejtjük, hogy ne lógjon bele a tartalomba */
+@media (max-width: 1400px) {
+    .side-filter-container {
+        display: none;
+    }
+}
+
 
 .close-btn:hover {
     color: #ef4444;
