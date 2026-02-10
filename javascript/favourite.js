@@ -25,9 +25,13 @@ function removeFavoriteById(id) {
     const favs = getFavorites();
     const idx = favs.findIndex(f => f.id === id);
     if (idx >= 0) {
+        const removedItem = favs[idx].title;
         favs.splice(idx, 1);
         saveFavorites(favs);
+        console.log("✅ Removed from favorites:", removedItem);
         saveFavoritesToCloud();
+    } else {
+        console.warn("❌ Favorite not found:", id);
     }
 }
 
@@ -45,6 +49,7 @@ async function addToCartFromFavorite(item) {
     const cart = getCart();
     cart.push(product);
     saveCart(cart);
+    console.log("✅ Added to cart from favorites:", product.title);
 
     // Update cart count
     const cartCountEl = document.getElementById('cart-count');
@@ -55,13 +60,18 @@ async function addToCartFromFavorite(item) {
     // Save to cloud if logged in
     if (currentUserId) {
         await saveCartToCloud();
+    } else {
+        console.warn("❌ Item added to cart but not logged in - not syncing to cloud");
     }
 
     await forgeXModal('Kosárba téve', `${product.title} bekerült a kosárba!`);
 }
 
 async function saveFavoritesToCloud() {
-    if (!currentUserId) return;
+    if (!currentUserId) {
+        console.warn("❌ Cannot save favorites - user not logged in");
+        return;
+    }
 
     const localFavorites = getFavorites();
     try {
@@ -69,14 +79,17 @@ async function saveFavoritesToCloud() {
             items: localFavorites,
             updatedAt: new Date()
         });
-        console.log("Favorites saved to cloud.");
+        console.log("✅ Favorites saved to Firebase:", localFavorites.length, "items");
     } catch (error) {
-        console.error("Error saving favorites to cloud:", error);
+        console.error("❌ Error saving favorites to cloud:", error);
     }
 }
 
 async function saveCartToCloud() {
-    if (!currentUserId) return;
+    if (!currentUserId) {
+        console.warn("❌ Cannot save cart - user not logged in");
+        return;
+    }
 
     const localCart = getCart();
     try {
@@ -84,9 +97,9 @@ async function saveCartToCloud() {
             items: localCart,
             updatedAt: new Date()
         });
-        console.log("Cart saved to cloud.");
+        console.log("✅ Cart saved to Firebase:", localCart.length, "items");
     } catch (error) {
-        console.error("Error saving cart to cloud:", error);
+        console.error("❌ Error saving cart to cloud:", error);
     }
 }
 
@@ -98,10 +111,14 @@ async function syncFavoritesFromFirestore() {
         if (favSnap.exists()) {
             const cloudFavorites = favSnap.data().items || [];
             localStorage.setItem('favorites', JSON.stringify(cloudFavorites));
-            console.log("Favorites loaded from cloud.");
+            console.log("✅ Favorites loaded from Firebase:", cloudFavorites.length, "items");
+        } else {
+            // No favorites exist yet for this user - keep local
+            const localFavCount = (JSON.parse(localStorage.getItem("favorites")) || []).length;
+            console.log("ℹ️ No cloud favorites found. Using local favorites:", localFavCount, "items");
         }
     } catch (error) {
-        console.error("Error loading favorites from cloud:", error);
+        console.error("❌ Error loading favorites from cloud:", error);
     }
 }
 
@@ -114,10 +131,14 @@ async function syncCartFromFirestore() {
             const cloudCart = cartSnap.data().items || [];
             localStorage.setItem('cart', JSON.stringify(cloudCart));
             updateCartCount();
-            console.log("Cart loaded from cloud.");
+            console.log("✅ Cart loaded from Firebase:", cloudCart.length, "items");
+        } else {
+            // No cart exists yet - keep local items
+            const localCartCount = (JSON.parse(localStorage.getItem("cart")) || []).length;
+            console.log("ℹ️ No cloud cart found. Using local cart:", localCartCount, "items");
         }
     } catch (error) {
-        console.error("Error loading cart from cloud:", error);
+        console.error("❌ Error loading cart from cloud:", error);
     }
 }
 
@@ -132,9 +153,11 @@ function renderFavorites() {
     const noFavs = document.getElementById('no-favs');
     const favs = getFavorites();
     container.innerHTML = '';
+    console.log("🌈 Rendering favorites:", favs.length, "items");
 
     if (!favs.length) {
         noFavs.style.display = 'block';
+        console.log("💭 No favorites to display");
         return;
     }
 
@@ -194,16 +217,20 @@ function renderFavorites() {
 document.addEventListener('DOMContentLoaded', () => {
     // Auth state listener
     onAuthStateChanged(auth, async (user) => {
-        // Clear local cart on state change to prevent cross-user data leakage
-        localStorage.removeItem("cart");
-
         if (user) {
             currentUserId = user.uid;
+            // Sync from Firebase - don't clear local storage on page load
+            // This preserves user's local additions until they log out
             await syncFavoritesFromFirestore();
             await syncCartFromFirestore();
+            console.log("✅ Favorites page - User logged in:", currentUserId);
         } else {
+            // Only clear on logout
             currentUserId = null;
+            localStorage.removeItem("cart");
+            localStorage.removeItem("favorites");
             updateCartCount();
+            console.log("🚪 Favorites page - User logged out");
         }
 
         renderFavorites();
