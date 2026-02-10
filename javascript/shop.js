@@ -114,18 +114,22 @@ document.addEventListener("DOMContentLoaded", () => {
      * Authentication State Listener
      */
     onAuthStateChanged(auth, async (user) => {
-        // Clear local cart on state change to prevent cross-user data leakage
-        localStorage.removeItem("cart");
-
         if (user) {
             currentUserId = user.uid;
             if (profileLink) profileLink.href = "profil.html";
+            // Sync from Firebase - don't clear local storage on page load
+            // This preserves user's local additions until they log out
             await syncCartFromFirestore();
             await syncFavoritesFromFirestore();
+            console.log("✅ User logged in:", currentUserId);
         } else {
+            // Only clear on logout
             currentUserId = null;
+            localStorage.removeItem("cart");
+            localStorage.removeItem("favorites");
             if (profileLink) profileLink.href = "signIn.html";
             updateCartCount();
+            console.log("🚪 User logged out");
         }
     });
 
@@ -133,7 +137,10 @@ document.addEventListener("DOMContentLoaded", () => {
      * Persists local cart to Firestore
      */
     async function saveCartToCloud() {
-        if (!currentUserId) return;
+        if (!currentUserId) {
+            console.warn("❌ Cannot save cart - user not logged in");
+            return;
+        }
 
         const localCart = JSON.parse(localStorage.getItem("cart")) || [];
         try {
@@ -141,9 +148,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 items: localCart,
                 updatedAt: new Date()
             });
-            console.log("Cart saved to cloud.");
+            console.log("✅ Cart saved to Firebase:", localCart.length, "items");
         } catch (error) {
-            console.error("Error saving cart to cloud:", error);
+            console.error("❌ Error saving cart to cloud:", error);
         }
     }
 
@@ -159,10 +166,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 const cloudCart = cartSnap.data().items || [];
                 localStorage.setItem("cart", JSON.stringify(cloudCart));
                 updateCartCount();
-                console.log("Cart loaded from cloud.");
+                console.log("✅ Cart loaded from Firebase:", cloudCart.length, "items");
+            } else {
+                // No cart exists yet - keep local items
+                const localCartCount = (JSON.parse(localStorage.getItem("cart")) || []).length;
+                console.log("ℹ️ No cloud cart found. Using local cart:", localCartCount, "items");
             }
         } catch (error) {
-            console.error("Error loading cart from cloud:", error);
+            console.error("❌ Error loading cart from cloud:", error);
         }
     }
 
@@ -268,12 +279,15 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("cart", JSON.stringify(cart));
 
         updateCartCount();
+        console.log("✅ Added to cart:", product.title);
 
         if (currentUserId) {
             await saveCartToCloud();
+        } else {
+            console.warn("❌ Item added to cart but not logged in - not syncing to cloud");
         }
 
-        await forgeXModal("Kosárba téve", `${product.title} bekerült a kosaradba!`);
+        await forgeXModal("Kosárba téve", `${product.title} bekerült a kosaramba!`);
     }
 
     /**
@@ -295,7 +309,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function saveFavoritesToCloud() {
-        if (!currentUserId) return;
+        if (!currentUserId) {
+            console.warn("❌ Cannot save favorites - user not logged in");
+            return;
+        }
 
         const localFavorites = getFavorites();
         try {
@@ -303,9 +320,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 items: localFavorites,
                 updatedAt: new Date()
             });
-            console.log("Favorites saved to cloud.");
+            console.log("✅ Favorites saved to Firebase:", localFavorites.length, "items");
         } catch (error) {
-            console.error("Error saving favorites to cloud:", error);
+            console.error("❌ Error saving favorites to cloud:", error);
         }
     }
 
@@ -317,10 +334,14 @@ document.addEventListener("DOMContentLoaded", () => {
             if (favSnap.exists()) {
                 const cloudFavorites = favSnap.data().items || [];
                 localStorage.setItem("favorites", JSON.stringify(cloudFavorites));
-                console.log("Favorites loaded from cloud.");
+                console.log("✅ Favorites loaded from Firebase:", cloudFavorites.length, "items");
+            } else {
+                // No favorites exist yet for this user - keep local
+                const localFavCount = (JSON.parse(localStorage.getItem("favorites")) || []).length;
+                console.log("ℹ️ No cloud favorites found. Using local favorites:", localFavCount, "items");
             }
         } catch (error) {
-            console.error("Error loading favorites from cloud:", error);
+            console.error("❌ Error loading favorites from cloud:", error);
         }
     }
 
@@ -340,15 +361,25 @@ document.addEventListener("DOMContentLoaded", () => {
         if (existingIndex >= 0) {
             favs.splice(existingIndex, 1);
             saveFavorites(favs);
+            console.log("✅ Removed from favorites:", `${currentTitle} ${size}${color ? ' ' + color : ''}`);
             await forgeXModal("Eltávolítva", `${currentTitle} eltávolítva a kedvencek közül.`);
-            if (currentUserId) await saveFavoritesToCloud();
+            if (currentUserId) {
+                await saveFavoritesToCloud();
+            } else {
+                console.warn("❌ Favorite removed but not logged in - not syncing to cloud");
+            }
             return false;
         } else {
             const item = { id, title: `${currentTitle} ${size}${color ? ' ' + color : ''}`, price, size, color, image };
             favs.push(item);
             saveFavorites(favs);
+            console.log("✅ Added to favorites:", item.title);
             await forgeXModal("Hozzáadva", `${item.title} bekerült a kedvencek közé.`);
-            if (currentUserId) await saveFavoritesToCloud();
+            if (currentUserId) {
+                await saveFavoritesToCloud();
+            } else {
+                console.warn("❌ Favorite added but not logged in - not syncing to cloud");
+            }
             return true;
         }
     }
