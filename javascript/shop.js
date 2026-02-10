@@ -279,18 +279,75 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function getFavorites() { return JSON.parse(localStorage.getItem("favorites")) || []; }
 
+    function saveFavorites(list) {
+        localStorage.setItem("favorites", JSON.stringify(list));
+    }
+
+    async function saveFavoritesToCloud() {
+        if (!currentUserId) return;
+        const localFavorites = getFavorites();
+        try {
+            await setDoc(doc(db, "favorites", currentUserId), { items: localFavorites, updatedAt: new Date() });
+        } catch (error) { console.error("❌ Error saving favorites to cloud:", error); }
+    }
+
     async function syncFavoritesFromFirestore() {
         if (!currentUserId) return;
         const favSnap = await getDoc(doc(db, "favorites", currentUserId));
         if (favSnap.exists()) localStorage.setItem("favorites", JSON.stringify(favSnap.data().items || []));
     }
 
+    function makeFavoriteId(title, size, color) {
+        return `${title}_${size}_${color || "no-color"}`;
+    }
+
+    function isFavorite(id) {
+        return getFavorites().some(f => f.id === id);
+    }
+
+    async function toggleFavorite(title, price, size, color, image) {
+        const id = makeFavoriteId(title, size, color);
+        const favs = getFavorites();
+        const existingIndex = favs.findIndex(f => f.id === id);
+
+        if (existingIndex >= 0) {
+            favs.splice(existingIndex, 1);
+            saveFavorites(favs);
+            await forgeXModal("Eltávolítva", `${title} eltávolítva a kedvencek közül.`);
+            if (currentUserId) await saveFavoritesToCloud();
+            return false;
+        } else {
+            const item = { id, title: `${title} ${size}${color ? ' ' + color : ''}`, price, size, color, image };
+            favs.push(item);
+            saveFavorites(favs);
+            await forgeXModal("Hozzáadva", `${title} bekerült a kedvencek közé.`);
+            if (currentUserId) await saveFavoritesToCloud();
+            return true;
+        }
+    }
+
     function updateModalFavoriteUI() {
         const favBtn = modal.querySelector('.favorite-btn');
         if (!favBtn) return;
-        const isFav = getFavorites().some(f => f.id.startsWith(modalTitle.innerText));
-        favBtn.querySelector('i').className = isFav ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
-        favBtn.querySelector('i').style.color = isFav ? 'red' : '';
+        const title = modalTitle.innerText;
+        const sizeEl = sizeContainer.querySelector('.size-option.active');
+        const size = sizeEl ? sizeEl.innerText : '';
+        const colorEl = colorContainer.querySelector('.size-option.active');
+        const color = colorEl ? colorEl.innerText : null;
+        const id = makeFavoriteId(title, size, color);
+
+        const icon = favBtn.querySelector('i');
+        if (isFavorite(id)) {
+            icon.classList.remove('fa-regular');
+            icon.classList.add('fa-solid');
+            favBtn.classList.add('active');
+            icon.style.color = '#ff3333';
+        } else {
+            icon.classList.remove('fa-solid');
+            icon.classList.add('fa-regular');
+            favBtn.classList.remove('active');
+            icon.style.color = '';
+        }
     }
 
     // --- Kártyák kattintás kezelése ---
@@ -326,6 +383,20 @@ document.addEventListener("DOMContentLoaded", () => {
             modalImg.src
         );
         modal.style.display = "none";
+    });
+
+    modal.querySelector(".favorite-btn").addEventListener("click", async (e) => {
+        e.stopPropagation();
+        const title = modalTitle.innerText;
+        const sizeEl = sizeContainer.querySelector('.size-option.active');
+        const size = sizeEl ? sizeEl.innerText : '';
+        const colorEl = colorContainer.querySelector('.size-option.active');
+        const color = colorEl ? colorEl.innerText : null;
+        const price = parseInt(modalPrice.innerText.replace(/\D/g, "")) || 0;
+        const image = modalImg.src;
+
+        await toggleFavorite(title, price, size, color, image);
+        updateModalFavoriteUI();
     });
 
     modal.querySelector(".close-btn").onclick = () => modal.style.display = "none";
