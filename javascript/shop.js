@@ -95,7 +95,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <div id="size-selector-container"></div>
             <div id="color-selector-container"></div>
             <p id="modal-price"></p>
-            <button class="login-btn">Hozzáadás a kosárhoz</button>
+            <div class="modal-actions">
+                <button class="favorite-btn" aria-label="Kedvencek"><i class="fa-regular fa-heart"></i></button>
+                <button class="login-btn">Hozzáadás a kosárhoz</button>
+            </div>
         </div>
     `;
     document.body.appendChild(modal);
@@ -118,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
             currentUserId = user.uid;
             if (profileLink) profileLink.href = "profil.html";
             await syncCartFromFirestore();
+            await syncFavoritesFromFirestore();
         } else {
             currentUserId = null;
             if (profileLink) profileLink.href = "signIn.html";
@@ -209,6 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 btn.classList.add("active");
                 modalPrice.innerText = prices[index] + " Ft";
                 updateProductImage();
+                updateModalFavoriteUI();
             });
             wrapper.appendChild(btn);
         });
@@ -237,6 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 wrapper.querySelectorAll(".size-option").forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
                 updateProductImage();
+                updateModalFavoriteUI();
             });
             wrapper.appendChild(btn);
         });
@@ -279,6 +285,98 @@ document.addEventListener("DOMContentLoaded", () => {
         if (el) el.innerText = cart.length;
     }
 
+    // --- Favorites helpers ---
+    function getFavorites() {
+        return JSON.parse(localStorage.getItem("favorites")) || [];
+    }
+
+    function saveFavorites(list) {
+        localStorage.setItem("favorites", JSON.stringify(list));
+    }
+
+    async function saveFavoritesToCloud() {
+        if (!currentUserId) return;
+
+        const localFavorites = getFavorites();
+        try {
+            await setDoc(doc(db, "favorites", currentUserId), {
+                items: localFavorites,
+                updatedAt: new Date()
+            });
+            console.log("Favorites saved to cloud.");
+        } catch (error) {
+            console.error("Error saving favorites to cloud:", error);
+        }
+    }
+
+    async function syncFavoritesFromFirestore() {
+        if (!currentUserId) return;
+
+        try {
+            const favSnap = await getDoc(doc(db, "favorites", currentUserId));
+            if (favSnap.exists()) {
+                const cloudFavorites = favSnap.data().items || [];
+                localStorage.setItem("favorites", JSON.stringify(cloudFavorites));
+                console.log("Favorites loaded from cloud.");
+            }
+        } catch (error) {
+            console.error("Error loading favorites from cloud:", error);
+        }
+    }
+
+    function makeFavoriteId(title, size, color) {
+        return `${title}_${size}_${color ?? 'no-color'}`.replace(/\s+/g, "_");
+    }
+
+    function isFavorite(id) {
+        return getFavorites().some(f => f.id === id);
+    }
+
+    async function toggleFavorite(currentTitle, price, size, color, image) {
+        const id = makeFavoriteId(currentTitle, size, color);
+        const favs = getFavorites();
+        const existingIndex = favs.findIndex(f => f.id === id);
+
+        if (existingIndex >= 0) {
+            favs.splice(existingIndex, 1);
+            saveFavorites(favs);
+            await forgeXModal("Eltávolítva", `${currentTitle} eltávolítva a kedvencek közül.`);
+            if (currentUserId) await saveFavoritesToCloud();
+            return false;
+        } else {
+            const item = { id, title: `${currentTitle} ${size}${color ? ' ' + color : ''}`, price, size, color, image };
+            favs.push(item);
+            saveFavorites(favs);
+            await forgeXModal("Hozzáadva", `${item.title} bekerült a kedvencek közé.`);
+            if (currentUserId) await saveFavoritesToCloud();
+            return true;
+        }
+    }
+
+    function updateModalFavoriteUI() {
+        const favBtn = modal.querySelector('.favorite-btn');
+        const title = modalTitle.innerText;
+        const sizeEl = sizeContainer.querySelector('.size-option.active');
+        const size = sizeEl ? sizeEl.innerText : '';
+        const colorEl = colorContainer.querySelector('.size-option.active');
+        const color = colorEl ? colorEl.innerText : null;
+        const id = makeFavoriteId(title, size, color);
+
+        if (!favBtn) return;
+        const icon = favBtn.querySelector('i');
+        if (isFavorite(id)) {
+            icon.classList.remove('fa-regular');
+            icon.classList.add('fa-solid');
+            favBtn.classList.add('active');
+            icon.style.color = 'red';
+        } else {
+            icon.classList.remove('fa-solid');
+            icon.classList.add('fa-regular');
+            favBtn.classList.remove('active');
+            icon.style.color = '';
+        }
+    }
+
     // --- Event Listeners ---
 
     // Product card click handling
@@ -302,6 +400,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updateColorSelector(data.color);
             updateProductImage();
             modal.style.display = "flex";
+            updateModalFavoriteUI();
         });
     });
 
@@ -318,6 +417,24 @@ document.addEventListener("DOMContentLoaded", () => {
         await addToCart(title, price, size, color, image);
         modal.style.display = "none";
     });
+
+    // Favorite button handler
+    const favBtn = modal.querySelector('.favorite-btn');
+    if (favBtn) {
+        favBtn.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            const title = modalTitle.innerText;
+            const sizeEl = sizeContainer.querySelector('.size-option.active');
+            const size = sizeEl ? sizeEl.innerText : '';
+            const colorEl = colorContainer.querySelector('.size-option.active');
+            const color = colorEl ? colorEl.innerText : null;
+            const price = parseInt(modalPrice.innerText.replace(/\D/g, "")) || 0;
+            const image = modalImg.src;
+
+            await toggleFavorite(title, price, size, color, image);
+            updateModalFavoriteUI();
+        });
+    }
 
     // Close modal handlers
     modal.querySelector(".close-btn").onclick = () => modal.style.display = "none";

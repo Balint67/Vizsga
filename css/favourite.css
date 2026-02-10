@@ -1,0 +1,96 @@
+/* ============================== FAVORITE PAGE SPECIFIC STYLES ============================== -->
+
+/* Action buttons container */
+.fav-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 12px;
+}
+
+/* Add to cart button */
+.fav-actions .login-btn {
+    width: 70%;
+    padding: 10px 15px;
+    font-size: 16px;
+}
+
+.fav-actions .login-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Remove button styling */
+.fav-remove {
+    background: transparent;
+    border: none;
+    color: var(--accent-green);
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.fav-remove:hover {
+    color: #ef4444;
+    border-color: #ef4444;
+    transform: scale(1.1);
+}
+
+.fav-remove i {
+    font-size: 20px;
+}
+
+/* No favorites message */
+#no-favs {
+    color: var(--text-dim);
+    font-size: 16px;
+    margin-top: 40px;
+    padding: 30px;
+}
+
+/* Modal favorite button styling */
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.favorite-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.favorite-btn:hover {
+    border-color: var(--accent-green);
+}
+
+.favorite-btn.active {
+    border-color: #ef4444;
+}
+
+.favorite-btn i {
+    font-size: 18px;
+    color: var(--accent-green);
+}
+
+.favorite-btn.active i {
+    color: #ef4444;
+}

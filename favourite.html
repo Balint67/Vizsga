@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kedvencek</title>
+    <link rel="stylesheet" href="css/shop.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/favourite.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="fixed-bg"></div>
+<!-- Hidden Google Translate container -->
+<div id="google_translate_element" style="display:none;"></div>
+
+<!-- ============================== TOP BAR / HEADER ============================== -->
+<div class="top-bar">
+    <header class="site-header">
+        <div class="container nav-container">
+            <!-- Mobile navigation toggle -->
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true"/>
+            <label for="nav-toggle" class="nav-toggle-btn">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </label>
+
+            <!-- Primary navigation -->
+            <nav id="site-nav" class="site-nav" role="navigation" aria-label="Fő navigáció">
+                <ul class="nav-list">
+                    <li class="nav-link"><div class="text"><a href="index.html">Kezdőlap</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="shop.html">Shop</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="gym.html">Edzőtermek</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="anatomy.html">Anatómia</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="calculatorBmi.html">BMI - Kalkulátor</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="trainers.html">Edzők</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="contacts.html">Elérhetőségek</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="booking.html">Időpontfoglalás</a></div></li>
+
+                    <!-- Language selector (mobile only) -->
+                    <li class="mobile-only-languages">
+                        <button data-lang="hu" class="nyelv-btn">HU</button>
+                        <button data-lang="en" class="nyelv-btn">EN</button>
+                        <button data-lang="de" class="nyelv-btn">DE</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <a href="index.html"><video src="videos/logo.mp4" autoplay muted playsinline class="logoVid-Mobile"></video></a>
+    <!-- Language selector (desktop only) -->
+    <div class="nyelvek desktop-only">
+        <div class="nyelvvalaszto">
+            <button data-lang="hu" class="nyelv-btn">Magyar</button>
+            <button data-lang="en" class="nyelv-btn">English</button>
+            <button data-lang="de" class="nyelv-btn">Deutsch</button>
+        </div>
+    </div>
+
+    <div class="right-icons">
+        <!-- Like / favorites icon -->
+        <div class="animation">
+            <a href="favourite.html">
+                <img
+                        src="https://blogger.googleusercontent.com/img/a/AVvXsEgJFzFfHiQVUYwzahvNBeriW2rB8HZ-XDg8KkQ_cP2rFBkF8OrApJS2YUjHFemxb29mnWVzaULETwXtnGNM91eGQS6xhhQuiGPlLlnMDcy-lZfVq6pc6gzkOwoyLeGNJbCnlVLtzAbEKdx6lAUlfqb2CKIlrNIpkYg6mb8lzRGq6t-fr9ODlt49KSWxQ2g"
+                        class="likeIMG"
+                        alt="Like icon">
+            </a>
+        </div>
+
+        <!-- User profile icon -->
+        <div class="animation">
+            <a href="signIn.html" id="auth-link">
+                <img
+                        src="https://blogger.googleusercontent.com/img/a/AVvXsEjWKRjSGDLLZiHXHkVvs17JzH96-r_hTw5IEggJbNOVacw37Vp2BVelLwtoc4KRhvw61tWrgjPqOdFYy5HF_yED3b3JjMWiNvcM3NubgzkjuuvtmEn2pEVUtO6Jn3T-vBUeHytWzNUfliRMC7sPhwZrAiPpuJeW6-jd0vwZlIjfdZLg5FDJL-Jz2tJiajM"
+                        class="userIMG"
+                        alt="User profile">
+            </a>
+        </div>
+
+        <!-- Shopping cart icon -->
+        <div class="header-shop">
+            <a href="cart.html" class="container-shopBtn">
+                <img
+                        src="https://blogger.googleusercontent.com/img/a/AVvXsEjnr3paeYkomWqEuLtpy-LUrJtccK4i5TAvsA4fIgCuoEmtgKqU2Nx3n4trTJrgoRU3T4w6qhAG3t7TAzlh8090v8e8luNlBsNdGc0avkHqE65n2omeiEctqzaxqvYTESBxYGCDRsHupOurWGNd1EwNhrAZem6DvrOP0dW1wc-EatQ0WWRXSMyXMxVgOLk"
+                        class="cartIMG"
+                        alt="Shopping cart">
+                <span id="cart-count">0</span>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- ============================== TOP BAR END ============================== -->
+
+<!-- ============================== MOBILE BOTTOM NAV ============================== -->
+<div class="phone-menu" role="navigation" aria-label="Alsó navigáció">
+    <a href="signIn.html" aria-label="Profil">
+        <img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjWKRjSGDLLZiHXHkVvs17JzH96-r_hTw5IEggJbNOVacw37Vp2BVelLwtoc4KRhvw61tWrgjPqOdFYy5HF_yED3b3JjMWiNvcM3NubgzkjuuvtmEn2pEVUtO6Jn3T-vBUeHytWzNUfliRMC7sPhwZrAiPpuJeW6-jd0vwZlIjfdZLg5FDJL-Jz2tJiajM" alt="Profil">
+    </a>
+    <a href="index.html" aria-label="Főoldal">
+        <img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjTj_tBeEAlNqVcqK3BqoPRryYKbcv8wNU8j9XzjyGMi4HlppPqyyhTaoLT3vMiTAVshSMVfvFEiLeJN-i2x_wSTMgEps3je7uKuPmR7s6XrVTQ928wPFwyj5-lVChSteg-dzFv76Q_IjNiov2p7cLphdxKF9Ys-mUaiZlEeD6S338zj5nwLyukV9NKgdo" alt="Főoldal">
+    </a>
+    <a href="cart.html" aria-label="Kosár">
+        <img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjnr3paeYkomWqEuLtpy-LUrJtccK4i5TAvsA4fIgCuoEmtgKqU2Nx3n4trTJrgoRU3T4w6qhAG3t7TAzlh8090v8e8luNlBsNdGc0avkHqE65n2omeiEctqzaxqvYTESBxYGCDRsHupOurWGNd1EwNhrAZem6DvrOP0dW1wc-EatQ0WWRXSMyXMxVgOLk" alt="Kosár">
+    </a>
+</div>
+
+<!-- ============================== TOP CONTENT ============================== -->
+<div class="content">
+    <div class="container-shop">
+        <div class="section-header">
+            <h1>Kedvencek</h1>
+            <div class="divider-line"></div>
+        </div>
+
+        <div id="favorites-list" class="products-grid"></div>
+
+        <div id="no-favs" style="display:none;">Nincsenek kedvencek még. A termékeknél kattints a szívre!</div>
+
+        <!-- Footer text inside content -->
+        <div class="footer-text">
+            <p>© 2024 Kedvencek. Minden jog fenntartva.</p>
+            <p>
+                <a href="contracts.html">Adatvédelmi szabályzat</a> |
+                <a href="contracts.html">Felhasználási feltételek</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="container-bottom" id="contact">
+
+    <div class="animation-bottom"><div class="space"><a href="#" class="tiszta-link"><p>Kapcsolat</p></a></div></div>
+    <div class="animation-bottom"><div class="space"><a href="contracts.html" class="tiszta-link"><p>Általános szerződési feltételek</p></a></div></div>
+    <div class="animation-bottom"><div class="space"><a href="#" class="tiszta-link"><p>Vélemények</p></a></div></div>
+    <div class="animation-bottom"><div class="space"><a href="#" class="tiszta-link"><p>Gyakran ismételt kérdések</p></a></div></div>
+    <div class="animation-bottom"><div class="space"><a href="#" class="tiszta-link"><p>Süti beállítások</p></a></div></div>
+
+    <!-- Social links -->
+    <div class="animation-bottom">
+        <div class="space">
+            <a href="https://www.instagram.com/forgex._" class="tiszta-link" target="_blank">
+                <p>Instagram <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" class="igLogo" alt="Instagram Logo"></p>
+            </a>
+        </div>
+    </div>
+
+    <div class="animation-bottom">
+        <div class="space">
+            <a href="https://www.facebook.com/share/1Dwr4nD67j" class="tiszta-link" target="_blank">
+                <p>Facebook <img src="https://1000logos.net/wp-content/uploads/2017/02/Facebook-Logosu.png" class="faceLogo" alt="Facebook Logo"></p>
+            </a>
+        </div>
+    </div>
+
+    <div class="animation-bottom">
+        <div class="space" id="tiktok">
+            <a href="https://www.tiktok.com/@forgex97" class="tiszta-link" target="_blank">
+                <p>Tiktok <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgZczqhf9-ciDl5_atJ6sQPIZNCwqKYOhfm4LkbKiFyiR9_HRrW7BJ7cNb55lbxZchDVBDwt5-olPIRhMClgLL8UON6c0AQybZYHaOji70nhooShz9RpZVU1lPZFcmzoi-Sd1gB1jhlRvXCKENeX4R-Lj7WFZDfEjzsBPIX5ipnQ43R1O7AmmQjESxVaSo" class="tiktokLogo" alt="Tiktok Logo"></p>
+            </a>
+        </div>
+    </div>
+
+</footer>
+
+<!-- ============================== SCRIPTS ============================== -->
+<script type="module" src="javascript/favourite.js"></script>
+<script src="javascript/script.js"></script>
+<script type="module" src="javascript/auth-header.js"></script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
