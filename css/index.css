@@ -575,14 +575,64 @@ table{
         margin-top: -20px;
     }
     .brand-x{
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         top: 1px;
     }
     .runner-shopBtn{
         margin-top: 0px;
         font-size: 1.2rem;
     }
+    .recommendations-container {
+        /* Három oszlop helyett egyetlen oszlopba rendezzük */
+        grid-template-columns: 1fr;
+        width: 95%;
+        margin: 40px auto;
+        min-height: auto; /* Engedjük, hogy a tartalom határozza meg a magasságot */
+    }
+
+    .recommendations-menu {
+        /* A menüpontok egymás mellett/alatt legyenek, ne csak függőlegesen */
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Két oszlopos gombelrendezés mobilon */
+    }
+
+    .recommendations-menu-item {
+        padding: 15px 10px;
+        font-size: 0.8rem;
+        min-height: 60px;
+        text-align: center;
+        justify-content: center;
+        border-right: 1px solid #222;
+    }
+
+    .recommendations-image-box {
+        /* A kép kerüljön legfelülre, hogy lássák mi változik */
+        order: -1;
+        height: 250px; /* Fix magasság a képnek mobilon */
+    }
+
+    .recommendations-image-box img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .recommendations-content {
+        padding: 25px;
+        border-left: none;
+        border-top: 1px solid #222;
+        text-align: center;
+    }
+
+    .recommendations-title {
+        font-size: 1.1rem;
+    }
+
+    .recommendations-learn-more {
+        margin: 0 auto; /* Középre igazított gomb */
+    }
 }
+
 
 @media (max-width: 499px) {
 
@@ -597,8 +647,8 @@ table{
         margin-top: -20px;
     }
     .brand-x{
-        font-size: 1.4rem;
-        top: 1px;
+        font-size: 1.6rem;
+        top: 2px;
     }
     .runner-shopBtn{
         margin-top: 20px;
@@ -614,12 +664,16 @@ table{
         margin-top: -23%;
     }
     .runner-szöveg2{
-        margin-top: -35px;
+        margin-top: -25px;
     }
     .logoVid-Runner {
         height: 10%;
         width: auto;
         margin-top: -30%;
+    }
+    .brand-x{
+        font-size: 1.8rem;
+        top: 2px;
     }
 }
 @media (max-width: 1199px) and (min-width: 800px) {
