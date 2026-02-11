@@ -297,22 +297,22 @@ const recommendationsData = {
     },
     equipment: {
         title: "MI NEM RIADUNK EL A VÁLTOZÁSTÓL",
-        description: "",
+        description: "Világszínvonalú felszereltség! Edzőtermeinkben a nemzetközi fitneszpiac élvonalába tartozó, prémium márkák legújabb modelljei biztosítják a kompromisszummentes edzésélményt már szerte a világon.",
         image: "images/equipment.jpeg"
     },
     balance: {
-        title: "RECLINE PERSONAL - KÉNYELEM ÉS TELJESÍTMÉNY",
-        description: "",
+        title: "TÖKÉLETES EGYENSÚLY - KÉNYELEM ÉS REGENERÁLÓDÁS",
+        description: "A fejlődés nemcsak az edzésen, hanem a regeneráción is múlik. Személyre szabott rehabilitációs programjaink és célzott nyújtásaink segítenek visszaállítani tested természetes egyensúlyát és mozgásszabadságát.",
         image: "images/balance.jpeg"
     },
     bench: {
         title: "FORGEX BENCH - AZ ELSŐ LÁTÁSRA SZERELEM",
-        description: "",
+        description: "Vannak gépek, amik mellett nem lehet szó nélkül elmenni. A Forgex Bench az elegáns dizájnt ötvözi a nyers erővel: amint kipróbálod, érezni fogod a stabilitás és a precizitás új szintjét.",
         image: "images/benchPress.jpg"
     },
     legPress: {
-        title: "FORGEX TREADMILL - AZ ERŐ ÉS ÁLLÓKÉPESSÉG ÚJ SZINTJE",
-        description: "A világ első számú futópadjai. Ergonómikus kialakítás, miközben maximális kardió élményt nyújt a legmodernebb kijelzővel.",
+        title: "FORGEX LEG PRESS - AZ ERŐ ÚJ DIMENZIÓJA",
+        description: "Nincs többé kifogás a lábnapokon. A Forgex Leg Press-t úgy terveztük, hogy a legnagyobb terhelés mellett is egyenletes, sima mozgást biztosítson. Építs masszív izomzatot a szakma legstabilabb lábtológépével!",
         image: "images/legPress.JPG"
     }
 };
