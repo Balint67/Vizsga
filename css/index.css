@@ -711,97 +711,29 @@ table{
 }
 @media (max-width: 499px) {
     .anatomy-text p {
+        display: none;
         margin-top: -20px;
+        z-index: 10000 !important;
+        margin-left: -80px;
+        background-color: black;
+        height: 100px;
+    }
+    .video-wrapper{
+        width: 650px;
+        height: 100px;
+        z-index: 10000 !important;
+        margin-left: -100px;
+    }
+    .black-manPng{
+        width: auto !important;
+        height: 250px !important;
+        margin-left: -100px !important;
+    }
+    .text-overlay h1{
+        font-size: 1.5rem;
+        margin-left: 30px;
+    }
+    .black-container-anatomy-Btn{
+        margin-left: -40%;
     }
 }
-
-
-
-/*
-@media (max-width: 1199px){
-    .runner-szöveg {
-        z-index: 200;
-        position: absolute;
-        margin-top: -22%;
-        margin-left: 7%;
-        font-size: 20px;
-    }
-    .runner-szöveg2 {
-        margin-top: -22%;
-    }
-    .brand-x{
-        position: relative;
-        top: 2px;
-        font-size: 25px;
-    }
-    .sizeHelperSpace{
-        margin-top: 5rem;
-    }
-    .logoVid-Runner {
-        user-select: none;
-        -webkit-user-drag: none;
-        height: 80px;
-        width: auto;
-        position: absolute;
-        z-index: 200;
-        margin-top: -40%;
-        margin-left: -3%;
-    }
-    .runner-shopBtn {
-        color: var(--text-grey);
-        text-decoration: underline;
-        text-decoration-thickness: 4px;
-        text-underline-offset: 4px;
-        text-decoration-color: var(--text-grey);
-        font-size: 17px;
-        margin-top: 20px;
-        position: absolute;
-        margin-left: 20px;
-    }
-}
-
-@media (max-width: 899px){
-    .runnerImgPc{
-        margin-top: 160px;
-    }
-    .runner-szöveg {
-        z-index: 200;
-        position: absolute;
-        margin-top: -22%;
-        margin-left: 7%;
-        font-size: 20px;
-    }
-    .runner-szöveg2 {
-        margin-top: -22%;
-    }
-    .brand-x{
-        position: relative;
-        top: 2px;
-        font-size: 25px;
-    }
-    .sizeHelperSpace{
-        margin-top: 5rem;
-    }
-    .logoVid-Runner {
-        position: absolute;
-        user-select: none;
-        -webkit-user-drag: none;
-        height: 40px;
-        width: auto;
-        position: absolute;
-        z-index: 200;
-        margin-left: -3%;
-        margin-top: -120%;
-    }
-    .runner-shopBtn {
-        color: var(--text-grey);
-        text-decoration: underline;
-        text-decoration-thickness: 4px;
-        text-underline-offset: 4px;
-        text-decoration-color: var(--text-grey);
-        font-size: 17px;
-        margin-top: 20px;
-        position: absolute;
-        margin-left: 20px;
-    }
-}*/
