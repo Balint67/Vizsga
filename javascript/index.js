@@ -289,7 +289,7 @@ const recommendationsData = {
         title: "FORGEX TREADMILL - AZ ERŐ ÉS ÁLLÓKÉPESSÉG ÚJ SZINTJE",
         description: "A világ első számú futópadjai. Ergonómikus kialakítás, miközben maximális kardió élményt nyújt a legmodernebb kijelzővel.",
         image: "images/treadmill.JPEG",
-        mobileImage: "images/treadmillMobile.JPEG"
+        mobileImage: "images/treadmillMobile.jpg"
     },
     cableMachine: {
         title: "FORGEX CABLE CROSSOVER - MINDEN EGY HELYEN",
@@ -301,7 +301,7 @@ const recommendationsData = {
         title: "MI NEM RIADUNK EL A VÁLTOZÁSTÓL",
         description: "Világszínvonalú felszereltség! Edzőtermeinkben a nemzetközi fitneszpiac élvonalába tartozó, prémium márkák legújabb modelljei biztosítják a kompromisszummentes edzésélményt már szerte a világon.",
         image: "images/equipment.jpeg",
-        mobileImage: "images/equipmentMobile.jpeg"
+        mobileImage: "images/equipment.jpeg"
     },
     balance: {
         title: "TÖKÉLETES EGYENSÚLY - KÉNYELEM ÉS REGENERÁLÓDÁS",
@@ -319,7 +319,7 @@ const recommendationsData = {
         title: "FORGEX LEG PRESS - AZ ERŐ ÚJ DIMENZIÓJA",
         description: "Nincs többé kifogás a lábnapokon. A Forgex Leg Press-t úgy terveztük, hogy a legnagyobb terhelés mellett is egyenletes, sima mozgást biztosítson. Építs masszív izomzatot a szakma legstabilabb lábtológépével!",
         image: "images/legPress.JPG",
-        mobileImage: "images/legPressMobile.JPG"
+        mobileImage: "images/legPressMobile.jpg"
     }
 };
 
