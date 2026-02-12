@@ -1,93 +1,212 @@
-/* Global styles for the entire page */
+/* ============================== CART PAGE STYLES ============================== */
+
 body {
-    font-family: Arial, sans-serif; /* Set default font */
-    background-color: #ffffff;       /* Page background color */
-    color: #fff;                     /* Default text color */
-    margin: 0;                       /* Remove default margin */
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #fff;
+    margin: 0;
 }
 
-/* Main container for centering content */
 .container {
-    max-width: 600px; /* Maximum width of container */
-    margin: 40px auto; /* Center horizontally with top/bottom margin */
-    padding: 0 20px;   /* Horizontal padding */
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
-/* Header section styles */
 .header {
-    text-align: center;   /* Center text */
-    margin-bottom: 30px;  /* Space below header */
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-/* Avatar circle in the header */
 .header .avatar {
-    background: linear-gradient(135deg, #4CAF50, #007524); /* Gradient background */
+    background: linear-gradient(135deg, #4CAF50, #007524);
     width: 60px;
     height: 60px;
-    border-radius: 50%; /* Make it circular */
+    border-radius: 50%;
     display: flex;
-    justify-content: center; /* Center icon horizontally */
-    align-items: center;     /* Center icon vertically */
-    margin: 0 auto 15px;     /* Center container and add bottom margin */
-    font-size: 24px;         /* Icon size */
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px;
+    font-size: 24px;
 }
 
-/* ------------------------------ */
-/* Cart item styles */
-/* Container for each product in the cart */
+/* ============================== CART ITEMS ============================== */
+
 .cart-item {
-    display: flex;                  /* Arrange items in a row */
-    align-items: center;            /* Center vertically */
-    justify-content: space-between; /* Space between image/info/delete */
-    padding: 15px 0;                /* Vertical padding */
-    border-bottom: 1px solid #ffffff; /* Separator line */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #ffffff;
+    gap: 10px;
 }
 
-/* Product image inside the cart */
 .cart-item img {
     width: 60px;
     height: 60px;
-    object-fit: contain; /* Keep image proportions */
-    background: #0f3739; /* Background behind image */
-    border-radius: 8px;  /* Rounded corners */
+    object-fit: contain;
+    background: #0f3739;
+    border-radius: 8px;
+    flex-shrink: 0;
 }
 
-/* Container for product details */
 .item-info {
-    flex: 1;             /* Take remaining space */
-    margin: 0 15px;      /* Horizontal margin */
+    flex: 1;
+    margin: 0 10px;
+    min-width: 0;
 }
 
-/* Product name */
 .item-info h3 {
-    margin: 0;           /* Remove default margin */
-    font-size: 16px;     /* Font size for product name */
+    margin: 0;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Product description or details */
 .item-info p {
-    margin: 5px 0 0;     /* Small top margin */
-    color: #cbd5e1;      /* Lighter text color */
-    font-size: 13px;     /* Smaller font */
+    margin: 5px 0 0;
+    color: #cbd5e1;
+    font-size: 13px;
 }
 
-/* Delete button for cart items */
 .delete-btn {
-    background: none;    /* No background */
-    border: none;        /* Remove border */
-    color: #ef4444;      /* Red color for delete */
-    cursor: pointer;     /* Pointer cursor on hover */
-    font-size: 18px;     /* Icon/button size */
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 18px;
+    flex-shrink: 0;
+    padding: 5px;
 }
 
-/* ------------------------------ */
-/* Login/Register button styles */
+.delete-btn:hover {
+    transform: scale(1.1);
+}
+
+/* ============================== BUTTONS ============================== */
+
 .login-btn {
-    background: linear-gradient(135deg, #4CAF50, #007524); /* Gradient button */
-    color: white;             /* Text color */
-    padding: 12px;            /* Padding inside button */
-    border: none;             /* Remove default border */
-    border-radius: 10px;      /* Rounded corners */
-    font-weight: bold;        /* Bold text */
-    cursor: pointer;          /* Pointer cursor on hover */
+    background: linear-gradient(135deg, #4CAF50, #007524);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+/* ============================== DESKTOP (768px+) ============================== */
+@media (min-width: 768px) {
+    .container {
+        max-width: 600px;
+        padding: 0 20px;
+    }
+
+    .cart-item {
+        padding: 15px 0;
+    }
+
+    .cart-item img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .item-info h3 {
+        font-size: 18px;
+    }
+
+    .login-btn {
+        padding: 14px 24px;
+        font-size: 16px;
+    }
+}
+
+/* ============================== MOBILE (320px - 767px) ============================== */
+@media (max-width: 767px) {
+    body {
+        margin: 0;
+        padding-bottom: 80px; /* Bottom nav helyet */
+    }
+
+    .container {
+        max-width: 100%;
+        margin: 20px 0;
+        padding: 0 15px;
+    }
+
+    .header {
+        margin-bottom: 20px;
+    }
+
+    .header .avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .header h2 {
+        font-size: 1.3rem;
+        margin: 10px 0;
+    }
+
+    .header p {
+        font-size: 0.9rem;
+        color: #aaa;
+    }
+
+    /* Cart items */
+    .cart-item {
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .cart-item img {
+        width: 55px;
+        height: 55px;
+    }
+
+    .item-info {
+        margin: 0 10px;
+    }
+
+    .item-info h3 {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .item-info p {
+        font-size: 12px;
+    }
+
+    .delete-btn {
+        font-size: 16px;
+    }
+
+    /* Buttons */
+    .login-btn {
+        padding: 12px 16px;
+        font-size: 14px;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    /* Empty cart message */
+    .container p {
+        text-align: center;
+        color: #aaa;
+        font-size: 14px;
+    }
 }

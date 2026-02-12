@@ -1,141 +1,11 @@
-/* Fizetési oldal stílusa */
+/* ============================== PAYMENT PAGE STYLES ============================== */
+
 .payment-container {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 100px 20px 60px 20px;
     min-height: 80vh;
-}
-
-.payment-card {
-    background: rgba(20, 20, 20, 0.95);
-    border: 1px solid #333;
-    border-radius: 15px;
-    width: 100%;
-    max-width: 600px;
-    padding: 40px;
-    position: relative;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-}
-
-.step-indicator {
-    position: absolute;
-    top: -20px;
-    left: 20px;
-    background: #00d26a; /* A képen látható zöld */
-    color: #000;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-
-.payment-title {
-    color: #fff;
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    font-weight: 600;
-}
-
-.divider {
-    height: 1px;
-    background: rgba(255,255,255,0.1);
-    margin-bottom: 30px;
-}
-
-.section-subtitle {
-    color: #aaa;
-    margin: 20px 0 15px 0;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.input-group {
-    margin-bottom: 20px;
-    width: 100%;
-}
-
-.payment-card input,
-.payment-card textarea {
-    width: 100%;
-    background: #111;
-    border: 1px solid #222;
-    padding: 15px;
-    border-radius: 8px;
-    color: #fff;
-    font-family: inherit;
-    transition: all 0.3s ease;
-}
-
-.payment-card input:focus,
-.payment-card textarea:focus {
-    outline: none;
-    border-color: #00d26a;
-    background: #181818;
-}
-
-.row {
-    display: flex;
-    gap: 15px;
-}
-
-.submit-btn {
-    width: 100%;
-    background: #00d26a;
-    color: #000;
-    border: none;
-    padding: 18px;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: transform 0.2s, background 0.3s;
-    margin-top: 10px;
-}
-
-.submit-btn:hover {
-    background: #00ff81;
-    transform: translateY(-2px);
-}
-
-.submit-btn:active {
-    transform: translateY(0);
-}
-
-/* Hibaüzenetek */
-.error-message {
-    color: #ff4d4d;
-    font-size: 0.8rem;
-    display: none;
-    margin-top: 5px;
-}
-
-.input-error {
-    border-color: #ff4d4d !important;
-}
-
-.success-box {
-    background: rgba(0, 210, 106, 0.1);
-    border: 1px solid #00d26a;
-    color: #00d26a;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    margin-top: 20px;
-    font-weight: bold;
-}
-
-
-.payment-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 120px 20px 60px 20px;
 }
 
 .payment-card {
@@ -163,8 +33,18 @@
     font-weight: 800;
 }
 
-.payment-title { color: #fff; font-size: 1.6rem; margin-bottom: 5px; }
-.divider { height: 1px; background: #222; margin-bottom: 25px; }
+.payment-title {
+    color: #fff;
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.divider {
+    height: 1px;
+    background: #222;
+    margin-bottom: 25px;
+}
 
 .section-subtitle {
     color: #666;
@@ -174,9 +54,14 @@
     letter-spacing: 1px;
 }
 
-.input-group { margin-bottom: 15px; width: 100%; position: relative; }
+.input-group {
+    margin-bottom: 15px;
+    width: 100%;
+    position: relative;
+}
 
-.payment-card input, .payment-card textarea {
+.payment-card input,
+.payment-card textarea {
     width: 100%;
     background: #141414;
     border: 1px solid #222;
@@ -184,14 +69,31 @@
     border-radius: 6px;
     color: #fff;
     font-family: 'Segoe UI', sans-serif;
-    box-sizing: border-box; /* Fontos a szélesség miatt! */
+    box-sizing: border-box;
+    font-size: 16px; /* Prevencija automatskog zoom-a na iOS */
 }
 
-.payment-card input:focus { border-color: #00d26a; outline: none; }
+.payment-card input:focus,
+.payment-card textarea:focus {
+    border-color: #00d26a;
+    outline: none;
+}
 
-.row { display: flex; gap: 12px; }
-.flex-2 { flex: 2; }
-.flex-1 { flex: 1; }
+.row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.flex-2 {
+    flex: 2;
+    min-width: 150px;
+}
+
+.flex-1 {
+    flex: 1;
+    min-width: 100px;
+}
 
 .submit-btn {
     width: 100%;
@@ -203,17 +105,30 @@
     font-weight: bold;
     cursor: pointer;
     margin-top: 20px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
 }
 
-/* Hibaüzenet javítása */
+.submit-btn:hover {
+    background: #00ff81;
+    transform: translateY(-2px);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Error messages */
 .error-message {
     color: #ff4444;
     font-size: 12px;
     margin-top: 4px;
-    display: none; /* JS kapcsolja be */
+    display: none;
 }
 
-.input-error { border-color: #ff4444 !important; }
+.input-error {
+    border-color: #ff4444 !important;
+}
 
 .success-box {
     text-align: center;
@@ -222,6 +137,124 @@
     border: 1px solid #00d26a;
     border-radius: 8px;
 }
-.success-box i { font-size: 3rem; color: #00d26a; margin-bottom: 15px; }
-.success-box p { color: #fff; font-size: 1.4rem; margin: 0; }
-.success-box span { color: #888; }
+
+.success-box i {
+    font-size: 3rem;
+    color: #00d26a;
+    margin-bottom: 15px;
+}
+
+.success-box p {
+    color: #fff;
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.success-box span {
+    color: #888;
+}
+
+/* ============================== TABLET & DESKTOP (768px+) ============================== */
+@media (min-width: 768px) {
+    .payment-card {
+        padding: 40px;
+    }
+
+    .payment-title {
+        font-size: 1.8rem;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+        margin: 20px 0 15px 0;
+    }
+
+    .input-group {
+        margin-bottom: 20px;
+    }
+
+    .row {
+        flex-wrap: nowrap;
+    }
+}
+
+/* ============================== MOBILE (320px - 767px) ============================== */
+@media (max-width: 767px) {
+    .payment-container {
+        padding: 80px 15px 40px 15px;
+        min-height: 100vh;
+    }
+
+    .payment-card {
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 100%;
+    }
+
+    .step-indicator {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+        top: -18px;
+        left: 15px;
+    }
+
+    .payment-title {
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+    }
+
+    .divider {
+        margin-bottom: 15px;
+    }
+
+    .section-subtitle {
+        font-size: 0.8rem;
+        margin: 15px 0 10px 0;
+        font-weight: bold;
+    }
+
+    .input-group {
+        margin-bottom: 12px;
+    }
+
+    .payment-card input,
+    .payment-card textarea {
+        padding: 12px;
+        font-size: 16px; /* iOS automatikus zoom megelőzése */
+    }
+
+    .row {
+        gap: 8px;
+        flex-direction: column;
+    }
+
+    .flex-2,
+    .flex-1 {
+        flex: 1;
+        min-width: 100%;
+    }
+
+    .submit-btn {
+        padding: 16px;
+        font-size: 0.95rem;
+        margin-top: 15px;
+    }
+
+    .error-message {
+        font-size: 11px;
+    }
+
+    .success-box {
+        padding: 20px;
+    }
+
+    .success-box i {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+
+    .success-box p {
+        font-size: 1.1rem;
+    }
+}

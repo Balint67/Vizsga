@@ -221,3 +221,89 @@ label {
     color: #00ca65;
     transform: translateX(-3px);
 }
+
+/* ============================== MOBILE (320px - 767px) ============================== */
+@media (max-width: 767px) {
+    body {
+        padding: 20px;
+        min-height: 100vh;
+    }
+
+    .container {
+        width: 95%;
+        max-width: 100%;
+        padding: 25px 20px;
+        border-radius: 15px;
+    }
+
+    .header .avatar {
+        width: 55px;
+        height: 55px;
+        font-size: 24px;
+    }
+
+    .header h2 {
+        font-size: 1.3rem;
+        margin: 10px 0;
+    }
+
+    .header p {
+        font-size: 0.85rem;
+    }
+
+    label {
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+
+    .input-box {
+        padding: 10px;
+        margin-bottom: 12px;
+    }
+
+    .input-box input {
+        font-size: 14px;
+    }
+
+    .input-box i {
+        font-size: 16px;
+    }
+
+    .login-btn {
+        padding: 12px 20px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .divider-logIn, .divider-signUp {
+        margin: 20px 0;
+        font-size: 13px;
+    }
+
+    .social-buttons button {
+        padding: 10px;
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
+
+    .signup-text {
+        font-size: 13px;
+        margin-top: 15px;
+    }
+
+    .footer-text {
+        font-size: 11px;
+        padding: 0 10px;
+    }
+
+    .fa-arrow-left,
+    .fa-house {
+        font-size: 1.3rem;
+        top: 15px;
+        left: 15px;
+    }
+
+    .form-box {
+        padding: 0;
+    }
+}

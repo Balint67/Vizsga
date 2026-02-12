@@ -465,3 +465,166 @@ h2 {
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
+
+/* ============================== MOBILE (320px - 767px) ============================== */
+@media (max-width: 767px) {
+    /* Container */
+    .container-shop {
+        max-width: 100%;
+        margin: 20px 0;
+        padding: 0 15px;
+    }
+
+    /* Header */
+    .header-shop .avatar-shop {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .header-shop h2 {
+        font-size: 1.3rem;
+        margin: 10px 0;
+    }
+
+    .header-shop p {
+        font-size: 0.85rem;
+    }
+
+    /* Product Grid */
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    /* Product Card */
+    .product-card {
+        padding: 15px;
+        border-radius: 12px;
+    }
+
+    .product-image {
+        height: 200px;
+        margin-bottom: 10px;
+    }
+
+    .product-card h3 {
+        font-size: 16px;
+        margin: 8px 0;
+    }
+
+    .product-description {
+        font-size: 12px;
+        min-height: 35px;
+    }
+
+    .product-price {
+        font-size: 18px;
+        margin: 10px 0;
+    }
+
+    /* Buttons */
+    .login-btn {
+        width: 100%;
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+
+    /* Modal */
+    .modal-content {
+        width: 95%;
+        max-width: 100%;
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .modal-images {
+        max-height: 300px;
+        margin-bottom: 15px;
+    }
+
+    #modal-img {
+        max-height: 280px;
+    }
+
+    .prev-img, .next-img {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+
+    /* Size Selector */
+    .size-selector {
+        gap: 8px;
+        margin: 15px 0;
+    }
+
+    .size-option {
+        width: 70px;
+        height: 40px;
+        font-size: 12px;
+    }
+
+    /* Close Button */
+    .close-btn {
+        font-size: 28px;
+        top: 10px;
+        right: 10px;
+    }
+
+    /* Modal Actions */
+    .modal-actions {
+        flex-direction: column;
+        gap: 10px;
+        margin: 15px 0;
+    }
+
+    .modal-actions .login-btn {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .favorite-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+
+    /* Back Button */
+    .vissza-gomb {
+        top: 15px;
+        left: 15px;
+        font-size: 1.2rem;
+    }
+
+    /* Side Filter */
+    .side-filter-container {
+        display: none !important;
+    }
+}
+
+/* ============================== TABLET (768px - 1024px) ============================== */
+@media (max-width: 1024px) and (min-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .container-shop {
+        padding: 0 15px;
+    }
+
+    .product-card {
+        padding: 20px;
+    }
+
+    .product-image {
+        height: 220px;
+    }
+
+    .modal-content {
+        width: 90%;
+        max-width: 450px;
+    }
+}

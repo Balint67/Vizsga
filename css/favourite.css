@@ -1,4 +1,4 @@
-/* ============================== FAVORITE PAGE SPECIFIC STYLES ============================== -->
+/* ============================== FAVORITE PAGE SPECIFIC STYLES ============================== */
 
 /* Action buttons container */
 .fav-actions {
@@ -93,4 +93,45 @@
 
 .favorite-btn.active i {
     color: #ef4444;
+}
+
+/* ============================== MOBILE (320px - 767px) ============================== */
+@media (max-width: 767px) {
+    .fav-actions {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .fav-actions .login-btn {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    .fav-remove {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        padding: 6px;
+    }
+
+    #no-favs {
+        font-size: 14px;
+        margin-top: 30px;
+        padding: 20px;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .favorite-btn {
+        width: 100%;
+        padding: 10px 10px;
+    }
+
+    .favorite-btn i {
+        font-size: 16px;
+    }
 }
