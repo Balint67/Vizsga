@@ -142,11 +142,6 @@ body {
         padding-bottom: 80px; /* Bottom nav helyet */
     }
 
-    .container {
-        max-width: 100%;
-        margin: 20px 0;
-        padding: 0 15px;
-    }
 
     .header {
         margin-bottom: 20px;
