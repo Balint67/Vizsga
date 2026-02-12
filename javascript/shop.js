@@ -63,10 +63,11 @@ const PRODUCT_DATA = {
         category: "clothing"
     },
     "Sporttáska": {
-        images: ["images/bag-black2.jpg"],
+        // KÜLÖN idézőjelbe kell tenni a két fájlt:
+        images: ["images/bag-black2.jpg", "images/bag-green.jpg"],
         description: "ForgeX gym bag – multiple pockets, durable material.",
         sizes: ["25L", "45L"],
-        color: ["Fekete"],
+        color: ["Fekete", "Zöld"], // Érdemes a színt is bővíteni, ha van zöld táska
         prices: [17990, 27990],
         category: "clothing"
     },
