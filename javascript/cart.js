@@ -148,11 +148,4 @@ function updateCartCount() {
 // ===============================
 const checkoutButton = document.getElementById("checkout-btn");
 
-if (checkoutButton) {
-    checkoutButton.addEventListener("click", async () => {
-        await forgeXModal(
-            "Pénztár",
-            "A fizetési rendszer hamarosan elérhető!"
-        );
-    });
-}
+
