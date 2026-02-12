@@ -438,7 +438,7 @@ document.addEventListener("DOMContentLoaded", () => {
             header.className = 'side-filter-header';
             header.innerHTML = `
                 <div class="side-filter-title"><i class="fa-solid fa-sliders"></i><span>Szűrők</span></div>
-                <button class="side-filter-toggle" aria-expanded="true"><i class="fa-solid fa-chevron-up"></i></button>
+                <button class="side-filter-toggle" aria-expanded="true"><i class="fa-solid fa-chevron-down"></i></button>
             `;
             side.insertBefore(header, side.firstChild);
 
@@ -482,9 +482,6 @@ document.addEventListener("DOMContentLoaded", () => {
             side.style.margin = '0 0 12px 0';
             side.style.width = '100%';
             side.style.zIndex = '1000';
-            // ensure it is in view for the user
-            try { side.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch(e){}
-            // ensure toggle exists and default state (collapsed by default on mobile)
             ensureFilterToggle();
             side.classList.add('collapsed');
             side.classList.remove('expanded');
