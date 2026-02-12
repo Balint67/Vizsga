@@ -1,3 +1,66 @@
+// Kosár termékeinek betöltése és megjelenítése
+function loadCartItems() {
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    const orderItemsDisplay = document.getElementById("order-items-display");
+    const orderTotalElement = document.getElementById("order-total");
+
+    if (!orderItemsDisplay) return;
+
+    // Ha üres a kosár
+    if (cartItems.length === 0) {
+        orderItemsDisplay.innerHTML = '<p style="color: #aaa;">Nincs tétel a kosárban</p>';
+        if (orderTotalElement) orderTotalElement.innerText = "0 Ft";
+        return;
+    }
+
+    // Termékek megjelenítése
+    let totalPrice = 0;
+    orderItemsDisplay.innerHTML = '';
+
+    cartItems.forEach(item => {
+        totalPrice += Number(item.price);
+
+        const itemDiv = document.createElement("div");
+        itemDiv.style.cssText = `
+            background: #141414;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border-left: 3px solid #00d26a;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        `;
+
+        itemDiv.innerHTML = `
+            <img src="${item.image}" alt="${item.title}" style="width: 50px; height: 50px; border-radius: 4px; object-fit: cover;">
+            <div style="flex: 1;">
+                <p style="color: #fff; margin: 0 0 5px 0; font-weight: bold;">${item.title}</p>
+                <p style="color: #aaa; margin: 0; font-size: 0.9rem;">Méret: <span style="color: #00d26a;">${item.size}</span></p>
+            </div>
+            <p style="color: #00d26a; font-weight: bold; white-space: nowrap;">${Number(item.price).toLocaleString('hu-HU')} Ft</p>
+        `;
+
+        orderItemsDisplay.appendChild(itemDiv);
+    });
+
+    // Végösszeg megjelenítése
+    if (orderTotalElement) {
+        orderTotalElement.innerText = `${totalPrice.toLocaleString('hu-HU')} Ft`;
+    }
+}
+
+// Kosár törlése sikeres fizetés után
+function clearCart() {
+    localStorage.removeItem("cart");
+    // Header kosár számláló frissítése
+    const cartCount = document.getElementById("cart-count");
+    if (cartCount) cartCount.innerText = "0";
+}
+
+// Oldal betöltésekor a kosár termékeinek megjelenítése
+document.addEventListener("DOMContentLoaded", loadCartItems);
+
 document.getElementById('payment-form').addEventListener('submit', function(e) {
     e.preventDefault();
 
@@ -39,6 +102,9 @@ document.getElementById('payment-form').addEventListener('submit', function(e) {
     check(/^\d{3}$/.test(fields.cvv.value), fields.cvv, 'error-cvv');
 
     if (isValid) {
+        // Kosár törlése
+        clearCart();
+
         // Form eltüntetése, siker üzenet mutatása
         document.getElementById('payment-form').style.display = 'none';
         const successBox = document.getElementById('success-message');

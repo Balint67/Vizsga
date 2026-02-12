@@ -120,6 +120,17 @@
 
         <form id="payment-form" novalidate>
             <div class="section-container">
+                <h3 class="section-subtitle">Kosár tartalma</h3>
+                <div id="order-items-display" style="margin-bottom: 20px;">
+                    <!-- Termékek kerülnek ide JS-ből -->
+                </div>
+                <div style="background: rgba(0, 210, 106, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: right;">
+                    <p style="color: #aaa; margin: 0;">Végösszesen:</p>
+                    <p style="color: #00d26a; font-size: 1.5rem; font-weight: bold; margin: 5px 0 0 0;" id="order-total">0 Ft</p>
+                </div>
+            </div>
+
+            <div class="section-container">
                 <h3 class="section-subtitle">Szállítási adatok</h3>
                 <div class="input-group">
                     <input type="text" id="full-name" placeholder="Teljes név" required>
