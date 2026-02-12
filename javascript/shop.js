@@ -422,4 +422,95 @@ document.addEventListener("DOMContentLoaded", () => {
     window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
 
     updateCartCount();
+
+    // --- Ensure side filter is visible above products on mobile ---
+    const _sideElement = document.querySelector('.side-filter-container');
+    const _originalSideParent = _sideElement ? _sideElement.parentNode : null;
+    const _originalSideNext = _sideElement ? _sideElement.nextSibling : null;
+
+    // Create header toggle for collapsible behavior
+    function ensureFilterToggle() {
+        const side = _sideElement;
+        if (!side) return;
+        let header = side.querySelector('.side-filter-header');
+        if (!header) {
+            header = document.createElement('div');
+            header.className = 'side-filter-header';
+            header.innerHTML = `
+                <div class="side-filter-title"><i class="fa-solid fa-sliders"></i><span>Szűrők</span></div>
+                <button class="side-filter-toggle" aria-expanded="true"><i class="fa-solid fa-chevron-up"></i></button>
+            `;
+            side.insertBefore(header, side.firstChild);
+
+            const toggleBtn = header.querySelector('.side-filter-toggle');
+            toggleBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isCollapsed = side.classList.contains('collapsed');
+                if (isCollapsed) {
+                    // expand
+                    side.classList.remove('collapsed');
+                    side.classList.add('expanded');
+                    toggleBtn.setAttribute('aria-expanded', 'true');
+                    const icon = toggleBtn.querySelector('i');
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                    try { side.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (err) {}
+                } else {
+                    // collapse
+                    side.classList.add('collapsed');
+                    side.classList.remove('expanded');
+                    toggleBtn.setAttribute('aria-expanded', 'false');
+                    const icon = toggleBtn.querySelector('i');
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        }
+    }
+
+    function moveSideFilterToContent() {
+        const side = _sideElement;
+        const content = document.querySelector('.content');
+        if (!side || !content) return;
+        const firstContainer = content.querySelector('.container-shop');
+
+        if (window.innerWidth <= 767) {
+            // insert the filter at the top of the content so it appears above products
+            if (firstContainer && side.parentNode !== content) content.insertBefore(side, firstContainer);
+            side.style.display = 'block';
+            side.style.position = 'relative';
+            side.style.margin = '0 0 12px 0';
+            side.style.width = '100%';
+            side.style.zIndex = '1000';
+            // ensure it is in view for the user
+            try { side.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch(e){}
+            // ensure toggle exists and default state (collapsed by default on mobile)
+            ensureFilterToggle();
+            side.classList.add('collapsed');
+            side.classList.remove('expanded');
+            const tbtn = side.querySelector('.side-filter-toggle');
+            if (tbtn) tbtn.setAttribute('aria-expanded', 'false');
+        } else if (_originalSideParent) {
+            // move back to original place if we have the original parent stored
+            try {
+                _originalSideParent.insertBefore(side, _originalSideNext);
+            } catch (e) {
+                // fallback: put before top-bar
+                const topBar = document.querySelector('.top-bar');
+                if (topBar && topBar.parentNode) topBar.parentNode.insertBefore(side, topBar);
+            }
+            side.style.position = '';
+            side.style.margin = '';
+            side.style.width = '';
+            side.style.zIndex = '';
+            // remove collapsed state and toggle if present
+            if (side.classList.contains('collapsed')) side.classList.remove('collapsed');
+            const hdr = side.querySelector('.side-filter-toggle');
+            if (hdr) hdr.setAttribute('aria-expanded', 'true');
+        }
+    }
+
+    // run on load and on resize
+    moveSideFilterToContent();
+    window.addEventListener('resize', moveSideFilterToContent);
 });
