@@ -105,7 +105,7 @@ height: 600px;
 
 
 
-.trainersContainer {
+.gymContainer {
     width: 100%;
     max-width: 1200px;
     margin: 50px auto;
@@ -124,7 +124,7 @@ height: 600px;
 
 
 
-.trainers-grid {
+.gym-grid {
     display: grid;
     /* ha kicsi a hely, csökken */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -132,7 +132,7 @@ height: 600px;
 }
 
 
-.trainer-card {
+.gym-card {
     position: relative;
     border-radius: 15px;
     overflow: hidden;
@@ -143,7 +143,7 @@ height: 600px;
 }
 
 
-.trainer-card:hover {
+.gym-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
@@ -163,7 +163,7 @@ height: 600px;
 }
 
 
-.trainer-card:hover .card-image img {
+.gym-card:hover .card-image img {
     transform: scale(1.1);
 }
 
@@ -196,7 +196,7 @@ height: 600px;
 
 
 
-.single-trainer-page .trainer-split-layout {
+.single-gym-page .gym-split-layout {
     display: flex;
     gap: 40px;
     align-items: stretch;
@@ -204,13 +204,13 @@ height: 600px;
     text-align: left;
 }
 
-.single-trainer-page .trainer-image-side {
+.single-gym-page .gym-image-side {
     flex: 1;
     display: flex;
     justify-content: flex-end;
 }
 
-.single-trainer-page .trainer-card-v2 {
+.single-gym-page .gym-card-v2 {
     position: relative;
     width: 100%;
     max-width: 450px;
@@ -220,13 +220,13 @@ height: 600px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
-.single-trainer-page .trainer-card-v2 img {
+.single-gym-page .gym-card-v2 img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.single-trainer-page .image-overlay-text {
+.single-gym-page .image-overlay-text {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -236,13 +236,13 @@ height: 600px;
     color: white;
 }
 
-.single-trainer-page .trainer-info-side {
+.single-gym-page .gym-info-side {
     flex: 1.2;
     display: flex;
     align-items: flex-start; /* a tetejére igazodik */
 }
 
-.single-trainer-page .glass-content {
+.single-gym-page .glass-content {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -253,45 +253,45 @@ height: 600px;
     max-width: 650px;
 }
 
-.single-trainer-page .gold-quote {
+.single-gym-page .gold-quote {
     color: #00ca65;
     font-size: 2.5rem;
     margin-bottom: 20px;
     display: block;
 }
 
-.single-trainer-page .moto {
+.single-gym-page .moto {
     font-size: 1.8rem;
     line-height: 1.3;
     margin-bottom: 20px;
     font-weight: 600;
 }
 
-.single-trainer-page .description {
+.single-gym-page .description {
     font-size: 1rem;
     line-height: 1.7;
     color: #ddd;
     margin-bottom: 15px;
 }
 
-.single-trainer-page .benefit-list {
+.single-gym-page .benefit-list {
     list-style: none;
     padding: 0;
     margin-bottom: 30px;
 }
 
-.single-trainer-page .benefit-list li {
+.single-gym-page .benefit-list li {
     margin-bottom: 10px;
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.single-trainer-page .benefit-list i {
+.single-gym-page .benefit-list i {
     color: #00ca65;
 }
 
-.single-trainer-page .cta-button {
+.single-gym-page .cta-button {
     display: inline-block;
     padding: 15px 40px;
     background: #00ca65;
@@ -303,7 +303,7 @@ height: 600px;
     text-transform: uppercase;
 }
 
-.single-trainer-page .cta-button:hover {
+.single-gym-page .cta-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(0, 202, 101, 0.3);
     background: #fff;
@@ -311,17 +311,17 @@ height: 600px;
 
 /* Mobil */
 @media (max-width: 900px) {
-    .single-trainer-page .trainer-split-layout {
+    .single-gym-page .gym-split-layout {
         flex-direction: column;
         align-items: center;
     }
-    .single-trainer-page .trainer-info-side {
+    .single-gym-page .gym-info-side {
         width: 100%;
     }
 }
 
 /* Konténer a képnek és az alatta lévő infónak */
-.single-trainer-page .trainer-profile-box {
+.single-gym-page .gym-profile-box {
     width: 100%;
     max-width: 450px;
     background: rgba(255, 255, 255, 0.03);
@@ -331,24 +331,24 @@ height: 600px;
 }
 
 
-.single-trainer-page .trainer-card-v2 {
+.single-gym-page .gym-card-v2 {
     height: 500px;
     border-radius: 0;
     box-shadow: none;
 }
 
 /* Információs rész a kép alatt */
-.single-trainer-page .trainer-under-info {
+.single-gym-page .gym-under-info {
     padding: 25px;
     color: white;
 }
 
-.single-trainer-page .trainer-under-info h3 {
+.single-gym-page .gym-under-info h3 {
     font-size: 1.8rem;
     margin-bottom: 5px;
 }
 
-.single-trainer-page .specialization {
+.single-gym-page .specialization {
     color: #00ca65;
     font-size: 0.9rem;
     text-transform: uppercase;
@@ -358,7 +358,7 @@ height: 600px;
 }
 
 /* Elérhetőségek */
-.single-trainer-page .trainer-contact-list {
+.single-gym-page .gym-contact-list {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -366,7 +366,7 @@ height: 600px;
     padding-top: 20px;
 }
 
-.single-trainer-page .contact-row {
+.single-gym-page .contact-row {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -374,20 +374,65 @@ height: 600px;
     color: #ccc;
 }
 
-.single-trainer-page .contact-row i {
+.single-gym-page .contact-row i {
     color: #00ca65;
     width: 20px;
     text-align: center;
 }
 
-.single-trainer-page .contact-row a {
+.single-gym-page .contact-row a {
     color: #ccc;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-.single-trainer-page .contact-row a:hover {
+.single-gym-page .contact-row a:hover {
     color: #00ca65;
 }
 
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    object-fit: cover;
+}
+
+.slide.active {
+    opacity: 1;
+    position: relative; /* Hogy a konténer tartsa a magasságot */
+}
+
+/* Nyilak stílusa */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    z-index: 10;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.prev:hover, .next:hover {
+    background: #00ca65;
+    color: black;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
 

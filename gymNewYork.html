@@ -2,10 +2,11 @@
 <html lang="hu">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="UTF-8">
-  <title>New York GYM | ForgeX</title>
+    <meta charset="UTF-8">
+    <title>New York GYM | ForgeX</title>
     <link rel="stylesheet" href="css/gym.css">
-  <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 <div class="fixed-bg"></div>
@@ -108,24 +109,33 @@
 <!-- ============================== TOP CONTENT ============================== -->
 
 <div class="content">
-    <div class="trainersContainer single-trainer-page">
+    <div class="gymContainer single-gym-page">
         <div class="section-header">
             <h1>New York</h1>
             <div class="divider-line"></div>
         </div>
 
-        <div class="trainer-split-layout">
-            <div class="trainer-image-side">
-                <div class="trainer-profile-box">
-                    <div class="trainer-card-v2">
-                        <img src="images/gymBudapest/1.JPEG" alt="gymImg">
+        <div class="gym-split-layout">
+            <div class="gym-image-side">
+                <div class="gym-profile-box">
+                    <div class="gym-card-v2">
+                        <div class="slider-container">
+                            <img src="images/gymBudapest/1.JPEG" class="slide active" alt="gymImg 1">
+                            <img src="images/gymBudapest/2.JPEG" class="slide" alt="gymImg 2">
+                            <img src="images/gymBudapest/3.JPEG" class="slide" alt="gymImg 3">
+                            <img src="images/gymBudapest/4.JPEG" class="slide" alt="gymImg 4">
+                            <img src="images/gymBudapest/5.JPEG" class="slide" alt="gymImg 5">
+
+                            <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                            <button class="next" onclick="changeSlide(1)">&#10095;</button>
+                        </div>
                     </div>
 
-                    <div class="trainer-under-info">
+                    <div class="gym-under-info">
                         <h3>New York GYM</h3>
                         <p class="specialization">Kardió & Dinamikus Edzés</p>
 
-                        <div class="trainer-contact-list">
+                        <div class="gym-contact-list">
                             <div class="contact-row">
                                 <i class="fa-solid fa-phone"></i>
                                 <a href="tel:+36304722277">+36 30 472 2277</a>
@@ -145,26 +155,24 @@
                 </div>
             </div>
 
-            <div class="trainer-info-side">
+            <div class="gym-info-side">
                 <div class="glass-content">
                     <i class="fa-solid fa-quote-left gold-quote"></i>
                     <h3 class="moto">Találd meg a ritmusod, és a tested hálás lesz érte minden nap.</h3>
 
                     <div class="bio-section">
                         <p class="description">
-                            Szia, Hannah vagyok! Az én világom a pörgésről, az energiáról és a kitartásról szól. Hiszek abban, hogy a fitnesznek élvezetesnek kell lennie, ezért edzéseimen a jó hangulat és az intenzitás kéz a kézben jár.
-                        </p>
+                            Üdvözlünk a New York GYM világában! Nálunk minden a pörgésről, a lüktető energiáról és a hatékonyság kimaxolásáról szól. Hiszünk abban, hogy a fitnesz nem csupán munka, hanem élmény, ezért nálunk a modern nagyvárosi hangulat és a magas intenzitású edzések kéz a kézben járnak.                        </p>
                         <p class="description">
-                            Fő fókuszom az állóképesség növelése és a hatékony zsírégetés. Legyen szó futásról, HIIT edzésről vagy saját testsúlyos gyakorlatokról, garantálom, hogy minden óra után feltöltődve és elégedetten távozol.
-                        </p>
+                            Fő fókuszunk az állóképesség maximalizálása és a látványos alakformálás. Legyen szó modern géppalettánk használatáról vagy csoportos óráinkról, garantáljuk, hogy nálunk minden perc a fejlődésedet szolgálja, és minden edzés után feltöltődve, magabiztosan lépsz ki az ajtónkon.                        </p>
                     </div>
 
-                    <h4 style="color: #00ca65; margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem;">Miben várlak:</h4>
+                    <h4 style="color: #00ca65; margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem;">Mivel várunk:</h4>
                     <ul class="benefit-list">
-                        <li><i class="fa-solid fa-circle-check"></i> HIIT (Magas intenzitású intervallum edzés)</li>
-                        <li><i class="fa-solid fa-circle-check"></i> Szálkásítás és alakformálás</li>
-                        <li><i class="fa-solid fa-circle-check"></i> Állóképesség fejlesztés</li>
-                        <li><i class="fa-solid fa-circle-check"></i> Dinamikus nyújtás és core-tréning</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Kardió és HIIT (Magas intenzitású intervallum edzés): Maximális kalóriaégetésért.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Dinamikus alakformálás: Modern eszközpark a szálkás és tónusos izomzatért.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Állóképesség fejlesztés: Funkcionális gyakorlatok a mindennapi energikusságért.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Core-tréning és mobilitás: Stabil alapok és dinamikus mozgáskultúra.</li>
                     </ul>
 
                     <a href="booking.html?edzo=hannah" class="cta-button">Iratkozz fel az órámra</a>
@@ -205,7 +213,7 @@
 
 
 
-<script src="javascript/index.js"></script>
+<script src="javascript/gym.js"></script>
 <script type="module" src="javascript/auth-header.js"></script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
