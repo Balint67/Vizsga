@@ -154,27 +154,27 @@
                 <h3 class="section-subtitle">Fizetési adatok</h3>
                 <div class="input-group">
                     <input type="text" id="card-number" placeholder="Kártyaszám (16 számjegy)" maxlength="16" required>
-                    <span class="error-message" id="error-card">Érvénytelen kártyaszám!</span>
+                    <span class="error-message" id="error-card">16 számjegyű kártyaszám szükséges!</span>
                 </div>
 
                 <div class="row">
                     <div class="input-group">
                         <input type="text" id="expiry" placeholder="MM/YY" maxlength="5" required>
-                        <span class="error-message" id="error-expiry">Lejárat!</span>
+                        <span class="error-message" id="error-expiry">MM/YY formátum szükséges!</span>
                     </div>
                     <div class="input-group">
                         <input type="text" id="cvv" placeholder="CVV" maxlength="3" required>
-                        <span class="error-message" id="error-cvv">CVV!</span>
+                        <span class="error-message" id="error-cvv">3 jegyű CVV szükséges!</span>
                     </div>
                 </div>
             </div>
 
-            <button type="submit" id="submit-btn" class="submit-btn">FOGLALÁS MEGERŐSÍTÉSE</button>
+            <button type="submit" id="submit-btn" class="submit-btn">FIZETÉS</button>
         </form>
 
         <div id="success-message" class="success-box" style="display: none;">
             <i class="fas fa-check-circle"></i>
-            <p>Sikeres fizetés és rendelés!</p>
+            <p>Rendelését rögzítettük</p>
             <span>A visszaigazolást elküldtük az email címedre.</span>
         </div>
     </div>
@@ -212,6 +212,6 @@
 </footer>
 </div>
 <script type="module" src="javascript/auth-header.js"></script>
-<script src="pay.js"></script>
+<script src="javascript/pay.js"></script>
 <script src="javascript/script.js"></script>
 </body>
