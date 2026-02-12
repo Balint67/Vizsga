@@ -29,8 +29,8 @@ html {
 
     position: relative;
     flex: 1;
-    min-width: 300px; /
-height: 600px;
+    min-width: 300px;
+    height: 600px;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
@@ -281,14 +281,22 @@ height: 600px;
 }
 
 .single-gym-page .benefit-list li {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     display: flex;
-    align-items: center;
-    gap: 10px;
+    align-items: flex-start;
+    gap: 15px;
+    line-height: 1.6; /* Kicsit lazább sormagasság a jobb olvashatóságért */
 }
 
+
+
+/* Ha a leírás több soros, ez biztosítja, hogy ne csússzon be a cím alá */
+.single-gym-page .benefit-list li span {
+    display: block;
+}
 .single-gym-page .benefit-list i {
     color: #00ca65;
+    margin-top: 4px;
 }
 
 .single-gym-page .cta-button {
@@ -309,16 +317,6 @@ height: 600px;
     background: #fff;
 }
 
-/* Mobil */
-@media (max-width: 900px) {
-    .single-gym-page .gym-split-layout {
-        flex-direction: column;
-        align-items: center;
-    }
-    .single-gym-page .gym-info-side {
-        width: 100%;
-    }
-}
 
 /* Konténer a képnek és az alatta lévő infónak */
 .single-gym-page .gym-profile-box {
@@ -435,4 +433,27 @@ height: 600px;
 
 .prev { left: 10px; }
 .next { right: 10px; }
+.alText{
+    font-style: italic !important;
+    font-size: 0.9rem !important;
+}
 
+/* Mobil */
+@media (max-width: 900px) {
+    .single-gym-page .gym-split-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+    .single-gym-page .gym-info-side {
+        width: 100%;
+    }
+}
+@media (min-width: 800px) {
+    /* Ez a kulcs: elég szélesnek kell lennie a leghosszabb címhez is */
+    .single-gym-page .benefit-list li strong {
+        min-width: 230px; /* Megemelve, hogy a "Testkontroll..." is kényelmesen elférjen */
+        display: inline-block;
+        flex-shrink: 0;
+        color: #fff;
+    }
+}
