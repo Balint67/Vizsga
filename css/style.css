@@ -418,7 +418,9 @@ ul {
     position: relative;
     right: -70%;
 }
-
+#mobileFavorites{
+    display: none;
+}
 
 /* --- Desktop view --- */
 @media (min-width: 800px) {
@@ -453,6 +455,9 @@ ul {
     }
 }
 @media (max-width: 1549px) {
+    #mobileFavorites{
+        display: block;
+    }
     .logoVid-Mobile {
         display: block;
         width: 120px; /* Állítsd be a kívánt méretre */
