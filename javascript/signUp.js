@@ -10,6 +10,19 @@ import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-
 // Reference to the registration form
 const registrationForm = document.getElementById('regForm');
 
+// Password toggle elements (make eye icon work on registration page)
+const togglePasswordButton = document.getElementById('togglePassword');
+const passwordInput = document.getElementById('password');
+
+if (togglePasswordButton && passwordInput) {
+    togglePasswordButton.addEventListener('click', () => {
+        const isHidden = passwordInput.getAttribute('type') === 'password';
+        passwordInput.setAttribute('type', isHidden ? 'text' : 'password');
+        togglePasswordButton.classList.toggle('fa-eye');
+        togglePasswordButton.classList.toggle('fa-eye-slash');
+    });
+}
+
 if (registrationForm) {
     registrationForm.addEventListener('submit', async (event) => {
         event.preventDefault();

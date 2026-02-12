@@ -214,9 +214,28 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!currentProductData) return;
         const sizeIndex = Array.from(sizeContainer.querySelectorAll(".size-option")).findIndex(b => b.classList.contains("active"));
         const colorIndex = Array.from(colorContainer.querySelectorAll(".size-option")).findIndex(b => b.classList.contains("active"));
-        const colorCount = currentProductData.color ? currentProductData.color.length : 1;
-        const complexIndex = (sizeIndex * colorCount) + (colorIndex >= 0 ? colorIndex : 0);
-        modalImg.src = currentProductData.images[complexIndex] || currentProductData.images[0];
+
+        const images = currentProductData.images || [];
+        const colors = currentProductData.color || [];
+        const sizes = currentProductData.sizes || [];
+
+        // If images are provided per (size x color) combination
+        if (images.length === sizes.length * Math.max(1, colors.length)) {
+            const colorCount = Math.max(1, colors.length);
+            const complexIndex = (Math.max(0, sizeIndex) * colorCount) + (colorIndex >= 0 ? colorIndex : 0);
+            modalImg.src = images[complexIndex] || images[0];
+            return;
+        }
+
+        // If images are provided per color only
+        if (images.length === colors.length && colors.length > 0) {
+            const idx = colorIndex >= 0 ? colorIndex : 0;
+            modalImg.src = images[idx] || images[0];
+            return;
+        }
+
+        // Fallback: use first image
+        modalImg.src = images[0] || '';
     }
 
     function updateSizeSelector(sizes, prices) {

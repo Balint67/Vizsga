@@ -14,9 +14,13 @@ body {
    ========================================================================== */
 /* Main login/register card container */
 .container {
-    background-color: rgb(0, 0, 0); /* Card background color */
+    /* Glassmorphism card to match shop/payment */
+    background: rgba(255,255,255,0.04);
     border-radius: 18px; /* Rounded corners */
+    border: 1px solid rgba(255,255,255,0.12);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45); /* Subtle shadow */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     width: 90%;
     max-width: 400px;
     padding: 40px 30px;
@@ -64,13 +68,13 @@ label {
 
 /* Input box wrapper with icon */
 .input-box {
-    background-color: rgba(71, 63, 63, 0.28); /* Semi-transparent background */
+    background-color: rgba(255,255,255,0.02); /* Semi-transparent */
     display: flex;
     align-items: center;
     border-radius: 10px;
     padding: 12px;
     margin-bottom: 15px;
-    border: 1px solid transparent;
+    border: 1px solid rgba(255,255,255,0.06);
     transition: 0.3s ease;
 }
 
@@ -234,6 +238,10 @@ label {
         max-width: 100%;
         padding: 25px 20px;
         border-radius: 15px;
+        /* Slightly reduced blur on mobile */
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.38);
     }
 
     .header .avatar {

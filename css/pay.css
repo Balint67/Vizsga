@@ -9,13 +9,17 @@
 }
 
 .payment-card {
-    background: #0d0d0d;
-    border: 1px solid #1a1a1a;
+    /* Glassmorphism, aligned with shop product cards */
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 12px;
     width: 100%;
     max-width: 650px;
     padding: 35px;
     position: relative;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
 }
 
 .step-indicator {
@@ -189,6 +193,10 @@
         padding: 20px;
         border-radius: 10px;
         max-width: 100%;
+        /* Keep glass effect on mobile but slightly reduced blur/shadow */
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.32);
     }
 
     .step-indicator {
