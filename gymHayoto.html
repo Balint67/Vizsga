@@ -4,10 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Hayoto GYM | ForgeX</title>
+    <link rel="stylesheet" href="css/gym.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 <div class="fixed-bg"></div>
+<!-- Hidden Google Translate container -->
 <div id="google_translate_element" style="display:none;"></div>
 
 <!-- ============================== TOP BAR / HEADER ============================== -->
@@ -58,7 +61,7 @@
     <div class="right-icons">
         <!-- Like / favorites icon -->
         <div class="animation">
-            <a href="favourite.html">
+            <a href="signIn.html">
                 <img
                         src="https://blogger.googleusercontent.com/img/a/AVvXsEgJFzFfHiQVUYwzahvNBeriW2rB8HZ-XDg8KkQ_cP2rFBkF8OrApJS2YUjHFemxb29mnWVzaULETwXtnGNM91eGQS6xhhQuiGPlLlnMDcy-lZfVq6pc6gzkOwoyLeGNJbCnlVLtzAbEKdx6lAUlfqb2CKIlrNIpkYg6mb8lzRGq6t-fr9ODlt49KSWxQ2g"
                         class="likeIMG"
@@ -105,15 +108,116 @@
 
 <!-- ============================== TOP CONTENT ============================== -->
 
+<div class="content">
+    <div class="gymContainer single-gym-page">
+        <div class="section-header">
+            <h1>Hayoto Dojo</h1>
+            <div class="divider-line"></div>
+        </div>
+
+        <div class="gym-split-layout">
+            <div class="gym-image-side">
+                <div class="gym-profile-box">
+                    <div class="gym-card-v2">
+                        <div class="slider-container">
+                            <img src="images/gymHayoto/1.JPEG" class="slide active" alt="gymImg 1">
+                            <img src="images/gymHayoto/2.JPEG" class="slide" alt="gymImg 2">
+                            <img src="images/gymHayoto/3.JPEG" class="slide" alt="gymImg 3">
+                            <img src="images/gymHayoto/4.JPEG" class="slide" alt="gymImg 4">
+                            <img src="images/gymHayoto/5.JPEG" class="slide" alt="gymImg 5">
+
+                            <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                            <button class="next" onclick="changeSlide(1)">&#10095;</button>
+                        </div>
+                    </div>
+
+                    <div class="gym-under-info">
+                        <h3>Hayoto Dojo</h3>
+                        <p class="specialization">Rehabilitáció & Mentális Fókusz</p>
+
+                        <div class="gym-contact-list">
+                            <div class="contact-row">
+                                <i class="fa-solid fa-phone"></i>
+                                <a href="tel:+36306120731">+36 30 612 0731</a>
+                            </div>
+                            <div class="contact-row">
+                                <i class="fa-solid fa-envelope"></i>
+                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=newyork.gym@superself.hu" target="_blank">
+                                    hayoto.dojo@superself.hu
+                                </a>
+                            </div>
+                            <div class="contact-row">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>SuperSelf Dojo - Japán</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gym-info-side">
+                <div class="glass-content">
+                    <i class="fa-solid fa-quote-left gold-quote"></i>
+                    <h3 class="moto">Találd meg a belső egyensúlyod!</h3>
+
+                    <div class="bio-section">
+                        <p class="description">
+                            Üdvözlünk a <b>Hayoto Dojo</b> világában! Nálunk a fejlődés nem a hajszáról, hanem a tudatosságról és a precizitásról szól. Hiszünk abban, hogy a valódi erő a test és az elme összhangjából fakad, ezért nálunk a tradicionális figyelem és a modern rehabilitációs szemlélet kéz a kézben jár.
+                        </p>
+                        <p class="description">
+                            Fő fókuszunk a <b>testi funkciók helyreállítása</b> és a <b>mentális fókusz élesítése</b>. Legyen szó sérülés utáni felépülésről vagy a stresszmentes, stabil mindennapok megteremtéséről, garantáljuk, hogy nálunk minden mozdulat a hosszú távú egészségedet szolgálja. Nálunk nem csak elfáradsz, hanem újjászületsz: minden alkalom után összeszedettebben és magabiztosabban lépsz ki az ajtónkon.
+                        </p>
+                    </div>
+
+                    <h4 style="color: #00ca65; margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem;">Mivel várunk:</h4>
+                    <ul class="benefit-list">
+                        <li><i class="fa-solid fa-circle-check"></i><strong>Személyre szabott rehabilitáció:</strong> Célzott gyakorlatok a fájdalommentes mozgás és a mobilitás visszanyeréséért.</li>
+                        <li><i class="fa-solid fa-circle-check"></i><strong>Mentális fókusz tréning:</strong> Technikák a koncentráció javítására és a belső csend megteremtésére a mindennapi zajban.</li>
+                        <li><i class="fa-solid fa-circle-check"></i><strong>Funkcionális tartásjavítás:</strong> Mélyizom-erősítés a stabil gerincért és az egészséges testtartásért.</li>
+                        <li><i class="fa-solid fa-circle-check"></i><strong>Tudatos mozgáskultúra:</strong> Lassú, kontrollált gyakorlatok, amelyek megtanítják uralni a tested minden rezdülését.</li>
+                    </ul>
+
+                    <a href="booking.html?edzo=hannah" class="cta-button">Iratkozz fel az órámra</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="container-bottom" id="contact">
+        <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Kapcsolat</p></a></div></div>
+        <div class="animation-bottom"><div class="space"><a href="contracts.html" class="tiszta-link"><p>Általános szerződési feltételek</p></a></div></div>
+        <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Vélemények</p></a></div></div>
+        <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Gyakran ismételt kérdések</p></a></div></div>
+        <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Süti beállítások</p></a></div></div>
+        <div class="animation-bottom">
+            <div class="space">
+                <a href="https://www.instagram.com/forgex._" class="tiszta-link" target="_blank">
+                    <p>Instagram <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" class="igLogo" alt="Instagram Logo"></p>
+                </a>
+            </div>
+        </div>
+        <div class="animation-bottom">
+            <div class="space">
+                <a href="https://www.facebook.com/share/1Dwr4nD67j" class="tiszta-link" target="_blank">
+                    <p>Facebook <img src="https://1000logos.net/wp-content/uploads/2017/02/Facebook-Logosu.png" class="faceLogo" alt="Facebook Logo"></p>
+                </a>
+            </div>
+        </div>
+        <div class="animation-bottom">
+            <div class="space" id="tiktok">
+                <a href="https://www.tiktok.com/@forgex97" class="tiszta-link" target="_blank">
+                    <p>Tiktok <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgZczqhf9-ciDl5_atJ6sQPIZNCwqKYOhfm4LkbKiFyiR9_HRrW7BJ7cNb55lbxZchDVBDwt5-olPIRhMClgLL8UON6c0AQybZYHaOji70nhooShz9RpZVU1lPZFcmzoi-Sd1gB1jhlRvXCKENeX4R-Lj7WFZDfEjzsBPIX5ipnQ43R1O7AmmQjESxVaSo" class="tiktokLogo" alt="Tiktok Logo"></p>
+                </a>
+            </div>
+        </div>
+    </footer>
+</div>
 
 
 
-
-
-
-
-
-<script src="javascript/index.js"></script>
+<script src="javascript/gym.js"></script>
+<script type="module" src="javascript/auth-header.js"></script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>
