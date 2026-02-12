@@ -400,12 +400,109 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Mobilon elrejtjük, hogy ne lógjon bele a tartalomba */
-@media (max-width: 1400px) {
+/* ============================== */
+/* Mobile: make side filter visible and flow above products */
+/* ============================== */
+@media (max-width: 767px) {
     .side-filter-container {
-        display: none;
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        z-index: 1000;
+        margin: 8px 0 12px 0;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.28);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        display: block !important;
+        background: rgba(255,255,255,0.03);
+        max-height: 220px;
+        overflow: auto;
     }
+
+    /* Ensure main content stacks below filter nicely */
+    .container-shop { padding-left: 12px; padding-right: 12px; }
+    .products-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 6px; }
+
+    /* Reduce filter controls size on small phones */
+    .side-filter-content h3 { font-size: 1rem; }
+    .side-filter-group label { font-size: 0.85rem; }
+    .cat-btn { padding: 8px 10px; font-size: 14px; }
+    .search-box input { padding: 8px 8px 8px 34px; }
 }
+
+    /* Header for collapsible filter */
+    .side-filter-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 6px;
+        border-bottom: 1px solid rgba(255,255,255,0.04);
+        margin: -10px -10px 10px -10px;
+    }
+
+    .side-filter-header .side-filter-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-main);
+        font-weight: 700;
+    }
+
+    .side-filter-header .side-filter-toggle {
+        background: transparent;
+        border: none;
+        color: var(--text-dim);
+        font-size: 18px;
+        cursor: pointer;
+        padding: 6px;
+    }
+
+    /* Collapsed state */
+    .side-filter-container.collapsed {
+        max-height: 56px !important;
+        overflow: hidden !important;
+    }
+
+    /* Expanded state: show full filter content without inner scroll */
+    .side-filter-container.expanded {
+        max-height: none !important;
+        overflow: visible !important;
+    }
+
+/* Tablet layout: keep filter visible to the left and push products to the right */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .side-filter-container {
+        position: absolute;
+        left: 16px;
+        top: 120px;
+        width: 280px;
+        max-height: calc(100vh - 180px);
+        overflow: auto;
+        z-index: 1000;
+        padding: 16px;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        background: rgba(255,255,255,0.03);
+    }
+
+    /* push the main content right so the filter doesn't overlap (smaller gap) */
+    .container-shop {
+        margin-left: 312px;
+    }
+
+    /* Slightly reduce card width/gap on tablet */
+    .products-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+
+/* Desktop: keep original layout (no forced left margin) */
+
+/* Mobilon elrejtjük, hogy ne lógjon bele a tartalomba */
+/* NOTE: removed broad hiding rule so mobile visible variant can apply */
 
 
 .close-btn:hover {
@@ -598,10 +695,7 @@ h2 {
         font-size: 1.2rem;
     }
 
-    /* Side Filter */
-    .side-filter-container {
-        display: none !important;
-    }
+    /* Side Filter: visible on mobile (controlled by JS/CSS above) */
 }
 
 /* ============================== TABLET (768px - 1024px) ============================== */
@@ -627,4 +721,34 @@ h2 {
         width: 90%;
         max-width: 450px;
     }
+}
+
+/* ============================== */
+/* Final mobile overrides (ensure consistent layout) */
+/* This keeps desktop intact and forces mobile/tablet behavior to be usable */
+@media (max-width: 767px) {
+    .side-filter-container {
+        position: relative !important;
+        width: calc(100% - 24px) !important;
+        margin: 8px auto !important;
+        padding: 10px !important;
+        border-radius: 10px !important;
+        max-height: 160px !important;
+        overflow: auto !important;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.28) !important;
+        backdrop-filter: blur(6px) !important;
+        -webkit-backdrop-filter: blur(6px) !important;
+        display: block !important;
+        background: rgba(255,255,255,0.02) !important;
+        z-index: 1000 !important;
+    }
+
+    /* Reduce space between filter and products */
+    .products-grid { margin-top: 6px !important; gap: 12px !important; }
+    .container-shop { padding-left: 12px !important; padding-right: 12px !important; }
+
+    /* Slightly more compact filter elements */
+    .side-filter-content h3 { font-size: 1rem !important; }
+    .cat-btn { padding: 6px 10px !important; font-size: 14px !important; }
+    .search-box input { padding: 8px 8px 8px 34px !important; }
 }
