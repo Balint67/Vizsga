@@ -10,6 +10,7 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/pay.css">
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Font Awesome icons -->
@@ -111,76 +112,106 @@
         <img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjnr3paeYkomWqEuLtpy-LUrJtccK4i5TAvsA4fIgCuoEmtgKqU2Nx3n4trTJrgoRU3T4w6qhAG3t7TAzlh8090v8e8luNlBsNdGc0avkHqE65n2omeiEctqzaxqvYTESBxYGCDRsHupOurWGNd1EwNhrAZem6DvrOP0dW1wc-EatQ0WWRXSMyXMxVgOLk" alt="Kosár">
     </a>
 </div>
-
 <!-- ============================== TOP CONTENT ============================== -->
+<main class="payment-container">
+    <div class="payment-card">
+        <h2 class="payment-title">Adatok és Fizetés</h2>
+        <div class="divider"></div>
 
-<div class="content">
-    <div class="container">
+        <form id="payment-form" novalidate>
+            <div class="section-container">
+                <h3 class="section-subtitle">Szállítási adatok</h3>
+                <div class="input-group">
+                    <input type="text" id="full-name" placeholder="Teljes név" required>
+                    <span class="error-message" id="error-name">Kérjük, adja meg a nevét!</span>
+                </div>
 
-        <!-- Page header -->
-        <div class="header">
-            <h2>Kosarad</h2>
-            <p><a href="shop.html" class="backToShopBtn">← Vissza a boltba</a></p>
-        </div>
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="Email cím" required>
+                    <span class="error-message" id="error-email">Érvénytelen email cím!</span>
+                </div>
 
-        <!-- Cart items container -->
-        <div id="cart-items-container">
-            <p style="text-align: center;">A kosarad jelenleg üres.</p>
-        </div>
+                <div class="row">
+                    <div class="input-group flex-2">
+                        <input type="text" id="city" placeholder="Város" required>
+                        <span class="error-message" id="error-city">Város megadása kötelező!</span>
+                    </div>
+                    <div class="input-group flex-1">
+                        <input type="text" id="zip" placeholder="Irányítószám" maxlength="4" required>
+                        <span class="error-message" id="error-zip">Hiba!</span>
+                    </div>
+                </div>
 
-        <!-- Cart summary -->
-        <div class="cart-summary">
-            <hr>
-            <div class="cart-total">
-                <span>Összesen:</span>
-                <span id="total-price">0 Ft</span>
+                <div class="input-group">
+                    <input type="text" id="address" placeholder="Utca, házszám, emelet/ajtó" required>
+                    <span class="error-message" id="error-address">Cím megadása kötelező!</span>
+                </div>
+
+
             </div>
 
-            <!-- Checkout button -->
-            <a href="pay.html">
-            <button class="login-btn" id="checkout-btn">Fizetés</button>
+            <div class="section-container">
+                <h3 class="section-subtitle">Fizetési adatok</h3>
+                <div class="input-group">
+                    <input type="text" id="card-number" placeholder="Kártyaszám (16 számjegy)" maxlength="16" required>
+                    <span class="error-message" id="error-card">Érvénytelen kártyaszám!</span>
+                </div>
+
+                <div class="row">
+                    <div class="input-group">
+                        <input type="text" id="expiry" placeholder="MM/YY" maxlength="5" required>
+                        <span class="error-message" id="error-expiry">Lejárat!</span>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="cvv" placeholder="CVV" maxlength="3" required>
+                        <span class="error-message" id="error-cvv">CVV!</span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" id="submit-btn" class="submit-btn">FOGLALÁS MEGERŐSÍTÉSE</button>
+        </form>
+
+        <div id="success-message" class="success-box" style="display: none;">
+            <i class="fas fa-check-circle"></i>
+            <p>Sikeres fizetés és rendelés!</p>
+            <span>A visszaigazolást elküldtük az email címedre.</span>
+        </div>
+    </div>
+</main>
+<!-- ============================== TOP CONTENT END ============================== -->
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="container-bottom" id="contact">
+    <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Kapcsolat</p></a></div></div>
+    <div class="animation-bottom"><div class="space"><a href="contracts.html" class="tiszta-link"><p>Általános szerződési feltételek</p></a></div></div>
+    <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Vélemények</p></a></div></div>
+    <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Gyakran ismételt kérdések</p></a></div></div>
+    <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Süti beállítások</p></a></div></div>
+    <div class="animation-bottom">
+        <div class="space">
+            <a href="https://www.instagram.com/forgex._" class="tiszta-link" target="_blank">
+                <p>Instagram <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" class="igLogo" alt="Instagram Logo"></p>
             </a>
         </div>
     </div>
-    <!-- ============================== TOP CONTENT END ============================== -->
-
-
-    <!-- ============================ FOOTER ============================ -->
-    <footer class="container-bottom" id="contact">
-        <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Kapcsolat</p></a></div></div>
-        <div class="animation-bottom"><div class="space"><a href="contracts.html" class="tiszta-link"><p>Általános szerződési feltételek</p></a></div></div>
-        <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Vélemények</p></a></div></div>
-        <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Gyakran ismételt kérdések</p></a></div></div>
-        <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Süti beállítások</p></a></div></div>
-        <div class="animation-bottom">
-            <div class="space">
-                <a href="https://www.instagram.com/forgex._" class="tiszta-link" target="_blank">
-                    <p>Instagram <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" class="igLogo" alt="Instagram Logo"></p>
-                </a>
-            </div>
+    <div class="animation-bottom">
+        <div class="space">
+            <a href="https://www.facebook.com/share/1Dwr4nD67j" class="tiszta-link" target="_blank">
+                <p>Facebook <img src="https://1000logos.net/wp-content/uploads/2017/02/Facebook-Logosu.png" class="faceLogo" alt="Facebook Logo"></p>
+            </a>
         </div>
-        <div class="animation-bottom">
-            <div class="space">
-                <a href="https://www.facebook.com/share/1Dwr4nD67j" class="tiszta-link" target="_blank">
-                    <p>Facebook <img src="https://1000logos.net/wp-content/uploads/2017/02/Facebook-Logosu.png" class="faceLogo" alt="Facebook Logo"></p>
-                </a>
-            </div>
+    </div>
+    <div class="animation-bottom">
+        <div class="space" id="tiktok">
+            <a href="https://www.tiktok.com/@forgex97" class="tiszta-link" target="_blank">
+                <p>Tiktok <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgZczqhf9-ciDl5_atJ6sQPIZNCwqKYOhfm4LkbKiFyiR9_HRrW7BJ7cNb55lbxZchDVBDwt5-olPIRhMClgLL8UON6c0AQybZYHaOji70nhooShz9RpZVU1lPZFcmzoi-Sd1gB1jhlRvXCKENeX4R-Lj7WFZDfEjzsBPIX5ipnQ43R1O7AmmQjESxVaSo" class="tiktokLogo" alt="Tiktok Logo"></p>
+            </a>
         </div>
-        <div class="animation-bottom">
-            <div class="space" id="tiktok">
-                <a href="https://www.tiktok.com/@forgex97" class="tiszta-link" target="_blank">
-                    <p>Tiktok <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgZczqhf9-ciDl5_atJ6sQPIZNCwqKYOhfm4LkbKiFyiR9_HRrW7BJ7cNb55lbxZchDVBDwt5-olPIRhMClgLL8UON6c0AQybZYHaOji70nhooShz9RpZVU1lPZFcmzoi-Sd1gB1jhlRvXCKENeX4R-Lj7WFZDfEjzsBPIX5ipnQ43R1O7AmmQjESxVaSo" class="tiktokLogo" alt="Tiktok Logo"></p>
-                </a>
-            </div>
-        </div>
-    </footer>
+    </div>
+</footer>
 </div>
-
-<!-- ============================ SCRIPTS ============================ -->
-<script src="javascript/index.js"></script>
-<script type="module" src="javascript/cart.js"></script>
 <script type="module" src="javascript/auth-header.js"></script>
-
-<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script src="pay.js"></script>
+<script src="javascript/script.js"></script>
 </body>
-</html>
