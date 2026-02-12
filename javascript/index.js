@@ -282,66 +282,91 @@ function initScrollAnimations() {
 }
 
 /* =========================
-   5. recommendation table
+   5. recommendation table - MODIFIED FOR MOBILE IMAGES
    ========================= */
 const recommendationsData = {
     treadmill: {
         title: "FORGEX TREADMILL - AZ ERŐ ÉS ÁLLÓKÉPESSÉG ÚJ SZINTJE",
         description: "A világ első számú futópadjai. Ergonómikus kialakítás, miközben maximális kardió élményt nyújt a legmodernebb kijelzővel.",
-        image: "images/treadmill.JPEG"
+        image: "images/treadmill.JPEG",
+        mobileImage: "images/treadmillMobile.JPEG"
     },
     cableMachine: {
         title: "FORGEX CABLE CROSSOVER - MINDEN EGY HELYEN",
         description: "Több mint 200 gyakorlat egyetlen eszközön. Kompakt, stílusos és mindent tartalmaz, amire a súlyzós edzéshez szükséged van. Tolj vagy húzz – korlátok nélkül.",
-        image: "images/mayaCable.jpeg"
+        image: "images/mayaCable.jpeg",
+        mobileImage: "images/mayaCableMobile.jpg"
     },
     equipment: {
         title: "MI NEM RIADUNK EL A VÁLTOZÁSTÓL",
         description: "Világszínvonalú felszereltség! Edzőtermeinkben a nemzetközi fitneszpiac élvonalába tartozó, prémium márkák legújabb modelljei biztosítják a kompromisszummentes edzésélményt már szerte a világon.",
-        image: "images/equipment.jpeg"
+        image: "images/equipment.jpeg",
+        mobileImage: "images/equipmentMobile.jpeg"
     },
     balance: {
         title: "TÖKÉLETES EGYENSÚLY - KÉNYELEM ÉS REGENERÁLÓDÁS",
         description: "A fejlődés nemcsak az edzésen, hanem a regeneráción is múlik. Személyre szabott rehabilitációs programjaink és célzott nyújtásaink segítenek visszaállítani tested természetes egyensúlyát és mozgásszabadságát.",
-        image: "images/balance.jpeg"
+        image: "images/balance.jpeg",
+        mobileImage: "images/balanceMobile.jpg"
     },
     bench: {
         title: "FORGEX BENCH - AZ ELSŐ LÁTÁSRA SZERELEM",
         description: "Vannak gépek, amik mellett nem lehet szó nélkül elmenni. A Forgex Bench az elegáns dizájnt ötvözi a nyers erővel: amint kipróbálod, érezni fogod a stabilitás és a precizitás új szintjét.",
-        image: "images/benchPress.jpg"
+        image: "images/benchPress.jpg",
+        mobileImage: "images/benchPressMobile.jpg"
     },
     legPress: {
         title: "FORGEX LEG PRESS - AZ ERŐ ÚJ DIMENZIÓJA",
         description: "Nincs többé kifogás a lábnapokon. A Forgex Leg Press-t úgy terveztük, hogy a legnagyobb terhelés mellett is egyenletes, sima mozgást biztosítson. Építs masszív izomzatot a szakma legstabilabb lábtológépével!",
-        image: "images/legPress.JPG"
+        image: "images/legPress.JPG",
+        mobileImage: "images/legPressMobile.JPG"
     }
 };
 
 document.querySelectorAll('.recommendations-menu-item').forEach(item => {
     item.addEventListener('click', function() {
-        // 1. Aktív osztály kezelése a menüben
         document.querySelectorAll('.recommendations-menu-item').forEach(i => i.classList.remove('active'));
         this.classList.add('active');
 
-        // 2. Azonosító lekérése a data-target attribútumból
         const target = this.getAttribute('data-target');
         const data = recommendationsData[target];
 
-        // 3. Tartalom frissítése animációval (opcionális)
         const titleEl = document.querySelector('.recommendations-title');
         const descEl = document.querySelector('.recommendations-description');
         const imgEl = document.querySelector('#recommendations-display-img');
 
-        // Egyszerű fade-out/fade-in hatás
         [titleEl, descEl, imgEl].forEach(el => el.style.opacity = 0);
 
         setTimeout(() => {
             titleEl.textContent = data.title;
             descEl.textContent = data.description;
-            imgEl.src = data.image;
+
+            // Itt dől el, melyik képet töltse be (800px alatt a mobileImage-et)
+            if (window.innerWidth < 800) {
+                imgEl.src = data.mobileImage;
+            } else {
+                imgEl.src = data.image;
+            }
+
             imgEl.alt = data.title;
 
             [titleEl, descEl, imgEl].forEach(el => el.style.opacity = 1);
         }, 300);
     });
+});
+
+// Opcionális: Méretváltáskor is frissítse a már kiválasztott képet
+window.addEventListener('resize', () => {
+    const activeItem = document.querySelector('.recommendations-menu-item.active');
+    if (activeItem) {
+        const target = activeItem.getAttribute('data-target');
+        const imgEl = document.querySelector('#recommendations-display-img');
+        const data = recommendationsData[target];
+
+        if (window.innerWidth < 800) {
+            imgEl.src = data.mobileImage;
+        } else {
+            imgEl.src = data.image;
+        }
+    }
 });
