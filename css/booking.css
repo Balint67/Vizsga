@@ -297,16 +297,117 @@
     font-size: 1.1rem;
 }
 
-/* --- RESPONSIVE --- */
+/* --- MOBIL NÉZET (RESPONSIVE) --- */
 @media (max-width: 768px) {
-    .booking-container h2 { font-size: 2rem; }
+    /* Konténer igazítása */
+    .booking-container {
+        padding: 0 15px;
+        margin-top: 20px;
+    }
+
+    .booking-container .booking-wrapper {
+        grid-template-columns: 1fr; /* Egy oszlopos elrendezés */
+        gap: 20px;
+    }
+
+    .booking-container .booking-card {
+        padding: 20px 15px;
+    }
+
+    .booking-container .booking-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    /* Edző választó kártyák mobilon */
+    .trainer-info {
+        flex-direction: column; /* Egymás alá kerül a kép és a szöveg */
+        align-items: center;
+        text-align: center;
+        padding: 20px 10px;
+    }
+
+    .trainer-info img {
+        width: 100px; /* Kisebb kép mobilon */
+        height: 100px;
+        margin-bottom: 10px;
+    }
+
     .trainer-text-content {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 15px;
     }
-    .trainer-contact-list-besideTrainers { width: 100%; }
-    .datetime-picker-wrapper { flex-direction: column; }
-    .calendar-side { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .booking-wrapper { grid-template-columns: 1fr; }
+
+    .trainer-name {
+        font-size: 1.4rem;
+        display: block;
+    }
+
+    .trainer-contact-list-besideTrainers {
+        width: 100%;
+        font-size: 14px;
+        align-items: center; /* Ikonok és szövegek középre */
+    }
+
+    .contact-row {
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* Óra választó rács */
+    .course-select-grid {
+        grid-template-columns: 1fr; /* Mobilon az órák is egymás alatt */
+    }
+
+    .course-box {
+        height: 60px;
+        font-size: 1rem;
+    }
+
+    /* Naptár és Időpont választó */
+    .datetime-picker-wrapper {
+        flex-direction: column; /* Naptár felül, időpontok alul */
+    }
+
+    .calendar-side {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 15px 10px;
+    }
+
+    .calendar-day {
+        font-size: 0.9rem;
+    }
+
+    .slots-side {
+        padding: 15px 10px;
+    }
+
+    .time-slots {
+        grid-template-columns: repeat(2, 1fr); /* Időpontok 2 oszlopban, hogy ne legyen túl hosszú */
+        gap: 8px;
+    }
+
+    .slot {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    /* Form elemek */
+    .submit-booking {
+        font-size: 1rem;
+        padding: 12px;
+    }
+}
+
+/* Extra kicsi telefonokhoz (pl. iPhone SE) */
+@media (max-width: 380px) {
+    .time-slots {
+        grid-template-columns: 1fr;
+    }
+
+    .calendar-weekdays div {
+        font-size: 0.7rem;
+    }
 }

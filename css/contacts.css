@@ -20,7 +20,6 @@
     margin-bottom: 15px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
-    /* MÓDOSÍTVA: Sötét kékeszöld helyett áttetsző fekete */
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     font-size: 1rem;
@@ -77,19 +76,25 @@
     height: 100%;
     border: none;
 }
-.info-card {
-    flex: 0.8;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: var(--card-bg);
+.contact-info-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important; /* Két egyenlő oszlop */
+    gap: 60px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
 
-.contact-info-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    margin-bottom: 50px;
+
+
+
+
+.contact-info-grid .info-card {
+    width: 100% !important;
+    max-width: none !important;
+    flex: 1 1 auto !important;
+    box-sizing: border-box !important;
 }
 .contact-intro {
     text-align: center;
@@ -184,36 +189,64 @@
     }
 }
 /* --- Mobil --- */
-@media (max-width: 850px) {
-    .info-card { width: 100%; }
-}
-
 @media (max-width: 768px) {
-    .contact-page-content {
-        padding-top: 80px;
+    .contact-info-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        width: 100% !important;
+        padding: 0 !important;
     }
 
-    .contact-info-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
+
+    .contact-info-grid .info-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 25px 20px !important;
+        box-sizing: border-box !important;
     }
+
+
+    .contact-page-content .info-card.location,
+    .contact-page-content .info-card.support {
+        max-width: 100% !important;
+        justify-self: center !important;
+    }
+
+
+    .contact-form-container {
+        padding: 20px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
 
     .contact-page-content h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem !important;
+        margin-top: 20px !important;
     }
 
     .contact-page-content h2 {
-        font-size: 1.5rem;
-    }
-
-    .info-card {
-        padding: 20px;
+        font-size: 1.5rem !important;
     }
 
 
-    .contact-form .send-btn {
-        font-size: 18px;
-        padding: 10px 20px;
+    .map-placeholder {
+        height: 300px !important;
+    }
+}
+
+
+@media (max-width: 380px) {
+    .contact-page-content {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .contact-info-grid .info-card {
+        padding: 20px 15px !important;
     }
 }
 
@@ -315,7 +348,6 @@
 
 .input-group input {
     width: 100%;
-    /* MÓDOSÍTVA: Sötét kékeszöld helyett áttetsző fekete a BMI bevitelnél is */
     background: rgba(0, 0, 0, 0.5) !important;
     border: 1.5px solid var(--border-color);
     border-radius: 12px;
