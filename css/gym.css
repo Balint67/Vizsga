@@ -447,6 +447,18 @@ html {
     .single-gym-page .gym-info-side {
         width: 100%;
     }
+    .welcome-text p{
+        font-size: 1rem !important;
+    }
+    .downArrowBtn{
+        border: 1px solid #fff;
+        padding: 5px 10px;
+        width: fit-content;
+        color: #fff;
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+        transition: 0.3s;
+    }
 }
 @media (min-width: 800px) {
     /* Ez a kulcs: elég szélesnek kell lennie a leghosszabb címhez is */
