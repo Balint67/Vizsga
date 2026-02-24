@@ -118,7 +118,7 @@
         </div>
 
         <div class="age-cards-container">
-            <div class="age-card">
+            <div class="age-card highlight info-trigger-card hannah" data-modal="hannah">
                 <div class="age">10-16 év</div>
                 <h3>Gyermekek és tinédzserek</h3>
                 <p><strong>Fókusz:</strong> Saját testsúlyos gyakorlatok, funkcionális mozgások, koordináció és technika.</p>
@@ -126,7 +126,8 @@
                 <div class="goal">Cél: Alapozás, mozgáskultúra fejlesztése.</div>
             </div>
 
-            <div class="age-card highlight">
+
+            <div class="age-card highlight info-trigger-card heath" data-modal="heath">
                 <div class="age">17-30 év</div>
                 <h3>Fiatal felnőttek</h3>
                 <p><strong>Fókusz:</strong> Nagyobb volumen, intenzitás, súlyzós edzés, erő- és izomnövelés.</p>
@@ -134,7 +135,7 @@
                 <div class="goal">Cél: Maximális erő- és izomépítés.</div>
             </div>
 
-            <div class="age-card">
+            <div class="age-card highlight info-trigger-card heath" data-modal="maya">
                 <div class="age">30-45 év</div>
                 <h3>Középkorosztály</h3>
                 <p><strong>Fókusz:</strong> Fenntartás, egészségmegőrzés, funkcionális edzés és kardió egyensúlya.</p>
@@ -148,16 +149,29 @@
                 <p class="tip"><strong>Tipp:</strong> Döntött padok, szuperszettek használata alacsonyabb súlyokkal.</p>
             </div>
 
-            <div class="age-card">
-                <div class="age">60+ év</div>
-                <h3>Idősebb korosztály</h3>
-                <p><strong>Fókusz:</strong> Funkcionális erő, egyensúly, mobilitás.</p>
-                <p class="avoid"><strong>Kerülni:</strong> A hirtelen mozdulatokat, a maximális erőkifejtést.</p>
-            </div>
+                <div class="age-card">
+                    <div class="age">60+ év</div>
+                    <h3>Idősebb korosztály</h3>
+                    <p><strong>Fókusz:</strong> Funkcionális erő, egyensúly, mobilitás.</p>
+                    <p class="avoid"><strong>Kerülni:</strong> A hirtelen mozdulatokat, a maximális erőkifejtést.</p>
+                </div>
+
         </div>
     </div>
 </div>
 
+<div id="infoModal" class="popUp" aria-hidden="true">
+    <div class="info-card modal-content">
+        <button class="close-modal" aria-label="Bezárás">&times;</button>
+        <h2 id="modalTitle" class="modal-title"></h2>
+        <div class="divider-line divider-small"></div>
+
+        <video id="modalVideo" class="modal-video" controls preload="metadata">
+            <source id="modalVideoSource" src="" type="video/mp4">
+            A böngésződ nem támogatja a videót.
+        </video>
+    </div>
+</div>
 
 <footer class="container-bottom" id="contact">
     <div class="animation-bottom"><div class="space"><a href="" class="tiszta-link"><p>Kapcsolat</p></a></div></div>
@@ -189,6 +203,7 @@
 </footer>
 </div>
 
+<script src="javascript/workouts.js"></script>
 <script src="javascript/index.js"></script>
 <script type="module" src="javascript/auth-header.js"></script>
 

@@ -121,7 +121,28 @@
     font-weight: 600;
     color: #fff;
 }
+.popUp {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
 
+.popUp.is-open {
+    display: flex;
+}
+.info-trigger-card:hover { cursor: pointer; }
+
+.modal-video {
+    width: 100%;
+    max-height: 400px;
+    border-radius: 12px;
+    margin-top: 15px;
+    background: #000;
+}
 /* ASZTALI NÉZET: 3 kártya felül */
 @media (min-width: 992px) {
     .age-card {
