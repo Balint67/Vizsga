@@ -17,11 +17,18 @@ function initModals() {
             title: 'Fiatal felnőtteknek Gyakorlatok',
             video: 'videos/workouts/heathBiceps.mp4'
         },
-        maya: {
+        mayaSquats: {
             title: 'Középkorosztálynak Gyakorlatok',
             video: 'videos/workouts/mayaSquats.mp4'
+        },
+        mayaBench: {
+            title: 'Negyven feletti Gyakorlatok',
+            video: 'videos/workouts/mayaBench.mp4'
+        },
+        hayoto: {
+            title: 'Idősebb korosztálynak Gyakorlatok',
+            video: 'videos/workouts/hayotoElders.mp4'
         }
-
     };
 
     function openModal(type) {
