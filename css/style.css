@@ -439,7 +439,7 @@ ul {
         display: none;
     }
 }
-@media (max-width: 1549px) {
+@media (max-width: 1669px) {
     #mobileFavorites{
         display: block;
     }
