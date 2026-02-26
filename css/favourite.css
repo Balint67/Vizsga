@@ -20,7 +20,6 @@
 .fav-actions .login-btn:hover {
     transform: translateY(-2px);
 }
-
 /* Remove button styling */
 .fav-remove {
     background: transparent;

@@ -35,7 +35,9 @@ body {
     color: var(--text-white);
     margin: 0;
     padding: 0;
-    min-height: 100vh;
+    min-height: 100vh;      /* Legalább a képernyő magassága legyen */
+    display: flex;
+    flex-direction: column; /* Egymás alá kerüljenek az elemek */
     overflow-x: hidden;
 }
 .fixed-bg {
