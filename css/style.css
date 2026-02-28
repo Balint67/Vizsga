@@ -399,12 +399,7 @@ ul {
     position: relative;
     left: -5%;
 }
-.arnold-img{
-    width: 30%;
-    height: auto;
-    position: relative;
-    right: -70%;
-}
+
 #mobileFavorites{
     display: none;
 }
