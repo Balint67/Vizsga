@@ -1,8 +1,8 @@
 /* ==========================================================================
-   1. VÁLTOZÓK ÉS ALAPBEÁLLÍTÁSOK
+   1. VARIABLES AND BASE SETTINGS
    ========================================================================== */
 :root {
-    /* Színek */
+    /* Colors */
     --primary-black: #000000;
     --primary-dark: #0f1a27;
     --primary-accent: #00ca65;
@@ -13,17 +13,17 @@
     --text-dim: #e2e8f0;
     --input-bg: #0f3739;
 
-    /* Kártya & Üveg effekt */
+    /* Card & Glass effect */
     --card-bg: rgba(255, 255, 255, 0.05);
     --border-color: rgba(255, 255, 255, 0.2);
     --glass-blur: blur(15px);
     --shadow-main: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
     --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.2);
 
-    /* Méretek & Elrendezés */
+    /* Dimensions & Layout */
     --header-height: 100px;
     --header-height-mobile: 80px;
-    --spacer-block-height: 40vh; /* A rengeteg <br> helyett */
+    --spacer-block-height: 40vh; /* Replaces excessive <br> tags */
 }
 
 * {
@@ -35,9 +35,9 @@ body {
     color: var(--text-white);
     margin: 0;
     padding: 0;
-    min-height: 100vh;      /* Legalább a képernyő magassága legyen */
+    min-height: 100vh;      /* At least the height of the screen */
     display: flex;
-    flex-direction: column; /* Egymás alá kerüljenek az elemek */
+    flex-direction: column; /* Elements stacked vertically */
     overflow-x: hidden;
 }
 .fixed-bg {
@@ -49,7 +49,7 @@ body {
     background-image: url("../images/bg.jpg");
     background-size: cover;
     background-position: center;
-    z-index: -1; /* Minden mögé kerül */
+    z-index: -1; /* Placed behind everything */
 }
 h1 {
     font-size: 3rem;
@@ -81,14 +81,14 @@ ul {
     margin: 0;
 }
 
-/* Segédosztályok */
+/* Helper Classes */
 .desktop-only { display: block; }
 .mobile-only-languages { display: none; }
 .text-center { text-align: center; }
 .delay-200 { transition-delay: 0.2s; }
 .spacer-block { height: var(--spacer-block-height); width: 100%; }
 
-/* Animációk */
+/* Animations */
 .fadeIn {
     opacity: 0;
     transform: translateY(50px);
@@ -107,7 +107,7 @@ ul {
 .animation-bottom:hover { color: var(--primary-accent); }
 
 /* ==========================================================================
-   2. HEADER & NAVIGÁCIÓ
+   2. HEADER & NAVIGATION
    ========================================================================== */
 .top-bar {
     background-color: var(--primary-black);
@@ -138,16 +138,15 @@ ul {
 .text:hover { transform: translateY(-2px); }
 .text a:hover { color: var(--primary-accent); }
 
-/* Nyelvválasztó */
-.nyelvek {
+/* Language Selector */
+.languages-container {
     position: absolute;
     right: 300px;
     padding: 20px;
-
 }
 .nyelv-btn:hover { color: var(--primary-accent); }
 
-/* Jobb oldali ikonok */
+/* Right side icons */
 .right-icons {
     margin-right: -10px;
     display: flex;
@@ -174,14 +173,15 @@ ul {
     border: 2px solid var(--primary-dark);
 }
 
-/* Mobil Hamburger Gomb (alapból rejtve) */
+/* Mobile Hamburger Button (Hidden by default) */
 .nav-toggle, .nav-toggle-btn { display: none; }
 
 /* ==========================================================================
-   3. TARTALOM SZEKCIÓK
+   3. CONTENT SECTIONS
    ========================================================================== */
 .content-index { margin-top: -100px; }
 .content{ margin-top: 120px; }
+
 /* Runner Hero */
 .container-runner {
     width: 100%;
@@ -193,13 +193,6 @@ ul {
     display: block;
 }
 
-
-
-
-
-
-
-
 .divider-line {
     width: 80px;
     height: 4px;
@@ -210,7 +203,6 @@ ul {
 .divider-large { width: 350px; margin: 0 auto 50px auto; }
 .divider-small { width: 100px; margin-bottom: 20px; }
 
-
 .importantThings-text {
     margin-top: 10px;
     font-size: 30px;
@@ -218,7 +210,7 @@ ul {
 }
 
 /* ==========================================================================
-   4. MODÁL ABLAK
+   4. MODAL WINDOW
    ========================================================================== */
 .popUp {
     position: fixed;
@@ -231,7 +223,6 @@ ul {
 .popUp.is-open { display: grid; }
 
 .info-card {
-
     border: 1px solid var(--border-color);
     border-radius: 24px;
     padding: 40px;
@@ -250,7 +241,6 @@ ul {
 .modal-title { color: var(--primary-accent); text-align: center; margin: 0 0 10px 0; }
 .modal-text { color: white; line-height: 1.6; text-align: justify; }
 
-
 /* ==========================================================================
    6. FOOTER
    ========================================================================== */
@@ -258,7 +248,6 @@ ul {
     background-color: black;
     padding: 20px 20%;
 }
-.bekezdés { width: 400px;}
 .space { padding-top: 5px; }
 
 #tiktok { padding-top: 10px; }
@@ -266,6 +255,7 @@ ul {
 .igLogo { width: 30px; margin-top: -7px; margin-left: 10px; }
 .faceLogo { width: 60px; margin-top: -7px; margin-left: -4px; }
 .tiktokLogo { width: 40px; margin-top: -14px; margin-left: 35px; }
+
 /* ==========================================================================
    FORGEX GLASSMORPHISM MODAL (ALERT & CONFIRM)
    ========================================================================== */
@@ -412,13 +402,14 @@ ul {
 }
 
 /* ==========================================================================
-   MINDEN ESZKÖZRE ÉRVÉNYES ALAPOK
+   GLOBAL BASICS FOR ALL DEVICES
    ========================================================================== */
 .nav-toggle {
-    display: none; /* A checkboxot mindenhol elrejtjük */
+    display: none; /* Checkbox is hidden everywhere */
 }
-/* ==========================================================================
 
+/* ==========================================================================
+   MEDIA QUERIES
    ========================================================================== */
 @media (max-width: 1740px) and (min-device-width: 1550px) {
     .nav-toggle-btn, .mobile-only-languages{
@@ -442,18 +433,18 @@ ul {
     }
     .logoVid-Mobile {
         display: block;
-        width: 120px; /* Állítsd be a kívánt méretre */
+        width: 120px; /* Set to desired size */
         height: auto;
         position: absolute;
         left: 50%;
         top: 37px;
         transform: translateX(-50%);
     }
-    /* Fejléc elrendezés: Hamburger balra, ikonok jobbra */
+    /* Header layout: Hamburger left, icons right */
     .nav-container {
         display: flex;
-        flex-direction: row-reverse; /* Megcseréli a sorrendet a HTML módosítása nélkül */
-        justify-content: flex-end;    /* Balra tolja a gombot */
+        flex-direction: row-reverse; /* Swaps order without modifying HTML */
+        justify-content: flex-end;    /* Pushes button to the left */
         align-items: center;
         padding: 10px 15px;
         gap: 15px;
@@ -461,7 +452,7 @@ ul {
         margin-left: -25px;
     }
 
-    /* Hamburger Gomb Stílusa */
+    /* Hamburger Button Style */
     .nav-toggle-btn {
         display: flex;
         flex-direction: column;
@@ -469,8 +460,8 @@ ul {
         width: 28px;
         height: 20px;
         cursor: pointer;
-        z-index: 10001; /* A sötétítés felett kell legyen */
-        order: -1;      /* Biztosítja a bal szélső helyet */
+        z-index: 10001;
+        order: -1;
     }
 
     .nav-toggle-btn .bar {
@@ -481,11 +472,11 @@ ul {
         transition: all 0.3s ease-in-out;
     }
 
-    /* A Menü Panel (Balról úszik be) */
+    /* Menu Panel */
     .site-nav {
         position: fixed;
         top: 0;
-        left: -300px; /* Alaphelyzetben kint van balra */
+        left: -300px;
         width: 280px;
         height: 100vh;
         background-color: #111111;
@@ -496,7 +487,7 @@ ul {
         box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
     }
 
-    /* SÖTÉTÍTŐ OVERLAY (Pszeudo-elem a menühöz kötve) */
+    /* OVERLAY */
     .site-nav::before {
         content: "";
         position: fixed;
@@ -504,15 +495,15 @@ ul {
         left: 0;
         width: 100vw;
         height: 100vh;
-        background: rgba(0, 0, 0, 0.7); /* Mennyire legyen sötét (0.7 = 70%) */
+        background: rgba(0, 0, 0, 0.7); /* Darkness intensity */
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.4s ease;
-        z-index: -1; /* A menüpanel mögött, de a weboldal előtt */
+        z-index: -1; /* Behind menu panel, in front of website */
         pointer-events: none;
     }
 
-    /* Navigációs lista elemei */
+    /* Items */
     .nav-list {
         display: flex;
         flex-direction: column;
@@ -534,9 +525,9 @@ ul {
         transition: color 0.2s;
     }
 
-    /* Mobil nyelvválasztó a menü alján */
+    /* Mobile language selector at the bottom of the menu */
     .site-nav .nav-list .mobile-only-languages {
-        display: flex !important; /* Az !important garantálja, hogy felülírja a korábbi tiltást */
+        display: flex !important; /* Guarantees override of previous restrictions */
         gap: 15px;
         margin-top: 30px;
         padding-bottom: 20px;
@@ -554,22 +545,22 @@ ul {
     }
 
     /* -----------------------------------------------------------
-       AKTÍV ÁLLAPOTOK (Amikor a checkbox be van pipálva)
+       ACTIVE STATES (When checkbox is checked)
        ----------------------------------------------------------- */
 
-    /* Menü beúsztatása */
+    /* Slide in menu */
     .nav-toggle:checked ~ .site-nav {
         left: 0;
     }
 
-    /* Sötétítés megjelenítése */
+    /* Show darkening overlay */
     .nav-toggle:checked ~ .site-nav::before {
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
     }
 
-    /* Hamburger ikon X-szé alakítása */
+    /* Transform hamburger icon to X */
     .nav-toggle:checked + .nav-toggle-btn .bar:nth-child(1) {
         transform: translateY(8.5px) rotate(45deg);
     }
@@ -583,15 +574,14 @@ ul {
         transform: translateY(-8.5px) rotate(-45deg);
     }
 
-    /* Egyéb mobil igazítások */
+    /* Other mobile adjustments */
     .desktop-only {
         display: none !important;
     }
 }
 
-
 /* ==========================================================================
-
+   MOBILE VIEW SPECIFICS
    ========================================================================== */
 @media (max-width: 799px) {
     .right-icons{
@@ -620,8 +610,6 @@ ul {
     }
     .site-nav .nav-list .mobile-only-languages {
         margin-top: 30px;
-        padding-bottom: 100px; !important;
-
+        padding-bottom: 100px !important;
     }
-
 }

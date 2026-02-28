@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initModals();
     initLanguageSelector();
     initScrollAnimations();
-    initRecommendationTable(); // Új inicializáló a táblázathoz
+    initRecommendationTable(); // New initializer for the table
 });
 
 /* =========================
@@ -17,7 +17,7 @@ function initSlider() {
     const slider = document.querySelector('.slider');
     if (!slider) return;
 
-    // Képre kattintás kezelése
+    // Handle image click events
     document.querySelectorAll('.slider img').forEach(img => {
         img.addEventListener('mousedown', e => {
             startX_click = e.clientX;
@@ -33,8 +33,8 @@ function initSlider() {
 
         img.addEventListener('mouseup', e => {
             if (!isDragging_click) {
-                const link = img.getAttribute('data-link');
-                if (link) location.href = link;
+                const targetLink = img.getAttribute('data-link');
+                if (targetLink) location.href = targetLink;
             }
         });
     });
@@ -43,11 +43,12 @@ function initSlider() {
     let startX = 0;
     let scrollLeft = 0;
     let currentIndex = 1;
-    let autoInterval;
+    let autoSlideInterval;
     const autoDelay = 5000;
     const dragSensitivity = 0.6;
     let isLooping = false;
 
+    // Infinite scroll clones
     const slides = Array.from(slider.children);
     const firstClone = slides[0].cloneNode(true);
     const lastClone = slides[slides.length - 1].cloneNode(true);
@@ -61,14 +62,14 @@ function initSlider() {
     let slideWidth = slider.offsetWidth;
     slider.scrollLeft = slideWidth * currentIndex;
 
-    const dots = document.querySelectorAll('.slider-nav a');
+    const navDots = document.querySelectorAll('.slider-nav a');
 
     function updateDots() {
-        dots.forEach(dot => dot.style.backgroundColor = '#ffffff');
+        navDots.forEach(dot => dot.style.backgroundColor = '#ffffff');
         let dotIndex = currentIndex - 1;
-        if (dotIndex >= dots.length) dotIndex = 0;
-        if (dotIndex < 0) dotIndex = dots.length - 1;
-        if (dots[dotIndex]) dots[dotIndex].style.backgroundColor = '#00ca65';
+        if (dotIndex >= navDots.length) dotIndex = 0;
+        if (dotIndex < 0) dotIndex = navDots.length - 1;
+        if (navDots[dotIndex]) navDots[dotIndex].style.backgroundColor = '#00ca65';
     }
 
     updateDots();
@@ -84,10 +85,11 @@ function initSlider() {
 
     function startAutoSlide() {
         stopAutoSlide();
-        autoInterval = setInterval(nextSlide, autoDelay);
+        autoSlideInterval = setInterval(nextSlide, autoDelay);
     }
-    function stopAutoSlide() { clearInterval(autoInterval); }
+    function stopAutoSlide() { clearInterval(autoSlideInterval); }
 
+    // Drag events
     slider.addEventListener('mousedown', (e) => {
         stopAutoSlide();
         isDown = true;
@@ -99,8 +101,8 @@ function initSlider() {
 
     window.addEventListener('mousemove', (e) => {
         if (!isDown) return;
-        const delta = e.pageX - startX;
-        slider.scrollLeft = scrollLeft - delta * dragSensitivity;
+        const deltaX = e.pageX - startX;
+        slider.scrollLeft = scrollLeft - deltaX * dragSensitivity;
     });
 
     window.addEventListener('mouseup', (e) => {
@@ -114,6 +116,7 @@ function initSlider() {
         startAutoSlide();
     });
 
+    // Infinite loop scroll handler
     slider.addEventListener('scroll', () => {
         if (isLooping) return;
         if (currentIndex >= allSlides.length - 1 && slider.scrollLeft >= slideWidth * (allSlides.length - 1) - 10) {
@@ -140,7 +143,7 @@ function initSlider() {
         setTimeout(() => { slider.style.scrollBehavior = 'smooth'; }, 50);
     });
 
-    dots.forEach((dot, i) => {
+    navDots.forEach((dot, i) => {
         dot.addEventListener('click', (e) => {
             e.preventDefault();
             moveToSlide(i + 1);
@@ -154,89 +157,85 @@ function initSlider() {
    2. MODALS (Popups)
 ========================= */
 function initModals() {
-    const modal = document.getElementById('infoModal');
+    const infoModal = document.getElementById('infoModal');
     const modalTitle = document.getElementById('modalTitle');
     const modalText = document.getElementById('modalText');
-    const triggers = document.querySelectorAll('.info-trigger-card');
+    const modalTriggers = document.querySelectorAll('.info-trigger-card');
     const closeBtn = document.querySelector('.close-modal');
 
-    if (!modal) return;
+    if (!infoModal) return;
 
-    const infoData = {
+    const modalContentMap = {
         'eatClean': { title: 'Eat Clean', text: 'A tiszta étkezés az egészséges életmód alapja...' },
         'trainHard': { title: 'Work Hard', text: 'A következetes edzés kulcsfontosságú...' },
         'sleepWell': { title: 'Sleep Well', text: 'A regeneráció legalább olyan fontos...' }
     };
 
-    triggers.forEach(trigger => {
+    modalTriggers.forEach(trigger => {
         trigger.addEventListener('click', () => {
-            const type = trigger.getAttribute('data-modal');
-            if (infoData[type]) {
-                modalTitle.innerText = infoData[type].title;
-                modalText.innerText = infoData[type].text;
-                modal.classList.add('is-open');
+            const modalType = trigger.getAttribute('data-modal');
+            if (modalContentMap[modalType]) {
+                modalTitle.innerText = modalContentMap[modalType].title;
+                modalText.innerText = modalContentMap[modalType].text;
+                infoModal.classList.add('is-open');
             }
         });
     });
 
-    if (closeBtn) closeBtn.addEventListener('click', () => modal.classList.remove('is-open'));
-    window.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('is-open'); });
+    if (closeBtn) closeBtn.addEventListener('click', () => infoModal.classList.remove('is-open'));
+    window.addEventListener('click', (e) => { if (e.target === infoModal) infoModal.classList.remove('is-open'); });
 }
 
 /* =========================
-   3. NYELVVÁLASZTÓ (Google Translate)
+   3. LANGUAGE SELECTOR (Google Translate)
 ========================= */
-// 1. Módosított nyelvválasztó inicializáló
 function initLanguageSelector() {
-    const buttons = document.querySelectorAll('.nyelv-btn');
+    const langButtons = document.querySelectorAll('.lang-btn');
 
-    // Ellenőrizzük, van-e elmentett nyelv, és ha igen, alkalmazzuk
-    const savedLang = localStorage.getItem('selectedLanguage');
-    if (savedLang) {
-        // Várunk egy kicsit, hogy a Google modul biztosan betöltsön
+    // Check for saved language in localStorage
+    const savedLanguage = localStorage.getItem('selectedLanguage');
+    if (savedLanguage) {
+        // Wait for Google module to load
         setTimeout(() => {
-            triggerGoogleTranslate(savedLang);
+            triggerGoogleTranslate(savedLanguage);
         }, 1000);
     }
 
-    buttons.forEach(btn => {
+    langButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             const langCode = btn.getAttribute('data-lang');
-            // Elmentjük a választott nyelvet
             localStorage.setItem('selectedLanguage', langCode);
             triggerGoogleTranslate(langCode);
         });
     });
 }
 
-// 2. Extra védelem a visszalépés (BFCache) ellen
+// BFCache (back button) protection
 window.addEventListener('pageshow', (event) => {
-    // A persisted igaz, ha az oldal a cache-ből töltődött be (pl. vissza nyíl)
     if (event.persisted) {
-        const savedLang = localStorage.getItem('selectedLanguage');
-        if (savedLang) {
-            triggerGoogleTranslate(savedLang);
+        const savedLanguage = localStorage.getItem('selectedLanguage');
+        if (savedLanguage) {
+            triggerGoogleTranslate(savedLanguage);
         }
     }
 });
 
 function triggerGoogleTranslate(langCode) {
-    const select = document.querySelector(".goog-te-combo");
+    const translateDropdown = document.querySelector(".goog-te-combo");
 
-    if (select) {
-        select.value = langCode;
-        select.dispatchEvent(new Event('change'));
-        select.dispatchEvent(new Event('input'));
+    if (translateDropdown) {
+        translateDropdown.value = langCode;
+        translateDropdown.dispatchEvent(new Event('change'));
+        translateDropdown.dispatchEvent(new Event('input'));
     } else {
-        // Ha nem találja, megpróbáljuk megvárni (pl. lassú net esetén)
-        console.warn("Várakozás a Google Translate modulra...");
+        console.warn("Waiting for Google Translate module...");
 
-        // Egyetlen újrapróbálkozás 500ms múlva
+        // Retry once after 500ms
         setTimeout(() => {
-            const retrySelect = document.querySelector(".goog-te-combo");
-            if (retrySelect) {
-                retrySelect.value = langCode;
-                retrySelect.dispatchEvent(new Event('change'));
+            const retryDropdown = document.querySelector(".goog-te-combo");
+            if (retryDropdown) {
+                retryDropdown.value = langCode;
+                retryDropdown.dispatchEvent(new Event('change'));
             } else {
                 alert("A fordító szolgáltatás jelenleg nem elérhető. Kérjük, frissítse az oldalt!");
             }
@@ -244,7 +243,7 @@ function triggerGoogleTranslate(langCode) {
     }
 }
 
-// Google API inicializáló (globális környzetbe)
+// Global Google API Init
 window.googleTranslateElementInit = function() {
     new google.translate.TranslateElement({
         pageLanguage: 'hu',
@@ -254,22 +253,22 @@ window.googleTranslateElementInit = function() {
 }
 
 /* =========================
-   4. SCROLL ANIMÁCIÓK
+   4. SCROLL ANIMATIONS
 ========================= */
 function initScrollAnimations() {
-    const observer = new IntersectionObserver((entries) => {
+    const scrollObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) entry.target.classList.add('show');
         });
     });
-    document.querySelectorAll('.fadeIn').forEach((el) => observer.observe(el));
+    document.querySelectorAll('.fadeIn').forEach((element) => scrollObserver.observe(element));
 }
 
 /* =========================
    5. RECOMMENDATION TABLE
 ========================= */
 function initRecommendationTable() {
-    const recommendationsData = {
+    const recommendationsDataMap = {
         treadmill: { title: "FORGEX TREADMILL", description: "A világ első számú futópadjai...", image: "images/treadmill.JPEG" },
         cableMachine: { title: "FORGEX CABLE CROSSOVER", description: "Több mint 200 gyakorlat...", image: "images/mayaCable.jpeg" },
         equipment: { title: "MI NEM RIADUNK EL A VÁLTOZÁSTÓL", description: "", image: "images/equipment.jpeg" },
@@ -283,20 +282,20 @@ function initRecommendationTable() {
             document.querySelectorAll('.recommendations-menu-item').forEach(i => i.classList.remove('active'));
             this.classList.add('active');
 
-            const target = this.getAttribute('data-target');
-            const data = recommendationsData[target];
+            const selectionKey = this.getAttribute('data-target');
+            const targetData = recommendationsDataMap[selectionKey];
 
-            const titleEl = document.querySelector('.recommendations-title');
-            const descEl = document.querySelector('.recommendations-description');
-            const imgEl = document.querySelector('#recommendations-display-img');
+            const titleElement = document.querySelector('.recommendations-title');
+            const descElement = document.querySelector('.recommendations-description');
+            const imgElement = document.querySelector('#recommendations-display-img');
 
-            if (data && titleEl) {
-                [titleEl, descEl, imgEl].forEach(el => el.style.opacity = 0);
+            if (targetData && titleElement) {
+                [titleElement, descElement, imgElement].forEach(el => el.style.opacity = 0);
                 setTimeout(() => {
-                    titleEl.textContent = data.title;
-                    descEl.textContent = data.description;
-                    imgEl.src = data.image;
-                    [titleEl, descEl, imgEl].forEach(el => el.style.opacity = 1);
+                    titleElement.textContent = targetData.title;
+                    descElement.textContent = targetData.description;
+                    imgElement.src = targetData.image;
+                    [titleElement, descElement, imgElement].forEach(el => el.style.opacity = 1);
                 }, 300);
             }
         });

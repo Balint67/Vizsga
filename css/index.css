@@ -96,14 +96,14 @@ ul {
     display: block; /* Eltünteti az inline elemek alatti kis rést */
 }
 
-.runner-szöveg {
+.runner-text {
     z-index: 200;
     position: absolute;
     margin-top: -25%;
     margin-left: 7%;
     font-size: 30px;
 }
-.runner-szöveg2 {
+.runner-text-subtitle {
     margin-top: -35px;
 }
 
@@ -255,7 +255,7 @@ ul {
 /* ==========================================================================
    7. MODALOK / POPUPOK
    ========================================================================== */
-.popUp, .bejelentkez {
+.popUp{
     position: fixed;
     inset: 0;
     z-index: var(--z-modal);
@@ -263,9 +263,9 @@ ul {
     place-items: center;
     background: rgba(0,0,0,.6);
 }
-.popUp.is-open, .bejelentkez.is-open { display: grid !important; }
+.popUp.is-open { display: grid !important; }
 
-.popUp .container, .bejelentkez .container {
+.popUp .container {
     position: relative;
     z-index: 10000;
 }
@@ -289,13 +289,6 @@ ul {
     width: fit-content;
 }
 .animation-bottom:hover { transform: translateY(-2px); color: var(--primary-accent); }
-
-
-
-
-.tartalom-index { margin-top: -100px; }
-.tartalom { margin-top: 100px; }
-
 
 .brand-name { font-style: italic; }
 .brand-x {
@@ -567,11 +560,11 @@ table{
     .logoVid-Runner {
         display: none;
     }
-    .runner-szöveg{
+    .runner-text{
         margin-top: -50%;
         font-size: 1.2rem;
     }
-    .runner-szöveg2{
+    .runner-text-subtitle{
         margin-top: -20px;
     }
     .brand-x{
@@ -639,11 +632,11 @@ table{
     .sizeHelperSpace{
         margin-top: 200px;
     }
-    .runner-szöveg{
+    .runner-text{
         margin-top: -125%;
         font-size: 1.2rem;
     }
-    .runner-szöveg2{
+    .runner-text-subtitle{
         margin-top: -20px;
     }
     .brand-x{
@@ -659,11 +652,11 @@ table{
 
 @media (max-width: 1799px) and (min-width: 799px) {
 
-    .runner-szöveg {
+    .runner-text {
         font-size: 1.4rem;
         margin-top: -23%;
     }
-    .runner-szöveg2{
+    .runner-text-subtitle{
         margin-top: -25px;
     }
     .logoVid-Runner {
