@@ -26,14 +26,14 @@
             <!-- Primary navigation -->
             <nav id="site-nav" class="site-nav" role="navigation" aria-label="Fő navigáció">
                 <ul class="nav-list">
-                    <li class="nav-link"><div class="text"><a href="index.html">Kezdőlap</a></div></li>
+                    <li class="nav-link active"><div class="text"><a href="index.html">Kezdőlap</a></div></li>
                     <li class="nav-link"><div class="text"><a href="shop.html">Shop</a></div></li>
                     <li class="nav-link"><div class="text"><a href="workouts.html">Gyakorlatok</a></div></li>
                     <li class="nav-link"><div class="text"><a href="gym.html">Edzőtermek</a></div></li>
                     <li class="nav-link"><div class="text"><a href="trainers.html">Edzők</a></div></li>
                     <li class="nav-link"><div class="text"><a href="booking.html">Időpontfoglalás</a></div></li>
                     <li class="nav-link"><div class="text"><a href="anatomy.html">Anatómia</a></div></li>
-                    <li class="nav-link active"><div class="text"><a href="calculatorBmi.html">BMI - Kalkulátor</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="calculatorBmi.html">BMI - Kalkulátor</a></div></li>
                     <li class="nav-link"><div class="text"><a href="contacts.html">Elérhetőségek</a></div></li>
                     <li class="nav-link"><div class="text" id="mobileFavorites"><a href="favourite.html">Kedvencek</a></div></li>
 
@@ -49,8 +49,8 @@
     </header>
     <a href="index.html"><video src="videos/logo.mp4" autoplay muted playsinline class="logoVid-Mobile"></video></a>
     <!-- Language selector (desktop only) -->
-    <div class="nyelvek desktop-only">
-        <div class="nyelvvalaszto">
+    <div class="languages-container desktop-only">
+        <div class="language-picker">
             <button data-lang="hu" class="nyelv-btn">Magyar</button>
             <button data-lang="en" class="nyelv-btn">English</button>
             <button data-lang="de" class="nyelv-btn">Deutsch</button>
@@ -62,7 +62,7 @@
         <div class="animation">
             <a href="favourite.html">
                 <img
-                        src="https://blogger.googleusercontent.com/img/a/AVvXsEgJFzFfHiQVUYwzahvNBeriW2rB8HZ-XDg8KkQ_cP2rFBkF8OrApJS2YUjHFemxb29mnWVzaULETwXtnGNM91eGQS6xhhQuiGPlLlnMDcy-lZfVq6pc6gzkOwoyLeGNJbCnlVLtzAbEKdx6lAUlfqb2CKIlrNIpkYg6mb8lzRGq6t-fr9ODlt49KSWxQ2g"
+                        src="images/icons/favoritesImg.png"
                         class="likeIMG"
                         alt="Like icon">
             </a>
@@ -72,7 +72,7 @@
         <div class="animation">
             <a href="signIn.html" id="auth-link">
                 <img
-                        src="https://blogger.googleusercontent.com/img/a/AVvXsEjWKRjSGDLLZiHXHkVvs17JzH96-r_hTw5IEggJbNOVacw37Vp2BVelLwtoc4KRhvw61tWrgjPqOdFYy5HF_yED3b3JjMWiNvcM3NubgzkjuuvtmEn2pEVUtO6Jn3T-vBUeHytWzNUfliRMC7sPhwZrAiPpuJeW6-jd0vwZlIjfdZLg5FDJL-Jz2tJiajM"
+                        src="images/icons/userImg.png"
                         class="userIMG"
                         alt="User profile">
             </a>
@@ -82,7 +82,7 @@
         <div class="header-shop">
             <a href="cart.html" class="container-shopBtn">
                 <img
-                        src="https://blogger.googleusercontent.com/img/a/AVvXsEjnr3paeYkomWqEuLtpy-LUrJtccK4i5TAvsA4fIgCuoEmtgKqU2Nx3n4trTJrgoRU3T4w6qhAG3t7TAzlh8090v8e8luNlBsNdGc0avkHqE65n2omeiEctqzaxqvYTESBxYGCDRsHupOurWGNd1EwNhrAZem6DvrOP0dW1wc-EatQ0WWRXSMyXMxVgOLk"
+                        src="images/icons/cartImg.png"
                         class="cartIMG"
                         alt="Shopping cart">
                 <span id="cart-count">0</span>
@@ -95,15 +95,15 @@
 <!-- ============================== MOBILE BOTTOM NAV ============================== -->
 <div class="phone-menu" role="navigation" aria-label="Alsó navigáció">
     <a href="signIn.html" aria-label="Profil">
-        <img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjWKRjSGDLLZiHXHkVvs17JzH96-r_hTw5IEggJbNOVacw37Vp2BVelLwtoc4KRhvw61tWrgjPqOdFYy5HF_yED3b3JjMWiNvcM3NubgzkjuuvtmEn2pEVUtO6Jn3T-vBUeHytWzNUfliRMC7sPhwZrAiPpuJeW6-jd0vwZlIjfdZLg5FDJL-Jz2tJiajM"
+        <img class="phone-menu__icon" src="images/icons/userImg.png"
              alt="Profil">
     </a>
     <a href="index.html" aria-label="Főoldal">
-        <img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjTj_tBeEAlNqVcqK3BqoPRryYKbcv8wNU8j9XzjyGMi4HlppPqyyhTaoLT3vMiTAVshSMVfvFEiLeJN-i2x_wSTMgEps3je7uKuPmR7s6XrVTQ928wPFwyj5-lVChSteg-dzFv76Q_IjNiov2p7cLphdxKF9Ys-mUaiZlEeD6S338zj5nwLyukV9NKgdo"
+        <img class="phone-menu__icon" src="images/icons/homeImg.png"
              alt="Főoldal" id="phone-home-img">
     </a>
     <a href="cart.html" aria-label="Kosár">
-        <img class="phone-menu__icon" src="https://blogger.googleusercontent.com/img/a/AVvXsEjnr3paeYkomWqEuLtpy-LUrJtccK4i5TAvsA4fIgCuoEmtgKqU2Nx3n4trTJrgoRU3T4w6qhAG3t7TAzlh8090v8e8luNlBsNdGc0avkHqE65n2omeiEctqzaxqvYTESBxYGCDRsHupOurWGNd1EwNhrAZem6DvrOP0dW1wc-EatQ0WWRXSMyXMxVgOLk"
+        <img class="phone-menu__icon" src="images/icons/cartImg.png"
              alt="Kosár">
     </a>
 </div>
@@ -171,21 +171,24 @@
         <div class="animation-bottom">
             <div class="space">
                 <a href="https://www.instagram.com/forgex._" class="tiszta-link" target="_blank">
-                    <p>Instagram <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" class="igLogo" alt="Instagram Logo"></p>
+                    <p>Instagram</p>
+                    <img src="images/icons/instaLogo.png" class="igLogo" alt="Instagram Logo">
                 </a>
             </div>
         </div>
         <div class="animation-bottom">
             <div class="space">
                 <a href="https://www.facebook.com/share/1Dwr4nD67j" class="tiszta-link" target="_blank">
-                    <p>Facebook <img src="https://1000logos.net/wp-content/uploads/2017/02/Facebook-Logosu.png" class="faceLogo" alt="Facebook Logo"></p>
+                    <p>Facebook</p>
+                    <img src="images/icons/facebookLogo.png" class="faceLogo" alt="Facebook Logo">
                 </a>
             </div>
         </div>
         <div class="animation-bottom">
             <div class="space" id="tiktok">
                 <a href="https://www.tiktok.com/@forgex97" class="tiszta-link" target="_blank">
-                    <p>Tiktok <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgZczqhf9-ciDl5_atJ6sQPIZNCwqKYOhfm4LkbKiFyiR9_HRrW7BJ7cNb55lbxZchDVBDwt5-olPIRhMClgLL8UON6c0AQybZYHaOji70nhooShz9RpZVU1lPZFcmzoi-Sd1gB1jhlRvXCKENeX4R-Lj7WFZDfEjzsBPIX5ipnQ43R1O7AmmQjESxVaSo" class="tiktokLogo" alt="Tiktok Logo"></p>
+                    <p>Tiktok</p>
+                    <img src="images/icons/tiktokLogo.png" class="tiktokLogo" alt="Tiktok Logo">
                 </a>
             </div>
         </div>

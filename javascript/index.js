@@ -288,38 +288,38 @@ const recommendationsData = {
     treadmill: {
         title: "FORGEX TREADMILL - AZ ERŐ ÉS ÁLLÓKÉPESSÉG ÚJ SZINTJE",
         description: "A világ első számú futópadjai. Ergonómikus kialakítás, miközben maximális kardió élményt nyújt a legmodernebb kijelzővel.",
-        image: "images/treadmill.JPEG",
-        mobileImage: "images/treadmillMobile.jpg"
+        image: "images/backgrounds/treadmill.JPEG",
+        mobileImage: "images/backgrounds/treadmillMobile.jpg"
     },
     cableMachine: {
         title: "FORGEX CABLE CROSSOVER - MINDEN EGY HELYEN",
         description: "Több mint 200 gyakorlat egyetlen eszközön. Kompakt, stílusos és mindent tartalmaz, amire a súlyzós edzéshez szükséged van. Tolj vagy húzz – korlátok nélkül.",
-        image: "images/mayaCable.jpeg",
-        mobileImage: "images/mayaCableMobile.jpg"
+        image: "images/backgrounds/mayaCable.jpeg",
+        mobileImage: "images/backgrounds/mayaCableMobile.jpg"
     },
     equipment: {
         title: "MI NEM RIADUNK EL A VÁLTOZÁSTÓL",
         description: "Világszínvonalú felszereltség! Edzőtermeinkben a nemzetközi fitneszpiac élvonalába tartozó, prémium márkák legújabb modelljei biztosítják a kompromisszummentes edzésélményt már szerte a világon.",
-        image: "images/equipment.jpeg",
-        mobileImage: "images/equipment.jpeg"
+        image: "images/backgrounds/equipment.jpeg",
+        mobileImage: "images/backgrounds/equipment.jpeg"
     },
     balance: {
         title: "TÖKÉLETES EGYENSÚLY - KÉNYELEM ÉS REGENERÁLÓDÁS",
         description: "A fejlődés nemcsak az edzésen, hanem a regeneráción is múlik. Személyre szabott rehabilitációs programjaink és célzott nyújtásaink segítenek visszaállítani tested természetes egyensúlyát és mozgásszabadságát.",
-        image: "images/balance.jpeg",
-        mobileImage: "images/balanceMobile.jpg"
+        image: "images/backgrounds/balance.jpeg",
+        mobileImage: "images/backgrounds/balanceMobile.jpg"
     },
     bench: {
         title: "FORGEX BENCH - AZ ELSŐ LÁTÁSRA SZERELEM",
         description: "Vannak gépek, amik mellett nem lehet szó nélkül elmenni. A Forgex Bench az elegáns dizájnt ötvözi a nyers erővel: amint kipróbálod, érezni fogod a stabilitás és a precizitás új szintjét.",
-        image: "images/benchPress.jpg",
-        mobileImage: "images/benchPressMobile.jpg"
+        image: "images/backgrounds/benchPress.jpg",
+        mobileImage: "images/backgrounds/benchPressMobile.jpg"
     },
     legPress: {
         title: "FORGEX LEG PRESS - AZ ERŐ ÚJ DIMENZIÓJA",
         description: "Nincs többé kifogás a lábnapokon. A Forgex Leg Press-t úgy terveztük, hogy a legnagyobb terhelés mellett is egyenletes, sima mozgást biztosítson. Építs masszív izomzatot a szakma legstabilabb lábtológépével!",
-        image: "images/legPress.JPG",
-        mobileImage: "images/legPressMobile.jpg"
+        image: "images/backgrounds/legPress.JPG",
+        mobileImage: "images/backgrounds/legPressMobile.jpg"
     }
 };
 
