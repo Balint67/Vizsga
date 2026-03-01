@@ -250,6 +250,12 @@
                 <form class="booking-form" id="bookingForm">
                     <input type="text" id="user-name" placeholder="Teljes név" required>
                     <input type="email" id="user-email" placeholder="E-mail cím" required>
+
+                    <div class="form-row-grid">
+                        <input type="number" id="user-age" placeholder="Életkor" min="1" max="120">
+                        <input type="number" id="user-weight" placeholder="Testsúly (kg)" min="1" max="300">
+                    </div>
+
                     <textarea id="user-note" placeholder="Megjegyzés (pl. sérülések, célok)"></textarea>
                     <button type="submit" class="submit-booking">Foglalás megerősítése</button>
                 </form>
