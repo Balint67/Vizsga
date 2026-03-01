@@ -8,7 +8,7 @@ import { forgeXModal } from './utils.js';
  */
 const PRODUCT_DATA = {
     "Shaker": {
-        images: ["images/shaker-white.png", "images/shaker-black.png"],
+        images: ["images/products/shaker-white.png", "images/products/shaker-black.png"],
         description: "ForgeX shaker 0,7L – premium quality, BPA-free plastic, perfect for workouts.",
         sizes: ["0.7L", "1L"],
         color: ["Fehér", "Fekete"],
@@ -16,7 +16,7 @@ const PRODUCT_DATA = {
         category: "supplement"
     },
     "Póló": {
-        images: ["images/shirt-white.jpg", "images/shirt-black.png"],
+        images: ["images/products/shirt-white.jpg", "images/products/shirt-black.png"],
         description: "ForgeX training shirt – breathable, quick-drying material.",
         sizes: ["S", "M", "L", "XL"],
         color: ["Fehér", "Fekete"],
@@ -24,7 +24,7 @@ const PRODUCT_DATA = {
         category: "clothing"
     },
     "Protein por": {
-        images: ["images/proteinVanillia1kg.jpg", "images/proteinEper1kg.jpg"],
+        images: ["images/products/proteinVanillia1kg.jpg", "images/products/proteinEper1kg.jpg"],
         description: "ForgeX whey protein – premium quality whey protein.",
         sizes: ["1kg", "2kg"],
         color: ["Vanília", "Eper"],
@@ -32,14 +32,14 @@ const PRODUCT_DATA = {
         category: "supplement"
     },
     "Kreatin": {
-        images: ["images/kreatin.jpg"],
+        images: ["images/products/kreatin.jpg"],
         description: "100% creatine monohydrate 500g – for performance enhancement.",
         sizes: ["500g", "1kg"],
         prices: [6990, 12990],
         category: "supplement"
     },
     "Nadrág": {
-        images: ["images/pants-white.png", "images/pants-black.jpeg"],
+        images: ["images/products/pants-white.png", "images/products/pants-black.jpeg"],
         description: "ForgeX women's sports pants – comfortable and flexible.",
         sizes: ["XS", "S", "M", "L"],
         color: ["Fehér", "Fekete"],
@@ -47,7 +47,7 @@ const PRODUCT_DATA = {
         category: "clothing"
     },
     "Sportcipő": {
-        images: ["images/shoe-white.png", "images/shoe-black.png"],
+        images: ["images/products/shoe-white.png", "images/products/shoe-black.png"],
         description: "ForgeX running shoes – lightweight, flexible sole.",
         sizes: ["38", "39", "40", "41", "42", "43", "44", "45"],
         color: ["Fehér", "Fekete"],
@@ -55,7 +55,7 @@ const PRODUCT_DATA = {
         category: "clothing"
     },
     "Sapka": {
-        images: ["images/hat-white.jpg", "images/hat-black.jpeg"],
+        images: ["images/products/hat-white.jpg", "images/products/hat-black.jpeg"],
         description: "ForgeX hat – stylish and comfortable.",
         sizes: ["M", "L"],
         color: ["Fehér", "Fekete"],
@@ -64,7 +64,7 @@ const PRODUCT_DATA = {
     },
     "Sporttáska": {
         // KÜLÖN idézőjelbe kell tenni a két fájlt:
-        images: ["images/bag-black2.jpg", "images/bag-green.jpg"],
+        images: ["images/products/bag-black2.jpg", "images/products/bag-green.jpg"],
         description: "ForgeX gym bag – multiple pockets, durable material.",
         sizes: ["25L", "45L"],
         color: ["Fekete", "Zöld"], // Érdemes a színt is bővíteni, ha van zöld táska
@@ -72,7 +72,7 @@ const PRODUCT_DATA = {
         category: "clothing"
     },
     "Fehérje szelet": {
-        images: ["images/proteinBarCoconut.jpg"],
+        images: ["images/products/proteinBarCoconut.jpg"],
         description: "ForgeX protein bar – energy-rich snack.",
         sizes: ["50g", "100g"],
         color: ["Kókuszos"],
