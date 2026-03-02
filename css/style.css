@@ -603,6 +603,16 @@ ul {
     .right-icons{
         display: none;
     }
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 700;
+        color: white;
+        text-align: center;
+        font-family: 'Segoe UI', sans-serif;
+    }
     .phone-menu {
         display: flex;
         position: fixed;
