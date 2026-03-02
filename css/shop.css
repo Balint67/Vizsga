@@ -132,7 +132,7 @@ h2 {
 }
 
 /* --- Action Buttons --- */
-.login-btn {
+.addToCart-btn {
     width: 90%;
     background: var(--accent-gradient);
     font-family: 'Open Sans', sans-serif;
@@ -147,13 +147,13 @@ h2 {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.login-btn:hover {
+.addToCart-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 14px rgba(0,0,0,0.3);
     filter: brightness(1.1);
 }
 
-.login-btn:active {
+.addToCart-btn:active {
     transform: translateY(1px);
 }
 
@@ -529,7 +529,7 @@ h2 {
     flex-wrap: wrap;
 }
 
-.modal-actions .login-btn {
+.modal-actions .addToCart-btn {
     width: 100%;
     flex: 1;
     min-width: 200px;
@@ -631,7 +631,7 @@ h2 {
     }
 
     /* Buttons */
-    .login-btn {
+    .addToCart-btn {
         width: 100%;
         font-size: 14px;
         padding: 10px 15px;
@@ -686,7 +686,7 @@ h2 {
         margin: 15px 0;
     }
 
-    .modal-actions .login-btn {
+    .modal-actions .addToCart-btn {
         width: 100%;
         min-width: unset;
     }

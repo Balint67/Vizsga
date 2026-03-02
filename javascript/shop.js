@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <p id="modal-price"></p>
             <div class="modal-actions">
                 <button class="favorite-btn" aria-label="Kedvencek"><i class="fa-regular fa-heart"></i></button>
-                <button class="login-btn">Hozzáadás a kosárhoz</button>
+                <button class="addToCart-btn">Hozzáadás a kosárhoz</button>
             </div>
         </div>
     `;
@@ -377,7 +377,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const data = PRODUCT_DATA[title];
             if (!data) return;
 
-            if (e.target.classList.contains("login-btn")) {
+            if (e.target.classList.contains("addToCart-btn")) {
                 e.stopPropagation();
                 await addToCart(title, data.prices[0], data.sizes[0], data.color ? data.color[0] : null, data.images[0]);
                 return;
@@ -394,7 +394,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    modal.querySelector(".login-btn").addEventListener("click", async () => {
+    modal.querySelector(".addToCart-btn").addEventListener("click", async () => {
         await addToCart(
             modalTitle.innerText,
             parseInt(modalPrice.innerText.replace(/\D/g, "")),
