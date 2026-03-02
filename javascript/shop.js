@@ -24,7 +24,7 @@ const PRODUCT_DATA = {
         category: "clothing"
     },
     "Protein por": {
-        images: ["images/products/proteinVanillia1kg.jpg", "images/products/proteinEper1kg.jpg"],
+        images: ["images/products/proteinVanillia1kg.jpg", "images/products/proteinEper1kg.jpg", "images/products/proteinVanillia2kg.jpg", "images/products/proteinEper2kg.jpg"],
         description: "ForgeX whey protein – premium quality whey protein.",
         sizes: ["1kg", "2kg"],
         color: ["Vanília", "Eper"],
@@ -72,7 +72,7 @@ const PRODUCT_DATA = {
         category: "clothing"
     },
     "Fehérje szelet": {
-        images: ["images/products/proteinBarCoconut.jpg"],
+        images: ["images/products/proteinBarCoconut.jpg", "images/products/proteinBar100g.jpg"],
         description: "ForgeX protein bar – energy-rich snack.",
         sizes: ["50g", "100g"],
         color: ["Kókuszos"],
