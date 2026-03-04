@@ -1,0 +1,127 @@
+
+/* --- KÖZÉPRE IGAZÍTÁS --- */
+.container.review-page {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+    position: relative !important;
+    z-index: 10 !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+}
+
+/* --- VÉLEMÉNYEK RÁCS (GRID) ELRENDEZÉSE --- */
+.centered-layout {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+    gap: 25px !important;
+    width: 100% !important;
+    margin-top: 20px !important;
+}
+
+/* --- KÁRTYA DESIGN --- */
+.info-card.review-card {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 24px !important;
+    padding: 35px 25px !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    transition: all 0.4s ease !important;
+    position: relative !important;
+}
+
+/* Hover effekt a kártyákon*/
+.info-card.review-card:hover {
+    transform: translateY(-10px) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-color: #00ca65 !important; /* A gombod neon zöldje */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 202, 101, 0.1) !important;
+}
+
+/* Szövegek formázása a kártyán belül */
+.review-body {
+    font-size: 0.95rem !important;
+    line-height: 1.7 !important;
+    color: #cbd5e1 !important;
+    margin: 15px 0 !important;
+    flex-grow: 1 !important;
+}
+
+.avatar {
+    width: 65px !important;
+    height: 65px !important;
+    border: 2px solid #00ca65 !important;
+    box-shadow: 0 0 15px rgba(0, 202, 101, 0.2) !important;
+}
+
+/* --- GOMB DESIGN --- */
+.review-btn {
+    display: inline-block !important;
+    background: linear-gradient(135deg, #00ca65 0%, #007524 100%) !important;
+    color: #ffffff !important;
+    font-family: 'Open Sans', sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    padding: 16px 45px !important;
+    border: none !important;
+    border-radius: 50px !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    box-shadow: 0 10px 20px rgba(0, 202, 101, 0.2) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    z-index: 100 !important;
+}
+
+.review-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: all 0.5s !important;
+}
+
+.review-btn:hover {
+    transform: scale(1.08) translateY(-3px) !important;
+    box-shadow: 0 15px 30px rgba(0, 202, 101, 0.4) !important;
+}
+
+.review-btn:hover::after {
+    left: 120%;
+}
+
+.cta-row.centered {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 60px !important;
+    padding-bottom: 40px !important;
+}
+
+/* Vissza gomb */
+.vissza-gomb {
+    align-self: flex-start !important;
+    text-decoration: none !important;
+    margin-bottom: 30px !important;
+}
+
+/* A csillagok színe és fénye */
+.stars i {
+    color: #ffc107 !important;
+    margin: 0 2px !important;
+    text-shadow: 0 0 5px rgba(255, 193, 7, 0.3) !important;
+}
+
