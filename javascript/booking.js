@@ -207,6 +207,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         try {
             // 4. Save to Firestore
+            const weightVal = document.getElementById('user-weight').value;
+            const ageVal = document.getElementById('user-age').value;
             const docRef = await addDoc(collection(db, "bookings"), {
                 userId: user.uid,
                 userName: userName,
@@ -216,7 +218,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 date: formattedDate,
                 time: selectedTime,
                 note: userNote,
-                createdAt: serverTimestamp()
+                createdAt: serverTimestamp(),
+                weight: Number(weightVal),
+                age: Number(ageVal),
             });
 
             // 5. Success message with Glassmorphism
