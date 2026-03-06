@@ -285,84 +285,8 @@
 }
 
 
-/* Arnold Idézet Szekció */
-.arnold-section {
-    background-color: #000; /* Teljesen fekete háttér */
-    width: 100%;
-    padding: 60px 0;
-    overflow: hidden;
-}
 
-.arnold-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    gap: 40px;
-}
 
-.quote-container {
-    flex: 1;
-    text-align: left;
-}
-
-.quote-icon {
-    color: #00ca65; /* A zöld színed */
-    font-size: 2rem;
-    margin-bottom: 20px;
-    opacity: 0.6;
-}
-
-.arnold-quote {
-    font-family: 'sans-serif';
-    font-size: 1.8rem;
-    line-height: 1.4;
-    color: #ffffff;
-    font-style: italic;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.quote-author {
-    color: #00ca65;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 1rem;
-}
-
-.arnold-image-wrapper {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.arnold-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    filter: grayscale(20%) brightness(90%);
-}
 
 
 /* Mobil reszponzivitás */
-@media (max-width: 768px) {
-    .arnold-content {
-        flex-direction: column-reverse; /* Mobilon a kép legyen felül, vagy fordítva */
-        text-align: center;
-    }
-
-    .quote-container {
-        text-align: center;
-    }
-
-    .arnold-quote {
-        font-size: 1.4rem;
-    }
-
-    .arnold-image-wrapper {
-        justify-content: center;
-    }
-}
