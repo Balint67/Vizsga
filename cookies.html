@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Süti Beállítások | ForgeX</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cookies.css">
+</head>
+<body>
+<div class="fixed-bg"></div>
+
+<div class="container cookies-page">
+    <a href="javascript:history.back()" class="vissza-gomb">
+        <i class="fa-solid fa-arrow-left"></i> <span>Vissza</span>
+    </a>
+
+    <div class="header centered">
+        <h2>Süti <span class="highlight-text">Beállítások</span></h2>
+        <p>Itt szabályozhatod, hogyan használjuk a sütiket a jobb élmény érdekében.</p>
+    </div>
+
+    <div class="cookies-layout">
+        <div class="info-card cookie-card">
+            <div class="cookie-content">
+                <div class="cookie-text">
+                    <h4>Alapvető sütik</h4>
+                    <p>Ezek a sütik elengedhetetlenek a webhely működéséhez, például a bejelentkezéshez vagy a kosár kezeléséhez.</p>
+                </div>
+                <div class="cookie-action">
+                    <span class="status-tag mandatory">Mindig aktív</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-card cookie-card">
+            <div class="cookie-content">
+                <div class="cookie-text">
+                    <h4>Analitikai sütik</h4>
+                    <p>Segítenek megérteni, hogyan használják a látogatók az oldalt (pl. melyik termék népszerű), így fejleszthetjük a szolgáltatást.</p>
+                </div>
+                <div class="cookie-action">
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-card cookie-card">
+            <div class="cookie-content">
+                <div class="cookie-text">
+                    <h4>Marketing sütik</h4>
+                    <p>Személyre szabott ajánlatokat és hirdetéseket jelenítenek meg számodra a böngészési szokásaid alapján.</p>
+                </div>
+                <div class="cookie-action">
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-row centered">
+        <button class="btn review-btn" onclick="alert('Beállítások elmentve!')">Beállítások mentése</button>
+    </div>
+</div>
+</body>
+</html>
