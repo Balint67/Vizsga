@@ -10,6 +10,7 @@
     z-index: 10 !important;
     width: 100% !important;
     max-width: 1200px !important;
+    padding: 60px 20px !important;
 }
 
 /* --- VÉLEMÉNYEK RÁCS (GRID) ELRENDEZÉSE --- */
@@ -80,6 +81,7 @@
     position: relative !important;
     overflow: hidden !important;
     z-index: 100 !important;
+
 }
 
 .review-btn::after {
@@ -107,8 +109,8 @@
     width: 100% !important;
     display: flex !important;
     justify-content: center !important;
-    margin-top: 60px !important;
-    padding-bottom: 40px !important;
+    margin-top: 30px !important;
+    padding-bottom: 30px !important;
 }
 
 /* Vissza gomb */
@@ -116,6 +118,22 @@
     align-self: flex-start !important;
     text-decoration: none !important;
     margin-bottom: 30px !important;
+    transition: all 0.3s ease !important;
+}
+
+.vissza-gomb i {
+    color: #00ca65 !important;
+    margin-right: 8px !important;
+}
+
+.vissza-gomb span {
+    color: white !important;
+    font-weight: 600 !important;
+}
+
+.vissza-gomb:hover {
+    transform: translateX(-5px) !important;
+    filter: drop-shadow(0 0 8px #00ca65) !important;
 }
 
 /* A csillagok színe és fénye */
