@@ -58,18 +58,27 @@
                 </div>
 
                 <!-- Password input with toggle visibility -->
-                <label for="password">Password</label>
-                <div class="input-box">
-                    <i class="fa-solid fa-lock"></i>
-                    <input type="password" id="password" placeholder="Minimum 8 characters" required>
-                    <i class="fa-solid fa-eye" id="togglePassword"></i>
-                </div>
+                <form id="registrationForm">
+                    <label for="password">Password</label>
+                    <div class="input-box">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="password" placeholder="Minimum 8 characters" required minlength="8">
+                        <i class="fa-solid fa-eye toggle-password"></i>
+                    </div>
 
-                <!-- Submit button -->
-                <button type="submit" class="login-btn">
-                    Register <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </form>
+                    <label for="passwordagain">Password again</label>
+                    <div class="input-box">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="passwordagain" placeholder="Confirm your password" required>
+                        <i class="fa-solid fa-eye toggle-password"></i>
+                    </div>
+
+                    <p id="error-message" style="color: #ff4d4d; font-size: 13px; margin: 5px 0; display: none; font-weight: bold;"></p>
+
+                    <button type="submit" class="login-btn">
+                        Register <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </form>
 
             <!-- Link to sign in if user already has an account -->
             <p class="signup-text">

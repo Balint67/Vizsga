@@ -12,14 +12,27 @@
 
 /* Add to cart button */
 .fav-actions .login-btn {
-    width: 70%;
-    padding: 10px 15px;
-    font-size: 16px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    padding: 13px 74px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: left;
+    transition: 0.3s;
+    background-color: #00ca65;
 }
 
 .fav-actions .login-btn:hover {
-    transform: translateY(-2px);
+    border-color: var(--accent-green);
 }
+
+.fav-actions .login-btn.active {
+    background: var(--accent-gradient);
+    border: none;
+    color: white;
+}
+
 /* Remove button styling */
 .fav-remove {
     background: transparent;

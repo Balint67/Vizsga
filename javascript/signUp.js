@@ -10,16 +10,87 @@ import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-
 // Reference to the registration form
 const registrationForm = document.getElementById('regForm');
 
-// Password toggle elements (make eye icon work on registration page)
-const togglePasswordButton = document.getElementById('togglePassword');
-const passwordInput = document.getElementById('password');
+// Password toggle elements
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Element Selection
+    const registrationForm = document.getElementById('registrationForm');
+    const password = document.getElementById('password');
+    const confirmPassword = document.getElementById('passwordagain');
+    const errorMessage = document.getElementById('error-message');
+    const toggleButtons = document.querySelectorAll('.toggle-password');
 
-if (togglePasswordButton && passwordInput) {
-    togglePasswordButton.addEventListener('click', () => {
-        const isHidden = passwordInput.getAttribute('type') === 'password';
-        passwordInput.setAttribute('type', isHidden ? 'text' : 'password');
-        togglePasswordButton.classList.toggle('fa-eye');
-        togglePasswordButton.classList.toggle('fa-eye-slash');
+    // 2. PASSWORD VISIBILITY TOGGLE
+    toggleButtons.forEach(button => {
+        button.style.cursor = 'pointer';
+
+        button.addEventListener('click', function() {
+            // Find the input field relative to the clicked eye icon
+            const inputField = this.parentElement.querySelector('input');
+
+            if (inputField.type === 'password') {
+                inputField.type = 'text';
+                this.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                inputField.type = 'password';
+                this.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        });
+    });
+
+    // 3. REAL-TIME MATCH VALIDATION
+    function validatePasswords() {
+        const val1 = password.value;
+        const val2 = confirmPassword.value;
+
+        // Only show error if the second field is not empty
+        if (val2.length > 0) {
+            if (val1 !== val2) {
+                confirmPassword.style.border = "2px solid #ff4d4d";
+                errorMessage.textContent = "Passwords do not match!";
+                errorMessage.style.display = "block";
+            } else {
+                confirmPassword.style.border = "2px solid #2ecc71";
+                errorMessage.style.display = "none";
+            }
+        } else {
+            confirmPassword.style.border = "";
+            errorMessage.style.display = "none";
+        }
+    }
+
+    // Attach listeners for every keystroke
+    password.addEventListener('input', validatePasswords);
+    confirmPassword.addEventListener('input', validatePasswords);
+
+    // 4. PREVENT FORM SUBMISSION ON ERROR
+    if (registrationForm) {
+        registrationForm.addEventListener('submit', (e) => {
+            if (password.value !== confirmPassword.value) {
+                e.preventDefault(); // Stop form from sending
+                alert("Please make sure your passwords match!");
+            } else {
+                console.log("Form validated! Proceeding to registration...");
+            }
+        });
+    }
+});
+
+
+if (registrationForm) {
+    registrationForm.addEventListener('submit', (e) => {
+        if (password.value !== confirmPassword.value) {
+            e.preventDefault(); // Stop form submission
+
+            // Show error message if it was hidden
+            if (errorMessage) {
+                errorMessage.style.display = "block";
+                errorMessage.style.color = "#e74c3c";
+            }
+            alert("Registration failed: Passwords must match!");
+        } else {
+            console.log("Success! Data is ready for Firebase.");
+            // Add your Firebase Auth code here
+        }
     });
 }
 
