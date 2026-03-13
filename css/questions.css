@@ -1,0 +1,200 @@
+/* questions.css - ForgeX FAQ Design Smooth Animációval */
+
+.container.faq-page {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+    max-width: 900px !important;
+    position: relative !important;
+    z-index: 10 !important;
+    padding: 60px 20px !important;
+}
+
+.faq-layout {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    margin-top: 40px !important;
+}
+
+/* Kártya alapstílusa */
+.faq-card {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 20px !important;
+    text-align: left !important;
+    backdrop-filter: blur(12px) !important;
+    transition: all 0.4s ease !important;
+
+    /* Fontos: elrejtjük a summary alapértelmezett viselkedését */
+    display: block !important;
+    overflow: hidden !important;
+}
+
+.faq-card[open] {
+    border-color: #00ca65 !important;
+    background: rgba(0, 202, 101, 0.04) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Kérdés sora */
+summary {
+    padding: 22px 30px !important;
+    font-weight: 600 !important;
+    color: white !important;
+    cursor: pointer !important;
+    list-style: none !important;
+    outline: none !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    z-index: 2 !important;
+    position: relative !important;
+}
+
+summary::-webkit-details-marker { display: none; }
+
+/* Nyíl ikon animációja */
+summary::after {
+    content: '\f078';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #00ca65;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.faq-card {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 20px !important;
+    margin-bottom: 15px !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+    backdrop-filter: blur(12px) !important;
+}
+
+/* Kattintható fejléc */
+.faq-header {
+    padding: 22px 30px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    cursor: pointer !important;
+    color: white !important;
+    font-weight: 600 !important;
+    font-size: 1.1rem !important;
+}
+
+.faq-header i {
+    color: #00ca65 !important;
+    transition: transform 0.4s ease !important;
+}
+
+/* Aktív állapot design */
+.faq-card.active {
+    border-color: #00ca65 !important;
+    background: rgba(0, 202, 101, 0.04) !important;
+}
+
+.faq-card.active .faq-header i {
+    transform: rotate(180deg) !important;
+}
+
+/* --- AZ ANIMÁCIÓ LELKE --- */
+.faq-answer-wrapper {
+    display: grid !important;
+    grid-template-rows: 0fr !important; /* 0 magasság */
+    transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.faq-card.active .faq-answer-wrapper {
+    grid-template-rows: 1fr !important; /* Itt nyílik ki smooth módon */
+}
+
+.faq-answer {
+    overflow: hidden !important;
+}
+
+.faq-answer p {
+    padding: 0 30px 25px 30px !important;
+    color: #cbd5e1 !important;
+    line-height: 1.8 !important;
+    margin: 0 !important;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease !important;
+}
+
+.faq-card.active .faq-answer p {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition-delay: 0.1s !important;
+}
+
+.review-btn {
+    display: inline-block !important;
+    background: linear-gradient(135deg, #00ca65 0%, #007524 100%) !important;
+    color: #ffffff !important;
+    font-family: 'Open Sans', sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    padding: 16px 45px !important;
+    border: none !important;
+    border-radius: 50px !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    box-shadow: 0 10px 20px rgba(0, 202, 101, 0.2) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    z-index: 100 !important;
+    margin-top: 30px !important;
+}
+
+.review-btn:hover {
+    transform: scale(1.08) translateY(-3px) !important;
+    box-shadow: 0 15px 30px rgba(0, 202, 101, 0.4) !important;
+}
+
+.review-btn:hover::after {
+    left: 120%;
+}
+
+.review-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: all 0.5s !important;
+}
+
+.vissza-gomb {
+    align-self: flex-start !important;
+    text-decoration: none !important;
+    margin-bottom: 30px !important;
+    transition: all 0.3s ease !important;
+}
+
+.vissza-gomb i {
+    color: #00ca65 !important;
+    margin-right: 8px !important;
+}
+
+.vissza-gomb span {
+    color: white !important;
+    font-weight: 600 !important;
+}
+
+.vissza-gomb:hover {
+    transform: translateX(-5px) !important;
+    filter: drop-shadow(0 0 8px #00ca65) !important;
+}
