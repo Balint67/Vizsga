@@ -218,8 +218,6 @@
     flex-shrink: 0;
 }
 
-
-
 /* --- GOMB --- */
 .btn-full {
     width: 100%;
@@ -244,7 +242,6 @@
 }
 
 .btn:hover {
-    /* Hoverre kicsit élénkebb gradient */
     background: linear-gradient(180deg, #4bc35a 0%, #26a33d 100%);
     transform: translateY(-1px);
     box-shadow: 0 6px 20px rgba(0, 202, 101, 0.2);
@@ -254,7 +251,6 @@
     transform: translateY(0);
     filter: brightness(0.9);
 }
-
 
 .blue { background: #3498db; box-shadow: 0 0 10px rgba(52, 152, 219, 0.5); }
 .green { background: #2ecc71; box-shadow: 0 0 10px rgba(46, 204, 113, 0.5); }
@@ -278,13 +274,38 @@
     text-align: left;
 }
 
-/* --- Mobil reszponzivitás --- */
-@media (max-width: 850px) {
+/* --- Mobil reszponzivitás javítása --- */
+@media (max-width: 1024px) {
     .bmi-wrapper {
         flex-direction: column;
-        margin-top: 0px;
+        align-items: center;
+        margin-top: 40px;
+        margin-bottom: 40px;
     }
+
     .calculator-card, .info-card {
         width: 100%;
+        max-width: 600px;
+        flex: none;
+    }
+
+    .result-area {
+        flex-direction: row;
+    }
+}
+
+@media (max-width: 600px) {
+    .result-area {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .result-text {
+        text-align: center;
+        width: 100%;
+    }
+
+    .card {
+        padding: 25px 20px;
     }
 }
