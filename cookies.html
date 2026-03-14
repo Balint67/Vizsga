@@ -10,64 +10,168 @@
 </head>
 <body>
 <div class="fixed-bg"></div>
+<div id="google_translate_element" style="display:none;"></div>
 
-<div class="container cookies-page">
-    <a href="javascript:history.back()" class="vissza-gomb">
-        <i class="fa-solid fa-arrow-left"></i> <span>Vissza</span>
-    </a>
+<!-- ============================== TOP BAR / HEADER ============================== -->
+<div class="top-bar">
+    <header class="site-header">
+        <div class="container nav-container">
+            <!-- Mobile navigation toggle -->
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true"/>
+            <label for="nav-toggle" class="nav-toggle-btn">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </label>
 
-    <div class="header centered">
-        <h2>Süti <span class="highlight-text">Beállítások</span></h2>
-        <p>Itt szabályozhatod, hogyan használjuk a sütiket a jobb élmény érdekében.</p>
-    </div>
+            <!-- Primary navigation -->
+            <nav id="site-nav" class="site-nav" role="navigation" aria-label="Fő navigáció">
+                <ul class="nav-list">
+                    <li class="nav-link active"><div class="text"><a href="index.html">Kezdőlap</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="shop.html">Shop</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="workouts.html">Gyakorlatok</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="gym.html">Edzőtermek</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="trainers.html">Edzők</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="booking.html">Időpontfoglalás</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="anatomy.html">Anatómia</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="calculatorBmi.html">BMI - Kalkulátor</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="contacts.html">Elérhetőségek</a></div></li>
+                    <li class="nav-link"><div class="text" id="mobileFavorites"><a href="favourite.html">Kedvencek</a></div></li>
 
-    <div class="cookies-layout">
-        <div class="info-card cookie-card">
-            <div class="cookie-content">
-                <div class="cookie-text">
-                    <h4>Alapvető sütik</h4>
-                    <p>Ezek a sütik elengedhetetlenek a webhely működéséhez, például a bejelentkezéshez vagy a kosár kezeléséhez.</p>
-                </div>
-                <div class="cookie-action">
-                    <span class="status-tag mandatory">Mindig aktív</span>
-                </div>
-            </div>
+                    <!-- Language selector (mobile only) -->
+                    <li class="mobile-only-languages">
+                        <button data-lang="hu" class="nyelv-btn">HU</button>
+                        <button data-lang="en" class="nyelv-btn">EN</button>
+                        <button data-lang="de" class="nyelv-btn">DE</button>
+                    </li>
+                </ul>
+            </nav>
         </div>
-
-        <div class="info-card cookie-card">
-            <div class="cookie-content">
-                <div class="cookie-text">
-                    <h4>Analitikai sütik</h4>
-                    <p>Segítenek megérteni, hogyan használják a látogatók az oldalt (pl. melyik termék népszerű), így fejleszthetjük a szolgáltatást.</p>
-                </div>
-                <div class="cookie-action">
-                    <label class="switch">
-                        <input type="checkbox" checked>
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="info-card cookie-card">
-            <div class="cookie-content">
-                <div class="cookie-text">
-                    <h4>Marketing sütik</h4>
-                    <p>Személyre szabott ajánlatokat és hirdetéseket jelenítenek meg számodra a böngészési szokásaid alapján.</p>
-                </div>
-                <div class="cookie-action">
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-            </div>
+    </header>
+    <a href="index.html"><video src="videos/logo.mp4" autoplay muted playsinline class="logoVid-Mobile"></video></a>
+    <!-- Language selector (desktop only) -->
+    <div class="languages-container desktop-only">
+        <div class="language-picker">
+            <button data-lang="hu" class="nyelv-btn">Magyar</button>
+            <button data-lang="en" class="nyelv-btn">English</button>
+            <button data-lang="de" class="nyelv-btn">Deutsch</button>
         </div>
     </div>
-    <div class="cta-row centered">
-        <button class="btn review-btn" onclick="alert('Beállítások elmentve!')">Beállítások mentése</button>
+
+    <div class="right-icons">
+        <!-- Like / favorites icon -->
+        <div class="animation">
+            <a href="favourite.html">
+                <img
+                        src="images/icons/favoritesImg.png"
+                        class="likeIMG"
+                        alt="Like icon">
+            </a>
+        </div>
+
+        <!-- User profile icon -->
+        <div class="animation">
+            <a href="signIn.html" id="auth-link">
+                <img
+                        src="images/icons/userImg.png"
+                        class="userIMG"
+                        alt="User profile">
+            </a>
+        </div>
+
+        <!-- Shopping cart icon -->
+        <div class="header-shop">
+            <a href="cart.html" class="container-shopBtn">
+                <img
+                        src="images/icons/cartImg.png"
+                        class="cartIMG"
+                        alt="Shopping cart">
+                <span id="cart-count">0</span>
+            </a>
+        </div>
     </div>
 </div>
+<!-- ============================== TOP BAR END ============================== -->
+
+<!-- ============================== MOBILE BOTTOM NAV ============================== -->
+<div class="phone-menu" role="navigation" aria-label="Alsó navigáció">
+    <a href="signIn.html" aria-label="Profil">
+        <img class="phone-menu__icon" src="images/icons/userImg.png"
+             alt="Profil">
+    </a>
+    <a href="index.html" aria-label="Főoldal">
+        <img class="phone-menu__icon" src="images/icons/homeImg.png"
+             alt="Főoldal" id="phone-home-img">
+    </a>
+    <a href="cart.html" aria-label="Kosár">
+        <img class="phone-menu__icon" src="images/icons/cartImg.png"
+             alt="Kosár">
+    </a>
+</div>
+
+<!-- ============================== TOP CONTENT END ============================== -->
+
+<div class="content">
+    <div class="container cookies-page">
+        <a href="javascript:history.back()" class="vissza-gomb">
+            <i class="fa-solid fa-arrow-left"></i> <span>Vissza</span>
+        </a>
+        <div class="section-header">
+            <h1>Süti beállítások</h1>
+            <div class="divider-line"></div>
+            <div class="topText"></div>
+            <div style="color: #c5c5c5">Itt szabályozhatod, hogyan használjuk a sütiket a jobb élmény érdekében.</div>
+            <hr id="topLine">
+        </div>
+        <div class="cookies-layout">
+            <div class="info-card cookie-card">
+                <div class="cookie-content">
+                    <div class="cookie-text">
+                        <h4>Alapvető sütik</h4>
+                        <p>Ezek a sütik elengedhetetlenek a webhely működéséhez, például a bejelentkezéshez vagy a kosár kezeléséhez.</p>
+                    </div>
+                    <div class="cookie-action">
+                        <span class="status-tag mandatory">Mindig aktív</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card cookie-card">
+                <div class="cookie-content">
+                    <div class="cookie-text">
+                        <h4>Analitikai sütik</h4>
+                        <p>Segítenek megérteni, hogyan használják a látogatók az oldalt (pl. melyik termék népszerű), így fejleszthetjük a szolgáltatást.</p>
+                    </div>
+                    <div class="cookie-action">
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card cookie-card">
+                <div class="cookie-content">
+                    <div class="cookie-text">
+                        <h4>Marketing sütik</h4>
+                        <p>Személyre szabott ajánlatokat és hirdetéseket jelenítenek meg számodra a böngészési szokásaid alapján.</p>
+                    </div>
+                    <div class="cookie-action">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cta-row centered">
+            <button class="btn review-btn" onclick="alert('Beállítások elmentve!')">Beállítások mentése</button>
+        </div>
+    </div>
+</div>
+<div class="spacer-block"></div>
 <footer class="container-bottom" id="contact">
     <div class="animation-bottom"><div class="space"><a href="contacts.html" class="tiszta-link"><p>Kapcsolat</p></a></div></div>
     <div class="animation-bottom"><div class="space"><a href="contracts.html" class="tiszta-link"><p>Általános szerződési feltételek</p></a></div></div>
@@ -100,5 +204,9 @@
     </div>
 </footer>
 
+<script src="javascript/script.js"></script>
+<script type="module" src="javascript/auth-header.js"></script>
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
