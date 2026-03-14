@@ -10,159 +10,300 @@
 </head>
 <body>
 <div class="fixed-bg"></div>
+<div id="google_translate_element" style="display:none;"></div>
 
-<div class="container faq-page">
-    <a href="javascript:history.back()" class="vissza-gomb">
-        <i class="fa-solid fa-arrow-left"></i> <span>Vissza</span>
-    </a>
+<!-- ============================== TOP BAR / HEADER ============================== -->
+<div class="top-bar">
+    <header class="site-header">
+        <div class="container nav-container">
+            <!-- Mobile navigation toggle -->
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true"/>
+            <label for="nav-toggle" class="nav-toggle-btn">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </label>
 
-    <div class="header centered">
-        <h2>Gyakori <span class="highlight-text">Kérdések</span></h2>
-        <p>Minden, amit a ForgeX termékekről és a rendelésről tudni érdemes</p>
-    </div>
-    <div class="faq-layout">
-        <div class="faq-card">
-            <div class="faq-header" onclick="toggleFaq(this)">
-                <span>Mennyi idő alatt érkezik meg a rendelésem?</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer-wrapper">
-                <div class="faq-answer">
-                    <p>A raktáron lévő termékeinket általában 1-3 munkanapon belül kiszállítjuk a GLS futárszolgálattal, így nem kell heteket várnod az edzés megkezdéséhez.</p>
-                </div>
-            </div>
+            <!-- Primary navigation -->
+            <nav id="site-nav" class="site-nav" role="navigation" aria-label="Fő navigáció">
+                <ul class="nav-list">
+                    <li class="nav-link active"><div class="text"><a href="index.html">Kezdőlap</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="shop.html">Shop</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="workouts.html">Gyakorlatok</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="gym.html">Edzőtermek</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="trainers.html">Edzők</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="booking.html">Időpontfoglalás</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="anatomy.html">Anatómia</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="calculatorBmi.html">BMI - Kalkulátor</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="contacts.html">Elérhetőségek</a></div></li>
+                    <li class="nav-link"><div class="text" id="mobileFavorites"><a href="favourite.html">Kedvencek</a></div></li>
+
+                    <!-- Language selector (mobile only) -->
+                    <li class="mobile-only-languages">
+                        <button data-lang="hu" class="nyelv-btn">HU</button>
+                        <button data-lang="en" class="nyelv-btn">EN</button>
+                        <button data-lang="de" class="nyelv-btn">DE</button>
+                    </li>
+                </ul>
+            </nav>
         </div>
-
-        <div class="faq-card">
-            <div class="faq-header" onclick="toggleFaq(this)">
-                <span>Vannak garanciális feltételek az edzőtermi gépekre?</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer-wrapper">
-                <div class="faq-answer">
-                    <p>Igen, minden nálunk vásárolt saját márkás ForgeX gépre 2 év teljes körű garanciát vállalunk. Meghibásodás esetén saját szervizcsapatunk segít a javításban.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-card">
-            <div class="faq-header" onclick="toggleFaq(this)">
-                <span>Milyen fizetési módok közül választhatok?</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer-wrapper">
-                <div class="faq-answer">
-                    <p>Webshopunkban fizethetsz biztonságos bankkártyás fizetéssel (Stripe/Barion), előre utalással, vagy a futárnál készpénzzel és kártyával egyaránt (utánvét).</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-card">
-            <div class="faq-header" onclick="toggleFaq(this)">
-                <span>Mi van, ha nem tetszik a termék vagy nem jó a méret?</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer-wrapper">
-                <div class="faq-answer">
-                    <p>Semmi gond! A kézhezvételtől számított 14 napon belül indoklás nélkül elállhatsz a vásárlástól. Csak jelezd nekünk ügyfélszolgálati e-mail címünkön.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-card">
-            <div class="faq-header" onclick="toggleFaq(this)">
-                <span>Van lehetőség személyes átvételre?</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer-wrapper">
-                <div class="faq-answer">
-                    <p>Jelenleg központi raktárunkból szállítunk, de budapesti bemutatótermünkben (előre egyeztetett időpontban) lehetőség van a gépek kipróbálására és átvételére.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-card">
-            <div class="faq-header" onclick="toggleFaq(this)">
-                <span>Kapok segítséget az eszközök használatához?</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer-wrapper">
-                <div class="faq-answer">
-                    <p>Természetesen! Minden nagyobb eszközhöz digitális összeszerelési útmutatót és egy alapvető gyakorlatgyűjteményt is mellékelünk, hogy biztonságosan edzhess.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-card">
-            <div class="faq-header" onclick="toggleFaq(this)">
-                <span>Szállítotok külföldre is?</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer-wrapper">
-                <div class="faq-answer">
-                    <p>Igen, jelenleg az Európai Unió legtöbb országába szállítunk. A pontos szállítási díjakat a pénztár oldalon, a cím megadása után láthatod.</p>
-                </div>
-            </div>
-        </div>
-        <div class="faq-card">
-            <div class="faq-header" onclick="toggleFaq(this)">
-                <span>Milyen típusú gépekkel vannak felszerelve a termek?</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer-wrapper">
-                <div class="faq-answer">
-                    <p>Kizárólag a legújabb <strong>ForgeX Pro</strong> szériás gépeket használjuk. Van külön funkcionális zónánk, nagy súlyos részlegünk az erőemelőknek, és egy kiterjedt kardió parkunk is.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-card">
-            <div class="faq-header" onclick="toggleFaq(this)">
-                <span>Vannak csoportos órák a konditeremben?</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer-wrapper">
-                <div class="faq-answer">
-                    <p>Igen, órarendünkben szerepel Cross-training, Yoga, HIIT és Mobility óra is. Ezekre a ForgeX applikáción keresztül tudsz előre jelentkezni, hogy biztosítsd a helyedet.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-card">
-            <div class="faq-header" onclick="toggleFaq(this)">
-                <span>Milyen nyitvatartással üzemelnek a ForgeX termek?</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer-wrapper">
-                <div class="faq-answer">
-                    <p>A legtöbb egységünk hétköznaponként <strong>9:00-16:00</strong> vannak nyitva. Az ünnepi nyitvatartást mindig időben jelezzük a közösségi média felületeinken.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-card">
-            <div class="faq-header" onclick="toggleFaq(this)">
-                <span>Lehet a helyszínen is vásárolni a webshop termékeiből?</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer-wrapper">
-                <div class="faq-answer">
-                    <p>A termekben található ForgeX Bar-okban a legnépszerűbb étrend-kiegészítőink, fehérjeszeleteink és edzés előtti pörgetőink azonnal megvásárolhatóak, akár shakerben elkészítve is.</p>
-                </div>
-            </div>
+    </header>
+    <a href="index.html"><video src="videos/logo.mp4" autoplay muted playsinline class="logoVid-Mobile"></video></a>
+    <!-- Language selector (desktop only) -->
+    <div class="languages-container desktop-only">
+        <div class="language-picker">
+            <button data-lang="hu" class="nyelv-btn">Magyar</button>
+            <button data-lang="en" class="nyelv-btn">English</button>
+            <button data-lang="de" class="nyelv-btn">Deutsch</button>
         </div>
     </div>
 
-    <script>
-        function toggleFaq(element) {
-            const card = element.parentElement;
-            card.classList.toggle('active');
-        }
-    </script>
+    <div class="right-icons">
+        <!-- Like / favorites icon -->
+        <div class="animation">
+            <a href="favourite.html">
+                <img
+                        src="images/icons/favoritesImg.png"
+                        class="likeIMG"
+                        alt="Like icon">
+            </a>
+        </div>
 
-    <div class="cta-row centered">
-        <a href="index.html" class="review-btn">Tovább a webshopba</a>
+        <!-- User profile icon -->
+        <div class="animation">
+            <a href="signIn.html" id="auth-link">
+                <img
+                        src="images/icons/userImg.png"
+                        class="userIMG"
+                        alt="User profile">
+            </a>
+        </div>
+
+        <!-- Shopping cart icon -->
+        <div class="header-shop">
+            <a href="cart.html" class="container-shopBtn">
+                <img
+                        src="images/icons/cartImg.png"
+                        class="cartIMG"
+                        alt="Shopping cart">
+                <span id="cart-count">0</span>
+            </a>
+        </div>
     </div>
 </div>
+<!-- ============================== TOP BAR END ============================== -->
+
+<!-- ============================== MOBILE BOTTOM NAV ============================== -->
+<div class="phone-menu" role="navigation" aria-label="Alsó navigáció">
+    <a href="signIn.html" aria-label="Profil">
+        <img class="phone-menu__icon" src="images/icons/userImg.png"
+             alt="Profil">
+    </a>
+    <a href="index.html" aria-label="Főoldal">
+        <img class="phone-menu__icon" src="images/icons/homeImg.png"
+             alt="Főoldal" id="phone-home-img">
+    </a>
+    <a href="cart.html" aria-label="Kosár">
+        <img class="phone-menu__icon" src="images/icons/cartImg.png"
+             alt="Kosár">
+    </a>
+</div>
+
+<!-- ============================== TOP CONTENT END ============================== -->
+
+<div class="content">
+    <div class="container faq-page">
+        <a href="javascript:history.back()" class="vissza-gomb">
+            <i class="fa-solid fa-arrow-left"></i> <span>Vissza</span>
+        </a>
+        <div class="section-header">
+            <h1>Gyakori kérdések</h1>
+            <div class="divider-line"></div>
+            <div class="topText"></div>
+            <div style="color: #c5c5c5">Minden, amit a ForgeX termékekről és a rendelésről tudni érdemes</div>
+            <hr id="topLine">
+        </div>
+        <div class="faq-layout">
+            <div class="faq-card">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    <span>Mennyi idő alatt érkezik meg a rendelésem?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer-wrapper">
+                    <div class="faq-answer">
+                        <p>A raktáron lévő termékeinket általában 1-3 munkanapon belül kiszállítjuk a GLS futárszolgálattal, így nem kell heteket várnod az edzés megkezdéséhez.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    <span>Vannak garanciális feltételek az edzőtermi gépekre?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer-wrapper">
+                    <div class="faq-answer">
+                        <p>Igen, minden nálunk vásárolt saját márkás ForgeX gépre 2 év teljes körű garanciát vállalunk. Meghibásodás esetén saját szervizcsapatunk segít a javításban.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    <span>Milyen fizetési módok közül választhatok?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer-wrapper">
+                    <div class="faq-answer">
+                        <p>Webshopunkban fizethetsz biztonságos bankkártyás fizetéssel (Stripe/Barion), előre utalással, vagy a futárnál készpénzzel és kártyával egyaránt (utánvét).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    <span>Mi van, ha nem tetszik a termék vagy nem jó a méret?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer-wrapper">
+                    <div class="faq-answer">
+                        <p>Semmi gond! A kézhezvételtől számított 14 napon belül indoklás nélkül elállhatsz a vásárlástól. Csak jelezd nekünk ügyfélszolgálati e-mail címünkön.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    <span>Van lehetőség személyes átvételre?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer-wrapper">
+                    <div class="faq-answer">
+                        <p>Jelenleg központi raktárunkból szállítunk, de budapesti bemutatótermünkben (előre egyeztetett időpontban) lehetőség van a gépek kipróbálására és átvételére.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    <span>Kapok segítséget az eszközök használatához?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer-wrapper">
+                    <div class="faq-answer">
+                        <p>Természetesen! Minden nagyobb eszközhöz digitális összeszerelési útmutatót és egy alapvető gyakorlatgyűjteményt is mellékelünk, hogy biztonságosan edzhess.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    <span>Szállítotok külföldre is?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer-wrapper">
+                    <div class="faq-answer">
+                        <p>Igen, jelenleg az Európai Unió legtöbb országába szállítunk. A pontos szállítási díjakat a pénztár oldalon, a cím megadása után láthatod.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-card">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    <span>Milyen típusú gépekkel vannak felszerelve a termek?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer-wrapper">
+                    <div class="faq-answer">
+                        <p>Kizárólag a legújabb <strong>ForgeX Pro</strong> szériás gépeket használjuk. Van külön funkcionális zónánk, nagy súlyos részlegünk az erőemelőknek, és egy kiterjedt kardió parkunk is.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    <span>Vannak csoportos órák a konditeremben?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer-wrapper">
+                    <div class="faq-answer">
+                        <p>Igen, órarendünkben szerepel Cross-training, Yoga, HIIT és Mobility óra is. Ezekre a ForgeX applikáción keresztül tudsz előre jelentkezni, hogy biztosítsd a helyedet.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    <span>Milyen nyitvatartással üzemelnek a ForgeX termek?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer-wrapper">
+                    <div class="faq-answer">
+                        <p>A legtöbb egységünk hétköznaponként <strong>9:00-16:00</strong> vannak nyitva. Az ünnepi nyitvatartást mindig időben jelezzük a közösségi média felületeinken.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    <span>Lehet a helyszínen is vásárolni a webshop termékeiből?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer-wrapper">
+                    <div class="faq-answer">
+                        <p>A termekben található ForgeX Bar-okban a legnépszerűbb étrend-kiegészítőink, fehérjeszeleteink és edzés előtti pörgetőink azonnal megvásárolhatóak, akár shakerben elkészítve is.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function toggleFaq(element) {
+                const card = element.parentElement;
+                card.classList.toggle('active');
+            }
+        </script>
+
+        <div class="cta-row centered">
+            <a href="index.html" class="review-btn">Tovább a webshopba</a>
+        </div>
+    </div>
+</div>
+
+<footer class="container-bottom" id="contact">
+    <div class="animation-bottom"><div class="space"><a href="contacts.html" class="tiszta-link"><p>Kapcsolat</p></a></div></div>
+    <div class="animation-bottom"><div class="space"><a href="contracts.html" class="tiszta-link"><p>Általános szerződési feltételek</p></a></div></div>
+    <div class="animation-bottom"><div class="space"><a href="reviews.html" class="tiszta-link"><p>Vélemények</p></a></div></div>
+    <div class="animation-bottom"><div class="space"><a href="questions.html" class="tiszta-link"><p>Gyakran ismételt kérdések</p></a></div></div>
+    <div class="animation-bottom"><div class="space"><a href="cookies.html" class="tiszta-link"><p>Süti beállítások</p></a></div></div>
+    <div class="animation-bottom">
+        <div class="space">
+            <a href="https://www.instagram.com/forgex._" class="tiszta-link" target="_blank">
+                <p>Instagram</p>
+                <img src="images/icons/instaLogo.png" class="igLogo" alt="Instagram Logo">
+            </a>
+        </div>
+    </div>
+    <div class="animation-bottom">
+        <div class="space">
+            <a href="https://www.facebook.com/share/1Dwr4nD67j" class="tiszta-link" target="_blank">
+                <p>Facebook</p>
+                <img src="images/icons/facebookLogo.png" class="faceLogo" alt="Facebook Logo">
+            </a>
+        </div>
+    </div>
+    <div class="animation-bottom">
+        <div class="space" id="tiktok">
+            <a href="https://www.tiktok.com/@forgex97" class="tiszta-link" target="_blank">
+                <p>Tiktok</p>
+                <img src="images/icons/tiktokLogo.png" class="tiktokLogo" alt="Tiktok Logo">
+            </a>
+        </div>
+    </div>
+</footer>
+
+<script src="javascript/script.js"></script>
+<script type="module" src="javascript/auth-header.js"></script>
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
