@@ -40,7 +40,7 @@
 .info-card.review-card:hover {
     transform: translateY(-10px) !important;
     background: rgba(255, 255, 255, 0.06) !important;
-    border-color: #00ca65 !important; /* A gombod neon zöldje */
+    border-color: #00ca65 !important;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 202, 101, 0.1) !important;
 }
 
@@ -50,7 +50,6 @@
     line-height: 1.7 !important;
     color: #cbd5e1 !important;
     margin: 15px 0 !important;
-    flex-grow: 1 !important;
 }
 
 .avatar {
@@ -142,3 +141,194 @@
     text-shadow: 0 0 5px rgba(255, 193, 7, 0.3) !important;
 }
 
+
+/* --- MODAL DESIGN --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content.info-card.review-card {
+    width: 90%;
+    max-width: 500px;
+    padding: 40px !important;
+    position: relative;
+    animation: none !important;
+    transform: none !important;
+    border: 1px solid #00ca65 !important;
+    box-shadow: 0 0 25px rgba(0, 202, 101, 0.25) !important;
+    background: rgba(20, 20, 20, 0.95) !important;
+}
+
+.modal-content.info-card.review-card:hover {
+    transform: none !important;
+    box-shadow: 0 0 25px rgba(0, 202, 101, 0.25) !important;
+}
+
+
+@keyframes modalIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px; top: 15px;
+    color: #cbd5e1;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* --- FORM ELEMEK --- */
+#reviewForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+#reviewForm input, #reviewForm textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 12px;
+    color: white;
+    outline: none;
+    resize: none !important;
+}
+
+/* Csillag választó */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 10px;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.star-rating input { display: none; }
+.star-rating label { color: #444; cursor: pointer; transition: color 0.3s; }
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label { color: #ffc107; }
+
+/* Második gomb színe */
+.write-btn {
+    background: transparent !important;
+    border: 2px solid #00ca65 !important;
+    box-shadow: none !important;
+}
+
+
+/* --- TÖRLÉS GOMB STÍLUSA --- */
+.delete-review {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 8px;
+    transition: all 0.3s ease !important;
+    z-index: 5;
+}
+
+.delete-review:hover {
+    color: #e74c3c !important;
+    transform: scale(1.2);
+}
+
+/* Animáció a törléshez */
+.info-card.review-card {
+    transition: all 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+
+/* --- EGYEDI CONFIRM MODAL STÍLUS --- */
+.confirm-modal {
+    max-width: 400px !important;
+    text-align: center !important;
+    padding: 30px !important;
+    border: 1px solid #00ca65 !important;
+    box-shadow: 0 0 30px rgba(0, 202, 101, 0.3) !important;
+}
+
+.confirm-btns {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
+}
+
+.confirm-btns .review-btn {
+    padding: 12px 30px !important;
+    font-size: 14px !important;
+}
+
+#confirmDeleteBtn {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%) !important;
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3) !important;
+}
+
+/* --- MOBIL RESPONSIVE BEÁLLÍTÁSOK --- */
+@media screen and (max-width: 768px) {
+
+    .cta-row.centered {
+        width: 100% !important;
+        max-width: 1200px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 20px !important;
+        margin: 40px auto !important;
+        padding: 0 20px 30px 20px !important;
+        box-sizing: border-box !important;
+    }
+
+    .review-btn {
+        width: 100% !important;
+        max-width: 280px !important;
+        padding: 12px 25px !important;
+        font-size: 14px !important;
+        letter-spacing: 1px !important;
+        margin: 0 !important;
+    }
+
+    /* --- VÉLEMÉNYEK RÁCS (GRID) ELRENDEZÉSE --- */
+    .centered-layout {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+        justify-content: center !important;
+        justify-items: center !important;
+        gap: 25px !important;
+        width: 100% !important;
+        max-width: 1200px !important;
+        margin: 20px auto 0 auto !important;
+    }
+
+    .info-card.review-card {
+        width: 100% !important;
+        max-width: 400px !important;
+    }
+
+    /* Modal (felugró ablak) igazítása mobilhoz */
+    .modal-content.info-card.review-card {
+        width: 95% !important;
+        padding: 25px 15px !important;
+    }
+
+    .confirm-btns {
+        flex-direction: column !important;
+    }
+}

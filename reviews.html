@@ -197,9 +197,46 @@
             </div>
         </div>
 
-        <div class="cta-row centered">
-            <a href="index.html" class="btn review-btn">Tovább a webshopba</a>
+        <div class="cta-row centered" style="gap: 20px;">
+            <a href="shop.html" class="btn review-btn">Tovább a webshopba</a>
+            <button id="openReviewModal" class="btn review-btn write-btn">Vélemény írása</button>
         </div>
+    </div>
+</div>
+
+<div id="reviewModal" class="modal">
+    <div class="modal-content info-card review-card">
+        <span class="close-modal">&times;</span>
+        <h2 style="color: white; margin-bottom: 20px;">Írd meg a <span style="color: #00ca65;">véleményed</span></h2>
+        <form id="reviewForm">
+            <input type="text" id="revName" placeholder="Teljes neved" required>
+
+            <div class="star-rating">
+                <input type="radio" name="stars" id="star5" value="5"><label for="star5" class="fas fa-star"></label>
+                <input type="radio" name="stars" id="star4" value="4"><label for="star4" class="fas fa-star"></label>
+                <input type="radio" name="stars" id="star3" value="3"><label for="star3" class="fas fa-star"></label>
+                <input type="radio" name="stars" id="star2" value="2"><label for="star2" class="fas fa-star"></label>
+                <input type="radio" name="stars" id="star1" value="1"><label for="star1" class="fas fa-star"></label>
+            </div>
+
+            <textarea id="revText" placeholder="Írd le a tapasztalataidat..." rows="4" required></textarea>
+            <button type="submit" class="btn review-btn">Küldés</button>
+        </form>
+    </div>
+</div>
+
+<div id="deleteConfirmModal" class="modal">
+    <div class="modal-content info-card review-card confirm-modal">
+        <h2 style="color: #00ca65; margin-bottom: 15px;">Vélemény törlése</h2>
+        <p style="color: white; margin-bottom: 25px;">Biztosan törölni szeretnéd a véleményedet?</p>
+        <div class="confirm-btns">
+            <button id="confirmDeleteBtn" class="btn review-btn">Törlés</button>
+            <button id="cancelDeleteBtn" class="btn review-btn write-btn">Mégse</button>
+        </div>
+    </div>
+</div>
+
+<script src="javascript/review-handler.js"></script>
     </div>
 </div>
 <footer class="container-bottom" id="contact">
