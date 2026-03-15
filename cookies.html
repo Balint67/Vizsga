@@ -144,7 +144,7 @@
                     </div>
                     <div class="cookie-action">
                         <label class="switch">
-                            <input type="checkbox" checked>
+                            <input type="checkbox" id="cookie_analytics" checked>
                             <span class="slider round"></span>
                         </label>
                     </div>
@@ -159,7 +159,7 @@
                     </div>
                     <div class="cookie-action">
                         <label class="switch">
-                            <input type="checkbox">
+                            <input type="checkbox" id="cookie_marketing">
                             <span class="slider round"></span>
                         </label>
                     </div>
@@ -167,7 +167,7 @@
             </div>
         </div>
         <div class="cta-row centered">
-            <button class="btn review-btn" onclick="alert('Beállítások elmentve!')">Beállítások mentése</button>
+            <button class="btn review-btn" id="saveCookiesBtn">Beállítások mentése</button>
         </div>
     </div>
 </div>
@@ -203,7 +203,7 @@
         </div>
     </div>
 </footer>
-
+<script src="javascript/cookies.js"></script>
 <script src="javascript/script.js"></script>
 <script type="module" src="javascript/auth-header.js"></script>
 
