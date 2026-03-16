@@ -41,7 +41,7 @@ function initModals() {
         }
     };
 
-    // Segédfüggvény a formázáshoz: 19750 -> "19 750"
+    // Price 19750 -> "19 750"
     function formatPrice(price) {
         return price.toLocaleString('hu-HU');
     }
@@ -55,7 +55,7 @@ function initModals() {
         modalTitle.innerText = data.title;
         source.src = data.video;
 
-        // Formázott ár megjelenítése a gombon
+        // Button Style
         addToCartBtn.innerText = `Kosárba teszem - ${formattedPrice} Ft`;
 
         addToCartBtn.onclick = function() {
@@ -64,7 +64,7 @@ function initModals() {
                 cartCountElement.innerText = currentCount + 1;
             }
 
-            // Formázott ár az üzenetben is
+            // Price Style in message
             alert(`${data.title} sikeresen hozzáadva a kosárhoz! Ár: ${formattedPrice} Ft`);
 
             closeModal();
