@@ -3,11 +3,12 @@
 /* Alap konténer optimalizálása a rétegek villogása ellen */
 .age-plans-section {
     max-width: 1200px;
-    margin: 80px auto;
+    margin: 150px auto 80px;
     padding: 0 20px;
     box-sizing: border-box;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
+    display: block !important;
 }
 
 .section-header {
@@ -161,9 +162,11 @@
 /* ============================== TELEFONOS NÉZET (NAGYOBB ÉS STABIL) ============================== */
 @media (max-width: 650px) {
     .age-plans-section {
-        margin: 40px auto;
+        margin: 120px auto 40px;
         padding: 0 12px;
     }
+
+
 
     .age-cards-container {
         gap: 25px;
@@ -211,4 +214,45 @@
     .section-header h1 {
         font-size: 1.8rem;
     }
+}
+
+
+/* KOSÁR GOMB */
+.add-to-cart-btn {
+    width: 100%;
+    background-color: #00ca65;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    margin-top: 20px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #00a552;
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(0, 202, 101, 0.3);
+}
+
+.add-to-cart-btn:active {
+    transform: scale(0.98);
+}
+
+/* Mobilos igazítás */
+@media (max-width: 650px) {
+    .add-to-cart-btn {
+        padding: 15px 20px;
+        font-size: 1.2rem;
+    }
+}
+
+body {
+    padding-top: 150px !important;
 }
