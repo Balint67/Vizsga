@@ -1,3 +1,15 @@
+import { auth, db } from './firebase.js';
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { forgeXModal } from './utils.js';
+
+let currentUserId = null;
+
+// Figyeljük a bejelentkezést a szinkronizációhoz
+onAuthStateChanged(auth, (user) => {
+    currentUserId = user ? user.uid : null;
+});
+
 function initModals() {
     const modal = document.getElementById('infoModal');
     const modalTitle = document.getElementById('modalTitle');
@@ -14,66 +26,72 @@ function initModals() {
     }
 
     const infoData = {
-        hannah: {
-            title: 'Fiatalkorúaknak Gyakorlatok',
-            video: 'videos/workouts/hannahSitUp.mp4',
-            price: 8590
-        },
-        heath: {
-            title: 'Fiatal felnőtteknek Gyakorlatok',
-            video: 'videos/workouts/heathBiceps.mp4',
-            price: 12590
-        },
-        mayaSquats: {
-            title: 'Középkorosztálynak Gyakorlatok',
-            video: 'videos/workouts/mayaSquats.mp4',
-            price: 19750
-        },
-        mayaBench: {
-            title: 'Negyven feletti Gyakorlatok',
-            video: 'videos/workouts/mayaBench.mp4',
-            price: 19750
-        },
-        hayoto: {
-            title: 'Idősebb korosztálynak Gyakorlatok',
-            video: 'videos/workouts/hayotoElders.mp4',
-            price: 19750
-        }
+        hannah: { id: 'plan-10-16', title: 'Junior Edzésterv', video: 'videos/workouts/hannahSitUp.mp4', price: 8590 },
+        heath: { id: 'plan-17-30', title: 'Fiatal felnőtt Edzésterv', video: 'videos/workouts/heathBiceps.mp4', price: 12590 },
+        mayaSquats: { id: 'plan-30-45', title: 'Adult Edzésterv', video: 'videos/workouts/mayaSquats.mp4', price: 19750 },
+        mayaBench: { id: 'plan-45-plus', title: 'Master Edzésterv', video: 'videos/workouts/mayaBench.mp4', price: 19750 },
+        hayoto: { id: 'plan-60-plus', title: 'Senior Edzésterv', video: 'videos/workouts/hayotoElders.mp4', price: 19750 }
     };
 
-    // Price 19750 -> "19 750"
-    function formatPrice(price) {
-        return price.toLocaleString('hu-HU');
+    async function handleAddToCart(item) {
+        // 1. LocalStorage betöltése
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        // 2. Új tétel összeállítása a közös formátum szerint
+        const newItem = {
+            id: Date.now().toString(), // Egyedi ID a törléshez
+            title: item.title,
+            price: Number(item.price),
+            size: "Digitális",
+            color: null,
+            image: "images/icons/cartImg.png", // Vagy egy edzésterv ikon
+            quantity: 1
+        };
+
+        cart.push(newItem);
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        // 3. Fejléc számláló frissítése
+        if (cartCountElement) {
+            cartCountElement.innerText = cart.length;
+        }
+
+        // 4. Firestore szinkronizáció
+        if (currentUserId) {
+            try {
+                await setDoc(doc(db, "carts", currentUserId), {
+                    items: cart,
+                    updatedAt: new Date()
+                });
+            } catch (error) {
+                console.error("Firebase hiba:", error);
+            }
+        }
+
+        // 5. Vizuális visszajelzés
+        if (typeof forgeXModal === "function") {
+            await forgeXModal("Kosárba téve", `${item.title} bekerült a kosaradba!`);
+        } else {
+            alert(`${item.title} hozzáadva!`);
+        }
+
+        closeModal();
     }
 
     function openModal(type) {
         const data = infoData[type];
         if (!data) return;
 
-        const formattedPrice = formatPrice(data.price);
-
         modalTitle.innerText = data.title;
         source.src = data.video;
+        addToCartBtn.innerText = `Kosárba teszem - ${data.price.toLocaleString('hu-HU')} Ft`;
 
-        // Button Style
-        addToCartBtn.innerText = `Kosárba teszem - ${formattedPrice} Ft`;
-
-        addToCartBtn.onclick = function() {
-            if (cartCountElement) {
-                let currentCount = parseInt(cartCountElement.innerText) || 0;
-                cartCountElement.innerText = currentCount + 1;
-            }
-
-            // Price Style in message
-            alert(`${data.title} sikeresen hozzáadva a kosárhoz! Ár: ${formattedPrice} Ft`);
-
-            closeModal();
-        };
+        // Gomb eseménykezelő beállítása
+        addToCartBtn.onclick = () => handleAddToCart(data);
 
         video.load();
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
-
         video.play().catch(e => console.log("Auto-play blokkolva"));
     }
 
@@ -92,12 +110,7 @@ function initModals() {
     });
 
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
-
-    window.addEventListener('click', (event) => {
-        if (event.target === modal) {
-            closeModal();
-        }
-    });
+    window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 }
 
 document.addEventListener('DOMContentLoaded', initModals);
