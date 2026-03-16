@@ -294,19 +294,19 @@ const recommendationsData = {
     cableMachine: {
         title: "FORGEX CABLE CROSSOVER - MINDEN EGY HELYEN",
         description: "Több mint 200 gyakorlat egyetlen eszközön. Kompakt, stílusos és mindent tartalmaz, amire a súlyzós edzéshez szükséged van. Tolj vagy húzz – korlátok nélkül.",
-        image: "images/backgrounds/mayaCable.jpeg",
+        image: "images/backgrounds/mayaCable.JPEG",
         mobileImage: "images/backgrounds/mayaCableMobile.jpg"
     },
     equipment: {
         title: "MI NEM RIADUNK EL A VÁLTOZÁSTÓL",
         description: "Világszínvonalú felszereltség! Edzőtermeinkben a nemzetközi fitneszpiac élvonalába tartozó, prémium márkák legújabb modelljei biztosítják a kompromisszummentes edzésélményt már szerte a világon.",
-        image: "images/backgrounds/equipment.jpeg",
-        mobileImage: "images/backgrounds/equipment.jpeg"
+        image: "images/backgrounds/equipment.JPEG",
+        mobileImage: "images/backgrounds/equipment.JPEG"
     },
     balance: {
         title: "TÖKÉLETES EGYENSÚLY - KÉNYELEM ÉS REGENERÁLÓDÁS",
         description: "A fejlődés nemcsak az edzésen, hanem a regeneráción is múlik. Személyre szabott rehabilitációs programjaink és célzott nyújtásaink segítenek visszaállítani tested természetes egyensúlyát és mozgásszabadságát.",
-        image: "images/backgrounds/balance.jpeg",
+        image: "images/backgrounds/balance.JPEG",
         mobileImage: "images/backgrounds/balanceMobile.jpg"
     },
     bench: {
@@ -318,7 +318,7 @@ const recommendationsData = {
     legPress: {
         title: "FORGEX LEG PRESS - AZ ERŐ ÚJ DIMENZIÓJA",
         description: "Nincs többé kifogás a lábnapokon. A Forgex Leg Press-t úgy terveztük, hogy a legnagyobb terhelés mellett is egyenletes, sima mozgást biztosítson. Építs masszív izomzatot a szakma legstabilabb lábtológépével!",
-        image: "images/backgrounds/legPress.JPG",
+        image: "images/backgrounds/legPress.jpg",
         mobileImage: "images/backgrounds/legPressMobile.jpg"
     }
 };
