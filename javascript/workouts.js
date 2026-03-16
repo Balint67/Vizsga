@@ -23,12 +23,12 @@ async function initModals() {
             // LocalStorage frissítése
             const cart = JSON.parse(localStorage.getItem("cart")) || [];
             const newItem = {
-                id: Date.now(),
+                id: Date.now().toString(),
                 title: title,
-                price: price,
+                price: Number(price),
                 size: "Digitális",
                 color: null,
-                image: "images/icons/cartImg.png", // Használjunk egy létező ikont tesztnek
+                image: "images/icons/cartImg.png",
                 quantity: 1
             };
 

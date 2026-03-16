@@ -284,10 +284,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function addToCart(title, price, size, color, image) {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
-        cart.push({ id: Date.now(), title, price, size, color, image, quantity: 1 });
+        const newItem = {
+            id: Date.now().toString(), // Stringként mentjük az ID-t a biztonság kedvéért
+            title,
+            price: Number(price),
+            size,
+            color,
+            image,
+            quantity: 1
+        };
+
+        cart.push(newItem);
         localStorage.setItem("cart", JSON.stringify(cart));
         updateCartCount();
-        if (currentUserId) await saveCartToCloud();
+
+        if (currentUserId) {
+            try {
+                await setDoc(doc(db, "carts", currentUserId), {
+                    items: cart,
+                    updatedAt: new Date()
+                });
+            } catch (error) { console.error("Firebase mentési hiba:", error); }
+        }
         await forgeXModal("Kosárba téve", `${title} bekerült a kosaradba!`);
     }
 
