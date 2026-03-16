@@ -44,7 +44,7 @@ function initModals() {
             price: Number(item.price),
             size: "Digitális",
             color: null,
-            image: "images/icons/cartImg.png", // Vagy egy edzésterv ikon
+            image: "images/icons/wrkouts.jpg",
             quantity: 1
         };
 
