@@ -1,73 +1,58 @@
-function initModals() {
-    const modal = document.getElementById('infoModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const video = document.getElementById('modalVideo');
-    const source = document.getElementById('modalVideoSource');
-    const triggers = document.querySelectorAll('.info-trigger-card');
-    const closeBtn = document.querySelector('.close-modal');
+import { auth, db } from './firebase.js';
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { forgeXModal } from './utils.js';
 
-    if (!modal || !video || !source) return;
+let currentUserId = null;
 
-    const infoData = {
-        hannah: {
-            title: 'Fiatalkorúaknak Gyakorlatok',
-            video: 'videos/workouts/hannahSitUp.mp4'
-        },
-        heath: {
-            title: 'Fiatal felnőtteknek Gyakorlatok',
-            video: 'videos/workouts/heathBiceps.mp4'
-        },
-        mayaSquats: {
-            title: 'Középkorosztálynak Gyakorlatok',
-            video: 'videos/workouts/mayaSquats.mp4'
-        },
-        mayaBench: {
-            title: 'Negyven feletti Gyakorlatok',
-            video: 'videos/workouts/mayaBench.mp4'
-        },
-        hayoto: {
-            title: 'Idősebb korosztálynak Gyakorlatok',
-            video: 'videos/workouts/hayotoElders.mp4'
-        }
-    };
+onAuthStateChanged(auth, (user) => {
+    currentUserId = user ? user.uid : null;
+});
 
-    function openModal(type) {
-        const data = infoData[type];
-        if (!data) return;
+async function initModals() {
+    // ... a többi változó (modal, video stb.)
 
-        modalTitle.innerText = data.title;
-        source.src = data.video;
+    const cartButtons = document.querySelectorAll('.add-to-cart-btn');
+    cartButtons.forEach(btn => {
+        btn.addEventListener('click', async (event) => {
+            event.stopPropagation();
 
-        video.load(); // Frissíti a forrást
-        modal.classList.add('is-open');
-        modal.setAttribute('aria-hidden', 'false');
+            const title = btn.getAttribute('data-name');
+            const price = parseInt(btn.getAttribute('data-price'));
 
-        // Automatikus lejátszás megkísérlése
-        video.play().catch(e => console.log("Auto-play megállítva a böngésző által"));
-    }
+            // LocalStorage frissítése
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const newItem = {
+                id: Date.now(),
+                title: title,
+                price: price,
+                size: "Digitális",
+                color: null,
+                image: "images/icons/cartImg.png", // Használjunk egy létező ikont tesztnek
+                quantity: 1
+            };
 
-    function closeModal() {
-        modal.classList.remove('is-open');
-        modal.setAttribute('aria-hidden', 'true');
-        video.pause();
-        video.currentTime = 0;
-    }
+            cart.push(newItem);
+            localStorage.setItem("cart", JSON.stringify(cart));
 
-    triggers.forEach(trigger => {
-        trigger.addEventListener('click', () => {
-            const type = trigger.getAttribute('data-modal');
-            openModal(type);
+            // Számláló frissítése a fejlécben
+            const counter = document.getElementById("cart-count");
+            if (counter) counter.innerText = cart.length;
+
+            // Firestore mentés
+            if (currentUserId) {
+                try {
+                    await setDoc(doc(db, "carts", currentUserId), { items: cart, updatedAt: new Date() });
+                } catch (e) { console.error("Firebase hiba:", e); }
+            }
+
+            // A shop.js-ben használt modal hívása
+            if (typeof forgeXModal === "function") {
+                await forgeXModal("Kosárba téve", `${title} bekerült a kosaradba!`);
+            } else {
+                alert(`${title} bekerült a kosaradba!`);
+            }
         });
     });
-
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-
-    window.addEventListener('click', (event) => {
-        if (event.target === modal) {
-            closeModal();
-        }
-    });
 }
-
-// FONTOS: Ez indítja el a kódot, amikor betölt az oldal!
 document.addEventListener('DOMContentLoaded', initModals);
