@@ -51,7 +51,7 @@ const PRODUCT_DATA = {
         description: "ForgeX running shoes – lightweight, flexible sole.",
         sizes: ["38", "39", "40", "41", "42", "43", "44", "45"],
         color: ["Fehér", "Fekete"],
-        prices: [12990, 12990],
+        prices: [12990, 12990, 12990, 12990, 12990, 12990, 12990, 12990],
         category: "clothing"
     },
     "Sapka": {
@@ -63,11 +63,10 @@ const PRODUCT_DATA = {
         category: "clothing"
     },
     "Sporttáska": {
-        // KÜLÖN idézőjelbe kell tenni a két fájlt:
         images: ["images/products/bag-black2.jpg", "images/products/bag-green.jpg"],
         description: "ForgeX gym bag – multiple pockets, durable material.",
         sizes: ["25L", "45L"],
-        color: ["Fekete", "Zöld"], // Érdemes a színt is bővíteni, ha van zöld táska
+        color: ["Fekete", "Zöld"],
         prices: [17990, 27990],
         category: "clothing"
     },
