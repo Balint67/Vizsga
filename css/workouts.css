@@ -143,6 +143,41 @@
     margin-top: 15px;
     background: #000;
 }
+
+.add-to-cart-btn {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #00ca65;
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #00a854;
+    transform: scale(1.02);
+}
+
+.add-to-cart-btn:active {
+    transform: scale(0.98);
+}
+
+/* Modal tartalmának igazítása, hogy a gomb középen legyen */
+.modal-content {
+    text-align: center;
+    padding: 20px;
+    background: #1a1a1a;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+}
+
 /* ASZTALI NÉZET: 3 kártya felül */
 @media (min-width: 992px) {
     .age-card {
