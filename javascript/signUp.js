@@ -1,37 +1,35 @@
-// Import Firebase authentication and database instances
+/**
+ * ForgeX - User Registration Module
+ * Requirements: Firebase v10+, Firestore, Google Auth, Custom Modals
+ */
+
 import { auth, db } from './firebase.js';
-
-// Import Firebase Authentication function for user registration
-import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-// Import Firestore functions for saving user data
+import {
+    createUserWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithPopup
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { forgeXModal } from './utils.js';
 
-// Import google login
-import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-
-// Reference to the registration form
+// --- DOM ELEMENT SELECTIONS ---
 const registrationForm = document.getElementById('regForm');
 const googleBtn = document.getElementById('google-btn');
+const passwordInput = document.getElementById('password');
+const confirmPasswordInput = document.getElementById('passwordagain');
+const errorMessageDisplay = document.getElementById('error-message');
 
-// Password toggle elements
+/**
+ * UI & Form Validation logic
+ */
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Element Selection
-    const registrationForm = document.getElementById('registrationForm');
-    const password = document.getElementById('password');
-    const confirmPassword = document.getElementById('passwordagain');
-    const errorMessage = document.getElementById('error-message');
     const toggleButtons = document.querySelectorAll('.toggle-password');
 
-    // 2. PASSWORD VISIBILITY TOGGLE
+    // Password visibility toggle handler
     toggleButtons.forEach(button => {
         button.style.cursor = 'pointer';
-
         button.addEventListener('click', function() {
-            // Find the input field relative to the clicked eye icon
             const inputField = this.parentElement.querySelector('input');
-
             if (inputField.type === 'password') {
                 inputField.type = 'text';
                 this.classList.replace('fa-eye', 'fa-eye-slash');
@@ -42,136 +40,123 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. REAL-TIME MATCH VALIDATION
-    function validatePasswords() {
-        const val1 = password.value;
-        const val2 = confirmPassword.value;
-
-        // Only show error if the second field is not empty
-        if (val2.length > 0) {
-            if (val1 !== val2) {
-                confirmPassword.style.border = "2px solid #ff4d4d";
-                errorMessage.textContent = "Passwords do not match!";
-                errorMessage.style.display = "block";
+    // Real-time password match validation
+    const validatePasswords = () => {
+        if (confirmPasswordInput.value.length > 0) {
+            if (passwordInput.value !== confirmPasswordInput.value) {
+                confirmPasswordInput.style.border = "2px solid #ff4d4d";
+                errorMessageDisplay.textContent = "Passwords do not match!";
+                errorMessageDisplay.style.display = "block";
             } else {
-                confirmPassword.style.border = "2px solid #2ecc71";
-                errorMessage.style.display = "none";
+                confirmPasswordInput.style.border = "2px solid #2ecc71";
+                errorMessageDisplay.style.display = "none";
             }
-        } else {
-            confirmPassword.style.border = "";
-            errorMessage.style.display = "none";
         }
-    }
+    };
 
-    // Attach listeners for every keystroke
-    password.addEventListener('input', validatePasswords);
-    confirmPassword.addEventListener('input', validatePasswords);
-
-    // 4. PREVENT FORM SUBMISSION ON ERROR
-    if (registrationForm) {
-        registrationForm.addEventListener('submit', (e) => {
-            if (password.value !== confirmPassword.value) {
-                e.preventDefault(); // Stop form from sending
-                alert("Please make sure your passwords match!");
-            } else {
-                console.log("Form validated! Proceeding to registration...");
-            }
-        });
-    }
+    passwordInput.addEventListener('input', validatePasswords);
+    confirmPasswordInput.addEventListener('input', validatePasswords);
 });
 
-
-if (registrationForm) {
-    registrationForm.addEventListener('submit', (e) => {
-        if (password.value !== confirmPassword.value) {
-            e.preventDefault(); // Stop form submission
-
-            // Show error message if it was hidden
-            if (errorMessage) {
-                errorMessage.style.display = "block";
-                errorMessage.style.color = "#e74c3c";
-            }
-            alert("Registration failed: Passwords must match!");
-        } else {
-            console.log("Success! Data is ready for Firebase.");
-            // Add your Firebase Auth code here
-        }
-    });
-}
-
+/**
+ * Handle Standard Email/Password Registration
+ */
 if (registrationForm) {
     registrationForm.addEventListener('submit', async (event) => {
         event.preventDefault();
 
-        // Disable submit button to prevent multiple submissions
-        const submitButton = registrationForm.querySelector('button');
-        submitButton.disabled = true;
-        submitButton.innerHTML = "Registration successful!";
+        // Final security check for password matching
+        if (passwordInput.value !== confirmPasswordInput.value) {
+            await forgeXModal("Validation Error", "Please ensure your passwords match before submitting.");
+            return;
+        }
 
-        // Get form input values
+        const submitButton = registrationForm.querySelector('button');
+        const originalBtnText = submitButton.innerHTML;
+
+        // UI Feedback: disable button during async operation
+        submitButton.disabled = true;
+        submitButton.innerHTML = "Creating Account...";
+
         const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+        const password = passwordInput.value;
         const fullName = document.getElementById('fullname').value;
         const phoneNumber = document.getElementById('phone').value;
 
         try {
-            // Create user with Firebase Authentication
+            // 1. Create user in Firebase Authentication
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
-            // Save additional user data to Firestore
+            // 2. Store additional user metadata in Firestore
             await setDoc(doc(db, "users", user.uid), {
                 fullname: fullName,
                 phone: phoneNumber,
                 email: email,
-                createdAt: new Date()
+                createdAt: new Date(),
+                provider: "password"
             });
 
-            // Redirect to login page after successful registration
+            // 3. Success redirect
             window.location.replace("signIn.html");
 
         } catch (error) {
-            console.error("Registration error:", error.code);
-
-            // Re-enable submit button on error
+            console.error("Auth Error:", error.code);
             submitButton.disabled = false;
-            submitButton.innerHTML = 'Registration <i class="fa-solid fa-arrow-right"></i>';
+            submitButton.innerHTML = originalBtnText;
 
-            // Handle common registration errors
+            // User-friendly error mapping
+            let friendlyMessage = "An unexpected error occurred.";
             if (error.code === 'auth/email-already-in-use') {
-                alert("This email address is already in use!");
-            } else {
-                alert("An error occurred: " + error.message);
+                friendlyMessage = "This email address is already registered.";
+            } else if (error.code === 'auth/weak-password') {
+                friendlyMessage = "The password is too weak. Please use at least 8 characters.";
             }
+
+            await forgeXModal("Registration Failed", friendlyMessage);
         }
     });
 }
 
-
-
-
-// Google login
+/**
+ * Handle Google Social Authentication
+ */
 if (googleBtn) {
     googleBtn.addEventListener('click', async () => {
         const provider = new GoogleAuthProvider();
+
         try {
+            // Trigger the Google Sign-In popup
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
 
+            // Sync Google profile data with Firestore
+            // merge: true ensures we don't overwrite existing data on re-login
             await setDoc(doc(db, "users", user.uid), {
                 fullname: user.displayName,
                 email: user.email,
-                phone: user.phoneNumber || "Nincs megadva",
+                phone: user.phoneNumber || "Not provided",
                 createdAt: new Date(),
                 provider: "google"
             }, { merge: true });
 
-            console.log("Sikeres Google regisztráció és mentés!");
+            console.log("Google Auth Success!");
             window.location.replace("index.html");
 
         } catch (error) {
-            console.error("Hiba a Google regisztráció során:", error);
-            alert("Hiba történt: " + error.message);
+            console.error("Google Auth Error:", error.code);
+
+            // Handle silent failures (user closed the popup)
+            if (['auth/popup-closed-by-user', 'auth/cancelled-popup-request'].includes(error.code)) {
+                return;
+            }
+
+            let customMessage = "Authentication failed. Please try again.";
+            if (error.code === 'auth/account-exists-with-different-credential') {
+                customMessage = "An account already exists with this email using a different provider.";
+            }
+
+            await forgeXModal("Login Error", customMessage);
         }
     });
 }
