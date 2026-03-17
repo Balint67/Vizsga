@@ -7,10 +7,14 @@ import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/1
 // Import custom modal utility
 import { forgeXModal } from './utils.js';
 
+// Import google login
+import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
 // --- DOM ELEMENT REFERENCES ---
 const loginForm = document.getElementById('login-form');
 const togglePasswordButton = document.getElementById('togglePassword');
 const passwordInput = document.getElementById('password');
+const googleBtn = document.getElementById('google-btn');
 
 console.log("SignIn script initialized.");
 
@@ -68,4 +72,25 @@ if (loginForm) {
     });
 } else {
     console.error("Login form not found in the DOM.");
+}
+
+// Google login eventlistener
+if (googleBtn) {
+    googleBtn.addEventListener('click', async () => {
+        const provider = new GoogleAuthProvider();
+
+        try {
+            const result = await signInWithPopup(auth, provider);
+
+            console.log("Sikeres Google belépés:", result.user.displayName);
+            window.location.href = "index.html";
+
+        } catch (error) {
+            console.error("Hiba a Google login során:", error.code);
+
+            if (error.code !== 'auth/cancelled-popup-request') {
+                await forgeXModal("Bejelentkezési hiba", "Nem sikerült a Google bejelentkezés.");
+            }
+        }
+    });
 }

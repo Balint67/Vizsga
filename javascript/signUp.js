@@ -7,8 +7,13 @@ import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebase
 // Import Firestore functions for saving user data
 import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+// Import google login
+import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+
 // Reference to the registration form
 const registrationForm = document.getElementById('regForm');
+const googleBtn = document.getElementById('google-btn');
 
 // Password toggle elements
 document.addEventListener('DOMContentLoaded', () => {
@@ -138,6 +143,35 @@ if (registrationForm) {
             } else {
                 alert("An error occurred: " + error.message);
             }
+        }
+    });
+}
+
+
+
+
+// Google login
+if (googleBtn) {
+    googleBtn.addEventListener('click', async () => {
+        const provider = new GoogleAuthProvider();
+        try {
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+
+            await setDoc(doc(db, "users", user.uid), {
+                fullname: user.displayName,
+                email: user.email,
+                phone: user.phoneNumber || "Nincs megadva",
+                createdAt: new Date(),
+                provider: "google"
+            }, { merge: true });
+
+            console.log("Sikeres Google regisztráció és mentés!");
+            window.location.replace("index.html");
+
+        } catch (error) {
+            console.error("Hiba a Google regisztráció során:", error);
+            alert("Hiba történt: " + error.message);
         }
     });
 }
