@@ -23,7 +23,7 @@ onAuthStateChanged(auth, async (user) => {
         const localItems = JSON.parse(localStorage.getItem("cart")) || [];
         renderCart(localItems, cartContainer, totalPriceElement, checkoutButton);
     }
-    updateCartCount();
+
 });
 
 function renderCart(cartItems, container, totalElement, checkoutButton) {
@@ -61,32 +61,49 @@ function renderCart(cartItems, container, totalElement, checkoutButton) {
     if (totalElement) totalElement.innerText = `${totalPrice.toLocaleString('hu-HU')} Ft`;
 }
 
+/**
+ * Removes an item from the cart, updates storage, and notifies the UI
+ * @param {string} itemId - The unique ID of the item to be removed
+ */
 window.removeFromCart = async function (itemId) {
+    // 1. Get the current cart items from LocalStorage
     let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
-    // Típusbiztos szűrés: mindent Stringgé alakítunk az összehasonlításhoz
+    // 2. Filter out the selected item (Type-safe comparison using String)
     const updatedCart = cartItems.filter(item => String(item.id) !== String(itemId));
 
-    // Mentés LocalStorage-ba
+    // 3. Update LocalStorage with the new array
     localStorage.setItem("cart", JSON.stringify(updatedCart));
 
-    // Mentés Firebase-be, ha van user
+    /** * 4. IMPORTANT: Dispatch a global 'storage' event.
+     * This triggers the event listener in auth-header.js to update the
+     * red cart badge across all open tabs and pages immediately.
+     */
+    window.dispatchEvent(new Event('storage'));
+
+    // 5. Update Cloud Firestore if the user is authenticated
     if (currentUserId) {
         try {
             await setDoc(doc(db, "carts", currentUserId), {
                 items: updatedCart,
                 updatedAt: new Date()
             });
-        } catch (error) { console.error("Firebase hiba törléskor:", error); }
+        } catch (error) {
+            console.error("Firebase sync error during deletion:", error);
+        }
     }
 
-    // Újrarenderelés az új listával
-    renderCart(updatedCart, document.getElementById("cart-items-container"), document.getElementById("total-price"), document.getElementById("checkout-btn"));
-    updateCartCount();
+    // 6. Re-render the Cart page UI with the updated list
+    renderCart(
+        updatedCart,
+        document.getElementById("cart-items-container"),
+        document.getElementById("total-price"),
+        document.getElementById("checkout-btn")
+    );
 };
 
-function updateCartCount() {
-    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-    const counter = document.getElementById("cart-count");
-    if (counter) counter.innerText = cartItems.length;
-}
+
+
+
+
+

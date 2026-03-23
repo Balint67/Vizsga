@@ -180,14 +180,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
 
     onAuthStateChanged(auth, async (user) => {
-        localStorage.removeItem("cart");
         if (user) {
             currentUserId = user.uid;
+            // Don't remove the item yet! Just wait for sync.
             await syncCartFromFirestore();
             await syncFavoritesFromFirestore();
         } else {
             currentUserId = null;
-            updateCartCount();
+            // If guest, we just keep whatever is in LocalStorage
         }
     });
 
@@ -203,10 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!currentUserId) return;
         try {
             const cartSnap = await getDoc(doc(db, "carts", currentUserId));
-            if (cartSnap.exists()) {
-                localStorage.setItem("cart", JSON.stringify(cartSnap.data().items || []));
-                updateCartCount();
-            }
+
         } catch (error) { console.error(error); }
     }
 
@@ -282,9 +279,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function addToCart(title, price, size, color, image) {
-        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        // 1. Always get the LATEST cart from storage to avoid overwriting
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        // 2. Create the new item object
         const newItem = {
-            id: Date.now().toString(), // Stringként mentjük az ID-t a biztonság kedvéért
+            id: Date.now().toString(),
             title,
             price: Number(price),
             size,
@@ -293,26 +293,30 @@ document.addEventListener("DOMContentLoaded", () => {
             quantity: 1
         };
 
+        // 3. PUSH - this adds the item to the existing array instead of replacing it
         cart.push(newItem);
-        localStorage.setItem("cart", JSON.stringify(cart));
-        updateCartCount();
 
+        // 4. Save the expanded array back to LocalStorage
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        // Notify the header badge
+        window.dispatchEvent(new Event('storage'));
+
+        // 5. Sync the FULL array to Firestore
         if (currentUserId) {
             try {
                 await setDoc(doc(db, "carts", currentUserId), {
-                    items: cart,
+                    items: cart, // This must be the whole array!
                     updatedAt: new Date()
                 });
-            } catch (error) { console.error("Firebase mentési hiba:", error); }
+            } catch (error) {
+                console.error("Firebase sync error:", error);
+            }
         }
-        await forgeXModal("Kosárba téve", `${title} bekerült a kosaradba!`);
+
+        await forgeXModal("Added to Cart", `${title} has been added to your cart!`);
     }
 
-    function updateCartCount() {
-        const cart = JSON.parse(localStorage.getItem("cart")) || [];
-        const el = document.getElementById("cart-count");
-        if (el) el.innerText = cart.length;
-    }
 
     function getFavorites() { return JSON.parse(localStorage.getItem("favorites")) || []; }
 
@@ -439,7 +443,7 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.querySelector(".close-btn").onclick = () => modal.style.display = "none";
     window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
 
-    updateCartCount();
+
 
     // --- Ensure side filter is visible above products on mobile ---
     const _sideElement = document.querySelector('.side-filter-container');
