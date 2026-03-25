@@ -20,8 +20,8 @@ onAuthStateChanged(auth, async (user) => {
         renderCart(items, cartContainer, totalPriceElement, checkoutButton);
     } else {
         currentUserId = null;
-        const localItems = JSON.parse(localStorage.getItem("cart")) || [];
-        renderCart(localItems, cartContainer, totalPriceElement, checkoutButton);
+        localStorage.removeItem("cart");
+        renderCart([], cartContainer, totalPriceElement, checkoutButton);
     }
 
 });

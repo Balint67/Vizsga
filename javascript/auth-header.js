@@ -1,6 +1,7 @@
 import { auth, db } from './firebase.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { requiresEmailVerification } from './auth-utils.js';
 
 /**
  * Global Header Controller
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Main Authentication Observer
     onAuthStateChanged(auth, (user) => {
-        if (user) {
+        if (user && !requiresEmailVerification(user)) {
             // --- LOGGED IN STATE ---
 
             // Update profile navigation links
@@ -67,6 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Update profile navigation links to sign-in page
             profileLinks.forEach(link => link.href = 'signIn.html');
+
+            localStorage.removeItem('cart');
+            localStorage.removeItem('favorites');
 
             // Initialize guest cart from LocalStorage
             syncGuestCart();

@@ -58,27 +58,29 @@
                 </div>
 
                 <!-- Password input with toggle visibility -->
-                <form id="registrationForm">
-                    <label for="password">Password</label>
-                    <div class="input-box">
-                        <i class="fa-solid fa-lock"></i>
-                        <input type="password" id="password" placeholder="Minimum 8 characters" required minlength="8">
-                        <i class="fa-solid fa-eye toggle-password"></i>
-                    </div>
+                <label for="password">Password</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="password" placeholder="Minimum 8 characters" required minlength="8">
+                    <i class="fa-solid fa-eye toggle-password"></i>
+                </div>
 
-                    <label for="passwordagain">Password again</label>
-                    <div class="input-box">
-                        <i class="fa-solid fa-lock"></i>
-                        <input type="password" id="passwordagain" placeholder="Confirm your password" required>
-                        <i class="fa-solid fa-eye toggle-password"></i>
-                    </div>
+                <label for="passwordagain">Password again</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="passwordagain" placeholder="Confirm your password" required>
+                    <i class="fa-solid fa-eye toggle-password"></i>
+                </div>
 
-                    <p id="error-message" style="color: #ff4d4d; font-size: 13px; margin: 5px 0; display: none; font-weight: bold;"></p>
+                <p id="error-message" style="color: #ff4d4d; font-size: 13px; margin: 5px 0; display: none; font-weight: bold;"></p>
+                <p style="font-size: 13px; margin: 8px 0 14px; color: #d7d7d7;">
+                    After registration, we will send a verification email to activate your account.
+                </p>
 
-                    <button type="submit" class="login-btn">
-                        Register <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </form>
+                <button type="submit" class="login-btn">
+                    Register <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
 
             <!-- Link to sign in if user already has an account -->
             <p class="signup-text">
@@ -95,6 +97,7 @@
                 <button type="button" id="google-btn">
                     <img src="images/icons/googleLogo.png" alt="google logo" class="googleMiniImg"> Google
                 </button>
+            </div>
         </div>
 
         <!-- Footer with terms and privacy links -->
@@ -103,7 +106,7 @@
             <a href="szerzodesek.html">Terms and Conditions</a>
             and the <a href="szerzodesek.html">Privacy Policy</a>
         </p>
-        </div>
+    </div>
 </div>
 
 <script type="module" src="javascript/signUp.js"></script>

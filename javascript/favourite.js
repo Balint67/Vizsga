@@ -36,6 +36,12 @@ function removeFavoriteById(id) {
 }
 
 async function addToCartFromFavorite(item) {
+    if (!currentUserId) {
+        await forgeXModal('Bejelentkezés szükséges', 'A kosár használatához előbb jelentkezz be.');
+        window.location.href = "signIn.html";
+        return;
+    }
+
     const product = {
         id: item.id,
         title: item.title,
@@ -57,12 +63,7 @@ async function addToCartFromFavorite(item) {
         cartCountEl.innerText = cart.length;
     }
 
-    // Save to cloud if logged in
-    if (currentUserId) {
-        await saveCartToCloud();
-    } else {
-        console.warn("❌ Item added to cart but not logged in - not syncing to cloud");
-    }
+    await saveCartToCloud();
 
     await forgeXModal('Kosárba téve', `${product.title} bekerült a kosárba!`);
 }
@@ -113,9 +114,8 @@ async function syncFavoritesFromFirestore() {
             localStorage.setItem('favorites', JSON.stringify(cloudFavorites));
             console.log("✅ Favorites loaded from Firebase:", cloudFavorites.length, "items");
         } else {
-            // No favorites exist yet for this user - keep local
-            const localFavCount = (JSON.parse(localStorage.getItem("favorites")) || []).length;
-            console.log("ℹ️ No cloud favorites found. Using local favorites:", localFavCount, "items");
+            localStorage.setItem('favorites', JSON.stringify([]));
+            console.log("ℹ️ No cloud favorites found. Favorites reset to empty.");
         }
     } catch (error) {
         console.error("❌ Error loading favorites from cloud:", error);
@@ -133,9 +133,9 @@ async function syncCartFromFirestore() {
             updateCartCount();
             console.log("✅ Cart loaded from Firebase:", cloudCart.length, "items");
         } else {
-            // No cart exists yet - keep local items
-            const localCartCount = (JSON.parse(localStorage.getItem("cart")) || []).length;
-            console.log("ℹ️ No cloud cart found. Using local cart:", localCartCount, "items");
+            localStorage.setItem('cart', JSON.stringify([]));
+            updateCartCount();
+            console.log("ℹ️ No cloud cart found. Cart reset to empty.");
         }
     } catch (error) {
         console.error("❌ Error loading cart from cloud:", error);

@@ -34,6 +34,12 @@ function initModals() {
     };
 
     async function handleAddToCart(item) {
+        if (!currentUserId) {
+            await forgeXModal("Bejelentkezés szükséges", "Az edzésterv kosárba tételéhez előbb jelentkezz be.");
+            window.location.href = "signIn.html";
+            return;
+        }
+
         // 1. LocalStorage betöltése
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -57,15 +63,13 @@ function initModals() {
         }
 
         // 4. Firestore szinkronizáció
-        if (currentUserId) {
-            try {
-                await setDoc(doc(db, "carts", currentUserId), {
-                    items: cart,
-                    updatedAt: new Date()
-                });
-            } catch (error) {
-                console.error("Firebase hiba:", error);
-            }
+        try {
+            await setDoc(doc(db, "carts", currentUserId), {
+                items: cart,
+                updatedAt: new Date()
+            });
+        } catch (error) {
+            console.error("Firebase hiba:", error);
         }
 
         // 5. Vizuális visszajelzés

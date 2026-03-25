@@ -3,6 +3,10 @@
 // ===============================
 import { auth, db } from './firebase.js';
 import { forgeXModal } from './utils.js';
+import {
+    refreshAndSyncCurrentUser,
+    requiresEmailVerification
+} from './auth-utils.js';
 
 // ===============================
 // 🔹 FIREBASE AUTH IMPORTS
@@ -31,7 +35,19 @@ import {
 onAuthStateChanged(auth, async (user) => {
     if (!user) {
         // Redirect to login page if not authenticated
-        window.location.replace("bejelentkezes.html");
+        window.location.replace("signIn.html");
+        return;
+    }
+
+    user = await refreshAndSyncCurrentUser() || user;
+
+    if (requiresEmailVerification(user)) {
+        await forgeXModal(
+            "Email Verification Required",
+            "Please verify your email address before opening your profile."
+        );
+        await signOut(auth);
+        window.location.replace("signIn.html");
         return;
     }
 
@@ -172,6 +188,8 @@ const logoutButton = document.getElementById('logout-btn');
 if (logoutButton) {
     logoutButton.addEventListener('click', async () => {
         await signOut(auth);
+        localStorage.removeItem("cart");
+        localStorage.removeItem("favorites");
         window.location.replace("index.html");
     });
 }

@@ -2,6 +2,10 @@ import { auth, db } from './firebase.js';
 // Import the custom modal tool
 import { forgeXModal } from './utils.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import {
+    refreshAndSyncCurrentUser,
+    requiresEmailVerification
+} from './auth-utils.js';
 // Hozzáadtuk: collection, addDoc, serverTimestamp
 import { doc, getDoc, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -36,6 +40,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- ÚJ FUNKCIÓ: AUTOMATIKUS KITÖLTÉS ---
     onAuthStateChanged(auth, async (user) => {
         if (user) {
+            user = await refreshAndSyncCurrentUser() || user;
+
+            if (requiresEmailVerification(user)) {
+                await forgeXModal(
+                    "Email Verification Required",
+                    "Please verify your email address before booking an appointment."
+                );
+                window.location.href = "signIn.html";
+                return;
+            }
+
             console.log("Felhasználó felismerve, adatok lekérése...");
             try {
                 const userRef = doc(db, "users", user.uid);
@@ -198,10 +213,21 @@ document.addEventListener('DOMContentLoaded', function() {
         const formattedDate = selectedDate.toISOString().split('T')[0];
 
         // 3. Auth check
-        const user = auth.currentUser;
+        let user = auth.currentUser;
         if (!user) {
             await forgeXModal("Bejelentkezés szükséges", "A foglaláshoz kérlek jelentkezz be!");
-            window.location.href = "bejelentkezes.html";
+            window.location.href = "signIn.html";
+            return;
+        }
+
+        user = await refreshAndSyncCurrentUser() || user;
+
+        if (requiresEmailVerification(user)) {
+            await forgeXModal(
+                "Email Verification Required",
+                "Please verify your email address before booking an appointment."
+            );
+            window.location.href = "signIn.html";
             return;
         }
 

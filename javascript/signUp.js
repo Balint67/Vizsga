@@ -6,11 +6,14 @@
 import { auth, db } from './firebase.js';
 import {
     createUserWithEmailAndPassword,
+    getAdditionalUserInfo,
     GoogleAuthProvider,
-    signInWithPopup
+    signInWithPopup,
+    signOut
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { forgeXModal } from './utils.js';
+import { sendVerificationEmail, syncUserVerificationStatus } from './auth-utils.js';
 
 // --- DOM ELEMENT SELECTIONS ---
 const registrationForm = document.getElementById('regForm');
@@ -88,16 +91,28 @@ if (registrationForm) {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
-            // 2. Store additional user metadata in Firestore
+            // 2. Send verification email before allowing email/password login
+            await sendVerificationEmail(user);
+
+            // 3. Store additional user metadata in Firestore
             await setDoc(doc(db, "users", user.uid), {
                 fullname: fullName,
                 phone: phoneNumber,
                 email: email,
                 createdAt: new Date(),
-                provider: "password"
+                provider: "password",
+                emailVerified: false
             });
 
-            // 3. Success redirect
+            await syncUserVerificationStatus(user);
+
+            await signOut(auth);
+            await forgeXModal(
+                "Verify Your Email",
+                "We sent a verification email to your address. Open the link in that email, then sign in. If you do not see it, check your spam folder too."
+            );
+
+            // 4. Success redirect
             window.location.replace("signIn.html");
 
         } catch (error) {
@@ -129,6 +144,7 @@ if (googleBtn) {
             // Trigger the Google Sign-In popup
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
+            const additionalUserInfo = getAdditionalUserInfo(result);
 
             // Sync Google profile data with Firestore
             // merge: true ensures we don't overwrite existing data on re-login
@@ -137,8 +153,17 @@ if (googleBtn) {
                 email: user.email,
                 phone: user.phoneNumber || "Not provided",
                 createdAt: new Date(),
-                provider: "google"
+                provider: "google",
+                emailVerified: true
             }, { merge: true });
+
+            if (additionalUserInfo?.isNewUser) {
+                await sendVerificationEmail(user);
+                await forgeXModal(
+                    "Google Registration Complete",
+                    "Your Google account was created successfully and we also sent a confirmation email to your address."
+                );
+            }
 
             console.log("Google Auth Success!");
             window.location.replace("index.html");

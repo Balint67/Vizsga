@@ -182,14 +182,31 @@ document.addEventListener("DOMContentLoaded", () => {
     onAuthStateChanged(auth, async (user) => {
         if (user) {
             currentUserId = user.uid;
-            // Don't remove the item yet! Just wait for sync.
             await syncCartFromFirestore();
             await syncFavoritesFromFirestore();
         } else {
             currentUserId = null;
-            // If guest, we just keep whatever is in LocalStorage
+            clearLocalCommerceState();
+            updateModalFavoriteUI();
         }
     });
+
+    function clearLocalCommerceState() {
+        localStorage.removeItem("cart");
+        localStorage.removeItem("favorites");
+        window.dispatchEvent(new Event('storage'));
+    }
+
+    async function requireAuthenticatedUser(actionLabel) {
+        if (currentUserId) return true;
+
+        await forgeXModal(
+            "Bejelentkezés szükséges",
+            `A ${actionLabel} művelethez előbb jelentkezz be.`
+        );
+        window.location.href = "signIn.html";
+        return false;
+    }
 
     async function saveCartToCloud() {
         if (!currentUserId) return;
@@ -203,7 +220,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!currentUserId) return;
         try {
             const cartSnap = await getDoc(doc(db, "carts", currentUserId));
-
+            const cloudCart = cartSnap.exists() ? (cartSnap.data().items || []) : [];
+            localStorage.setItem("cart", JSON.stringify(cloudCart));
+            window.dispatchEvent(new Event('storage'));
         } catch (error) { console.error(error); }
     }
 
@@ -279,6 +298,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function addToCart(title, price, size, color, image) {
+        if (!(await requireAuthenticatedUser("kosárba helyezés"))) return;
+
         // 1. Always get the LATEST cart from storage to avoid overwriting
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -303,15 +324,13 @@ document.addEventListener("DOMContentLoaded", () => {
         window.dispatchEvent(new Event('storage'));
 
         // 5. Sync the FULL array to Firestore
-        if (currentUserId) {
-            try {
-                await setDoc(doc(db, "carts", currentUserId), {
-                    items: cart, // This must be the whole array!
-                    updatedAt: new Date()
-                });
-            } catch (error) {
-                console.error("Firebase sync error:", error);
-            }
+        try {
+            await setDoc(doc(db, "carts", currentUserId), {
+                items: cart, // This must be the whole array!
+                updatedAt: new Date()
+            });
+        } catch (error) {
+            console.error("Firebase sync error:", error);
         }
 
         await forgeXModal("Added to Cart", `${title} has been added to your cart!`);
@@ -335,7 +354,8 @@ document.addEventListener("DOMContentLoaded", () => {
     async function syncFavoritesFromFirestore() {
         if (!currentUserId) return;
         const favSnap = await getDoc(doc(db, "favorites", currentUserId));
-        if (favSnap.exists()) localStorage.setItem("favorites", JSON.stringify(favSnap.data().items || []));
+        const cloudFavorites = favSnap.exists() ? (favSnap.data().items || []) : [];
+        localStorage.setItem("favorites", JSON.stringify(cloudFavorites));
     }
 
     function makeFavoriteId(title, size, color) {
@@ -347,6 +367,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function toggleFavorite(title, price, size, color, image) {
+        if (!(await requireAuthenticatedUser("kedvencekhez adás"))) return false;
+
         const id = makeFavoriteId(title, size, color);
         const favs = getFavorites();
         const existingIndex = favs.findIndex(f => f.id === id);
