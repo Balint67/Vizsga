@@ -198,9 +198,9 @@ function initModals() {
     if (!infoModal) return;
 
     const modalContentMap = {
-        'eatClean': { title: 'Eat Clean', text: 'A tiszta Ă©tkezĂ©s az egĂ©szsĂ©ges Ă©letmĂłd alapja...' },
-        'trainHard': { title: 'Work Hard', text: 'A kĂ¶vetkezetes edzĂ©s kulcsfontossĂˇgĂş...' },
-        'sleepWell': { title: 'Sleep Well', text: 'A regenerĂˇciĂł legalĂˇbb olyan fontos...' }
+        'eatClean': { title: 'Eat Clean', text: 'A tiszta étkezés az egészséges életmód alapja...' },
+        'trainHard': { title: 'Work Hard', text: 'A következetes edzés kulcsfontosságú...' },
+        'sleepWell': { title: 'Sleep Well', text: 'A regeneráció legalább olyan fontos...' }
     };
 
     modalTriggers.forEach(trigger => {
@@ -224,12 +224,10 @@ function initModals() {
 function initLanguageSelector() {
     const langButtons = document.querySelectorAll('.nyelv-btn, .lang-btn');
 
-    // Check for saved language in localStorage
     const savedLanguage = localStorage.getItem('selectedLanguage');
     if (savedLanguage) {
-        // Wait for Google module to load
         setTimeout(() => {
-            triggerGoogleTranslate(savedLanguage);
+            triggerGoogleTranslate(savedLanguage, { showError: false });
         }, 1000);
     }
 
@@ -237,7 +235,7 @@ function initLanguageSelector() {
         btn.addEventListener('click', () => {
             const langCode = btn.getAttribute('data-lang');
             localStorage.setItem('selectedLanguage', langCode);
-            triggerGoogleTranslate(langCode);
+            triggerGoogleTranslate(langCode, { showError: true });
         });
     });
 }
@@ -247,35 +245,46 @@ window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
         const savedLanguage = localStorage.getItem('selectedLanguage');
         if (savedLanguage) {
-            triggerGoogleTranslate(savedLanguage);
+            triggerGoogleTranslate(savedLanguage, { showError: false });
         }
     }
 });
 
-function triggerGoogleTranslate(langCode) {
-    const translateDropdown = document.querySelector(".goog-te-combo");
+function triggerGoogleTranslate(langCode, options = {}) {
+    const {
+        showError = false,
+        maxAttempts = 12,
+        retryDelay = 400
+    } = options;
 
-    if (translateDropdown) {
-        translateDropdown.value = langCode;
-        translateDropdown.dispatchEvent(new Event('change'));
-        translateDropdown.dispatchEvent(new Event('input'));
-    } else {
-        console.warn("Waiting for Google Translate module...");
+    let attempt = 0;
 
-        // Retry once after 500ms
-        setTimeout(() => {
-            const retryDropdown = document.querySelector(".goog-te-combo");
-            if (retryDropdown) {
-                retryDropdown.value = langCode;
-                retryDropdown.dispatchEvent(new Event('change'));
-            } else {
-                showInlineModal(
-                    "Fordítás nem elérhető",
-                    "A fordító szolgáltatás jelenleg nem érhető el. Kérjük, frissítsd az oldalt később újra."
-                );
-            }
-        }, 500);
-    }
+    const tryApplyLanguage = () => {
+        const translateDropdown = document.querySelector(".goog-te-combo");
+
+        if (translateDropdown) {
+            translateDropdown.value = langCode;
+            translateDropdown.dispatchEvent(new Event('change'));
+            translateDropdown.dispatchEvent(new Event('input'));
+            return;
+        }
+
+        attempt += 1;
+
+        if (attempt < maxAttempts) {
+            window.setTimeout(tryApplyLanguage, retryDelay);
+            return;
+        }
+
+        if (showError) {
+            showInlineModal(
+                "Fordítás nem elérhető",
+                "A fordító szolgáltatás jelenleg nem érhető el. Kérjük, próbáld újra egy kicsit később."
+            );
+        }
+    };
+
+    tryApplyLanguage();
 }
 
 // Global Google API Init

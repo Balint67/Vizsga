@@ -229,39 +229,54 @@ function initModals() {
 }
 
 /* =========================
-   3. NYELVVÁLASZTÓ (Google Translate)
+   3. NYELVV?LASZT? (Google Translate)
    ========================= */
 function initLanguageSelector() {
     const buttons = document.querySelectorAll('.nyelv-btn');
+    const savedLanguage = localStorage.getItem('selectedLanguage');
+
+    if (savedLanguage) {
+        setTimeout(() => {
+            triggerGoogleTranslate(savedLanguage);
+        }, 1000);
+    }
 
     buttons.forEach(btn => {
         btn.addEventListener('click', () => {
             const langCode = btn.getAttribute('data-lang');
+            localStorage.setItem('selectedLanguage', langCode);
             triggerGoogleTranslate(langCode);
         });
     });
 }
 
 function triggerGoogleTranslate(langCode) {
-    // Megkeressük a Google rejtett select mezőjét
-    const select = document.querySelector(".goog-te-combo");
+    let attempt = 0;
 
-    if (select) {
-        select.value = langCode;
-        // Fontos: mindkét eseményt elsütjük a biztos működésért
-        select.dispatchEvent(new Event('change'));
-        select.dispatchEvent(new Event('input'));
-    } else {
-        console.error("A Google Translate modul még nem töltött be.");
-    }
+    const tryApplyLanguage = () => {
+        const select = document.querySelector('.goog-te-combo');
+
+        if (select) {
+            select.value = langCode;
+            select.dispatchEvent(new Event('change'));
+            select.dispatchEvent(new Event('input'));
+            return;
+        }
+
+        attempt += 1;
+        if (attempt < 12) {
+            window.setTimeout(tryApplyLanguage, 400);
+        }
+    };
+
+    tryApplyLanguage();
 }
 
-// Ezt a függvényt a window objektumhoz kell csatolni, hogy a Google API megtalálja
 window.googleTranslateElementInit = function() {
     new google.translate.TranslateElement({
         pageLanguage: 'hu',
         includedLanguages: 'en,de,hu',
-        autoDisplay: false // Ne jelenjen meg a Google sáv
+        autoDisplay: false
     }, 'google_translate_element');
 }
 
