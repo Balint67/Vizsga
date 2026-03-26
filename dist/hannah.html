@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Hannah | ForgeX</title>
+    <link rel="stylesheet" href="css/trainers.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+<div class="fixed-bg"></div>
+<div id="google_translate_element" style="display:none;"></div>
+
+<!-- ============================== TOP BAR / HEADER ============================== -->
+<div class="top-bar">
+    <header class="site-header">
+        <div class="container nav-container">
+            <!-- Mobile navigation toggle -->
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true"/>
+            <label for="nav-toggle" class="nav-toggle-btn">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </label>
+
+            <!-- Primary navigation -->
+            <nav id="site-nav" class="site-nav" role="navigation" aria-label="Fő navigáció">
+                <ul class="nav-list">
+                    <li class="nav-link active"><div class="text"><a href="index.html">Kezdőlap</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="shop.html">Shop</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="workouts.html">Gyakorlatok</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="gym.html">Edzőtermek</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="trainers.html">Edzők</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="booking.html">Időpontfoglalás</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="anatomy.html">Anatómia</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="calculatorBmi.html">BMI - Kalkulátor</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="contacts.html">Elérhetőségek</a></div></li>
+                    <li class="nav-link"><div class="text" id="mobileFavorites"><a href="favourite.html">Kedvencek</a></div></li>
+
+                    <!-- Language selector (mobile only) -->
+                    <li class="mobile-only-languages">
+                        <button data-lang="hu" class="nyelv-btn">HU</button>
+                        <button data-lang="en" class="nyelv-btn">EN</button>
+                        <button data-lang="de" class="nyelv-btn">DE</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <a href="index.html"><video src="videos/logo.mp4" autoplay muted playsinline class="logoVid-Mobile"></video></a>
+    <!-- Language selector (desktop only) -->
+    <div class="languages-container desktop-only">
+        <div class="language-picker">
+            <button data-lang="hu" class="nyelv-btn">Magyar</button>
+            <button data-lang="en" class="nyelv-btn">English</button>
+            <button data-lang="de" class="nyelv-btn">Deutsch</button>
+        </div>
+    </div>
+
+    <div class="right-icons">
+        <!-- Like / favorites icon -->
+        <div class="animation">
+            <a href="favourite.html">
+                <img
+                        src="images/icons/favoritesImg.png"
+                        class="likeIMG"
+                        alt="Like icon">
+            </a>
+        </div>
+
+        <!-- User profile icon -->
+        <div class="animation">
+            <a href="signIn.html" id="auth-link">
+                <img
+                        src="images/icons/userImg.png"
+                        class="userIMG"
+                        alt="User profile">
+            </a>
+        </div>
+
+        <!-- Shopping cart icon -->
+        <div class="header-shop">
+            <a href="cart.html" class="container-shopBtn">
+                <img
+                        src="images/icons/cartImg.png"
+                        class="cartIMG"
+                        alt="Shopping cart">
+                <span id="cart-count">0</span>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- ============================== TOP BAR END ============================== -->
+
+<!-- ============================== MOBILE BOTTOM NAV ============================== -->
+<div class="phone-menu" role="navigation" aria-label="Alsó navigáció">
+    <a href="signIn.html" aria-label="Profil">
+        <img class="phone-menu__icon" src="images/icons/userImg.png"
+             alt="Profil">
+    </a>
+    <a href="index.html" aria-label="Főoldal">
+        <img class="phone-menu__icon" src="images/icons/homeImg.png"
+             alt="Főoldal" id="phone-home-img">
+    </a>
+    <a href="cart.html" aria-label="Kosár">
+        <img class="phone-menu__icon" src="images/icons/cartImg.png"
+             alt="Kosár">
+    </a>
+</div>
+
+<!-- ============================== TOP CONTENT END ============================== -->
+
+<div class="content">
+    <div class="trainersContainer single-trainer-page">
+      <div class="section-header">
+        <h1>Hannah Montana</h1>
+        <div class="divider-line"></div>
+      </div>
+
+      <div class="trainer-split-layout">
+        <div class="trainer-image-side">
+          <div class="trainer-profile-box">
+            <div class="trainer-card-v2">
+              <img src="images/backgrounds/hannah.png" alt="Hannah">
+            </div>
+
+            <div class="trainer-under-info">
+              <h3>Hannah Montana</h3>
+              <p class="specialization">Kardió & Dinamikus Fitnesz</p>
+
+              <div class="trainer-contact-list">
+                <div class="contact-row">
+                  <i class="fa-solid fa-phone"></i>
+                  <a href="tel:+36705556677">+36 70 555 6677</a>
+                </div>
+                <div class="contact-row">
+                  <i class="fa-solid fa-envelope"></i>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hannah.montana@superself.hu" target="_blank">
+                        hannah.montana@superself.hu
+                    </a>
+                </div>
+                <div class="contact-row">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <span>SuperSelf Cardio Zone</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="trainer-info-side">
+          <div class="glass-content">
+            <i class="fa-solid fa-quote-left gold-quote"></i>
+            <h3 class="moto">Találd meg a ritmusod, és a tested hálás lesz érte minden nap.</h3>
+
+            <div class="bio-section">
+              <p class="description">
+                Szia, Hannah vagyok! Az én világom a pörgésről, az energiáról és a kitartásról szól. Hiszek abban, hogy a fitnesznek élvezetesnek kell lennie, ezért edzéseimen a jó hangulat és az intenzitás kéz a kézben jár.
+              </p>
+              <p class="description">
+                Fő fókuszom az állóképesség növelése és a hatékony zsírégetés. Legyen szó futásról, HIIT edzésről vagy saját testsúlyos gyakorlatokról, garantálom, hogy minden óra után feltöltődve és elégedetten távozol.
+              </p>
+            </div>
+
+            <h4 style="color: #00ca65; margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem;">Miben várlak:</h4>
+            <ul class="benefit-list">
+              <li><i class="fa-solid fa-circle-check"></i> HIIT (Magas intenzitású intervallum edzés)</li>
+              <li><i class="fa-solid fa-circle-check"></i> Szálkásítás és alakformálás</li>
+              <li><i class="fa-solid fa-circle-check"></i> Állóképesség fejlesztés</li>
+              <li><i class="fa-solid fa-circle-check"></i> Dinamikus nyújtás és core-tréning</li>
+            </ul>
+
+            <a href="booking.html?edzo=hannah" class="cta-button">Iratkozz fel az órámra</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="container-bottom" id="contact">
+        <div class="animation-bottom"><div class="space"><a href="contacts.html" class="tiszta-link"><p>Kapcsolat</p></a></div></div>
+        <div class="animation-bottom"><div class="space"><a href="contracts.html" class="tiszta-link"><p>Általános szerződési feltételek</p></a></div></div>
+        <div class="animation-bottom"><div class="space"><a href="reviews.html" class="tiszta-link"><p>Vélemények</p></a></div></div>
+        <div class="animation-bottom"><div class="space"><a href="questions.html" class="tiszta-link"><p>Gyakran ismételt kérdések</p></a></div></div>
+        <div class="animation-bottom"><div class="space"><a href="cookies.html" class="tiszta-link"><p>Süti beállítások</p></a></div></div>
+        <div class="animation-bottom">
+            <div class="space">
+                <a href="https://www.instagram.com/forgex._" class="tiszta-link" target="_blank">
+                    <p>Instagram</p>
+                    <img src="images/icons/instaLogo.png" class="igLogo" alt="Instagram Logo">
+                </a>
+            </div>
+        </div>
+        <div class="animation-bottom">
+            <div class="space">
+                <a href="https://www.facebook.com/share/1Dwr4nD67j" class="tiszta-link" target="_blank">
+                    <p>Facebook</p>
+                    <img src="images/icons/facebookLogo.png" class="faceLogo" alt="Facebook Logo">
+                </a>
+            </div>
+        </div>
+        <div class="animation-bottom">
+            <div class="space" id="tiktok">
+                <a href="https://www.tiktok.com/@forgex97" class="tiszta-link" target="_blank">
+                    <p>Tiktok</p>
+                    <img src="images/icons/tiktokLogo.png" class="tiktokLogo" alt="Tiktok Logo">
+                </a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+
+<script src="javascript/index.js"></script>
+<script type="module" src="javascript/auth-header.js"></script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

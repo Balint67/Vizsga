@@ -1,0 +1,1 @@
+let currentSlide=0;function changeSlide(e){const t=document.querySelectorAll(".slide");t[currentSlide].classList.remove("active"),currentSlide=(currentSlide+e+t.length)%t.length,t[currentSlide].classList.add("active")}

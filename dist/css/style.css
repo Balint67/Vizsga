@@ -1,0 +1,641 @@
+/* ==========================================================================
+   1. VARIABLES AND BASE SETTINGS
+   ========================================================================== */
+:root {
+    /* Colors */
+    --primary-black: #000000;
+    --primary-dark: #0f1a27;
+    --primary-accent: #00ca65;
+    --primary-accent-hover: #00ae55;
+    --primary-red: #ef4444;
+    --text-white: #ffffff;
+    --text-grey: #9a9a9a;
+    --text-dim: #e2e8f0;
+    --input-bg: #0f3739;
+
+    /* Card & Glass effect */
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --border-color: rgba(255, 255, 255, 0.2);
+    --glass-blur: blur(15px);
+    --shadow-main: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.2);
+
+    /* Dimensions & Layout */
+    --header-height: 100px;
+    --header-height-mobile: 80px;
+    --spacer-block-height: 40vh; /* Replaces excessive <br> tags */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: var(--text-white);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;      /* At least the height of the screen */
+    display: flex;
+    flex-direction: column; /* Elements stacked vertically */
+    overflow-x: hidden;
+}
+.fixed-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/backgrounds/bg.jpg");
+    background-size: cover;
+    background-position: center;
+    z-index: -1; /* Placed behind everything */
+}
+h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    font-family: inherit;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Helper Classes */
+.desktop-only { display: block; }
+.mobile-only-languages { display: none; }
+.text-center { text-align: center; }
+.delay-200 { transition-delay: 0.2s; }
+.spacer-block { height: var(--spacer-block-height); width: 100%; }
+
+/* Animations */
+.fadeIn {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease-out;
+}
+.fadeIn.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.animation, .header-shop, .animation-bottom {
+    transition: transform 0.2s ease;
+}
+.animation:hover, .header-shop:hover, .animation-bottom:hover {
+    transform: translateY(-5px);
+}
+.animation-bottom:hover { color: var(--primary-accent); }
+
+/* ==========================================================================
+   2. HEADER & NAVIGATION
+   ========================================================================== */
+.top-bar {
+    background-color: var(--primary-black);
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    height: var(--header-height);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.site-header { padding: 20px; }
+
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: 3.5rem;
+}
+
+.text {
+    font-weight: 500;
+    font-size: 20px;
+    color: white;
+    transition: transform 0.2s ease;
+    white-space: nowrap;
+}
+.text:hover { transform: translateY(-2px); }
+.text a:hover { color: var(--primary-accent); }
+
+/* Language Selector */
+.languages-container {
+    position: absolute;
+    right: 300px;
+    padding: 20px;
+}
+.nyelv-btn:hover { color: var(--primary-accent); }
+
+/* Right side icons */
+.right-icons {
+    margin-right: -10px;
+    display: flex;
+    position: absolute;
+    right: 20px;
+    top: 55%;
+    transform: translateY(-50%);
+}
+.right-icons img {
+    height: 40px;
+    width: auto;
+    margin-right: 50px;
+}
+
+#cart-count {
+    position: absolute;
+    top: -5px; right: 35px;
+    background: var(--primary-red);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-dark);
+}
+
+/* Mobile Hamburger Button (Hidden by default) */
+.nav-toggle, .nav-toggle-btn { display: none; }
+
+/* ==========================================================================
+   3. CONTENT SECTIONS
+   ========================================================================== */
+.content-index { margin-top: -100px; }
+.content{ margin-top: 120px; }
+
+/* Runner Hero */
+.container-runner {
+    width: 100%;
+    position: relative;
+}
+.container-runner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.divider-line {
+    width: 80px;
+    height: 4px;
+    background-color: #00ca65;
+    margin: 0 auto;
+    border-radius: 2px;
+}
+.divider-large { width: 350px; margin: 0 auto 50px auto; }
+.divider-small { width: 100px; margin-bottom: 20px; }
+
+.importantThings-text {
+    margin-top: 10px;
+    font-size: 30px;
+    text-align: center;
+}
+
+/* ==========================================================================
+   4. MODAL WINDOW
+   ========================================================================== */
+.popUp {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    place-items: center;
+    background: rgba(0,0,0,.6);
+}
+.popUp.is-open { display: grid; }
+
+.info-card {
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 40px;
+    backdrop-filter: var(--glass-blur);
+    max-width: 500px;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px; right: 15px;
+    color: white;
+    font-size: 24px;
+}
+
+.modal-title { color: var(--primary-accent); text-align: center; margin: 0 0 10px 0; }
+.modal-text { color: white; line-height: 1.6; text-align: justify; }
+
+/* ==========================================================================
+   6. FOOTER
+   ========================================================================== */
+.container-bottom {
+    background-color: black;
+    padding: 20px 20%;
+}
+.space { padding-top: 5px; }
+
+#tiktok { padding-top: 10px; }
+
+.igLogo {
+    position: absolute;
+    width: 30px;
+    margin-top: -40px;
+    margin-left: 80px;
+}
+.faceLogo {
+    position: absolute;
+    width: 30px;
+    margin-top: -40px;
+    margin-left: 80px;
+}
+.tiktokLogo {
+    position: absolute;
+    width: 40px;
+    margin-top: -44px;
+    margin-left: 45px;
+}
+
+/* ==========================================================================
+   FORGEX GLASSMORPHISM MODAL (ALERT & CONFIRM)
+   ========================================================================== */
+
+/* Full-screen background overlay with blur effect */
+.custom-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45); /* Darker overlay for better contrast */
+    backdrop-filter: blur(10px);    /* Strong glass-blur for the background */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    pointer-events: none; /* Disable interaction when hidden */
+    transition: opacity 0.4s ease;
+}
+
+/* Modal box with Glassmorphism effect */
+.custom-modal-box {
+    background: rgba(71, 63, 63, 0.28); /* Semi-transparent ForgeX teal */
+    backdrop-filter: blur(20px);      /* Internal frost-glass effect */
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 28px;
+    padding: 35px;
+    width: 90%;
+    max-width: 420px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.18); /* Thin glass edge */
+    transform: scale(0.8) translateY(20px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smooth bounce animation */
+}
+
+/* Animation trigger when 'active' class is added */
+.custom-modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto; /* Re-enable interaction */
+}
+
+.custom-modal-overlay.active .custom-modal-box {
+    transform: scale(1) translateY(0);
+}
+
+/* Modal Typography */
+.custom-modal-box h3 {
+    margin-top: 0;
+    color: #00ca65; /* ForgeX Green */
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.custom-modal-box p {
+    color: #e2e8f0;
+    font-size: 16px;
+    margin: 20px 0 30px 0;
+    line-height: 1.6;
+}
+
+/* Modal Buttons Layout */
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Button Base Styles */
+.modal-btn {
+    padding: 12px 28px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Primary Green Button (OK) */
+.modal-btn-primary {
+    background: linear-gradient(135deg, #00ca65, #008f47);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 202, 101, 0.3);
+}
+
+/* Secondary Muted Button (Cancel) */
+.modal-btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Hover Effects */
+.modal-btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.15);
+}
+
+.modal-btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(0, 202, 101, 0.4);
+}
+
+.modal-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+.topText{
+    margin-top: 40px;
+    color: rgba(234, 0, 0, 0.6);
+}
+#topLine{
+    border: 1px solid #c5c5c5;
+}
+.gymVid{
+    width: 100%;
+    height: auto;
+}
+
+.black-container{
+    background: #000;
+}
+.black-manPng{
+    width: 50%;
+    height: auto;
+    position: relative;
+    left: -5%;
+}
+
+#mobileFavorites{
+    display: none;
+}
+
+/* --- Desktop view --- */
+@media (min-width: 800px) {
+    .phone-menu{
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   GLOBAL BASICS FOR ALL DEVICES
+   ========================================================================== */
+.nav-toggle {
+    display: none; /* Checkbox is hidden everywhere */
+}
+
+/* ==========================================================================
+   MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 1740px) and (min-device-width: 1550px) {
+    .nav-toggle-btn, .mobile-only-languages{
+        display: none;
+    }
+
+    .nav-list {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+    }
+}
+@media (min-width: 1550px) {
+    .logoVid-Mobile{
+        display: none;
+    }
+}
+
+@media (max-width: 1669px) {
+    #mobileFavorites{
+        display: block;
+    }
+    .logoVid-Mobile {
+        display: block;
+        width: 120px; /* Set to desired size */
+        height: auto;
+        position: absolute;
+        left: 50%;
+        top: 37px;
+        transform: translateX(-50%);
+    }
+    /* Header layout: Hamburger left, icons right */
+    .nav-container {
+        display: flex;
+        flex-direction: row-reverse; /* Swaps order without modifying HTML */
+        justify-content: flex-end;    /* Pushes button to the left */
+        align-items: center;
+        padding: 10px 15px;
+        gap: 15px;
+        position: relative;
+        margin-left: -25px;
+    }
+
+    /* Hamburger Button Style */
+    .nav-toggle-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 28px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 10001;
+        order: -1;
+    }
+
+    .nav-toggle-btn .bar {
+        width: 100%;
+        height: 3px;
+        background-color: #ffffff;
+        border-radius: 3px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Menu Panel */
+    .site-nav {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        width: 280px;
+        height: 100vh;
+        background-color: #111111;
+        padding: 80px 25px 30px 25px;
+        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 10000;
+        overflow-y: auto;
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    /* OVERLAY */
+    .site-nav::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.7); /* Darkness intensity */
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease;
+        z-index: -1; /* Behind menu panel, in front of website */
+        pointer-events: none;
+    }
+
+    /* Items */
+    .nav-list {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav-link {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 1.1rem;
+        padding: 15px 0;
+        display: block;
+        transition: color 0.2s;
+    }
+
+    /* Mobile language selector at the bottom of the menu */
+    .site-nav .nav-list .mobile-only-languages {
+        display: flex !important; /* Guarantees override of previous restrictions */
+        gap: 15px;
+        margin-top: 30px;
+        padding-bottom: 20px;
+        justify-content: flex-start;
+    }
+
+    .mobile-only-languages .nyelv-btn {
+        display: inline-block;
+        background: #222;
+        color: white;
+        border: 1px solid #444;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    /* -----------------------------------------------------------
+       ACTIVE STATES (When checkbox is checked)
+       ----------------------------------------------------------- */
+
+    /* Slide in menu */
+    .nav-toggle:checked ~ .site-nav {
+        left: 0;
+    }
+
+    /* Show darkening overlay */
+    .nav-toggle:checked ~ .site-nav::before {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    /* Transform hamburger icon to X */
+    .nav-toggle:checked + .nav-toggle-btn .bar:nth-child(1) {
+        transform: translateY(8.5px) rotate(45deg);
+    }
+
+    .nav-toggle:checked + .nav-toggle-btn .bar:nth-child(2) {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    .nav-toggle:checked + .nav-toggle-btn .bar:nth-child(3) {
+        transform: translateY(-8.5px) rotate(-45deg);
+    }
+
+    /* Other mobile adjustments */
+    .desktop-only {
+        display: none !important;
+    }
+}
+
+/* ==========================================================================
+   MOBILE VIEW SPECIFICS
+   ========================================================================== */
+@media (max-width: 799px) {
+    .right-icons{
+        display: none;
+    }
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 700;
+        color: white;
+        text-align: center;
+        font-family: 'Segoe UI', sans-serif;
+    }
+    .phone-menu {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0px;
+        width: 105%;
+        height: 80px;
+        background: #000000;
+        z-index: 9999;
+        justify-content: space-evenly;
+        align-items: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .phone-menu img{
+        width: 60%;
+        height: auto;
+    }
+    #phone-home-img{
+        width: 80%;
+        height: auto;
+    }
+    .site-nav .nav-list .mobile-only-languages {
+        margin-top: 30px;
+        padding-bottom: 100px !important;
+    }
+}

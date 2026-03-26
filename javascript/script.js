@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
     initSlider();
     initModals();
     initLanguageSelector();
@@ -12,6 +12,38 @@ document.addEventListener('DOMContentLoaded', () => {
 let startX_click = 0;
 let startY_click = 0;
 let isDragging_click = false;
+
+function showInlineModal(title, message) {
+    const overlayElement = document.createElement('div');
+    overlayElement.classList.add('custom-modal-overlay');
+    overlayElement.innerHTML = `
+        <div class="custom-modal-box">
+            <h3>${title}</h3>
+            <p>${message}</p>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-primary" id="modal-ok">OK</button>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(overlayElement);
+
+    setTimeout(() => {
+        overlayElement.classList.add('active');
+    }, 10);
+
+    const closeModal = () => {
+        overlayElement.classList.remove('active');
+        setTimeout(() => {
+            overlayElement.remove();
+        }, 300);
+    };
+
+    overlayElement.querySelector('#modal-ok').addEventListener('click', closeModal);
+    overlayElement.addEventListener('click', (event) => {
+        if (event.target === overlayElement) closeModal();
+    });
+}
 
 function initSlider() {
     const slider = document.querySelector('.slider');
@@ -166,9 +198,9 @@ function initModals() {
     if (!infoModal) return;
 
     const modalContentMap = {
-        'eatClean': { title: 'Eat Clean', text: 'A tiszta étkezés az egészséges életmód alapja...' },
-        'trainHard': { title: 'Work Hard', text: 'A következetes edzés kulcsfontosságú...' },
-        'sleepWell': { title: 'Sleep Well', text: 'A regeneráció legalább olyan fontos...' }
+        'eatClean': { title: 'Eat Clean', text: 'A tiszta Ă©tkezĂ©s az egĂ©szsĂ©ges Ă©letmĂłd alapja...' },
+        'trainHard': { title: 'Work Hard', text: 'A kĂ¶vetkezetes edzĂ©s kulcsfontossĂˇgĂş...' },
+        'sleepWell': { title: 'Sleep Well', text: 'A regenerĂˇciĂł legalĂˇbb olyan fontos...' }
     };
 
     modalTriggers.forEach(trigger => {
@@ -190,7 +222,7 @@ function initModals() {
    3. LANGUAGE SELECTOR (Google Translate)
 ========================= */
 function initLanguageSelector() {
-    const langButtons = document.querySelectorAll('.lang-btn');
+    const langButtons = document.querySelectorAll('.nyelv-btn, .lang-btn');
 
     // Check for saved language in localStorage
     const savedLanguage = localStorage.getItem('selectedLanguage');
@@ -237,7 +269,10 @@ function triggerGoogleTranslate(langCode) {
                 retryDropdown.value = langCode;
                 retryDropdown.dispatchEvent(new Event('change'));
             } else {
-                alert("A fordító szolgáltatás jelenleg nem elérhető. Kérjük, frissítse az oldalt!");
+                showInlineModal(
+                    "Fordítás nem elérhető",
+                    "A fordító szolgáltatás jelenleg nem érhető el. Kérjük, frissítsd az oldalt később újra."
+                );
             }
         }, 500);
     }
@@ -263,4 +298,5 @@ function initScrollAnimations() {
     });
     document.querySelectorAll('.fadeIn').forEach((element) => scrollObserver.observe(element));
 }
+
 

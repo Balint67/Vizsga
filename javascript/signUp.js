@@ -70,7 +70,7 @@ if (registrationForm) {
 
         // Final security check for password matching
         if (passwordInput.value !== confirmPasswordInput.value) {
-            await forgeXModal("Validation Error", "Please ensure your passwords match before submitting.");
+            await forgeXModal("Érvényesítési hiba", "Kérjük, ellenőrizd, hogy a két jelszó megegyezik-e.");
             return;
         }
 
@@ -79,7 +79,7 @@ if (registrationForm) {
 
         // UI Feedback: disable button during async operation
         submitButton.disabled = true;
-        submitButton.innerHTML = "Creating Account...";
+        submitButton.innerHTML = "Fiók létrehozása...";
 
         const email = document.getElementById('email').value;
         const password = passwordInput.value;
@@ -108,8 +108,8 @@ if (registrationForm) {
 
             await signOut(auth);
             await forgeXModal(
-                "Verify Your Email",
-                "We sent a verification email to your address. Open the link in that email, then sign in. If you do not see it, check your spam folder too."
+                "Erősítsd meg az emailedet",
+                "Elküldtünk egy megerősítő emailt a megadott címre. Nyisd meg a benne lévő linket, majd jelentkezz be. Ha nem találod, nézd meg a spam mappát is."
             );
 
             // 4. Success redirect
@@ -121,14 +121,14 @@ if (registrationForm) {
             submitButton.innerHTML = originalBtnText;
 
             // User-friendly error mapping
-            let friendlyMessage = "An unexpected error occurred.";
+            let friendlyMessage = "Váratlan hiba történt.";
             if (error.code === 'auth/email-already-in-use') {
-                friendlyMessage = "This email address is already registered.";
+                friendlyMessage = "Ez az email cím már regisztrálva van.";
             } else if (error.code === 'auth/weak-password') {
-                friendlyMessage = "The password is too weak. Please use at least 8 characters.";
+                friendlyMessage = "A jelszó túl gyenge. Kérjük, használj legalább 8 karaktert.";
             }
 
-            await forgeXModal("Registration Failed", friendlyMessage);
+            await forgeXModal("Sikertelen regisztráció", friendlyMessage);
         }
     });
 }
@@ -160,8 +160,8 @@ if (googleBtn) {
             if (additionalUserInfo?.isNewUser) {
                 await sendVerificationEmail(user);
                 await forgeXModal(
-                    "Google Registration Complete",
-                    "Your Google account was created successfully and we also sent a confirmation email to your address."
+                    "Google regisztráció kész",
+                    "A Google-fiókod sikeresen létrejött, és megerősítő emailt is küldtünk az email címedre."
                 );
             }
 
@@ -176,12 +176,12 @@ if (googleBtn) {
                 return;
             }
 
-            let customMessage = "Authentication failed. Please try again.";
+            let customMessage = "A hitelesítés sikertelen volt. Kérjük, próbáld újra.";
             if (error.code === 'auth/account-exists-with-different-credential') {
-                customMessage = "An account already exists with this email using a different provider.";
+                customMessage = "Ehhez az email címhez már tartozik fiók egy másik bejelentkezési móddal.";
             }
 
-            await forgeXModal("Login Error", customMessage);
+            await forgeXModal("Bejelentkezési hiba", customMessage);
         }
     });
 }

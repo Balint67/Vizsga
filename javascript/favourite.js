@@ -5,6 +5,49 @@ import { forgeXModal } from './utils.js';
 
 let currentUserId = null;
 
+function formatPrice(price) {
+    return `${new Intl.NumberFormat('hu-HU').format(price)} Ft`;
+}
+
+function getItemAttributeRows(item) {
+    const rows = [];
+    const productId = item.productId || '';
+    const normalizedSize = item.size ? String(item.size).trim() : '';
+    const normalizedColor = item.color ? String(item.color).trim() : '';
+
+    if (normalizedSize) {
+        const sizeLabel = ['protein_powder', 'creatine', 'protein_bar', 'shaker', 'gym_bag']
+            .includes(productId)
+            ? 'Kiszerelés'
+            : 'Méret';
+
+        rows.push({
+            label: sizeLabel,
+            value: normalizedSize
+        });
+    }
+
+    if (normalizedColor) {
+        const colorLabel = ['protein_powder', 'protein_bar'].includes(productId)
+            ? 'Íz'
+            : 'Szín';
+
+        rows.push({
+            label: colorLabel,
+            value: normalizedColor
+        });
+    }
+
+    return rows;
+}
+
+function createCartItemId(item) {
+    const productId = item.productId || 'product';
+    const size = item.size || 'no-size';
+    const color = item.color || 'no-color';
+    return `${productId}_${size}_${color}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+}
+
 function normalizeImagePath(imagePath) {
     if (!imagePath) return '';
     const normalized = String(imagePath).replace(/\\/g, '/');
@@ -68,7 +111,8 @@ async function addToCartFromFavorite(item) {
     }
 
     const product = {
-        id: item.id,
+        id: createCartItemId(item),
+        productId: item.productId,
         title: item.title,
         price: item.price,
         size: item.size,
@@ -210,7 +254,18 @@ function renderFavorites() {
 
         const price = document.createElement('p');
         price.className = 'product-price';
-        price.innerText = item.price + ' Ft';
+        price.innerText = formatPrice(item.price);
+
+        const details = document.createElement('div');
+        details.className = 'favorite-attributes';
+
+        const attributeRows = getItemAttributeRows(item);
+        attributeRows.forEach((attribute) => {
+            const row = document.createElement('p');
+            row.className = 'favorite-attribute';
+            row.innerHTML = `<strong>${attribute.label}:</strong> ${attribute.value}`;
+            details.appendChild(row);
+        });
 
         // Action buttons container
         const actionsContainer = document.createElement('div');
@@ -241,6 +296,9 @@ function renderFavorites() {
         card.appendChild(img);
         card.appendChild(title);
         card.appendChild(price);
+        if (attributeRows.length) {
+            card.appendChild(details);
+        }
         card.appendChild(actionsContainer);
 
         container.appendChild(card);

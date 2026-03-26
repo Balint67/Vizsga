@@ -1,0 +1,38 @@
+/* A gombok tárolója */
+.selecterBtn {
+    display: flex;            /* Bekapcsolja a rugalmas elrendezést */
+    justify-content: center;  /* Vízszintesen középre teszi a gombokat */
+    gap: 0;                   /* Nincs köztes rés, hogy összeérjenek */
+    margin: 20px 0;           /* Egy kis távolság alul-felül */
+}
+
+/* Közös stílus a két gombnak */
+.skeletonBtn3D, .muscleBtn3D {
+    width: 350px;
+    height: 100px;
+    display: flex;            /* Hogy a szöveg is középen legyen */
+    align-items: center;      /* Szöveg függőlegesen középen */
+    justify-content: center;  /* Szöveg vízszintesen középen */
+    font-size: 1.5rem;
+    cursor: pointer;          /* Mutatja, hogy kattintható */
+    transition: background 0.3s; /* Szép átmenet hover esetén */
+    border: 1px solid #cccccc;
+    color: white;             /* Feltételezve, hogy sötét a háttér */
+}
+
+/* Interakció: ha ráfér az egér */
+.skeletonBtn3D:hover, .muscleBtn3D:hover {
+    background-color: #333333;
+}
+.skeletonBtn3D.active, .muscleBtn3D.active {
+    background: #00ca65;
+    color: #000;
+}
+/* Az iFrame tárolója legyen középen */
+.frameSize {
+    width: 80%;               /* Mobilbarátabb megoldás */
+    max-width: 800px;         /* De ne legyen túl óriási */
+    height: 800px;
+    margin: 0 auto;           /* Ez rakja középre a div-et */
+    border: 2px solid #444;
+}

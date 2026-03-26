@@ -1,0 +1,208 @@
+/* ============================== CART PAGE STYLES ============================== */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #fff;
+    margin: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header .avatar {
+    background: linear-gradient(135deg, #4CAF50, #007524);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px;
+    font-size: 24px;
+}
+
+/* ============================== CART ITEMS ============================== */
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #ffffff;
+    gap: 10px;
+}
+
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    background: #0f3739;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.item-info {
+    flex: 1;
+    margin: 0 10px;
+    min-width: 0;
+}
+
+.item-info h3 {
+    margin: 0;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.item-info p {
+    margin: 5px 0 0;
+    color: #cbd5e1;
+    font-size: 13px;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 18px;
+    flex-shrink: 0;
+    padding: 5px;
+}
+
+.delete-btn:hover {
+    transform: scale(1.1);
+}
+
+/* ============================== BUTTONS ============================== */
+
+.login-btn {
+    background: linear-gradient(135deg, #4CAF50, #007524);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+/* ============================== DESKTOP (768px+) ============================== */
+@media (min-width: 768px) {
+    .container {
+        max-width: 600px;
+        padding: 0 20px;
+    }
+
+    .cart-item {
+        padding: 15px 0;
+    }
+
+    .cart-item img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .item-info h3 {
+        font-size: 18px;
+    }
+
+    .login-btn {
+        padding: 14px 24px;
+        font-size: 16px;
+    }
+}
+
+/* ============================== MOBILE (320px - 767px) ============================== */
+@media (max-width: 767px) {
+    body {
+        margin: 0;
+        padding-bottom: 80px; /* Bottom nav helyet */
+    }
+
+
+    .header {
+        margin-bottom: 20px;
+    }
+
+    .header .avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .header h2 {
+        font-size: 1.3rem;
+        margin: 10px 0;
+    }
+
+    .header p {
+        font-size: 0.9rem;
+        color: #aaa;
+    }
+
+    /* Cart items */
+    .cart-item {
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .cart-item img {
+        width: 55px;
+        height: 55px;
+    }
+
+    .item-info {
+        margin: 0 10px;
+    }
+
+    .item-info h3 {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .item-info p {
+        font-size: 12px;
+    }
+
+    .delete-btn {
+        font-size: 16px;
+    }
+
+    /* Buttons */
+    .login-btn {
+        padding: 12px 16px;
+        font-size: 14px;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    /* Empty cart message */
+    .container p {
+        text-align: center;
+        color: #aaa;
+        font-size: 14px;
+    }
+}

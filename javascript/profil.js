@@ -176,7 +176,10 @@ async function deleteBooking(bookingId, userId) {
 
     } catch (error) {
         console.error("Error while deleting booking:", error);
-        alert("Failed to delete booking.");
+        await forgeXModal(
+            "Torles nem sikerult",
+            "A foglalas torlese most nem sikerult. Kerlek, probald ujra kesobb."
+        );
     }
 }
 
@@ -187,6 +190,16 @@ const logoutButton = document.getElementById('logout-btn');
 
 if (logoutButton) {
     logoutButton.addEventListener('click', async () => {
+        const confirmed = await forgeXModal(
+            "Kijelentkezes",
+            "Ha most kijelentkezel, ezen az eszkozod a kosarbol el fognak tunni a termekek, es a kedvencek listaja is torlodik. Ha kesobb ugyanabba a fiokba ujra bejelentkezel, a fiokodhoz tartozo kosar es kedvencek tartalma ugyanugy megmarad.",
+            true
+        );
+
+        if (!confirmed) {
+            return;
+        }
+
         await signOut(auth);
         localStorage.removeItem("cart");
         localStorage.removeItem("favorites");

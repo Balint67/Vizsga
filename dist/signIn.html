@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bejelentkezés | ForgeX</title>
+    <link rel="stylesheet" href="css/signIn.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="fixed-bg"></div>
+<div id="google_translate_element" style="display:none;"></div>
+
+
+<div class="content">
+    <div class="container">
+         <a href="index.html" class="vissza-gomb">
+            <i class="fa-solid fa-house"></i>
+        </a>
+        <div class="header">
+            <div class="avatar">
+                <i class="fa-solid fa-user"></i> <!-- small person icon -->
+            </div>
+            <h2>Üdvözlünk</h2>
+            <p>Jelentkezz be a fiókodba</p>
+        </div>
+
+        <div class="form-box">
+            <div class="tab-buttons">
+                
+            </div>
+
+            <form id="login-form">
+                <label for="email">Email cím</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-envelope"></i> <!-- small icon -->
+                    <input type="email" id="email" placeholder="pelda@email.com" required> <!-- mező -->
+                </div>
+
+                <label for="password">Jelszó</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i> <!-- left side lock icon -->
+                    <input type="password" id="password" required>
+                    <i class="fa-solid fa-eye" id="togglePassword"></i><!-- right side eye icon -->
+                </div>
+
+                <div class="options">
+                    <a href="resetPassword.html">Elfelejtetted a jelszavad?</a>
+                </div>
+                <br>
+
+                <button type="submit" class="login-btn">Bejelentkezés <i class="fa-solid fa-arrow-right"></i></button>
+            </form>
+
+            <button type="button" id="resend-verification-btn" class="login-btn" style="margin-top: 12px; background: transparent; border: 1px solid rgba(255,255,255,0.18);">
+                Visszaigazoló email újraküldése
+            </button>
+
+            <p class="signup-text">Nincs még fiókod? <a href="signUp.html">Regisztrálj itt</a></p>
+
+            <div class="divider-logIn">
+                <span>vagy</span>
+            </div>
+
+            <div class="social-buttons">
+                <button type="button" id="google-btn">
+                    <img src="images/icons/googleLogo.png" alt="google logo" class="googleMiniImg"> Google
+                </button>
+            </div>
+        </div>
+
+        <p class="footer-text">
+            A folytatással elfogadod az <a href="contracts.html">Általános Szerződési Feltételeket</a>
+            és az <a href="contracts.html">Adatvédelmi Szabályzatot</a>
+        </p>
+    </div>
+</div>
+
+<script type="module" src="javascript/signIn.js"></script>
+</body>
+</html>

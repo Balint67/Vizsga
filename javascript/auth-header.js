@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Elements selection
     const profileLinks = document.querySelectorAll('a[href="signIn.html"], #profile-link');
     const cartBadge = document.getElementById('cart-count');
+    let cartUnsubscribe = null;
+    let isStorageListenerAttached = false;
 
     /**
      * Updates the cart badge UI visibility and value
@@ -40,6 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Main Authentication Observer
     onAuthStateChanged(auth, (user) => {
+        if (cartUnsubscribe) {
+            cartUnsubscribe();
+            cartUnsubscribe = null;
+        }
+
+        if (isStorageListenerAttached) {
+            window.removeEventListener('storage', syncGuestCart);
+            isStorageListenerAttached = false;
+        }
+
         if (user && !requiresEmailVerification(user)) {
             // --- LOGGED IN STATE ---
 
@@ -51,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const cartRef = doc(db, "carts", user.uid);
 
             // onSnapshot provides real-time updates without page refresh
-            onSnapshot(cartRef, (docSnap) => {
+            cartUnsubscribe = onSnapshot(cartRef, (docSnap) => {
                 if (docSnap.exists()) {
                     const items = docSnap.data().items || [];
                     const total = items.reduce((acc, item) => acc + (item.quantity || 1), 0);
@@ -77,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Listen for changes in other tabs/windows for guest users
             window.addEventListener('storage', syncGuestCart);
+            isStorageListenerAttached = true;
         }
     });
 });

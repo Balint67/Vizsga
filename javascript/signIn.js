@@ -29,8 +29,8 @@ console.log("SignIn script initialized.");
 const searchParams = new URLSearchParams(window.location.search);
 if (searchParams.get('verified') === '1') {
     forgeXModal(
-        "Email Verified",
-        "Your email address has been verified successfully. You can sign in now."
+        "Email megerősítve",
+        "Az email címedet sikeresen megerősítettük. Most már be tudsz jelentkezni."
     );
     window.history.replaceState({}, document.title, window.location.pathname);
 }
@@ -69,8 +69,8 @@ if (loginForm) {
                 await sendVerificationEmail(user);
                 await signOut(auth);
                 await forgeXModal(
-                    "Email Verification Required",
-                    "Your email address is not verified yet. We sent you a new verification email. Please verify your account first, then sign in again."
+                    "Email megerősítése szükséges",
+                    "Az email címed még nincs megerősítve. Küldtünk egy új megerősítő emailt. Előbb erősítsd meg a fiókodat, majd jelentkezz be újra."
                 );
                 return;
             }
@@ -86,7 +86,7 @@ if (loginForm) {
             console.error("Authentication error:", error.code);
 
             // Default error message
-            let errorMessage = "An error occurred during login.";
+            let errorMessage = "Hiba történt a bejelentkezés közben.";
 
             // Map Firebase error codes to user-friendly messages
             if (
@@ -94,15 +94,14 @@ if (loginForm) {
                 error.code === 'auth/wrong-password' ||
                 error.code === 'auth/user-not-found'
             ) {
-                errorMessage = "Invalid email address or password.";
+                errorMessage = "Hibás email cím vagy jelszó.";
             } else if (error.code === 'auth/too-many-requests') {
-                errorMessage = "Too many attempts. Please try again later.";
+                errorMessage = "Túl sok próbálkozás történt. Kérjük, próbáld újra később.";
             } else if (error.code === 'auth/invalid-email') {
-                errorMessage = "Please enter a valid email address.";
+                errorMessage = "Adj meg egy érvényes email címet.";
             }
 
-            // Show error message in custom modal
-            await forgeXModal("Login Error", errorMessage);
+            await forgeXModal("Bejelentkezési hiba", errorMessage);
         }
     });
 } else {
@@ -131,8 +130,8 @@ if (googleBtn) {
             if (additionalUserInfo?.isNewUser) {
                 await sendVerificationEmail(user);
                 await forgeXModal(
-                    "Google Registration Complete",
-                    "Your Google account was created successfully and we also sent a confirmation email to your address."
+                    "Google regisztráció kész",
+                    "A Google-fiókod sikeresen létrejött, és megerősítő emailt is küldtünk az email címedre."
                 );
             }
 
@@ -155,16 +154,16 @@ if (resendButton) {
         const password = passwordInput.value;
 
         if (!email || !password) {
-            await forgeXModal(
-                "Missing Information",
-                "Enter your email address and password first, then click resend verification email."
-            );
+                await forgeXModal(
+                    "Hiányzó adatok",
+                    "Add meg először az email címedet és a jelszavadat, majd kattints az újraküldés gombra."
+                );
             return;
         }
 
         resendButton.disabled = true;
         const originalText = resendButton.innerHTML;
-        resendButton.innerHTML = "Sending...";
+        resendButton.innerHTML = "Küldés...";
 
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -175,34 +174,34 @@ if (resendButton) {
             if (!requiresEmailVerification(user)) {
                 await syncUserVerificationStatus(user);
                 await forgeXModal(
-                    "Already Verified",
-                    "This account is already verified. You can sign in normally."
+                    "Már megerősített fiók",
+                    "Ez a fiók már meg van erősítve. Normál módon be tudsz jelentkezni."
                 );
                 return;
             }
 
             await sendVerificationEmail(user);
             await forgeXModal(
-                "Verification Email Sent",
-                "We sent a new verification email. Please check your inbox and spam folder."
+                "Megerősítő email elküldve",
+                "Elküldtünk egy új megerősítő emailt. Kérjük, ellenőrizd a bejövő leveleket és a spam mappát is."
             );
         } catch (error) {
             console.error("Resend verification error:", error.code);
 
-            let errorMessage = "We could not send the verification email.";
+            let errorMessage = "Nem sikerült elküldeni a megerősítő emailt.";
             if (
                 error.code === 'auth/invalid-credential' ||
                 error.code === 'auth/wrong-password' ||
                 error.code === 'auth/user-not-found'
             ) {
-                errorMessage = "Invalid email address or password.";
+                errorMessage = "Hibás email cím vagy jelszó.";
             } else if (error.code === 'auth/too-many-requests') {
-                errorMessage = "Too many attempts. Please try again later.";
+                errorMessage = "Túl sok próbálkozás történt. Kérjük, próbáld újra később.";
             } else if (error.code === 'auth/invalid-email') {
-                errorMessage = "Please enter a valid email address.";
+                errorMessage = "Adj meg egy érvényes email címet.";
             }
 
-            await forgeXModal("Verification Error", errorMessage);
+            await forgeXModal("Megerősítési hiba", errorMessage);
         } finally {
             await signOut(auth).catch(() => {});
             resendButton.disabled = false;

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Kalkulátor | ForgeX</title>
+    <link rel="stylesheet" href="css/calculator.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="fixed-bg"></div>
+<div id="google_translate_element" style="display:none;"></div>
+
+<!-- ============================== TOP BAR / HEADER ============================== -->
+<div class="top-bar">
+    <header class="site-header">
+        <div class="container nav-container">
+            <!-- Mobile navigation toggle -->
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true"/>
+            <label for="nav-toggle" class="nav-toggle-btn">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </label>
+
+            <!-- Primary navigation -->
+            <nav id="site-nav" class="site-nav" role="navigation" aria-label="Fő navigáció">
+                <ul class="nav-list">
+                    <li class="nav-link active"><div class="text"><a href="index.html">Kezdőlap</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="shop.html">Shop</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="workouts.html">Gyakorlatok</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="gym.html">Edzőtermek</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="trainers.html">Edzők</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="booking.html">Időpontfoglalás</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="anatomy.html">Anatómia</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="calculatorBmi.html">BMI - Kalkulátor</a></div></li>
+                    <li class="nav-link"><div class="text"><a href="contacts.html">Elérhetőségek</a></div></li>
+                    <li class="nav-link"><div class="text" id="mobileFavorites"><a href="favourite.html">Kedvencek</a></div></li>
+
+                    <!-- Language selector (mobile only) -->
+                    <li class="mobile-only-languages">
+                        <button data-lang="hu" class="nyelv-btn">HU</button>
+                        <button data-lang="en" class="nyelv-btn">EN</button>
+                        <button data-lang="de" class="nyelv-btn">DE</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <a href="index.html"><video src="videos/logo.mp4" autoplay muted playsinline class="logoVid-Mobile"></video></a>
+    <!-- Language selector (desktop only) -->
+    <div class="languages-container desktop-only">
+        <div class="language-picker">
+            <button data-lang="hu" class="nyelv-btn">Magyar</button>
+            <button data-lang="en" class="nyelv-btn">English</button>
+            <button data-lang="de" class="nyelv-btn">Deutsch</button>
+        </div>
+    </div>
+
+    <div class="right-icons">
+        <!-- Like / favorites icon -->
+        <div class="animation">
+            <a href="favourite.html">
+                <img
+                        src="images/icons/favoritesImg.png"
+                        class="likeIMG"
+                        alt="Like icon">
+            </a>
+        </div>
+
+        <!-- User profile icon -->
+        <div class="animation">
+            <a href="signIn.html" id="auth-link">
+                <img
+                        src="images/icons/userImg.png"
+                        class="userIMG"
+                        alt="User profile">
+            </a>
+        </div>
+
+        <!-- Shopping cart icon -->
+        <div class="header-shop">
+            <a href="cart.html" class="container-shopBtn">
+                <img
+                        src="images/icons/cartImg.png"
+                        class="cartIMG"
+                        alt="Shopping cart">
+                <span id="cart-count">0</span>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- ============================== TOP BAR END ============================== -->
+
+<!-- ============================== MOBILE BOTTOM NAV ============================== -->
+<div class="phone-menu" role="navigation" aria-label="Alsó navigáció">
+    <a href="signIn.html" aria-label="Profil">
+        <img class="phone-menu__icon" src="images/icons/userImg.png"
+             alt="Profil">
+    </a>
+    <a href="index.html" aria-label="Főoldal">
+        <img class="phone-menu__icon" src="images/icons/homeImg.png"
+             alt="Főoldal" id="phone-home-img">
+    </a>
+    <a href="cart.html" aria-label="Kosár">
+        <img class="phone-menu__icon" src="images/icons/cartImg.png"
+             alt="Kosár">
+    </a>
+</div>
+
+<!-- ============================== TOP CONTENT END ============================== -->
+
+<main class="content">
+    <div class="bmi-main-container">
+        <div class="bmi-wrapper">
+            <section class="card calculator-card">
+                <div class="card-header">
+                    <h2>BMI Index</h2>
+                    <p>Egyszerű és gyors elemzés</p>
+                </div>
+                <form id="bmiForm">
+                    <div class="input-group">
+                        <label>Testsúly (kg)</label>
+                        <input type="number" id="weight" step="0.1" placeholder="0" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Magasság (cm)</label>
+                        <input type="number" id="height" step="1" placeholder="0" required>
+                    </div>
+                    <button class="btn btn-full" type="submit">Számítás</button>
+                </form>
+                <div class="result-area">
+                    <div class="progress-container">
+                        <svg class="progress-ring" width="120" height="120">
+                            <circle class="circle-bg" cx="60" cy="60" r="52" stroke-width="8" fill="transparent"/>
+                            <circle id="bmiCircle" class="circle-main" cx="60" cy="60" r="52" stroke-width="8" fill="transparent" stroke-dasharray="326.72" stroke-dashoffset="326.72"/>
+                        </svg>
+                        <div id="bmiValue" class="bmi-number">--</div>
+                    </div>
+                    <div class="result-text">
+                        <h3 id="bmiStatus">Készen állsz?</h3>
+                        <p id="bmiDescription">Add meg az adataidat.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card info-card">
+                <h3>Információ</h3>
+                <div class="info-text-section">
+                    <p>A <strong>Body Mass Index (BMI)</strong> egy széles körben használt statisztikai mérőszám, amely a testsúly és a magasság arányát veti össze az egészségi állapot felméréséhez.</p>
+                </div>
+                <div class="category-list">
+                    <div class="cat-item"><span class="dot blue"></span> &lt; 18.5 <span>Sovány</span></div>
+                    <div class="cat-item"><span class="dot green"></span> 18.5 - 25 <span>Normál</span></div>
+                    <div class="cat-item"><span class="dot yellow"></span> 25 - 30 <span>Túlsúly</span></div>
+                    <div class="cat-item"><span class="dot red"></span> &gt; 30 <span>Elhízás</span></div>
+                </div>
+                <div class="info-footer">
+                    <p><strong>Fontos:</strong> Ez az érték csak tájékoztató jellegű. Nem veszi figyelembe a testösszetételt (izom/zsír arány), ezért sportolók esetén eltérő lehet. Életmódváltás előtt konzultáljon szakemberrel!</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <footer class="container-bottom" id="contact">
+        <div class="animation-bottom"><div class="space"><a href="contacts.html" class="tiszta-link"><p>Kapcsolat</p></a></div></div>
+        <div class="animation-bottom"><div class="space"><a href="contracts.html" class="tiszta-link"><p>Általános szerződési feltételek</p></a></div></div>
+        <div class="animation-bottom"><div class="space"><a href="reviews.html" class="tiszta-link"><p>Vélemények</p></a></div></div>
+        <div class="animation-bottom"><div class="space"><a href="questions.html" class="tiszta-link"><p>Gyakran ismételt kérdések</p></a></div></div>
+        <div class="animation-bottom"><div class="space"><a href="cookies.html" class="tiszta-link"><p>Süti beállítások</p></a></div></div>
+        <div class="animation-bottom">
+            <div class="space">
+                <a href="https://www.instagram.com/forgex._" class="tiszta-link" target="_blank">
+                    <p>Instagram</p>
+                    <img src="images/icons/instaLogo.png" class="igLogo" alt="Instagram Logo">
+                </a>
+            </div>
+        </div>
+        <div class="animation-bottom">
+            <div class="space">
+                <a href="https://www.facebook.com/share/1Dwr4nD67j" class="tiszta-link" target="_blank">
+                    <p>Facebook</p>
+                    <img src="images/icons/facebookLogo.png" class="faceLogo" alt="Facebook Logo">
+                </a>
+            </div>
+        </div>
+        <div class="animation-bottom">
+            <div class="space" id="tiktok">
+                <a href="https://www.tiktok.com/@forgex97" class="tiszta-link" target="_blank">
+                    <p>Tiktok</p>
+                    <img src="images/icons/tiktokLogo.png" class="tiktokLogo" alt="Tiktok Logo">
+                </a>
+            </div>
+        </div>
+    </footer>
+</main>
+
+<script src="javascript/index.js"></script>
+<script src="javascript/calculatorBmi.js"></script>
+<script type="module" src="javascript/auth-header.js"></script>
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

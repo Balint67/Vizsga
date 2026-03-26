@@ -1,33 +1,33 @@
 import { auth } from './firebase.js';
+import { forgeXModal } from './utils.js';
 import { sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-// Ellenőrizzük, hogy egyáltalán elindul-e a fájl
-console.log("DEBUG: resetPassword.js sikeresen betöltve!");
 
 const resetForm = document.querySelector('form');
 const emailInput = document.getElementById('email');
-const resetBtn = document.querySelector('.login-btn');
+const resetButton = document.querySelector('.login-btn');
 
-if (!resetForm) console.error("DEBUG: Nem találom a FORM elemet!");
-if (!emailInput) console.error("DEBUG: Nem találom az EMAIL inputot!");
-if (!resetBtn) console.error("DEBUG: Nem találom a GOMBOT!");
+if (resetForm && emailInput && resetButton) {
+    resetForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
 
-resetForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    console.log("DEBUG: Gomb megnyomva! Email:", emailInput.value);
+        resetButton.disabled = true;
+        resetButton.innerText = "Folyamatban...";
 
-    resetBtn.disabled = true;
-    resetBtn.innerText = "Folyamatban...";
-
-    try {
-        await sendPasswordResetEmail(auth, emailInput.value.trim());
-        console.log("DEBUG: Firebase válasz: SIKER! Az email elment.");
-        alert("A linket elküldtük az email címedre!");
-    } catch (error) {
-        console.error("DEBUG: Firebase HIBA történt:", error.code);
-        alert("Hiba: " + error.code);
-    } finally {
-        resetBtn.disabled = false;
-        resetBtn.innerText = "Jelszó visszaállítása";
-    }
-});
+        try {
+            await sendPasswordResetEmail(auth, emailInput.value.trim());
+            await forgeXModal(
+                "Link elkuldve",
+                "Elkuldtuk a jelszo-visszaallito linket az email cimedre."
+            );
+        } catch (error) {
+            console.error("Password reset error:", error.code);
+            await forgeXModal(
+                "Hiba tortent",
+                "A jelszo-visszaallitas most nem sikerult. Ellenorizd az email címet, majd probald ujra."
+            );
+        } finally {
+            resetButton.disabled = false;
+            resetButton.innerText = "Jelszo visszaallitasa";
+        }
+    });
+}

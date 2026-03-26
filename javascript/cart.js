@@ -21,6 +21,36 @@ function normalizeImagePath(imagePath) {
     return normalized;
 }
 
+function formatPrice(price) {
+    return `${Number(price).toLocaleString('hu-HU')} Ft`;
+}
+
+function getItemAttributeRows(item) {
+    const rows = [];
+    const productId = item.productId || '';
+    const size = item.size ? String(item.size).trim() : '';
+    const color = item.color ? String(item.color).trim() : '';
+
+    if (size) {
+        const sizeLabel = ['protein_powder', 'creatine', 'protein_bar', 'shaker', 'gym_bag']
+            .includes(productId)
+            ? 'Kiszereles'
+            : 'Meret';
+
+        rows.push({ label: sizeLabel, value: size });
+    }
+
+    if (color) {
+        const colorLabel = ['protein_powder', 'protein_bar'].includes(productId)
+            ? 'Iz'
+            : 'Szin';
+
+        rows.push({ label: colorLabel, value: color });
+    }
+
+    return rows;
+}
+
 onAuthStateChanged(auth, async (user) => {
     const cartContainer = document.getElementById("cart-items-container");
     const totalPriceElement = document.getElementById("total-price");
@@ -28,15 +58,13 @@ onAuthStateChanged(auth, async (user) => {
 
     if (user) {
         currentUserId = user.uid;
-        // Firebase-ből töltünk be
         const cartSnapshot = await getDoc(doc(db, "carts", currentUserId));
         let items = cartSnapshot.exists() ? cartSnapshot.data().items || [] : [];
-        items = items.map(item => ({
+        items = items.map((item) => ({
             ...item,
             image: normalizeImagePath(item.image)
         }));
 
-        // Szinkronizáljuk a localStoraget, hogy a számláló is jó legyen
         localStorage.setItem("cart", JSON.stringify(items));
         renderCart(items, cartContainer, totalPriceElement, checkoutButton);
     } else {
@@ -44,7 +72,6 @@ onAuthStateChanged(auth, async (user) => {
         localStorage.removeItem("cart");
         renderCart([], cartContainer, totalPriceElement, checkoutButton);
     }
-
 });
 
 function renderCart(cartItems, container, totalElement, checkoutButton) {
@@ -52,7 +79,7 @@ function renderCart(cartItems, container, totalElement, checkoutButton) {
     container.innerHTML = "";
 
     if (!cartItems || cartItems.length === 0) {
-        container.innerHTML = `<p style="text-align:center;padding:20px;color:#aaa;">A kosarad üres.</p>`;
+        container.innerHTML = '<p style="text-align:center;padding:20px;color:#aaa;">A kosarad ures.</p>';
         if (totalElement) totalElement.innerText = "0 Ft";
         if (checkoutButton) checkoutButton.style.display = "none";
         return;
@@ -65,48 +92,41 @@ function renderCart(cartItems, container, totalElement, checkoutButton) {
         totalPrice += Number(item.price);
         const div = document.createElement("div");
         div.classList.add("cart-item");
+
+        const attributeRows = getItemAttributeRows(item)
+            .map((attribute) => `<p>${attribute.label}: <b style="color:#00ca65">${attribute.value}</b></p>`)
+            .join('');
+
         div.innerHTML = `
             <img src="${normalizeImagePath(item.image)}" alt="${item.title}">
             <div class="item-info">
                 <h3>${item.title}</h3>
-                <p>Méret: <b style="color:#00ca65">${item.size || 'Nincs'}</b></p>
-                <p>${Number(item.price).toLocaleString('hu-HU')} Ft</p>
+                ${attributeRows}
+                <p>${formatPrice(item.price)}</p>
             </div>
             <button class="delete-btn" onclick="removeFromCart('${item.id}')">
                 <i class="fa-solid fa-trash"></i>
             </button>
         `;
+
         container.appendChild(div);
     });
 
-    if (totalElement) totalElement.innerText = `${totalPrice.toLocaleString('hu-HU')} Ft`;
+    if (totalElement) totalElement.innerText = formatPrice(totalPrice);
 }
 
-/**
- * Removes an item from the cart, updates storage, and notifies the UI
- * @param {string} itemId - The unique ID of the item to be removed
- */
 window.removeFromCart = async function (itemId) {
-    // 1. Get the current cart items from LocalStorage
     let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-    cartItems = cartItems.map(item => ({
+    cartItems = cartItems.map((item) => ({
         ...item,
         image: normalizeImagePath(item.image)
     }));
 
-    // 2. Filter out the selected item (Type-safe comparison using String)
-    const updatedCart = cartItems.filter(item => String(item.id) !== String(itemId));
+    const updatedCart = cartItems.filter((item) => String(item.id) !== String(itemId));
 
-    // 3. Update LocalStorage with the new array
     localStorage.setItem("cart", JSON.stringify(updatedCart));
-
-    /** * 4. IMPORTANT: Dispatch a global 'storage' event.
-     * This triggers the event listener in auth-header.js to update the
-     * red cart badge across all open tabs and pages immediately.
-     */
     window.dispatchEvent(new Event('storage'));
 
-    // 5. Update Cloud Firestore if the user is authenticated
     if (currentUserId) {
         try {
             await setDoc(doc(db, "carts", currentUserId), {
@@ -118,7 +138,6 @@ window.removeFromCart = async function (itemId) {
         }
     }
 
-    // 6. Re-render the Cart page UI with the updated list
     renderCart(
         updatedCart,
         document.getElementById("cart-items-container"),
@@ -126,9 +145,3 @@ window.removeFromCart = async function (itemId) {
         document.getElementById("checkout-btn")
     );
 };
-
-
-
-
-
-
