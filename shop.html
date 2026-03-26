@@ -15,11 +15,9 @@
 <div class="fixed-bg"></div>
 <div id="google_translate_element" style="display:none;"></div>
 
-<!-- ============================== TOP BAR / HEADER ============================== -->
 <div class="top-bar">
     <header class="site-header">
         <div class="container nav-container">
-            <!-- Mobile navigation toggle -->
             <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true"/>
             <label for="nav-toggle" class="nav-toggle-btn">
                 <span class="bar"></span>
@@ -27,7 +25,6 @@
                 <span class="bar"></span>
             </label>
 
-            <!-- Primary navigation -->
             <nav id="site-nav" class="site-nav" role="navigation" aria-label="Fő navigáció">
                 <ul class="nav-list">
                     <li class="nav-link active"><div class="text"><a href="index.html">Kezdőlap</a></div></li>
@@ -40,8 +37,6 @@
                     <li class="nav-link"><div class="text"><a href="calculatorBmi.html">BMI - Kalkulátor</a></div></li>
                     <li class="nav-link"><div class="text"><a href="contacts.html">Elérhetőségek</a></div></li>
                     <li class="nav-link"><div class="text" id="mobileFavorites"><a href="favourite.html">Kedvencek</a></div></li>
-
-                    <!-- Language selector (mobile only) -->
                     <li class="mobile-only-languages">
                         <button data-lang="hu" class="nyelv-btn">HU</button>
                         <button data-lang="en" class="nyelv-btn">EN</button>
@@ -52,7 +47,6 @@
         </div>
     </header>
     <a href="index.html"><video src="videos/logo.mp4" autoplay muted playsinline class="logoVid-Mobile"></video></a>
-    <!-- Language selector (desktop only) -->
     <div class="languages-container desktop-only">
         <div class="language-picker">
             <button data-lang="hu" class="nyelv-btn">Magyar</button>
@@ -62,190 +56,97 @@
     </div>
 
     <div class="right-icons">
-        <!-- Like / favorites icon -->
         <div class="animation">
             <a href="favourite.html">
-                <img
-                        src="images/icons/favoritesImg.png"
-                        class="likeIMG"
-                        alt="Like icon">
+                <img src="images/icons/favoritesImg.png" class="likeIMG" alt="Like icon">
             </a>
         </div>
 
-        <!-- User profile icon -->
         <div class="animation">
             <a href="signIn.html" id="auth-link">
-                <img
-                        src="images/icons/userImg.png"
-                        class="userIMG"
-                        alt="User profile">
+                <img src="images/icons/userImg.png" class="userIMG" alt="User profile">
             </a>
         </div>
 
-        <!-- Shopping cart icon -->
         <div class="header-shop">
             <a href="cart.html" class="container-shopBtn">
-                <img
-                        src="images/icons/cartImg.png"
-                        class="cartIMG"
-                        alt="Shopping cart">
+                <img src="images/icons/cartImg.png" class="cartIMG" alt="Shopping cart">
                 <span id="cart-count">0</span>
             </a>
         </div>
     </div>
 </div>
-<!-- ============================== TOP BAR END ============================== -->
 
-<!-- ============================== MOBILE BOTTOM NAV ============================== -->
 <div class="phone-menu" role="navigation" aria-label="Alsó navigáció">
     <a href="signIn.html" aria-label="Profil">
-        <img class="phone-menu__icon" src="images/icons/userImg.png"
-             alt="Profil">
+        <img class="phone-menu__icon" src="images/icons/userImg.png" alt="Profil">
     </a>
     <a href="index.html" aria-label="Főoldal">
-        <img class="phone-menu__icon" src="images/icons/homeImg.png"
-             alt="Főoldal" id="phone-home-img">
+        <img class="phone-menu__icon" src="images/icons/homeImg.png" alt="Főoldal" id="phone-home-img">
     </a>
     <a href="cart.html" aria-label="Kosár">
-        <img class="phone-menu__icon" src="images/icons/cartImg.png"
-             alt="Kosár">
+        <img class="phone-menu__icon" src="images/icons/cartImg.png" alt="Kosár">
     </a>
 </div>
 
-<!-- ============================== TOP CONTENT END ============================== -->
-
 <div class="content shop-page">
-    <div class="shop-layout">
-    <aside class="side-filter-container">
-        <div class="side-filter-content">
-            <h3><i class="fa-solid fa-sliders"></i> Szűrők</h3>
-
-            <div class="side-filter-group">
-                <label for="shop-search">Keresés</label>
-                <div class="search-box">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" id="shop-search" placeholder="Termék neve...">
-                </div>
-            </div>
-
-            <div class="side-filter-separator"></div>
-
-            <div class="side-filter-group">
-                <label>Kategória</label>
-                <div class="category-list">
-                    <button class="cat-btn active" data-category="all">Összes</button>
-                    <button class="cat-btn" data-category="clothing">Ruházat</button>
-                    <button class="cat-btn" data-category="supplement">Kiegészítők</button>
-                </div>
-            </div>
-
-            <div class="side-filter-separator"></div>
-
-            <div class="side-filter-group">
-                <label for="price-sort">Rendezés</label>
-                <select id="price-sort" class="side-select">
-                    <option value="default">Alapértelmezett</option>
-                    <option value="asc">Ár: Olcsó elöl</option>
-                    <option value="desc">Ár: Drága elöl</option>
-                </select>
-            </div>
-        </div>
-    </aside>
     <main class="shop-main">
         <div class="section-header">
-
             <h1>Termékek</h1>
             <div class="divider-line"></div>
             <div class="topText"></div>
-            <div style="color: #c5c5c5">Fedezd fel a számodra legmegfelelőbbet!</div>
+            <div class="shop-intro-text">Fedezd fel a számodra legmegfelelőbbet!</div>
             <hr id="topLine">
         </div>
 
-            <div class="products-grid">
+        <div class="shop-body">
+            <aside class="side-filter-container">
+                <div class="side-filter-content">
+                    <h3><i class="fa-solid fa-sliders"></i> Szűrők</h3>
 
-                <div class="product-card">
-                    <img src="images/products/hat-white.jpg" alt="Hat" class="product-image">
-                    <h3>Sapka</h3>
-                    <p class="product-description">ForgeX sapka</p>
-                    <p class="product-price">3 990 Ft</p>
-                    <button class="addToCart-btn">Kosárba</button>
+                    <div class="side-filter-group">
+                        <label for="shop-search">Keresés</label>
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="shop-search" placeholder="Termék neve...">
+                        </div>
+                    </div>
+
+                    <div class="side-filter-separator"></div>
+
+                    <div class="side-filter-group">
+                        <label>Kategória</label>
+                        <div class="category-list">
+                            <button class="cat-btn active" data-category="all">Összes</button>
+                            <button class="cat-btn" data-category="clothing">Ruházat</button>
+                            <button class="cat-btn" data-category="supplement">Kiegészítők</button>
+                        </div>
+                    </div>
+
+                    <div class="side-filter-separator"></div>
+
+                    <div class="side-filter-group">
+                        <label for="price-sort">Rendezés</label>
+                        <select id="price-sort" class="side-select">
+                            <option value="default">Alapértelmezett</option>
+                            <option value="asc">Ár: Olcsó elöl</option>
+                            <option value="desc">Ár: Drága elöl</option>
+                        </select>
+                    </div>
                 </div>
+            </aside>
 
-                <div class="product-card">
-                    <img src="images/products/shirt-white.jpg" alt="Póló" class="product-image">
-                    <h3>Póló</h3>
-                    <p class="product-description">ForgeX póló edzéshez</p>
-                    <p class="product-price">3 990 Ft</p>
-                    <button class="addToCart-btn">Kosárba</button>
-                </div>
+            <div class="products-grid"></div>
+        </div>
 
-                <div class="product-card">
-                    <img src="images/products/pants-white.png" alt="Nadrág" class="product-image">
-                    <h3>Nadrág</h3>
-                    <p class="product-description">ForgeX sport nadrág</p>
-                    <p class="product-price">4 990 Ft</p>
-                    <button class="addToCart-btn">Kosárba</button>
-                </div>
-
-                <div class="product-card">
-                    <img src="images/products/proteinVanillia1kg.jpg" alt="Protein" class="product-image">
-                    <h3>Protein por</h3>
-                    <p class="product-description">ForgeX whey protein 1kg</p>
-                    <p class="product-price">24 990 Ft</p>
-                    <button class="addToCart-btn">Kosárba</button>
-                </div>
-
-                <div class="product-card">
-                    <img src="images/products/kreatin.jpg" alt="Kreatin" class="product-image">
-                    <h3>Kreatin</h3>
-                    <p class="product-description">100% kreatin-monohidrát 500g</p>
-                    <p class="product-price">6 990 Ft</p>
-                    <button class="addToCart-btn">Kosárba</button>
-                </div>
-
-                <div class="product-card">
-                    <img src="images/products/proteinBarCoconut.jpg" alt="Protein bar" class="product-image">
-                    <h3>Fehérje szelet</h3>
-                    <p class="product-description">Fehérje szelet</p>
-                    <p class="product-price">990 Ft</p>
-                    <button class="addToCart-btn">Kosárba</button>
-                </div>
-
-                <div class="product-card">
-                    <img src="images/products/shoe-white.png" alt="Sport shoes" class="product-image">
-                    <h3>Sportcipő</h3>
-                    <p class="product-description">ForgeX futócipő</p>
-                    <p class="product-price">12 990 Ft</p>
-                    <button class="addToCart-btn">Kosárba</button>
-                </div>
-
-                <div class="product-card">
-                    <img src="images/products/bag-black2.jpg" alt="Sport bag" class="product-image">
-                    <h3>Sporttáska</h3>
-                    <p class="product-description">ForgeX sporttáska</p>
-                    <p class="product-price">17 990 Ft</p>
-                    <button class="addToCart-btn">Kosárba</button>
-                </div>
-
-                <div class="product-card">
-                    <img src="images/products/shaker-white.png" alt="Shaker" class="product-image">
-                    <h3>Shaker</h3>
-                    <p class="product-description">ForgeX shaker</p>
-                    <p class="product-price">2990 Ft</p>
-                    <button class="addToCart-btn">Kosárba</button>
-                </div>
-
-            </div>
-
-            <div class="footer-text">
-                <p>© 2024 Termékek. Minden jog fenntartva.</p>
-                <p>
-                    <a href="contracts.html">Adatvédelmi szabályzat</a> |
-                    <a href="contracts.html">Felhasználási feltételek</a>
-                </p>
-            </div>
+        <div class="footer-text">
+            <p>© 2024 Termékek. Minden jog fenntartva.</p>
+            <p>
+                <a href="contracts.html">Adatvédelmi szabályzat</a> |
+                <a href="contracts.html">Felhasználási feltételek</a>
+            </p>
+        </div>
     </main>
-    </div>
 </div>
 
 <footer class="container-bottom" id="contact">
