@@ -469,8 +469,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- Ensure side filter is visible above products on mobile ---
     const _sideElement = document.querySelector('.side-filter-container');
-    const _originalSideParent = _sideElement ? _sideElement.parentNode : null;
-    const _originalSideNext = _sideElement ? _sideElement.nextSibling : null;
 
     // Create header toggle for collapsible behavior
     function ensureFilterToggle() {
@@ -489,9 +487,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const toggleBtn = header.querySelector('.side-filter-toggle');
             toggleBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
+                side.dataset.userToggled = 'true';
                 const isCollapsed = side.classList.contains('collapsed');
                 if (isCollapsed) {
-                    // expand
                     side.classList.remove('collapsed');
                     side.classList.add('expanded');
                     toggleBtn.setAttribute('aria-expanded', 'true');
@@ -500,7 +498,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     icon.classList.add('fa-chevron-up');
                     try { side.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (err) {}
                 } else {
-                    // collapse
                     side.classList.add('collapsed');
                     side.classList.remove('expanded');
                     toggleBtn.setAttribute('aria-expanded', 'false');
@@ -512,46 +509,44 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function moveSideFilterToContent() {
+    function syncResponsiveFilterState() {
         const side = _sideElement;
-        const content = document.querySelector('.content');
-        if (!side || !content) return;
-        const firstContainer = content.querySelector('.container-shop');
+        if (!side) return;
 
-        if (window.innerWidth <= 767) {
-            // insert the filter at the top of the content so it appears above products
-            if (firstContainer && side.parentNode !== content) content.insertBefore(side, firstContainer);
-            side.style.display = 'block';
-            side.style.position = 'relative';
-            side.style.margin = '0 0 12px 0';
-            side.style.width = '100%';
-            side.style.zIndex = '1000';
-            ensureFilterToggle();
+        ensureFilterToggle();
+
+        const isCompact = window.innerWidth <= 980;
+        const toggleBtn = side.querySelector('.side-filter-toggle');
+        const icon = toggleBtn ? toggleBtn.querySelector('i') : null;
+
+        side.classList.toggle('is-collapsible', isCompact);
+
+        if (!isCompact) {
+            side.classList.remove('collapsed', 'expanded');
+            delete side.dataset.userToggled;
+            if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+            if (icon) {
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            }
+            return;
+        }
+
+        if (!side.dataset.userToggled) {
             side.classList.add('collapsed');
             side.classList.remove('expanded');
-            const tbtn = side.querySelector('.side-filter-toggle');
-            if (tbtn) tbtn.setAttribute('aria-expanded', 'false');
-        } else if (_originalSideParent) {
-            // move back to original place if we have the original parent stored
-            try {
-                _originalSideParent.insertBefore(side, _originalSideNext);
-            } catch (e) {
-                // fallback: put before top-bar
-                const topBar = document.querySelector('.top-bar');
-                if (topBar && topBar.parentNode) topBar.parentNode.insertBefore(side, topBar);
-            }
-            side.style.position = '';
-            side.style.margin = '';
-            side.style.width = '';
-            side.style.zIndex = '';
-            // remove collapsed state and toggle if present
-            if (side.classList.contains('collapsed')) side.classList.remove('collapsed');
-            const hdr = side.querySelector('.side-filter-toggle');
-            if (hdr) hdr.setAttribute('aria-expanded', 'true');
+        }
+
+        if (toggleBtn) {
+            toggleBtn.setAttribute('aria-expanded', side.classList.contains('collapsed') ? 'false' : 'true');
+        }
+
+        if (icon) {
+            icon.classList.toggle('fa-chevron-down', side.classList.contains('collapsed'));
+            icon.classList.toggle('fa-chevron-up', !side.classList.contains('collapsed'));
         }
     }
 
-    // run on load and on resize
-    moveSideFilterToContent();
-    window.addEventListener('resize', moveSideFilterToContent);
+    syncResponsiveFilterState();
+    window.addEventListener('resize', syncResponsiveFilterState);
 });
