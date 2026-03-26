@@ -4,6 +4,23 @@ import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/f
 
 let currentUserId = null;
 
+function normalizeImagePath(imagePath) {
+    if (!imagePath) return "";
+    const normalized = String(imagePath).replace(/\\/g, '/');
+    const marker = '/images/';
+
+    if (normalized.startsWith('images/')) {
+        return normalized;
+    }
+
+    const markerIndex = normalized.indexOf(marker);
+    if (markerIndex >= 0) {
+        return normalized.slice(markerIndex + 1);
+    }
+
+    return normalized;
+}
+
 onAuthStateChanged(auth, async (user) => {
     const cartContainer = document.getElementById("cart-items-container");
     const totalPriceElement = document.getElementById("total-price");
@@ -14,6 +31,10 @@ onAuthStateChanged(auth, async (user) => {
         // Firebase-ből töltünk be
         const cartSnapshot = await getDoc(doc(db, "carts", currentUserId));
         let items = cartSnapshot.exists() ? cartSnapshot.data().items || [] : [];
+        items = items.map(item => ({
+            ...item,
+            image: normalizeImagePath(item.image)
+        }));
 
         // Szinkronizáljuk a localStoraget, hogy a számláló is jó legyen
         localStorage.setItem("cart", JSON.stringify(items));
@@ -45,7 +66,7 @@ function renderCart(cartItems, container, totalElement, checkoutButton) {
         const div = document.createElement("div");
         div.classList.add("cart-item");
         div.innerHTML = `
-            <img src="${item.image}" alt="${item.title}">
+            <img src="${normalizeImagePath(item.image)}" alt="${item.title}">
             <div class="item-info">
                 <h3>${item.title}</h3>
                 <p>Méret: <b style="color:#00ca65">${item.size || 'Nincs'}</b></p>
@@ -68,6 +89,10 @@ function renderCart(cartItems, container, totalElement, checkoutButton) {
 window.removeFromCart = async function (itemId) {
     // 1. Get the current cart items from LocalStorage
     let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    cartItems = cartItems.map(item => ({
+        ...item,
+        image: normalizeImagePath(item.image)
+    }));
 
     // 2. Filter out the selected item (Type-safe comparison using String)
     const updatedCart = cartItems.filter(item => String(item.id) !== String(itemId));

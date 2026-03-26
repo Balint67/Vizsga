@@ -12,25 +12,30 @@
 
 /* Add to cart button */
 .fav-actions .login-btn {
-    background: transparent;
-    border: 1px solid var(--border-color);
-    color: var(--text-muted);
-    padding: 13px 74px;
-    border-radius: 6px;
+    width: 100%;
+    margin-top: auto;
+    background: var(--accent-gradient);
+    font-family: "Open Sans", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
-    text-align: left;
-    transition: 0.3s;
-    background-color: #00ca65;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .fav-actions .login-btn:hover {
-    border-color: var(--accent-green);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.1);
 }
 
 .fav-actions .login-btn.active {
-    background: var(--accent-gradient);
-    border: none;
-    color: white;
+    transform: translateY(1px);
 }
 
 /* Remove button styling */
@@ -116,8 +121,8 @@
 
     .fav-actions .login-btn {
         width: 100%;
-        padding: 10px 12px;
-        font-size: 14px;
+        padding: 11px 16px;
+        font-size: 15px;
     }
 
     .fav-remove {

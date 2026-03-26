@@ -97,6 +97,42 @@ const PRODUCT_DATA = {
         colors: ["Feh\u00e9r", "Fekete"],
         prices: [2990, 3990],
         category: "supplement"
+    },
+    pass_single: {
+        title: "1 alkalmas b\u00e9rlet",
+        cardDescription: "Egyszeri bel\u00e9p\u00e9s teljes teremhaszn\u00e1lattal",
+        description: "1 alkalmas edz\u0151b\u00e9rlet teljes teremhaszn\u00e1lattal, ide\u00e1lis kipr\u00f3b\u00e1l\u00e1shoz vagy alkalmi edz\u00e9shez.",
+        images: ["images/products/pass-single.svg"],
+        sizes: [],
+        prices: [2990],
+        category: "passes"
+    },
+    pass_ten: {
+        title: "10 alkalmas b\u00e9rlet",
+        cardDescription: "Rugalmas t\u00f6mbb\u00e9rlet rendszeres edz\u00e9shez",
+        description: "10 alkalmas edz\u0151b\u00e9rlet kedvez\u0151bb alkalmi \u00e1rral, ha rendszeresen, de rugalmasan szeretn\u00e9l edzeni.",
+        images: ["images/products/pass-ten.svg"],
+        sizes: [],
+        prices: [19990],
+        category: "passes"
+    },
+    pass_monthly: {
+        title: "1 h\u00f3napos b\u00e9rlet",
+        cardDescription: "Korl\u00e1tlan havi teremhaszn\u00e1lat",
+        description: "1 h\u00f3napos korl\u00e1tlan edz\u0151b\u00e9rlet, ha egy teljes h\u00f3napon \u00e1t szeretn\u00e9l rendszeresen j\u00e1rni.",
+        images: ["images/products/pass-month.svg"],
+        sizes: [],
+        prices: [24990],
+        category: "passes"
+    },
+    pass_yearly: {
+        title: "1 \u00e9ves b\u00e9rlet",
+        cardDescription: "Pr\u00e9mium, korl\u00e1tlan \u00e9ves tags\u00e1g",
+        description: "1 \u00e9ves korl\u00e1tlan edz\u0151b\u00e9rlet a legjobb hossz\u00fat\u00e1v\u00fa \u00e9rt\u00e9kkel \u00e9s folyamatos teremhaszn\u00e1lattal.",
+        images: ["images/products/pass-year.svg"],
+        sizes: [],
+        prices: [199990],
+        category: "passes"
     }
 };
 
@@ -148,6 +184,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const sizeContainer = modal.querySelector("#size-selector-container");
     const colorContainer = modal.querySelector("#color-selector-container");
     const closeButton = modal.querySelector(".close-btn");
+
+    function normalizeImagePath(imagePath) {
+        if (!imagePath) return "";
+        const normalized = String(imagePath).replace(/\\/g, '/');
+        const marker = '/images/';
+
+        if (normalized.startsWith('images/')) {
+            return normalized;
+        }
+
+        const markerIndex = normalized.indexOf(marker);
+        if (markerIndex >= 0) {
+            return normalized.slice(markerIndex + 1);
+        }
+
+        return normalized;
+    }
 
     function formatPrice(price) {
         return `${new Intl.NumberFormat('hu-HU').format(price)} Ft`;
@@ -280,7 +333,11 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const cartSnap = await getDoc(doc(db, "carts", currentUserId));
             const cloudCart = cartSnap.exists() ? (cartSnap.data().items || []) : [];
-            localStorage.setItem("cart", JSON.stringify(cloudCart));
+            const normalizedCart = cloudCart.map((item) => ({
+                ...item,
+                image: normalizeImagePath(item.image)
+            }));
+            localStorage.setItem("cart", JSON.stringify(normalizedCart));
             window.dispatchEvent(new Event('storage'));
         } catch (error) {
             console.error(error);
@@ -292,7 +349,11 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const favSnap = await getDoc(doc(db, "favorites", currentUserId));
             const cloudFavorites = favSnap.exists() ? (favSnap.data().items || []) : [];
-            localStorage.setItem("favorites", JSON.stringify(cloudFavorites));
+            const normalizedFavorites = cloudFavorites.map((item) => ({
+                ...item,
+                image: normalizeImagePath(item.image)
+            }));
+            localStorage.setItem("favorites", JSON.stringify(normalizedFavorites));
         } catch (error) {
             console.error("Error syncing favorites:", error);
         }
@@ -326,8 +387,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateSizeSelector(sizes, prices) {
         sizeContainer.innerHTML = "";
+        sizeContainer.style.display = "none";
+
+        if (!sizes?.length) {
+            modalPrice.innerText = formatPrice(prices[0]);
+            return;
+        }
+
         const wrapper = document.createElement("div");
         wrapper.classList.add("size-selector");
+        sizeContainer.style.display = "block";
 
         sizes.forEach((size, index) => {
             const button = document.createElement("div");
@@ -352,10 +421,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateColorSelector(colors) {
         colorContainer.innerHTML = "";
+        colorContainer.style.display = "none";
         if (!colors?.length) return;
 
         const wrapper = document.createElement("div");
         wrapper.classList.add("size-selector");
+        colorContainer.style.display = "block";
 
         colors.forEach((color, index) => {
             const button = document.createElement("div");
@@ -380,6 +451,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!(await requireAuthenticatedUser("kos\u00e1rba helyez\u00e9s"))) return;
 
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const normalizedImage = normalizeImagePath(image);
         const newItem = {
             id: `${productId}_${Date.now()}`,
             productId,
@@ -387,7 +459,7 @@ document.addEventListener("DOMContentLoaded", () => {
             price: Number(price),
             size,
             color,
-            image,
+            image: normalizedImage,
             quantity: 1
         };
 
@@ -408,7 +480,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function getFavorites() {
-        return JSON.parse(localStorage.getItem("favorites")) || [];
+        const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        return favorites.map((item) => ({
+            ...item,
+            image: normalizeImagePath(item.image)
+        }));
     }
 
     function saveFavorites(list) {
@@ -440,6 +516,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const favoriteId = makeFavoriteId(productId, size, color);
         const favorites = getFavorites();
+        const normalizedImage = normalizeImagePath(image);
         const existingIndex = favorites.findIndex((favorite) => favorite.id === favoriteId);
 
         if (existingIndex >= 0) {
@@ -450,7 +527,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return false;
         }
 
-        favorites.push({ id: favoriteId, productId, title, price, size, color, image });
+        favorites.push({ id: favoriteId, productId, title, price, size, color, image: normalizedImage });
         saveFavorites(favorites);
         if (currentUserId) await saveFavoritesToCloud();
         await forgeXModal("Hozz\u00e1adva", `${title} beker\u00fclt a kedvencek k\u00f6z\u00e9.`);

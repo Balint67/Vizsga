@@ -5,8 +5,29 @@ import { forgeXModal } from './utils.js';
 
 let currentUserId = null;
 
+function normalizeImagePath(imagePath) {
+    if (!imagePath) return '';
+    const normalized = String(imagePath).replace(/\\/g, '/');
+    const marker = '/images/';
+
+    if (normalized.startsWith('images/')) {
+        return normalized;
+    }
+
+    const markerIndex = normalized.indexOf(marker);
+    if (markerIndex >= 0) {
+        return normalized.slice(markerIndex + 1);
+    }
+
+    return normalized;
+}
+
 function getFavorites() {
-    return JSON.parse(localStorage.getItem('favorites')) || [];
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    return favorites.map(item => ({
+        ...item,
+        image: normalizeImagePath(item.image)
+    }));
 }
 
 function saveFavorites(list) {
@@ -14,7 +35,11 @@ function saveFavorites(list) {
 }
 
 function getCart() {
-    return JSON.parse(localStorage.getItem('cart')) || [];
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    return cart.map(item => ({
+        ...item,
+        image: normalizeImagePath(item.image)
+    }));
 }
 
 function saveCart(cart) {
@@ -48,7 +73,7 @@ async function addToCartFromFavorite(item) {
         price: item.price,
         size: item.size,
         color: item.color,
-        image: item.image,
+        image: normalizeImagePath(item.image),
         quantity: 1
     };
 
@@ -111,7 +136,11 @@ async function syncFavoritesFromFirestore() {
         const favSnap = await getDoc(doc(db, "favorites", currentUserId));
         if (favSnap.exists()) {
             const cloudFavorites = favSnap.data().items || [];
-            localStorage.setItem('favorites', JSON.stringify(cloudFavorites));
+            const normalizedFavorites = cloudFavorites.map(item => ({
+                ...item,
+                image: normalizeImagePath(item.image)
+            }));
+            localStorage.setItem('favorites', JSON.stringify(normalizedFavorites));
             console.log("✅ Favorites loaded from Firebase:", cloudFavorites.length, "items");
         } else {
             localStorage.setItem('favorites', JSON.stringify([]));
@@ -129,7 +158,11 @@ async function syncCartFromFirestore() {
         const cartSnap = await getDoc(doc(db, "carts", currentUserId));
         if (cartSnap.exists()) {
             const cloudCart = cartSnap.data().items || [];
-            localStorage.setItem('cart', JSON.stringify(cloudCart));
+            const normalizedCart = cloudCart.map(item => ({
+                ...item,
+                image: normalizeImagePath(item.image)
+            }));
+            localStorage.setItem('cart', JSON.stringify(normalizedCart));
             updateCartCount();
             console.log("✅ Cart loaded from Firebase:", cloudCart.length, "items");
         } else {
@@ -168,7 +201,7 @@ function renderFavorites() {
         card.className = 'product-card';
 
         const img = document.createElement('img');
-        img.src = item.image;
+        img.src = normalizeImagePath(item.image);
         img.alt = item.title;
         img.className = 'product-image';
 
