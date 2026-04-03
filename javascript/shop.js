@@ -222,24 +222,32 @@ document.addEventListener("DOMContentLoaded", () => {
             <h3>${product.title}</h3>
             <p class="product-description">${product.cardDescription}</p>
             <p class="product-price">${formatPrice(product.prices[0])}</p>
-            <button class="addToCart-btn">Kos\u00e1rba</button>
+            <button class="addToCart-btn" type="button">Kos\u00e1rba</button>
         `;
+
+        const addToCartButton = card.querySelector(".addToCart-btn");
+
+        addToCartButton.addEventListener("click", async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            await addToCart(
+                productId,
+                product.title,
+                product.prices[0],
+                product.sizes?.[0] || "",
+                product.colors?.[0] || null,
+                product.images[0]
+            );
+        });
 
         card.addEventListener("click", async (event) => {
             const cardProductId = card.dataset.productId;
             const data = getProductInfo(cardProductId);
             if (!data) return;
 
-            if (event.target.classList.contains("addToCart-btn")) {
+            if (event.target.closest(".addToCart-btn")) {
                 event.stopPropagation();
-                await addToCart(
-                    cardProductId,
-                    data.title,
-                    data.prices[0],
-                    data.sizes[0],
-                    data.colors ? data.colors[0] : null,
-                    data.images[0]
-                );
                 return;
             }
 

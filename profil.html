@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="hu">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profilom | ForgeX</title>
+    <title>My Profile | ForgeX</title>
     <link rel="stylesheet" href="css/profil.css?v=20260326-4">
     <link rel="stylesheet" href="css/style.css?v=20260326-4">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,42 +15,42 @@
 
 <div class="profile-container">
     <div class="profile-card">
-        <a href="index.html" class="vissza-ikon"><i class="fa-solid fa-house"></i></a>
+        <a href="index.html" class="vissza-ikon" aria-label="Go to home page"><i class="fa-solid fa-house"></i></a>
 
         <div class="profile-header">
             <div class="profile-avatar">
                 <i class="fa-solid fa-user"></i>
             </div>
-            <h1>Profilom</h1>
-            <p>Üdvözlünk a fiókodban</p>
+            <h1>My Profile</h1>
+            <p>Welcome to your account</p>
         </div>
 
         <div class="user-details">
             <div class="detail-item">
-                <label>Teljes név</label>
-                <div class="detail-value" id="prof-name">Betöltés...</div>
+                <label>Full name</label>
+                <div class="detail-value" id="prof-name">Loading...</div>
             </div>
 
             <div class="detail-item">
-                <label>Email cím</label>
-                <div class="detail-value" id="prof-email">Betöltés...</div>
+                <label>Email address</label>
+                <div class="detail-value" id="prof-email">Loading...</div>
             </div>
 
             <div class="detail-item">
-                <label>Telefonszám</label>
-                <div class="detail-value" id="prof-phone">Betöltés...</div>
+                <label>Phone number</label>
+                <div class="detail-value" id="prof-phone">Loading...</div>
             </div>
         </div>
 
         <div class="bookings-preview">
-            <h3>Foglalásaid</h3>
+            <h3>Your Bookings</h3>
             <div id="user-bookings" class="bookings-list">
-                <p>Nincsenek aktív foglalások.</p>
+                <p>You have no active bookings.</p>
             </div>
         </div>
 
         <button id="logout-btn" class="action-btn">
-            Kijelentkezés <i class="fa-solid fa-right-from-bracket"></i>
+            Log Out <i class="fa-solid fa-right-from-bracket"></i>
         </button>
     </div>
 </div>

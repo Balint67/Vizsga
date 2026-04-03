@@ -19,7 +19,7 @@ export const forgeXModal = (title, message, isConfirm = false) => {
                 <div class="modal-buttons">
                     ${
                         isConfirm
-                            ? '<button class="modal-btn modal-btn-secondary" id="modal-cancel">Megse</button>'
+                            ? '<button class="modal-btn modal-btn-secondary" id="modal-cancel">Cancel</button>'
                             : ''
                     }
                     <button class="modal-btn modal-btn-primary" id="modal-ok">OK</button>
