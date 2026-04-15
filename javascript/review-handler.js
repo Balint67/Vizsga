@@ -190,8 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
     openButton.addEventListener('click', async () => {
         if (!currentUser) {
             await forgeXModal(
-                'Sign in required',
-                'Please sign in before writing a review.'
+                'Bejelentkezés szükséges',
+                'A vélemény írás művelethez bejelentezés szükséges.'
             );
             window.location.href = 'signIn.html';
             return;
@@ -230,10 +230,10 @@ document.addEventListener('DOMContentLoaded', () => {
             await deleteDoc(doc(db, 'reviews', pendingDeleteId));
             removeReviewCard(pendingDeleteId);
         } catch (error) {
-            console.error('Error while deleting review:', error);
+            console.error('Hiba az üzenet törlése közben:', error);
             await forgeXModal(
-                'Delete failed',
-                'We could not delete this review right now. Please try again later.'
+                'A törlés sikertelen',
+                'Jelneleg nem tudjuk törölni ezt az értékelést. Kérjük, probálja meg késöbb.'
             );
         } finally {
             pendingDeleteId = null;
@@ -254,8 +254,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!currentUser) {
             await forgeXModal(
-                'Sign in required',
-                'Please sign in before sending a review.'
+                'Bejelentkezés szükséges',
+                'A vélemény írás művelethez bejelentezés szükséges.'
             );
             window.location.href = 'signIn.html';
             return;
@@ -263,8 +263,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!name || !text) {
             await forgeXModal(
-                'Missing information',
-                'Please enter your name and review text before sending.'
+                'Hiányzó információ',
+                'Kérjük, a vélemény elküldéséhez tüntesse fel nevét és üzenetét.'
             );
             return;
         }
@@ -297,8 +297,8 @@ document.addEventListener('DOMContentLoaded', () => {
             reviewForm.reset();
             closeModal(reviewModal);
             await forgeXModal(
-                'Review sent',
-                'Your review has been saved successfully.'
+                'Üzenet elküldve',
+                'A véleményét sikeresen mentettük.'
             );
         } catch (error) {
             console.error('Error while saving review:', error);
