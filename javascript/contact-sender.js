@@ -1,8 +1,18 @@
 (function () {
-    emailjs.init("mrWqT0EgKMuylPIYL");
+    const initEmailJS = () => {
+        if (window.emailjs) {
+            emailjs.init("mrWqT0EgKMuylPIYL");
+            console.log("EmailJS készen áll.");
+        } else {
+            setTimeout(initEmailJS, 100);
+        }
+    };
+    initEmailJS();
 })();
 
 function showStatusModal(title, message) {
+    const oldOverlay = document.querySelector('.custom-modal-overlay');
+    if (oldOverlay) oldOverlay.remove();
     const overlay = document.createElement('div');
     overlay.className = 'custom-modal-overlay';
     overlay.innerHTML = `
@@ -23,11 +33,7 @@ function showStatusModal(title, message) {
     };
 
     overlay.querySelector('button').addEventListener('click', closeModal);
-    overlay.addEventListener('click', (event) => {
-        if (event.target === overlay) {
-            closeModal();
-        }
-    });
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
 
     setTimeout(() => overlay.classList.add('active'), 10);
 }
@@ -36,31 +42,24 @@ window.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contact-form');
     const submitButton = document.getElementById('submit-btn');
 
-    if (!contactForm || !submitButton) {
-        return;
-    }
+    if (!contactForm || !submitButton) return;
 
     contactForm.addEventListener('submit', (event) => {
         event.preventDefault();
 
         submitButton.disabled = true;
         const originalText = submitButton.innerText;
-        submitButton.innerText = 'Kuldes folyamatban...';
+        submitButton.innerText = 'Küldés...';
 
+        // Itt hívjuk meg a küldést
         emailjs.sendForm('service_9bstzkn', 'template_oalzvqy', contactForm)
             .then(() => {
-                showStatusModal(
-                    'Uzenet elkuldve',
-                    'Koszonjuk az uzenetet, hamarosan valaszolunk.'
-                );
+                showStatusModal('Üzenet elküldve', 'Az üzenete sikeresen elküldve.');
                 contactForm.reset();
             })
             .catch((error) => {
-                console.error('Hiba tortent:', error);
-                showStatusModal(
-                    'Kuldesi hiba',
-                    'Az uzenet kuldese most nem sikerult. Kerlek, probald ujra kesobb.'
-                );
+                console.error('Hiba:', error);
+                showStatusModal('Hiba történt', 'Sajnos nem sikerült elküldeni az üzenetet.');
             })
             .finally(() => {
                 submitButton.disabled = false;

@@ -7,7 +7,8 @@ import {
     requiresEmailVerification
 } from './auth-utils.js';
 // Hozzáadtuk: collection, addDoc, serverTimestamp
-import { doc, getDoc, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { doc, getDoc, collection, addDoc, serverTimestamp }
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 document.addEventListener('DOMContentLoaded', function() {
     const trainerOptions = document.querySelectorAll('input[name="trainer"]');
