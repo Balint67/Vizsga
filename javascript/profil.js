@@ -43,8 +43,8 @@ onAuthStateChanged(auth, async (user) => {
 
     if (requiresEmailVerification(user)) {
         await forgeXModal(
-            "Email Verification Required",
-            "Please verify your email address before opening your profile."
+            "E-mail ellenőrzés szükséges",
+            "Kérjük, ellenőrizze az e-mail címét a profil megnyitása előtt."
         );
         await signOut(auth);
         window.location.replace("signIn.html");
@@ -74,16 +74,16 @@ async function loadUserProfile(user) {
         const userData = snapshot.data();
 
         document.getElementById('prof-name').innerText =
-            userData.fullname || "Not provided";
+            userData.fullname || "Nem biztosított";
 
         document.getElementById('prof-email').innerText =
             userData.email || user.email;
 
         document.getElementById('prof-phone').innerText =
-            userData.phone || "Not provided";
+            userData.phone || "Nem biztosított";
 
     } catch (error) {
-        console.error("Error while loading user profile data:", error);
+        console.error("\n" + "Hiba a felhasználói profil adatainak betöltésekor:", error);
     }
 }
 
@@ -103,7 +103,7 @@ async function loadUserBookings(userId) {
         const snapshot = await getDocs(bookingsQuery);
 
         if (snapshot.empty) {
-            container.innerHTML = '<p>You have no active bookings.</p>';
+            container.innerHTML = '<p>Nincsenek aktív foglalásai.</p>';
             return;
         }
 
@@ -131,7 +131,7 @@ async function loadUserBookings(userId) {
         attachDeleteBookingHandlers(userId);
 
     } catch (error) {
-        console.error("Error while loading bookings:", error);
+        console.error("Hiba a foglalások betöltése során:", error);
         container.innerHTML = '<p>Failed to load bookings.</p>';
     }
 }
@@ -145,8 +145,8 @@ function attachDeleteBookingHandlers(userId) {
             const bookingId = event.currentTarget.getAttribute('data-id');
 
             const confirmed = await forgeXModal(
-                "Delete confirmation",
-                "Are you sure you want to delete this booking?",
+                "Megerősítés törlése",
+                "Biztosan törölni szeretné ezt a foglalást?",
                 true
             );
 
@@ -154,7 +154,7 @@ function attachDeleteBookingHandlers(userId) {
 
             const currentUser = auth.currentUser;
             if (!currentUser) {
-                console.error("User not authenticated during deletion.");
+                console.error("A felhasználó nem lett hitelesítve a törlés során.");
                 return;
             }
 
@@ -169,16 +169,16 @@ function attachDeleteBookingHandlers(userId) {
 async function deleteBooking(bookingId, userId) {
     try {
         await deleteDoc(doc(db, "bookings", bookingId));
-        console.log("Booking deleted:", bookingId);
+        console.log("Foglalás törölve:", bookingId);
 
         // Reload bookings after deletion
         loadUserBookings(userId);
 
     } catch (error) {
-        console.error("Error while deleting booking:", error);
+        console.error("Hiba a foglalás törlésekor:", error);
         await forgeXModal(
-            "Delete failed",
-            "We couldn't delete this booking right now. Please try again later."
+            "Sikertelen törlés",
+            "\n" + "Nem tudtuk törölni ezt a foglalást. Kérjük, próbálja meg később."
         );
     }
 }
@@ -191,8 +191,8 @@ const logoutButton = document.getElementById('logout-btn');
 if (logoutButton) {
     logoutButton.addEventListener('click', async () => {
         const confirmed = await forgeXModal(
-            "Log out",
-            "If you log out now, the items in your cart and favorites will be cleared on this device. If you sign back in to the same account later, your account data will still be available.",
+            "Kijelentkezés",
+            "Ha most kijelentkezik, a kosarában és a kedvencekben lévő tételek törlődnek. Ha később ugyanabba a fiókba jelentkezik be, fiókadatai továbbra is elérhetők lesznek.",
             true
         );
 

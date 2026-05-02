@@ -157,7 +157,7 @@ input:checked + .slider:before {
 }
 
 .review-btn:hover {
-    transform: scale(1.08) translateY(-3px) !important;
+    transform: scale(1.02) translateY(-3px) !important;
     box-shadow: 0 15px 30px rgba(0, 202, 101, 0.4) !important;
 }
 

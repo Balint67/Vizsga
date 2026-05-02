@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         for (let index = 1; index <= 5; index += 1) {
             const icon = document.createElement('i');
+
             icon.className = index <= Number(rating) ? 'fas fa-star' : 'far fa-star';
             stars.appendChild(icon);
         }
