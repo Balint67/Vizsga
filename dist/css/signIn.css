@@ -124,7 +124,57 @@ label {
 /* ========================================================================== 
    6. Buttons
    ========================================================================== */
-.login-btn {
+.password-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #00ca65 0%, #007524 100%);
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    padding: 10px 22px;
+    font-size: 16px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 15px rgba(0, 202, 101, 0.2);
+    position: relative;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.password-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: all 0.5s;
+}
+
+.password-btn:hover {
+    transform: scale(1.02) translateY(-2px);
+    box-shadow: 0 12px 25px rgba(0, 202, 101, 0.3);
+    color: #ffffff;
+}
+
+.password-btn:hover::after {
+    left: 120%;
+}
+
+.password-btn:active {
+    transform: scale(0.98);
+    filter: brightness(0.9);
+}
+
+
+
+
+.send-btn {
     width: 100%;
     background: linear-gradient(135deg, #4CAF50, #007524);
     color: white;
@@ -138,14 +188,66 @@ label {
     transition: 0.3s ease;
 }
 
-.login-btn:hover {
+.send-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 14px rgba(0,0,0,0.3);
     filter: brightness(1.1);
 }
 
-.login-btn:active {
+.send-btn:active {
     transform: translateY(1px);
+}
+
+
+
+
+
+
+.login-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #00ca65 0%, #007524 100%);
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 12px 28px;
+    font-size: 18px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(0, 202, 101, 0.2);
+    position: relative;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.login-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: all 0.5s;
+}
+
+.login-btn:hover {
+    transform: scale(1.02) translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 202, 101, 0.4);
+    color: #ffffff;
+}
+
+.login-btn:hover::after {
+    left: 120%;
+}
+
+.login-btn:active {
+    transform: scale(0.98);
+    filter: brightness(0.9);
 }
 
 /* ========================================================================== 

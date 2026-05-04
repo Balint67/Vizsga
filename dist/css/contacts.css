@@ -3,7 +3,6 @@
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     backdrop-filter: blur(15px);
@@ -29,7 +28,6 @@
 .contact-form textarea {
     resize: vertical;
 }
-
 .contact-form input:focus,
 .contact-form select:focus,
 .contact-form textarea:focus {
@@ -75,7 +73,15 @@
     width: 100%;
     height: 100%;
     border: none;
+    filter: grayscale(20%) invert(90%) hue-rotate(180deg)
+    brightness(95%) contrast(90%);
 }
+
+.map-placeholder iframe:hover {
+    filter: none;
+    transition: 0.5s ease;
+}
+
 .contact-info-grid {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important; /* Két egyenlő oszlop */
@@ -85,9 +91,6 @@
     margin-left: 0 !important;
     margin-right: 0 !important;
 }
-
-
-
 
 
 .contact-info-grid .info-card {
@@ -125,30 +128,56 @@
 }
 .btn {
     margin: 0 auto;
-}
-.btn{
-    background: linear-gradient(135deg, #4CAF50, #007524);
+    display: block; /* A margin: 0 auto-hoz szükséges a block megjelenítés */
+    /* Az új design színei és gradiense */
+    background: linear-gradient(135deg, #00ca65 0%, #007524 100%);
+    color: #ffffff;
+    /* Betűtípus és stílus megőrizve az új stílusjegyekkel */
     font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
     font-size: 23px;
-    font-weight: 700;
-    color: white;
-    padding: 12px 28px;
-    border: 0px solid transparent;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    /* Az eredeti padding és kerekítés frissítése */
     padding: 12px 48px;
+    border-radius: 50px;
+    /* Animáció és extrák */
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(0, 202, 101, 0.2);
+    position: relative;
+    overflow: hidden;
+    z-index: 100;
+}
+
+/* A csillogó effekt hozzáadása */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: all 0.5s;
 }
 
 .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+    /* Az új design hover effektjei */
+    transform: scale(1.02) translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 202, 101, 0.4);
+    color: #ffffff;
+}
+
+.btn:hover::after {
+    left: 120%;
 }
 
 .btn:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transform: scale(0.98);
+    filter: brightness(0.9);
 }
 
 .container{
@@ -180,160 +209,6 @@
     font-size: 1.1rem;
 }
 
-/* --- Mobil nézet beállításai --- */
-
-@media (max-width: 1400px) {
-    .contact-page-content {
-        padding-top: 100px;
-
-    }
-}
-/* --- Mobil --- */
-@media (max-width: 768px) {
-    .contact-info-grid {
-        display: flex !important;
-        flex-direction: column !important;
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
-        width: 100% !important;
-        padding: 0 !important;
-    }
-
-
-    .contact-info-grid .info-card {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 !important;
-        padding: 25px 20px !important;
-        box-sizing: border-box !important;
-    }
-
-
-    .contact-page-content .info-card.location,
-    .contact-page-content .info-card.support {
-        max-width: 100% !important;
-        justify-self: center !important;
-    }
-
-
-    .contact-form-container {
-        padding: 20px !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-    }
-
-
-    .contact-page-content h1 {
-        font-size: 2.2rem !important;
-        margin-top: 20px !important;
-    }
-
-    .contact-page-content h2 {
-        font-size: 1.5rem !important;
-    }
-
-
-    .map-placeholder {
-        height: 300px !important;
-    }
-}
-
-
-@media (max-width: 380px) {
-    .contact-page-content {
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-    }
-
-    .contact-info-grid .info-card {
-        padding: 20px 15px !important;
-    }
-}
-
-/* BMI szekció javításai */
-#bmiStatus {
-    margin: 0;
-    font-size: 1.4rem;
-    font-weight: 700;
-}
-
-:root {
-    --bg-dark: #0f1a27;
-    --card-bg: rgba(255, 255, 255, 0.05);
-    --border-color: rgba(255, 255, 255, 0.2);
-    --accent: #00ca65;
-    --text-main: #ffffff;
-    --text-dim: #e2e8f0;
-    --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-}
-
-.bmi-main-container {
-    display: block;
-    width: 100%;
-    min-height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.bmi-wrapper {
-    display: flex;
-    gap: 20px;
-    max-width: 1000px;
-    width: 100%;
-    margin: 250px auto 100px auto;
-    align-items: stretch;
-    position: relative;
-    z-index: 2;
-}
-
-
-.card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 24px;
-    padding: 40px;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    box-shadow: var(--shadow);
-}
-
-.calculator-card {
-    flex: 1.2;
-    text-align: center;
-}
-
-.info-card {
-    flex: 0.8;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 20px;
-}
-
-
-.card h2 {
-    margin-top: 0;
-    color: var(--text-main);
-    font-size: 1.8rem;
-}
-
-.card p {
-    color: var(--text-dim);
-    line-height: 1.6;
-    font-size: 1rem;
-}
-
-
-#bmiForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.input-group {
-    margin-bottom: 25px;
-    width: 100%;
-}
 
 .input-group label {
     display: block;
@@ -359,141 +234,114 @@
     z-index: 20;
 }
 
-#bmiForm .btn {
-    margin: 0 auto;
-}
-
-
-.result-area {
-    margin: 35px auto 0 auto;
-    padding-top: 30px;
-    border-top: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 25px;
-    width: fit-content;
-    min-width: 280px;
-}
-
-.progress-container {
-    position: relative;
-    width: 120px;
-    height: 120px;
-    flex: 0 0 120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.progress-ring {
-    position: absolute;
+.custom-modal-overlay {
+    position: fixed;
     top: 0;
     left: 0;
-    width: 120px;
-    height: 120px;
-    transform: rotate(-90deg);
-}
-
-.circle-bg { stroke: rgba(255, 255, 255, 0.1); }
-.circle-main { transition: stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.5s ease; }
-
-.bmi-number {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    text-align: center;
-    margin: 0;
-    font-size: 1.8rem;
-    font-weight: 800;
-    line-height: 1;
-    z-index: 5;
-    white-space: nowrap;
-}
-
-.result-text {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: left;
-    width: 180px;
-}
-
-
-.category-list { margin: 15px 0; }
-.cat-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 12px;
-    font-size: 1rem;
-    color: var(--text-main);
-}
-
-.dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    flex-shrink: 0;
-}
-
-.blue { background: #3498db; box-shadow: 0 0 10px rgba(52, 152, 219, 0.5); }
-.green { background: #2ecc71; box-shadow: 0 0 10px rgba(46, 204, 113, 0.5); }
-.yellow { background: #f1c40f; box-shadow: 0 0 10px rgba(241, 196, 15, 0.5); }
-.red { background: #e74c3c; box-shadow: 0 0 10px rgba(231, 76, 60, 0.5); }
-
-.info-footer {
-    margin-top: auto;
-    background: rgba(36, 52, 71, 0.7);
-    padding: 18px;
-    border-radius: 12px;
-    border-left: 4px solid var(--accent);
-}
-
-.info-footer p {
-    font-size: 0.85rem;
-    color: #cbd5e1;
-    margin: 0;
-    line-height: 1.5;
-    text-align: left;
-}
-
-@media (max-width: 850px) {
-    .bmi-wrapper { flex-direction: column; }
-    .calculator-card, .info-card { width: 100%; }
-}
-
-/* Térkép szekció */
-.map-section {
-    margin-top: 40px;
-    padding: 20px 0;
-}
-
-.map-placeholder {
-    height: 400px;
-    background-color: rgba(0, 0, 0, 0.5); /* Itt is átállítva a placeholder háttere */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.6);
-    overflow: hidden;
-    position: relative;
-}
-
-.map-placeholder iframe {
     width: 100%;
     height: 100%;
-    border: none;
-    filter: grayscale(20%) invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%);
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    backdrop-filter: blur(5px);
 }
 
-.map-placeholder iframe:hover {
-    filter: none;
-    transition: 0.5s ease;
+.custom-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.custom-modal-box {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 40px;
+    padding: 40px 60px;
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+    transform: scale(0.8);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.custom-modal-overlay.active .custom-modal-box {
+    transform: scale(1);
+}
+
+.custom-modal-box h3 {
+    color: #00ca65;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.custom-modal-box p {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+
+.modal-btn-primary {
+    background: #00ca65 !important;
+    color: white !important;
+    border: none !important;
+    padding: 15px 45px !important;
+    border-radius: 20px !important;
+    font-size: 1.2rem !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    transition: 0.3s all ease !important;
+    box-shadow: 0 4px 15px rgba(0, 202, 101, 0.3) !important;
+}
+
+.modal-btn-primary:hover {
+    transform: scale(1.05);
+    background: #00b359 !important;
+    box-shadow: 0 6px 20px rgba(0, 202, 101, 0.5) !important;
+}
+
+
+@media (max-width: 768px) {
+    .contact-info-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .custom-modal-box {
+        padding: 30px 20px !important;
+        width: 95% !important;
+        border-radius: 25px !important;
+    }
+
+    .custom-modal-box h3 {
+        font-size: 1.5rem !important;
+    }
+
+    .modal-btn-primary {
+        padding: 12px 30px !important;
+        width: 100% !important;
+    }
+
+    /* Térkép és egyéb elemek */
+    .map-placeholder {
+        height: 250px !important;
+    }
+
+    .contact-page-content h1 {
+        font-size: 2rem !important;
+    }
 }

@@ -1,16 +1,7 @@
-import { auth, db } from './firebase.js';
+import { auth } from './firebase.js';
+import { api } from './api.js';
 import { forgeXModal } from './utils.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import {
-    addDoc,
-    collection,
-    deleteDoc,
-    doc,
-    getDocs,
-    orderBy,
-    query,
-    serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     const reviewModal = document.getElementById('reviewModal');
@@ -26,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    const reviewsCollection = collection(db, 'reviews');
     let pendingDeleteId = null;
     let currentUser = auth.currentUser;
     let hasLoadedReviews = false;
@@ -75,9 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return new Date().toLocaleDateString('hu-HU').replace(/\s/g, '');
         }
 
-        const date = typeof timestamp.toDate === 'function'
-            ? timestamp.toDate()
-            : new Date(timestamp);
+        const date = new Date(timestamp);
 
         return date.toLocaleDateString('hu-HU').replace(/\s/g, '');
     };
@@ -157,18 +145,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadReviews = async () => {
         try {
             reviewLayout.querySelectorAll('[data-review-id]').forEach((card) => card.remove());
-            const reviewsQuery = query(reviewsCollection, orderBy('createdAt', 'desc'));
-            const snapshot = await getDocs(reviewsQuery);
+            const reviews = await api.getReviews();
 
-            snapshot.forEach((docSnap) => {
-                const data = docSnap.data();
+            reviews.forEach((review) => {
                 renderReview({
-                    id: docSnap.id,
-                    name: data.name || 'ForgeX User',
-                    text: data.text || '',
-                    rating: Number(data.rating || 5),
-                    userId: data.userId || null,
-                    date: formatDate(data.createdAt)
+                    id: review.id,
+                    name: review.name || 'ForgeX User',
+                    text: review.text || '',
+                    rating: Number(review.rating || 5),
+                    userId: review.userId || null,
+                    date: formatDate(review.createdAt)
                 });
             });
             hasLoadedReviews = true;
@@ -228,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            await deleteDoc(doc(db, 'reviews', pendingDeleteId));
+            await api.deleteReview(currentUser, pendingDeleteId);
             removeReviewCard(pendingDeleteId);
         } catch (error) {
             console.error('Hiba az üzenet törlése közben:', error);
@@ -275,16 +261,14 @@ document.addEventListener('DOMContentLoaded', () => {
         submitButton.innerText = 'Sending...';
 
         try {
-            const docRef = await addDoc(reviewsCollection, {
+            const review = await api.createReview(currentUser, {
                 name,
                 text,
-                rating,
-                userId: currentUser.uid,
-                createdAt: serverTimestamp()
+                rating
             });
 
             renderReview({
-                id: docRef.id,
+                id: review.id,
                 name,
                 text,
                 rating,

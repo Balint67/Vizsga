@@ -187,20 +187,49 @@
 
 .single-trainer-page .cta-button {
     display: inline-block;
-    padding: 15px 40px;
-    background: #00ca65;
-    color: #000;
-    text-decoration: none;
-    font-weight: 700;
-    border-radius: 50px;
-    transition: 0.3s ease;
+    background: linear-gradient(135deg, #00ca65 0%, #007524 100%);
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
     text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(0, 202, 101, 0.2);
+    position: relative;
+    overflow: hidden;
+    z-index: 100;
+    border: none;
+}
+
+
+.single-trainer-page .cta-button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: all 0.5s;
 }
 
 .single-trainer-page .cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 202, 101, 0.3);
-    background: #fff;
+    transform: scale(1.02) translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 202, 101, 0.4);
+    color: #ffffff;
+}
+
+.single-trainer-page .cta-button:hover::after {
+    left: 120%;
+}
+
+.single-trainer-page .cta-button:active {
+    transform: scale(1.0);
+    filter: brightness(0.9);
 }
 
 /* Mobil */
@@ -284,9 +313,3 @@
     color: #00ca65;
 }
 
-
-
-
-
-
-/* Mobil reszponzivitás */

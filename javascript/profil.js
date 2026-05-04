@@ -2,6 +2,7 @@
 // 🔹 LOCAL IMPORTS
 // ===============================
 import { auth, db } from './firebase.js';
+import { api } from './api.js';
 import { forgeXModal } from './utils.js';
 import {
     refreshAndSyncCurrentUser,
@@ -21,12 +22,7 @@ import {
 // ===============================
 import {
     doc,
-    getDoc,
-    collection,
-    query,
-    where,
-    getDocs,
-    deleteDoc
+    getDoc
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // ===============================
@@ -57,7 +53,7 @@ onAuthStateChanged(auth, async (user) => {
     await loadUserProfile(user);
 
     // Load user bookings
-    loadUserBookings(user.uid);
+    loadUserBookings(user);
 });
 
 // ===============================
@@ -90,29 +86,21 @@ async function loadUserProfile(user) {
 // ===============================
 // 🔹 LOAD USER BOOKINGS
 // ===============================
-async function loadUserBookings(userId) {
+async function loadUserBookings(user) {
     const container = document.getElementById('user-bookings');
     if (!container) return;
 
     try {
-        const bookingsQuery = query(
-            collection(db, "bookings"),
-            where("userId", "==", userId)
-        );
+        const bookings = await api.getBookings(user);
 
-        const snapshot = await getDocs(bookingsQuery);
-
-        if (snapshot.empty) {
+        if (!bookings.length) {
             container.innerHTML = '<p>Nincsenek aktív foglalásai.</p>';
             return;
         }
 
         container.innerHTML = "";
 
-        snapshot.forEach((docSnap) => {
-            const bookingData = docSnap.data();
-            const bookingId = docSnap.id;
-
+        bookings.forEach((bookingData) => {
             const bookingElement = document.createElement('div');
             bookingElement.className = 'booking-item';
             bookingElement.innerHTML = `
@@ -120,7 +108,7 @@ async function loadUserBookings(userId) {
                     <p><strong>${bookingData.course}</strong></p>
                     <p>${bookingData.trainer} - ${bookingData.date} ${bookingData.time}</p>
                 </div>
-                <button class="delete-booking-btn" data-id="${bookingId}">
+                <button class="delete-booking-btn" data-id="${bookingData.id}">
                     <i class="fa-solid fa-trash"></i>
                 </button>
             `;
@@ -128,7 +116,7 @@ async function loadUserBookings(userId) {
             container.appendChild(bookingElement);
         });
 
-        attachDeleteBookingHandlers(userId);
+        attachDeleteBookingHandlers(user);
 
     } catch (error) {
         console.error("Hiba a foglalások betöltése során:", error);
@@ -139,7 +127,7 @@ async function loadUserBookings(userId) {
 // ===============================
 // 🔹 ATTACH DELETE BUTTON HANDLERS
 // ===============================
-function attachDeleteBookingHandlers(userId) {
+function attachDeleteBookingHandlers(user) {
     document.querySelectorAll('.delete-booking-btn').forEach(button => {
         button.addEventListener('click', async (event) => {
             const bookingId = event.currentTarget.getAttribute('data-id');
@@ -158,7 +146,7 @@ function attachDeleteBookingHandlers(userId) {
                 return;
             }
 
-            await deleteBooking(bookingId, userId);
+            await deleteBooking(bookingId, user);
         });
     });
 }
@@ -166,13 +154,13 @@ function attachDeleteBookingHandlers(userId) {
 // ===============================
 // 🔹 DELETE BOOKING
 // ===============================
-async function deleteBooking(bookingId, userId) {
+async function deleteBooking(bookingId, user) {
     try {
-        await deleteDoc(doc(db, "bookings", bookingId));
+        await api.deleteBooking(user, bookingId);
         console.log("Foglalás törölve:", bookingId);
 
         // Reload bookings after deletion
-        loadUserBookings(userId);
+        loadUserBookings(user);
 
     } catch (error) {
         console.error("Hiba a foglalás törlésekor:", error);

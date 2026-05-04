@@ -74,7 +74,7 @@
     color: #fff;
     font-family: 'Segoe UI', sans-serif;
     box-sizing: border-box;
-    font-size: 16px; /* Prevencija automatskog zoom-a na iOS */
+    font-size: 16px;
 }
 
 .payment-card input:focus,
@@ -101,27 +101,51 @@
 
 .submit-btn {
     width: 100%;
-    background: #00d26a;
-    color: #000;
+    background: linear-gradient(135deg, #00ca65 0%, #007524 100%);
+    color: #ffffff;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    padding: 10px 18px;
+    font-size: 1rem;
+    border-radius: 50px;
     border: none;
-    padding: 18px;
-    border-radius: 6px;
-    font-weight: bold;
     cursor: pointer;
     margin-top: 20px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 15px rgba(0, 202, 101, 0.2);
+    position: relative;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.submit-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: all 0.5s;
 }
 
 .submit-btn:hover {
-    background: #00ff81;
-    transform: translateY(-2px);
+    transform: scale(1.02) translateY(-2px);
+    box-shadow: 0 12px 25px rgba(0, 202, 101, 0.3);
+    color: #ffffff;
+}
+
+.submit-btn:hover::after {
+    left: 120%;
 }
 
 .submit-btn:active {
-    transform: translateY(0);
+    transform: scale(0.98);
+    filter: brightness(0.9);
 }
-
 /* Error messages */
 .error-message {
     color: #ff4444;

@@ -148,24 +148,49 @@
     display: block;
     width: 100%;
     margin-top: 20px;
+    background: linear-gradient(135deg, #00ca65 0%, #007524 100%);
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
     padding: 15px;
-    background-color: #00ca65;
-    color: #000;
-    border: none;
-    border-radius: 10px;
-    font-weight: bold;
     font-size: 1.1rem;
+    border-radius: 50px;
+    border: none;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(0, 202, 101, 0.2);
+    position: relative;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.add-to-cart-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: all 0.5s;
 }
 
 .add-to-cart-btn:hover {
-    background-color: #00a854;
-    transform: scale(1.02);
+    transform: scale(1.02) translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 202, 101, 0.4);
+    color: #ffffff;
+}
+
+.add-to-cart-btn:hover::after {
+    left: 120%;
 }
 
 .add-to-cart-btn:active {
     transform: scale(0.98);
+    filter: brightness(0.9);
 }
 
 /* Modal tartalmának igazítása, hogy a gomb középen legyen */

@@ -20,6 +20,10 @@ ehthumbs.db
 node_modules/
 npm-debug.log
 yarn-error.log
+.env
+server/.env
+server/serviceAccountKey.json
+serviceAccountKey.json
 
 # --- VS Code ---
 # Ha te esetleg VS Code-ot használsz, akkor ezt is tedd bele,

@@ -1,4 +1,5 @@
 import { auth, db } from './firebase.js';
+import { api } from './api.js';
 // Import the custom modal tool
 import { forgeXModal } from './utils.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
@@ -6,8 +7,7 @@ import {
     refreshAndSyncCurrentUser,
     requiresEmailVerification
 } from './auth-utils.js';
-// Hozzáadtuk: collection, addDoc, serverTimestamp
-import { doc, getDoc, collection, addDoc, serverTimestamp }
+import { doc, getDoc }
     from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -233,11 +233,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            // 4. Save to Firestore
             const weightVal = document.getElementById('user-weight').value;
             const ageVal = document.getElementById('user-age').value;
-            const docRef = await addDoc(collection(db, "bookings"), {
-                userId: user.uid,
+            await api.createBooking(user, {
                 userName: userName,
                 userEmail: userEmail,
                 trainer: trainerName,
@@ -245,7 +243,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 date: formattedDate,
                 time: selectedTime,
                 note: userNote,
-                createdAt: serverTimestamp(),
                 weight: Number(weightVal),
                 age: Number(ageVal),
             });

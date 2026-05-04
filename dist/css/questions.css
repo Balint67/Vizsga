@@ -105,12 +105,12 @@ summary::after {
 /* --- AZ ANIMÁCIÓ LELKE --- */
 .faq-answer-wrapper {
     display: grid !important;
-    grid-template-rows: 0fr !important; /* 0 magasság */
+    grid-template-rows: 0fr !important;
     transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .faq-card.active .faq-answer-wrapper {
-    grid-template-rows: 1fr !important; /* Itt nyílik ki smooth módon */
+    grid-template-rows: 1fr !important;
 }
 
 .faq-answer {
@@ -157,7 +157,7 @@ summary::after {
 }
 
 .review-btn:hover {
-    transform: scale(1.08) translateY(-3px) !important;
+    transform: scale(1.02) translateY(-3px) !important;
     box-shadow: 0 15px 30px rgba(0, 202, 101, 0.4) !important;
 }
 
