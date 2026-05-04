@@ -50,7 +50,7 @@
     font-size: 20px;
 }
 
-/* Térkép szekció */
+
 .map-section {
     margin-top: 40px;
     padding: 20px 0;
@@ -84,7 +84,7 @@
 
 .contact-info-grid {
     display: grid !important;
-    grid-template-columns: 1fr 1fr !important; /* Két egyenlő oszlop */
+    grid-template-columns: 1fr 1fr !important;
     gap: 60px !important;
     width: 100% !important;
     max-width: 100% !important;
@@ -128,20 +128,20 @@
 }
 .btn {
     margin: 0 auto;
-    display: block; /* A margin: 0 auto-hoz szükséges a block megjelenítés */
-    /* Az új design színei és gradiense */
+    display: block;
+
     background: linear-gradient(135deg, #00ca65 0%, #007524 100%);
     color: #ffffff;
-    /* Betűtípus és stílus megőrizve az új stílusjegyekkel */
+
     font-family: 'Open Sans', sans-serif;
     font-weight: 800;
     font-size: 23px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    /* Az eredeti padding és kerekítés frissítése */
+
     padding: 12px 48px;
     border-radius: 50px;
-    /* Animáció és extrák */
+
     border: none;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -151,7 +151,7 @@
     z-index: 100;
 }
 
-/* A csillogó effekt hozzáadása */
+
 .btn::after {
     content: '';
     position: absolute;
@@ -165,7 +165,7 @@
 }
 
 .btn:hover {
-    /* Az új design hover effektjei */
+
     transform: scale(1.02) translateY(-3px);
     box-shadow: 0 15px 30px rgba(0, 202, 101, 0.4);
     color: #ffffff;
@@ -336,7 +336,7 @@
         width: 100% !important;
     }
 
-    /* Térkép és egyéb elemek */
+
     .map-placeholder {
         height: 250px !important;
     }

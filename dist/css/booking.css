@@ -1,8 +1,8 @@
-/* --- FŐCÍM ÉS FELIRAT JAVÍTÁSA --- */
+
 
 .booking-container .subtitle {
     text-align: center;
-    color: #00ca65; /* Neonzöldre váltva, hogy jobban látszódjon */
+    color: #00ca65;
     font-size: 1.1rem;
     opacity: 0.9;
 }
@@ -11,7 +11,7 @@
     margin-top: 70px;
 }
 
-/* --- KONTÉNER ÉS ELRENDEZÉS --- */
+
 .booking-container {
     max-width: 1200px;
     margin: 0px auto 60px;
@@ -60,7 +60,7 @@
     color: white;
 }
 
-/* --- EDZŐK SZAKASZ --- */
+
 .booking-container .trainer-select-grid {
     display: flex;
     flex-direction: column;
@@ -125,7 +125,7 @@
     background: rgba(0, 202, 101, 0.2);
 }
 
-/* --- ÓRA VÁLASZTÓ --- */
+
 .course-select-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -154,7 +154,7 @@
     font-weight: bold;
 }
 
-/* --- EGYEDI NAPTÁR DESIGN --- */
+
 .selection-title {
     color: #00ca65;
     font-weight: 600;
@@ -243,7 +243,7 @@
     border: 1px solid #00ca65;
 }
 
-/* --- IDŐPONTOK --- */
+
 .slots-side {
     flex: 1;
     padding: 20px;
@@ -273,7 +273,7 @@
     color: black;
 }
 
-/* --- FORM ÉS GOMB --- */
+
 .booking-form input, .booking-form textarea {
     width: 100%;
     padding: 12px;
@@ -284,7 +284,7 @@
     border-radius: 10px;
 }
 
-/*rács elrendezés az életkorhoz és testsúlyhoz */
+
 .form-row-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -343,16 +343,16 @@
     filter: brightness(0.9);
 }
 
-/* --- MOBIL NÉZET (RESPONSIVE) --- */
+
 @media (max-width: 768px) {
-    /* Konténer igazítása */
+
     .booking-container {
         padding: 0 15px;
         margin-top: 20px;
     }
 
     .booking-container .booking-wrapper {
-        grid-template-columns: 1fr; /* Egy oszlopos elrendezés */
+        grid-template-columns: 1fr;
         gap: 20px;
     }
 
@@ -365,16 +365,16 @@
         margin-bottom: 20px;
     }
 
-    /* Edző választó kártyák mobilon */
+
     .trainer-info {
-        flex-direction: column; /* Egymás alá kerül a kép és a szöveg */
+        flex-direction: column;
         align-items: center;
         text-align: center;
         padding: 20px 10px;
     }
 
     .trainer-info img {
-        width: 100px; /* Kisebb kép mobilon */
+        width: 100px;
         height: 100px;
         margin-bottom: 10px;
     }
@@ -393,7 +393,7 @@
     .trainer-contact-list-besideTrainers {
         width: 100%;
         font-size: 14px;
-        align-items: center; /* Ikonok és szövegek középre */
+        align-items: center;
     }
 
     .contact-row {
@@ -401,9 +401,9 @@
         width: 100%;
     }
 
-    /* Óra választó rács */
+
     .course-select-grid {
-        grid-template-columns: 1fr; /* Mobilon az órák is egymás alatt */
+        grid-template-columns: 1fr;
     }
 
     .course-box {
@@ -411,9 +411,9 @@
         font-size: 1rem;
     }
 
-    /* Naptár és Időpont választó */
+
     .datetime-picker-wrapper {
-        flex-direction: column; /* Naptár felül, időpontok alul */
+        flex-direction: column;
     }
 
     .calendar-side {
@@ -431,7 +431,7 @@
     }
 
     .time-slots {
-        grid-template-columns: repeat(2, 1fr); /* Időpontok 2 oszlopban, hogy ne legyen túl hosszú */
+        grid-template-columns: repeat(2, 1fr);
         gap: 8px;
     }
 
@@ -446,7 +446,7 @@
         padding: 12px;
     }
 
-    /* Form sor mobilon egymás alá kerüljön */
+
     .form-row-grid {
         grid-template-columns: 1fr;
         gap: 0;

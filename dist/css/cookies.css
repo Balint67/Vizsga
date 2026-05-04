@@ -10,7 +10,7 @@
     max-width: 1200px !important;
 }
 
-/* Rács elrendezés */
+
 .cookies-layout {
     display: grid !important;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
@@ -19,7 +19,7 @@
     margin-top: 30px !important;
 }
 
-/* Kártya Design */
+
 .cookie-card {
     background: rgba(255, 255, 255, 0.03) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
@@ -30,12 +30,12 @@
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    justify-content: space-between !important; /* Hogy a kapcsoló mindig alul legyen */
+    justify-content: space-between !important;
     transition: all 0.4s ease !important;
     min-height: 300px !important;
 }
 
-/* Kártya Hover effekt */
+
 .cookie-card:hover {
     transform: translateY(-10px) !important;
     background: rgba(255, 255, 255, 0.06) !important;
@@ -133,7 +133,7 @@ input:checked + .slider:before {
     text-transform: uppercase !important;
 }
 
-/* MENTÉS GOMB */
+
 .review-btn {
     display: inline-block !important;
     background: linear-gradient(135deg, #00ca65 0%, #007524 100%) !important;

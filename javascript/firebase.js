@@ -1,12 +1,12 @@
 // ===============================
-// 🔹 FIREBASE MODULE IMPORTS
+
 // ===============================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // ===============================
-// 🔹 FIREBASE CONFIGURATION
+
 // ===============================
 const firebaseConfig = {
     apiKey: "AIzaSyA-qcUAb6bqjwxfttKBHJOCce0Jw4uGHME",
@@ -18,12 +18,12 @@ const firebaseConfig = {
 };
 
 // ===============================
-// 🔹 FIREBASE INITIALIZATION
+
 // ===============================
 const app = initializeApp(firebaseConfig);
 
 // ===============================
-// 🔹 EXPORTED FIREBASE SERVICES
+
 // ===============================
 export const auth = getAuth(app);
 export const db = getFirestore(app);

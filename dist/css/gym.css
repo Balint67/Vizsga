@@ -21,7 +21,7 @@ html {
     display: block;
     visibility: hidden;
     position: relative;
-    top: -100px; /* Pontosan a menüd magassága, negatívban */
+    top: -100px;
 }
 /* picture box */
 .gym-item {
@@ -69,17 +69,16 @@ html {
 .welcome-container {
     position: relative;
     width: 100%;
-    /* Opcionális: adj meg egy fix vagy minimum magasságot,
-       hogy a videó betöltése előtt se legyen üres a helye */
+
     min-height: 300px;
     overflow: hidden;
 }
 .welcome-text {
     position: absolute;
-    top: 40%; /* Középre igazításhoz jobb a 50% */
+    top: 40%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Tökéletes középre helyezés */
-    width: 90%; /* Hogy ne lógjon ki szélen */
+    transform: translate(-50%, -50%);
+    width: 90%;
     text-align: center;
     margin: 0;
     font-size: 3rem;
@@ -126,7 +125,7 @@ html {
 
 .gym-grid {
     display: grid;
-    /* ha kicsi a hely, csökken */
+
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
 }
@@ -148,7 +147,7 @@ html {
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 
-/* Kép tartó */
+
 .card-image {
     width: 100%;
     height: 600px;
@@ -239,7 +238,7 @@ html {
 .single-gym-page .gym-info-side {
     flex: 1.2;
     display: flex;
-    align-items: flex-start; /* a tetejére igazodik */
+    align-items: flex-start;
 }
 
 .single-gym-page .glass-content {
@@ -285,12 +284,12 @@ html {
     display: flex;
     align-items: flex-start;
     gap: 15px;
-    line-height: 1.6; /* Kicsit lazább sormagasság a jobb olvashatóságért */
+    line-height: 1.6;
 }
 
 
 
-/* Ha a leírás több soros, ez biztosítja, hogy ne csússzon be a cím alá */
+
 .single-gym-page .benefit-list li span {
     display: block;
 }
@@ -318,7 +317,7 @@ html {
 }
 
 
-/* Konténer a képnek és az alatta lévő infónak */
+
 .single-gym-page .gym-profile-box {
     width: 100%;
     max-width: 450px;
@@ -335,7 +334,7 @@ html {
     box-shadow: none;
 }
 
-/* Információs rész a kép alatt */
+
 .single-gym-page .gym-under-info {
     padding: 25px;
     color: white;
@@ -355,7 +354,7 @@ html {
     font-weight: 600;
 }
 
-/* Elérhetőségek */
+
 .single-gym-page .gym-contact-list {
     display: flex;
     flex-direction: column;
@@ -407,10 +406,10 @@ html {
 
 .slide.active {
     opacity: 1;
-    position: relative; /* Hogy a konténer tartsa a magasságot */
+    position: relative;
 }
 
-/* Nyilak stílusa */
+
 .prev, .next {
     position: absolute;
     top: 50%;
@@ -461,9 +460,9 @@ html {
     }
 }
 @media (min-width: 800px) {
-    /* Ez a kulcs: elég szélesnek kell lennie a leghosszabb címhez is */
+
     .single-gym-page .benefit-list li strong {
-        min-width: 230px; /* Megemelve, hogy a "Testkontroll..." is kényelmesen elférjen */
+        min-width: 230px;
         display: inline-block;
         flex-shrink: 0;
         color: #fff;

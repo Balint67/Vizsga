@@ -1,5 +1,5 @@
 
-/* --- KÖZÉPRE IGAZÍTÁS --- */
+
 .container.review-page {
     display: flex !important;
     flex-direction: column !important;
@@ -12,7 +12,7 @@
     max-width: 1200px !important;
 }
 
-/* --- VÉLEMÉNYEK RÁCS (GRID) ELRENDEZÉSE --- */
+
 .centered-layout {
     display: grid !important;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
@@ -21,7 +21,7 @@
     margin-top: 20px !important;
 }
 
-/* --- KÁRTYA DESIGN --- */
+
 .info-card.review-card {
     background: rgba(255, 255, 255, 0.03) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
@@ -36,7 +36,7 @@
     position: relative !important;
 }
 
-/* Hover effekt a kártyákon*/
+
 .info-card.review-card:hover {
     transform: translateY(-10px) !important;
     background: rgba(255, 255, 255, 0.06) !important;
@@ -44,7 +44,7 @@
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 202, 101, 0.1) !important;
 }
 
-/* Szövegek formázása a kártyán belül */
+
 .review-body {
     font-size: 0.95rem !important;
     line-height: 1.7 !important;
@@ -134,7 +134,7 @@
     filter: drop-shadow(0 0 8px #00ca65) !important;
 }
 
-/* A csillagok színe és fénye */
+
 .stars i {
     color: #ffc107 !important;
     margin: 0 2px !important;
@@ -204,7 +204,7 @@
     resize: none !important;
 }
 
-/* Csillag választó */
+
 .star-rating {
     display: flex;
     flex-direction: row-reverse;
@@ -220,7 +220,7 @@
 .star-rating label:hover,
 .star-rating label:hover ~ label { color: #ffc107; }
 
-/* Második gomb színe */
+
 .write-btn {
     background: transparent !important;
     border: 2px solid #00ca65 !important;
@@ -228,7 +228,7 @@
 }
 
 
-/* --- TÖRLÉS GOMB STÍLUSA --- */
+
 .delete-review {
     position: absolute;
     top: 15px;
@@ -248,13 +248,13 @@
     transform: scale(1.2);
 }
 
-/* Animáció a törléshez */
+
 .info-card.review-card {
     transition: all 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
 
-/* --- EGYEDI CONFIRM MODAL STÍLUS --- */
+
 .confirm-modal {
     max-width: 400px !important;
     text-align: center !important;
@@ -280,7 +280,7 @@
     box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3) !important;
 }
 
-/* --- MOBIL RESPONSIVE BEÁLLÍTÁSOK --- */
+
 @media screen and (max-width: 768px) {
 
     .cta-row.centered {
@@ -305,7 +305,7 @@
         margin: 0 !important;
     }
 
-    /* --- VÉLEMÉNYEK RÁCS (GRID) ELRENDEZÉSE --- */
+
     .centered-layout {
         display: grid !important;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
@@ -322,7 +322,7 @@
         max-width: 400px !important;
     }
 
-    /* Modal (felugró ablak) igazítása mobilhoz */
+
     .modal-content.info-card.review-card {
         width: 95% !important;
         padding: 25px 15px !important;

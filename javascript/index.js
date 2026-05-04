@@ -15,12 +15,12 @@ function initSlider() {
     let isDown = false;
     let startX;
     let scrollLeft;
-    let currentIndex = 1; // 1-es index a klónok miatt
+    let currentIndex = 1;
     let slideWidth = slider.offsetWidth;
     let autoInterval;
     const autoDelay = 5000;
 
-    // Klónozás a végtelenítéshez
+
     const slides = Array.from(slider.children);
     if (slides.length === 0) return;
 
@@ -33,10 +33,10 @@ function initSlider() {
     const allSlides = slider.querySelectorAll('img');
     const dots = document.querySelectorAll('.slider-nav a');
 
-    // Kezdő pozíció
+
     slider.scrollLeft = slideWidth;
 
-    // Képre kattintás kezelése (drag vs click megkülönböztetés)
+
     allSlides.forEach(img => {
         let clickStartX = 0;
         let clickStartY = 0;
@@ -49,7 +49,7 @@ function initSlider() {
         img.addEventListener('mouseup', e => {
             const dx = Math.abs(e.clientX - clickStartX);
             const dy = Math.abs(e.clientY - clickStartY);
-            // Ha keveset mozdult, az kattintás
+
             if (dx < 5 && dy < 5) {
                 const link = img.getAttribute('data-link');
                 if (link) location.href = link;
@@ -57,7 +57,7 @@ function initSlider() {
         });
     });
 
-    // Pöttyök frissítése
+
     function updateDots() {
         dots.forEach(dot => dot.style.backgroundColor = '#ffffff');
         let dotIndex = currentIndex - 1;
@@ -67,7 +67,7 @@ function initSlider() {
     }
     updateDots();
 
-    // Léptetés
+
     function moveToSlide(index, smooth = true) {
         slider.style.scrollBehavior = smooth ? 'smooth' : 'auto';
         slider.scrollLeft = index * slideWidth;
@@ -85,7 +85,7 @@ function initSlider() {
     }
     function stopAutoSlide() { clearInterval(autoInterval); }
 
-    // Drag / Swipe események
+
     slider.addEventListener('mousedown', (e) => {
         stopAutoSlide();
         isDown = true;
@@ -159,7 +159,7 @@ function initSlider() {
         slider.scrollLeft = currentIndex * slideWidth;
     });
 
-    // Pötty navigáció
+
     dots.forEach((dot, i) => {
         dot.addEventListener('click', (e) => {
             e.preventDefault();
@@ -220,7 +220,7 @@ function initModals() {
 
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
 
-    // Bezárás háttérre kattintva
+
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
             closeModal();
@@ -229,7 +229,7 @@ function initModals() {
 }
 
 /* =========================
-   3. NYELVV?LASZT? (Google Translate)
+   3. LANGUAGE SELECTOR (Google Translate)
    ========================= */
 function initLanguageSelector() {
     const buttons = document.querySelectorAll('.nyelv-btn');
@@ -280,9 +280,7 @@ window.googleTranslateElementInit = function() {
     }, 'google_translate_element');
 }
 
-/* =========================
-   4. SCROLL ANIMÁCIÓK
-   ========================= */
+
 function initScrollAnimations() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -356,7 +354,7 @@ document.querySelectorAll('.recommendations-menu-item').forEach(item => {
             titleEl.textContent = data.title;
             descEl.textContent = data.description;
 
-            // Itt dől el, melyik képet töltse be (800px alatt a mobileImage-et)
+
             if (window.innerWidth < 800) {
                 imgEl.src = data.mobileImage;
             } else {
@@ -370,7 +368,7 @@ document.querySelectorAll('.recommendations-menu-item').forEach(item => {
     });
 });
 
-// Opcionális: Méretváltáskor is frissítse a már kiválasztott képet
+
 window.addEventListener('resize', () => {
     const activeItem = document.querySelector('.recommendations-menu-item.active');
     if (activeItem) {

@@ -28,7 +28,7 @@ async function request(path, options = {}) {
     const data = await response.json().catch(() => ({}));
 
     if (!response.ok) {
-        throw new Error(data.message || "API keres sikertelen.");
+        throw new Error(data.message || "Az API-kérés sikertelen.");
     }
 
     return data;

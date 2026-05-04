@@ -1,6 +1,4 @@
-/* =========================
-   BMI KALKULÁTOR RÉSZ (JAVÍTOTT)
-========================= */
+
 document.addEventListener('DOMContentLoaded', () => {
     const bmiForm = document.getElementById('bmiForm');
     const bmiCircle = document.getElementById('bmiCircle');
@@ -8,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bmiStatusEl = document.getElementById('bmiStatus');
     const bmiDescriptionEl = document.getElementById('bmiDescription');
 
-    // A r=52 sugárhoz tartozó pontos kerület: 2 * Math.PI * 52 ≈ 326.72
+
     const circumference = 326.72;
 
     if (bmiForm) {
@@ -50,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         bmiDescriptionEl.innerText = desc;
         bmiValueEl.style.color = color;
 
-        // Kör animáció: 40-es BMI-nél legyen 100% a kör
+
         const percentage = Math.min(bmi / 40, 1);
         const offset = circumference - (percentage * circumference);
 
@@ -62,10 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('show'); // Hozzáadjuk az osztályt
-            // observer.unobserve(entry.target); // Ha csak egyszer akarod lejátszani, vedd ki a kommentet
+            entry.target.classList.add('show');
+
         } else {
-            entry.target.classList.remove('show'); // Ha azt akarod, hogy újra eltűnjön kigörgetéskor
+            entry.target.classList.remove('show');
         }
     });
 });

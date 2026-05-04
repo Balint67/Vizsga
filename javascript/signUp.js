@@ -26,7 +26,7 @@ function normalizeEmail(value) {
 function setGoogleButtonLoading(isLoading) {
     if (!googleBtn) return;
     googleBtn.disabled = isLoading;
-    googleBtn.innerHTML = isLoading ? "Google regisztracio..." : googleButtonDefaultLabel;
+    googleBtn.innerHTML = isLoading ? "Google regisztráció..." : googleButtonDefaultLabel;
 }
 
 function getFriendlySignupErrorMessage(errorCode) {
@@ -34,45 +34,45 @@ function getFriendlySignupErrorMessage(errorCode) {
         case 'auth/email-already-in-use':
             return "Ez az email cim mar regisztralva van.";
         case 'auth/weak-password':
-            return "A jelszo tul gyenge. Kerjuk, hasznalj legalabb 8 karaktert.";
+            return "A jelszó túl gyenge. Kérjük, használj legalább 8 karaktert.";
         case 'auth/invalid-email':
             return "Adj meg egy ervenyes email cimet.";
         case 'auth/network-request-failed':
-            return "Halozati hiba tortent. Ellenorizd az internetkapcsolatot, majd probald ujra.";
+            return "Hálózati hiba történt. Ellenőrizd az internetkapcsolatot, majd próbáld újra.";
         case 'permission-denied':
-            return "A fiok letrejott, de az adatbazis nem engedte a profil menteset. A Firestore szabalyokat telepiteni kell.";
+            return "A fiók létrejött, de az adatbázis nem engedte a profil mentését. A Firestore szabályokat telepíteni kell.";
         default:
-            return "Varatlan hiba tortent.";
+            return "Váratlan hiba történt.";
     }
 }
 
 function getGoogleAuthErrorMessage(errorCode) {
     switch (errorCode) {
         case 'auth/account-exists-with-different-credential':
-            return "Ehhez az email cimhez mar tartozik fiok egy masik bejelentkezesi moddal.";
+            return "Ehhez az e-mail címhez már tartozik fiók egy másik bejelentkezési móddal.";
         case 'auth/popup-blocked':
-            return "A bongeszo letiltotta a Google felugro ablakot. Atvaltunk atiranyitasos bejelentkezesre.";
+            return "A böngésző letiltotta a Google felugró ablakot. Átváltunk átirányításos bejelentkezésre.";
         case 'auth/popup-closed-by-user':
         case 'auth/cancelled-popup-request':
             return "";
         case 'auth/operation-not-allowed':
-            return "A Google bejelentkezes nincs engedelyezve a Firebase projektben. Kapcsold be a Google szolgaltatot az Authentication beallitasoknal.";
+            return "A Google bejelentkezés nincs engedélyezve a Firebase projektben. Kapcsold be a Google szolgáltatót az Authentication beállításoknál.";
         case 'auth/unauthorized-domain':
-            return "Ez a domain nincs engedelyezve a Google bejelentkezeshez a Firebase projektben. Add hozza az aktualis domaint az Authentication > Settings > Authorized domains listahoz.";
+            return "Ez a domain nincs engedélyezve a Google bejelentkezéshez a Firebase projektben. Add hozzá az aktuális domaint az Authentication > Settings > Authorized domains listához.";
         case 'auth/network-request-failed':
-            return "Halozati hiba tortent a Google bejelentkezes kozben. Probald ujra stabil kapcsolattal.";
+            return "Hálózati hiba történt a Google bejelentkezés közben. Próbáld újra stabil kapcsolattal.";
         case 'permission-denied':
-            return "A Google fiokkal sikerult hitelesiteni, de az adatbazis nem engedte a profil menteset. A Firestore szabalyokat telepiteni kell.";
+            return "A Google-fiókkal sikerült hitelesíteni, de az adatbázis nem engedte a profil mentését. A Firestore szabályokat telepíteni kell.";
         default:
-            return "A hitelesites sikertelen volt. Kerjuk, probald ujra.";
+            return "A hitelesítés sikertelen volt. Kérjük, próbáld újra.";
     }
 }
 
 async function saveGoogleUserProfile(user, additionalUserInfo) {
     const userDoc = {
-        fullname: user.displayName || "Not provided",
+        fullname: user.displayName || "",
         email: user.email || "",
-        phone: user.phoneNumber || "Not provided",
+        phone: user.phoneNumber || "",
         provider: "google",
         emailVerified: true,
         lastLoginAt: new Date()
@@ -112,8 +112,8 @@ async function finalizeGoogleSignup(result) {
 
     if (additionalUserInfo?.isNewUser) {
         await forgeXModal(
-            "Google regisztracio kesz",
-            "A Google-fiokod sikeresen letrejott, most mar be is vagy jelentkezve."
+            "Google regisztráció kész",
+            "A Google-fiókod sikeresen létrejött, most már be is vagy jelentkezve."
         );
     }
 
@@ -140,7 +140,7 @@ async function handleGoogleSignup() {
 
         const customMessage = getGoogleAuthErrorMessage(error.code);
         if (customMessage) {
-            await forgeXModal("Bejelentkezesi hiba", customMessage);
+            await forgeXModal("Bejelentkezési hiba", customMessage);
         }
     } finally {
         setGoogleButtonLoading(false);
@@ -158,7 +158,7 @@ async function handlePendingGoogleRedirect() {
         console.error("Google redirect error:", error.code);
         const customMessage = getGoogleAuthErrorMessage(error.code);
         if (customMessage) {
-            await forgeXModal("Bejelentkezesi hiba", customMessage);
+            await forgeXModal("Bejelentkezési hiba", customMessage);
         }
     } finally {
         setGoogleButtonLoading(false);
@@ -206,7 +206,7 @@ if (registrationForm) {
         event.preventDefault();
 
         if (passwordInput.value !== confirmPasswordInput.value) {
-            await forgeXModal("Ervenyesitesi hiba", "Kerjuk, ellenorizd, hogy a ket jelszo megegyezik-e.");
+            await forgeXModal("Érvényesítési hiba", "Kérjük, ellenőrizd, hogy a két jelszó megegyezik-e.");
             return;
         }
 
@@ -250,7 +250,7 @@ if (registrationForm) {
             console.error("Auth Error:", error.code);
             submitButton.disabled = false;
             submitButton.innerHTML = originalBtnText;
-            await forgeXModal("Sikertelen regisztracio", getFriendlySignupErrorMessage(error.code));
+            await forgeXModal("Sikertelen regisztráció", getFriendlySignupErrorMessage(error.code));
         }
     });
 }

@@ -59,7 +59,7 @@ ul {
     margin: 0;
 }
 
-/* Segédosztályok (Utilities) */
+
 #hidden, .mobile-only-languages { display: none; }
 .desktop-only { display: block; }
 
@@ -81,9 +81,7 @@ ul {
 }
 
 
-/* ==========================================================================
-   4. HERO / RUNNER SZEKCIÓ
-   ========================================================================== */
+
 .container-runner {
     width: 100%;
     position: relative;
@@ -93,7 +91,7 @@ ul {
 .runnerImgPc {
     width: 100%;
     height: auto;
-    display: block; /* Eltünteti az inline elemek alatti kis rést */
+    display: block;
 }
 
 .runner-text {
@@ -140,9 +138,7 @@ ul {
     color: var(--primary-accent-hover);
 }
 
-/* ==========================================================================
-   5. SLIDER (KÉPLAPOZÓ)
-   ========================================================================== */
+
 .container-slide {
     width: 100%;
     overflow: hidden;
@@ -211,9 +207,7 @@ ul {
 }
 .slider-nav a:hover { opacity: 1; }
 
-/* ==========================================================================
-   6. FONTOS DOLGOK (KÁRTYÁK)
-   ========================================================================== */
+
 .container-importantThings {
     margin: 50px 0px 100px 0px;
     display: flex;
@@ -259,7 +253,7 @@ ul {
     position: fixed;
     inset: 0;
     z-index: var(--z-modal);
-    display: none; /* Javascript váltja grid-re */
+    display: none;
     place-items: center;
     background: rgba(0,0,0,.6);
 }
@@ -280,9 +274,7 @@ ul {
 }
 
 
-/* ==========================================================================
-   11. FOOTER & EGYÉB ELEMEK
-   ========================================================================== */
+
 
 
 .animation-bottom {
@@ -301,7 +293,7 @@ ul {
 /* ==========================================================================
    12. TABLES
    ========================================================================== */
-/* A meglévő kódod megtartása mellett */
+
 
 
 
@@ -312,8 +304,7 @@ ul {
     top: -60px;
 }
 
-/* Fontos: az id-k (@selecterTable) egyediek kellene legyenek,
-ha többször használod, érdemesebb class-t használni helyette! */
+
 table{
     border-spacing: 0; /* instead of collapse*/
 
@@ -440,40 +431,40 @@ table{
 
 
 
-/* Alapbeállítások */
-/* A fő konténer, ami összefogja a képet és a szöveget */
+
+
 .black-container {
     border-bottom: 1.5px solid #00ca65;
     display: flex;
-    align-items: center; /* Függőlegesen középre igazítja a tartalmat */
-    justify-content: space-between; /* Szétnyomja a két szélre */
+    align-items: center;
+    justify-content: space-between;
     background-color: #000;
     width: 100%;
     min-height: 600px;
-    padding: 50px 10%; /* Oldalsó margó a tartalomnak */
+    padding: 50px 10%;
     overflow: hidden;
     position: relative;
 }
 
-/* A kép stílusa */
+
 .black-manPng {
-    width: 45%; /* A konténer közel felét foglalja el */
+    width: 45%;
     height: auto;
     object-fit: contain;
     z-index: 2;
 }
 
-/* A szöveges blokk stílusa */
+
 .anatomy-text {
-    width: 50%; /* A másik felét foglalja el */
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     z-index: 2;
-    margin-left: 0; /* Töröljük a korábbi margót, ha volt */
+    margin-left: 0;
 }
 
-/* A videós háttér és overlay igazítása a blokkon belül */
+
 .video-wrapper {
     position: relative;
     width: 800px;
@@ -497,7 +488,7 @@ table{
     width: 20200px;
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Balra igazított szöveg */
+    justify-content: flex-start;
     background-color: black;
     color: white;
     mix-blend-mode: multiply;
@@ -526,7 +517,7 @@ table{
 .black-container-anatomy-Btn {
     display: inline-block;
     padding: 15px 35px;
-    background-color: #ffffff; /* Lehetne egy élénk szín is, pl. #ff4500 */
+    background-color: #ffffff;
     color: #000;
     text-decoration: none;
     font-weight: bold;
@@ -546,9 +537,9 @@ table{
     color: #fff;
 }
 
-/* Arnold Idézet Szekció */
+
 .arnold-section {
-    background-color: #000; /* Teljesen fekete háttér */
+    background-color: #000;
     width: 100%;
     padding: 60px 0;
     overflow: hidden;
@@ -569,7 +560,7 @@ table{
 }
 
 .quote-icon {
-    color: #00ca65; /* A zöld színed */
+    color: #00ca65;
     font-size: 2rem;
     margin-bottom: 20px;
     opacity: 0.6;
@@ -611,7 +602,7 @@ table{
 
 @media (max-width: 768px) {
     .arnold-content {
-        flex-direction: column-reverse; /* Mobilon a kép legyen felül, vagy fordítva */
+        flex-direction: column-reverse;
         text-align: center;
     }
 
@@ -664,17 +655,17 @@ table{
         font-size: 1.2rem;
     }
     .recommendations-container {
-        /* Három oszlop helyett egyetlen oszlopba rendezzük */
+
         grid-template-columns: 1fr;
         width: 95%;
         margin: 40px auto;
-        min-height: auto; /* Engedjük, hogy a tartalom határozza meg a magasságot */
+        min-height: auto;
     }
 
     .recommendations-menu {
-        /* A menüpontok egymás mellett/alatt legyenek, ne csak függőlegesen */
+
         display: grid;
-        grid-template-columns: 1fr 1fr; /* Két oszlopos gombelrendezés mobilon */
+        grid-template-columns: 1fr 1fr;
     }
 
     .recommendations-menu-item {
@@ -687,9 +678,9 @@ table{
     }
 
     .recommendations-image-box {
-        /* A kép kerüljön legfelülre, hogy lássák mi változik */
+
         order: -1;
-        height: 250px; /* Fix magasság a képnek mobilon */
+        height: 250px;
     }
 
     .recommendations-image-box img {
@@ -710,7 +701,7 @@ table{
     }
 
     .recommendations-learn-more {
-        margin: 0 auto; /* Középre igazított gomb */
+        margin: 0 auto;
     }
 }
 

@@ -16,19 +16,34 @@ function mapDoc(doc) {
 
 router.get("/", authenticateUser, async (req, res) => {
     try {
-        const snapshot = await db
+        const byUserIdSnapshot = await db
             .collection("bookings")
             .where("userId", "==", req.user.uid)
             .get();
+        const bookingsById = new Map();
 
-        const bookings = snapshot.docs
-            .map(mapDoc)
+        byUserIdSnapshot.docs.map(mapDoc).forEach((booking) => {
+            bookingsById.set(booking.id, booking);
+        });
+
+        if (req.user.email) {
+            const byEmailSnapshot = await db
+                .collection("bookings")
+                .where("userEmail", "==", req.user.email)
+                .get();
+
+            byEmailSnapshot.docs.map(mapDoc).forEach((booking) => {
+                bookingsById.set(booking.id, booking);
+            });
+        }
+
+        const bookings = Array.from(bookingsById.values())
             .sort((a, b) => `${a.date || ""} ${a.time || ""}`.localeCompare(`${b.date || ""} ${b.time || ""}`));
 
         return res.json(bookings);
     } catch (error) {
-        console.error("Foglalasok lekerdezesi hiba:", error);
-        return res.status(500).json({ message: "Nem sikerult betolteni a foglalasokat." });
+        console.error("Booking query error:", error);
+        return res.status(500).json({ message: "Nem sikerült betölteni a foglalásokat." });
     }
 });
 
@@ -36,7 +51,7 @@ router.post("/", authenticateUser, async (req, res) => {
     const { userName, userEmail, trainer, course, date, time, note, weight, age } = req.body;
 
     if (!trainer || !course || !date || !time) {
-        return res.status(400).json({ message: "Hianyzo foglalasi adatok." });
+        return res.status(400).json({ message: "Hiányzó foglalási adatok." });
     }
 
     try {
@@ -64,8 +79,8 @@ router.post("/", authenticateUser, async (req, res) => {
             createdAt: new Date().toISOString()
         });
     } catch (error) {
-        console.error("Foglalas letrehozasi hiba:", error);
-        return res.status(500).json({ message: "Nem sikerult elmenteni a foglalast." });
+        console.error("Booking creation error:", error);
+        return res.status(500).json({ message: "Nem sikerült elmenteni a foglalást." });
     }
 });
 
@@ -75,18 +90,20 @@ router.delete("/:id", authenticateUser, async (req, res) => {
         const snapshot = await bookingRef.get();
 
         if (!snapshot.exists) {
-            return res.status(404).json({ message: "A foglalas nem talalhato." });
+            return res.status(404).json({ message: "A foglalás nem található." });
         }
 
-        if (snapshot.data().userId !== req.user.uid) {
-            return res.status(403).json({ message: "Ezt a foglalast csak a tulajdonosa torolheti." });
+        const booking = snapshot.data();
+
+        if (booking.userId !== req.user.uid && booking.userEmail !== req.user.email) {
+            return res.status(403).json({ message: "Ezt a foglalást csak a tulajdonosa törölheti." });
         }
 
         await bookingRef.delete();
-        return res.json({ message: "Foglalas torolve." });
+        return res.json({ message: "Foglalás törölve." });
     } catch (error) {
-        console.error("Foglalas torlesi hiba:", error);
-        return res.status(500).json({ message: "Nem sikerult torolni a foglalast." });
+        console.error("Booking deletion error:", error);
+        return res.status(500).json({ message: "Nem sikerült törölni a foglalást." });
     }
 });
 

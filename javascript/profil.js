@@ -1,5 +1,5 @@
 // ===============================
-// 🔹 LOCAL IMPORTS
+
 // ===============================
 import { auth, db } from './firebase.js';
 import { api } from './api.js';
@@ -10,7 +10,7 @@ import {
 } from './auth-utils.js';
 
 // ===============================
-// 🔹 FIREBASE AUTH IMPORTS
+
 // ===============================
 import {
     onAuthStateChanged,
@@ -18,7 +18,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 // ===============================
-// 🔹 FIRESTORE IMPORTS
+
 // ===============================
 import {
     doc,
@@ -26,7 +26,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // ===============================
-// 🔹 AUTH STATE LISTENER
+
 // ===============================
 onAuthStateChanged(auth, async (user) => {
     if (!user) {
@@ -57,7 +57,7 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 // ===============================
-// 🔹 LOAD USER PROFILE DATA
+
 // ===============================
 async function loadUserProfile(user) {
     const userRef = doc(db, "users", user.uid);
@@ -68,23 +68,26 @@ async function loadUserProfile(user) {
         if (!snapshot.exists()) return;
 
         const userData = snapshot.data();
+        const missingValueText = "Nincs megadva";
+        const hasProvidedValue = (value) =>
+            value && String(value).trim() && String(value).trim().toLowerCase() !== "not provided";
 
         document.getElementById('prof-name').innerText =
-            userData.fullname || "Nem biztosított";
+            hasProvidedValue(userData.fullname) ? userData.fullname : missingValueText;
 
         document.getElementById('prof-email').innerText =
             userData.email || user.email;
 
         document.getElementById('prof-phone').innerText =
-            userData.phone || "Nem biztosított";
+            hasProvidedValue(userData.phone) ? userData.phone : missingValueText;
 
     } catch (error) {
-        console.error("\n" + "Hiba a felhasználói profil adatainak betöltésekor:", error);
+        console.error("Error while loading user profile data:", error);
     }
 }
 
 // ===============================
-// 🔹 LOAD USER BOOKINGS
+
 // ===============================
 async function loadUserBookings(user) {
     const container = document.getElementById('user-bookings');
@@ -119,13 +122,13 @@ async function loadUserBookings(user) {
         attachDeleteBookingHandlers(user);
 
     } catch (error) {
-        console.error("Hiba a foglalások betöltése során:", error);
-        container.innerHTML = '<p>Failed to load bookings.</p>';
+        console.error("Error while loading bookings:", error);
+        container.innerHTML = '<p>Nem sikerült betölteni a foglalásokat.</p>';
     }
 }
 
 // ===============================
-// 🔹 ATTACH DELETE BUTTON HANDLERS
+
 // ===============================
 function attachDeleteBookingHandlers(user) {
     document.querySelectorAll('.delete-booking-btn').forEach(button => {
@@ -142,7 +145,7 @@ function attachDeleteBookingHandlers(user) {
 
             const currentUser = auth.currentUser;
             if (!currentUser) {
-                console.error("A felhasználó nem lett hitelesítve a törlés során.");
+                console.error("User is not authenticated during deletion.");
                 return;
             }
 
@@ -152,18 +155,18 @@ function attachDeleteBookingHandlers(user) {
 }
 
 // ===============================
-// 🔹 DELETE BOOKING
+
 // ===============================
 async function deleteBooking(bookingId, user) {
     try {
         await api.deleteBooking(user, bookingId);
-        console.log("Foglalás törölve:", bookingId);
+        console.log("Booking deleted:", bookingId);
 
         // Reload bookings after deletion
         loadUserBookings(user);
 
     } catch (error) {
-        console.error("Hiba a foglalás törlésekor:", error);
+        console.error("Error while loading bookings:", error);
         await forgeXModal(
             "Sikertelen törlés",
             "\n" + "Nem tudtuk törölni ezt a foglalást. Kérjük, próbálja meg később."
@@ -172,7 +175,7 @@ async function deleteBooking(bookingId, user) {
 }
 
 // ===============================
-// 🔹 LOGOUT HANDLER
+
 // ===============================
 const logoutButton = document.getElementById('logout-btn');
 

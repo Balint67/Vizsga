@@ -17,13 +17,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const slotsContainer = document.getElementById('available-slots');
     const bookingForm = document.getElementById('bookingForm');
 
-    // Naptár elemei
+
     const calendarDays = document.getElementById('calendar-days');
     const monthYearText = document.getElementById('currentMonthYear');
     const prevBtn = document.getElementById('prevMonth');
     const nextBtn = document.getElementById('nextMonth');
 
-    // --- ADATOK (Meglévő edzők és órák) ---
+
     const trainerSpecs = {
         'hayoto': ["Post-traumás rehabilitáció", "Ízületi mobilitás & gerinc", "Mindfulness & légzés", "Korrektív gyakorlatok"],
         'maya': ["Testtartás javítás", "Súlykontroll és alakformálás", "Funkcionális köredzések", "Kezdők felépítése az alapoktól"],
@@ -33,48 +33,48 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const times = ['08:00', '10:00', '14:00', '16:00', '18:00'];
 
-    // Állapotváltozók
+
     let currentViewDate = new Date();
     let selectedDate = new Date();
     let selectedTime = null;
 
-    // --- ÚJ FUNKCIÓ: AUTOMATIKUS KITÖLTÉS ---
+
     onAuthStateChanged(auth, async (user) => {
         if (user) {
             user = await refreshAndSyncCurrentUser() || user;
 
             if (requiresEmailVerification(user)) {
                 await forgeXModal(
-                    "Email Verification Required",
-                    "Please verify your email address before booking an appointment."
+                    "E-mail ellenőrzés szükséges",
+                    "Kérjük, ellenőrizd az e-mail címedet a foglalás előtt."
                 );
                 window.location.href = "signIn.html";
                 return;
             }
 
-            console.log("Felhasználó felismerve, adatok lekérése...");
+            console.log("Authenticated user detected, loading profile data...");
             try {
                 const userRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(userRef);
 
                 if (docSnap.exists()) {
                     const userData = docSnap.data();
-                    // Kitöltjük a form mezőit a Firestore-ból
+
                     if(document.getElementById('user-name')) document.getElementById('user-name').value = userData.fullname || "";
                     if(document.getElementById('user-email')) document.getElementById('user-email').value = userData.email || user.email;
-                    console.log("Mezők automatikusan kitöltve.");
+                    console.log("Form fields filled automatically.");
                 }
             } catch (error) {
-                console.error("Hiba az adatok előtöltésekor:", error);
+                console.error("Error while preloading user data:", error);
             }
         } else {
-            // Opcionális: Ha nincs belépve, átküldheted a loginra,
-            // hogy ne is tudjon foglalni
-            console.log("Nincs bejelentkezve felhasználó.");
+
+            // so booking is not available without authentication
+            console.log("No authenticated user.");
         }
     });
 
-    // --- 1. FUNKCIÓ: EGYEDI NAPTÁR GENERÁLÁSA (Változatlan) ---
+
     function renderCalendar() {
         if (!calendarDays) return;
         calendarDays.innerHTML = '';
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // --- 2. FUNKCIÓ: IDŐPONTOK GENERÁLÁSA (Változatlan) ---
+
     function renderSlots() {
         slotsContainer.innerHTML = '';
         selectedTime = null;
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- 3. FUNKCIÓ: ÓRÁK GENERÁLÁSA (Változatlan) ---
+
     function renderCourses(trainerKey) {
         courseContainer.innerHTML = '';
         timeArea.style.display = 'none';
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- 4. ESEMÉNYKEZELŐK A NAPTÁRHOZ (Változatlan) ---
+
     if(prevBtn) {
         prevBtn.onclick = (e) => {
             e.preventDefault();
@@ -225,8 +225,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (requiresEmailVerification(user)) {
             await forgeXModal(
-                "Email Verification Required",
-                "Please verify your email address before booking an appointment."
+                "E-mail ellenőrzés szükséges",
+                "Kérjük, ellenőrizd az e-mail címedet a foglalás előtt."
             );
             window.location.href = "signIn.html";
             return;
@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = "profil.html";
 
         } catch (error) {
-            console.error("Firebase save error: ", error);
+            console.error("Booking save error:", error);
             await forgeXModal("Hiba", "Sajnos nem sikerült elmenteni a foglalást. Próbáld újra!");
         }
     });

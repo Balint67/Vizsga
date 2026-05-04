@@ -34,7 +34,7 @@ function getItemAttributeRows(item) {
     if (size) {
         const sizeLabel = ['protein_powder', 'creatine', 'protein_bar', 'shaker', 'gym_bag']
             .includes(productId)
-            ? 'Kiszereles'
+            ? 'Kiszerelés'
             : 'Meret';
 
         rows.push({ label: sizeLabel, value: size });
@@ -42,7 +42,7 @@ function getItemAttributeRows(item) {
 
     if (color) {
         const colorLabel = ['protein_powder', 'protein_bar'].includes(productId)
-            ? 'Iz'
+            ? 'Íz'
             : 'Szin';
 
         rows.push({ label: colorLabel, value: color });
@@ -68,7 +68,7 @@ function loadCartItems() {
     }
 
     if (cartItems.length === 0) {
-        orderItemsDisplay.innerHTML = '<p style="color: #aaa; text-align: center; padding: 20px;">Nincs tetel a kosarban.</p>';
+        orderItemsDisplay.innerHTML = '<p style="color: #aaa; text-align: center; padding: 20px;">Nincs tétel a kosárban.</p>';
         if (orderTotalElement) orderTotalElement.innerText = "0 Ft";
         return;
     }
@@ -127,7 +127,7 @@ async function clearCart() {
                 updatedAt: new Date()
             });
         } catch (error) {
-            console.error("Hiba a Firebase kosar torlesenel:", error);
+            console.error("Firebase cart deletion error:", error);
         }
     }
 }

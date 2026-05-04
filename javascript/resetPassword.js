@@ -17,17 +17,17 @@ if (resetForm && emailInput && resetButton) {
             await sendPasswordResetEmail(auth, emailInput.value.trim());
             await forgeXModal(
                 "Link elkuldve",
-                "Elkuldtuk a jelszo-visszaallito linket az email cimedre."
+                "Elküldtük a jelszó-visszaállító linket az e-mail címedre."
             );
         } catch (error) {
             console.error("Password reset error:", error.code);
             await forgeXModal(
-                "Hiba tortent",
-                "A jelszo-visszaallitas most nem sikerult. Ellenorizd az email címet, majd probald ujra."
+                "Hiba történt",
+                "A jelszó-visszaállítás most nem sikerült. Ellenőrizd az e-mail címet, majd próbáld újra."
             );
         } finally {
             resetButton.disabled = false;
-            resetButton.innerText = "Jelszo visszaallitasa";
+            resetButton.innerText = "Jelszó visszaállítása";
         }
     });
 }

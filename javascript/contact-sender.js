@@ -51,14 +51,14 @@ window.addEventListener('DOMContentLoaded', () => {
         const originalText = submitButton.innerText;
         submitButton.innerText = 'Küldés...';
 
-        // Itt hívjuk meg a küldést
+
         emailjs.sendForm('service_9bstzkn', 'template_oalzvqy', contactForm)
             .then(() => {
                 showStatusModal('Üzenet elküldve', 'Az üzenete sikeresen elküldve.');
                 contactForm.reset();
             })
             .catch((error) => {
-                console.error('Hiba:', error);
+                console.error('Contact form send error:', error);
                 showStatusModal('Hiba történt', 'Sajnos nem sikerült elküldeni az üzenetet.');
             })
             .finally(() => {

@@ -1,6 +1,6 @@
-/* ============================== EDZÉSTERV KOROSZTÁLYOK SZERINT ============================== */
 
-/* Alap konténer optimalizálása a rétegek villogása ellen */
+
+
 .age-plans-section {
     max-width: 1200px;
     margin: 80px auto;
@@ -37,14 +37,14 @@
     margin-top: 40px;
 }
 
-/* ALAP KÁRTYA STÍLUS - ÜVEGHATÁS ÉS VILLOGÁS ELLENI VÉDELEM */
+
 .age-card {
     background: rgba(255, 255, 255, 0.05);
-    /* Üveg effekt */
+
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 
-    /* Hardveres gyorsítás kényszerítése a villogás megszüntetésére */
+
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     -webkit-perspective: 1000px;
@@ -68,7 +68,7 @@
     background: rgba(0, 202, 101, 0.08);
 }
 
-/* KÁRTYA BELSŐ ELEMEI */
+
 .age {
     align-self: flex-start;
     background: #00ca65;
@@ -193,7 +193,7 @@
     filter: brightness(0.9);
 }
 
-/* Modal tartalmának igazítása, hogy a gomb középen legyen */
+
 .modal-content {
     text-align: center;
     padding: 20px;
@@ -203,7 +203,7 @@
     width: 90%;
 }
 
-/* ASZTALI NÉZET: 3 kártya felül */
+
 @media (min-width: 992px) {
     .age-card {
         flex: 0 1 calc(33.333% - 20px);
@@ -211,14 +211,14 @@
     }
 }
 
-/* TÁBLAGÉP NÉZET: 2 oszlopos elrendezés */
+
 @media (max-width: 991px) and (min-width: 651px) {
     .age-card {
         flex: 0 1 calc(50% - 20px);
     }
 }
 
-/* ============================== TELEFONOS NÉZET (NAGYOBB ÉS STABIL) ============================== */
+
 @media (max-width: 650px) {
     .age-plans-section {
         margin: 40px auto;
@@ -231,9 +231,9 @@
 
     .age-card {
         flex: 1 1 100%;
-        padding: 40px 25px; /* Megnövelt belső térköz */
+        padding: 40px 25px;
 
-        /* Villogás elleni végső védelem: kicsit sötétebb háttér, kevesebb blur */
+
         background: rgba(20, 20, 20, 0.85);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
@@ -242,12 +242,12 @@
     }
 
     .age-card h3 {
-        font-size: 1.7rem; /* Nagyobb betűméret */
+        font-size: 1.7rem;
         margin-bottom: 20px;
     }
 
     .age-card p {
-        font-size: 1.1rem; /* Jobb olvashatóság */
+        font-size: 1.1rem;
         line-height: 1.7;
     }
 

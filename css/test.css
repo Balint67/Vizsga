@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: black; /* Ez legyen a háttér */
+    background: black;
     overflow: hidden;
 }
 
@@ -27,8 +27,8 @@
     align-items: center;
     justify-content: center;
 
-    /* Ez a varázslat: */
-    background-color: black; /* Egyezzen a külső háttérrel */
+
+    background-color: black;
     color: white;
-    mix-blend-mode: multiply; /* Kiszűri a fehéret, átengedi a videót */
+    mix-blend-mode: multiply;
 }

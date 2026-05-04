@@ -27,8 +27,8 @@ router.get("/", async (req, res) => {
 
         return res.json(snapshot.docs.map(formatReview));
     } catch (error) {
-        console.error("Ertekelesek lekerdezesi hiba:", error);
-        return res.status(500).json({ message: "Nem sikerult betolteni az ertekeleseket." });
+        console.error("Review query error:", error);
+        return res.status(500).json({ message: "Nem sikerült betölteni az értékeléseket." });
     }
 });
 
@@ -37,7 +37,7 @@ router.post("/", authenticateUser, async (req, res) => {
     const numericRating = Number(rating || 5);
 
     if (!name || !text || numericRating < 1 || numericRating > 5) {
-        return res.status(400).json({ message: "Hibas vagy hianyzo ertekelesi adatok." });
+        return res.status(400).json({ message: "Hibás vagy hiányzó értékelési adatok." });
     }
 
     try {
@@ -59,8 +59,8 @@ router.post("/", authenticateUser, async (req, res) => {
             createdAt: new Date().toISOString()
         });
     } catch (error) {
-        console.error("Ertekeles mentese hiba:", error);
-        return res.status(500).json({ message: "Nem sikerult menteni az ertekelest." });
+        console.error("Review save error:", error);
+        return res.status(500).json({ message: "Nem sikerült menteni az értékelést." });
     }
 });
 
@@ -70,18 +70,18 @@ router.delete("/:id", authenticateUser, async (req, res) => {
         const snapshot = await reviewRef.get();
 
         if (!snapshot.exists) {
-            return res.status(404).json({ message: "Az ertekeles nem talalhato." });
+            return res.status(404).json({ message: "Az értékelés nem található." });
         }
 
         if (snapshot.data().userId !== req.user.uid) {
-            return res.status(403).json({ message: "Ezt az ertekelest csak a tulajdonosa torolheti." });
+            return res.status(403).json({ message: "Ezt az értékelést csak a tulajdonosa törölheti." });
         }
 
         await reviewRef.delete();
-        return res.json({ message: "Ertekeles torolve." });
+        return res.json({ message: "Értékelés törölve." });
     } catch (error) {
-        console.error("Ertekeles torlese hiba:", error);
-        return res.status(500).json({ message: "Nem sikerult torolni az ertekelest." });
+        console.error("Review deletion error:", error);
+        return res.status(500).json({ message: "Nem sikerült törölni az értékelést." });
     }
 });
 

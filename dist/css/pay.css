@@ -253,7 +253,7 @@
     .payment-card input,
     .payment-card textarea {
         padding: 12px;
-        font-size: 16px; /* iOS automatikus zoom megelőzése */
+        font-size: 16px;
     }
 
     .row {

@@ -34,7 +34,7 @@ function getItemAttributeRows(item) {
     if (size) {
         const sizeLabel = ['protein_powder', 'creatine', 'protein_bar', 'shaker', 'gym_bag']
             .includes(productId)
-            ? 'Kiszereles'
+            ? 'Kiszerelés'
             : 'Meret';
 
         rows.push({ label: sizeLabel, value: size });
@@ -42,7 +42,7 @@ function getItemAttributeRows(item) {
 
     if (color) {
         const colorLabel = ['protein_powder', 'protein_bar'].includes(productId)
-            ? 'Iz'
+            ? 'Íz'
             : 'Szin';
 
         rows.push({ label: colorLabel, value: color });
@@ -79,7 +79,7 @@ function renderCart(cartItems, container, totalElement, checkoutButton) {
     container.innerHTML = "";
 
     if (!cartItems || cartItems.length === 0) {
-        container.innerHTML = '<p style="text-align:center;padding:20px;color:#aaa;">A kosarad ures.</p>';
+        container.innerHTML = '<p style="text-align:center;padding:20px;color:#aaa;">A kosarad üres.</p>';
         if (totalElement) totalElement.innerText = "0 Ft";
         if (checkoutButton) checkoutButton.style.display = "none";
         return;

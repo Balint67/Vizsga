@@ -31,7 +31,7 @@ function normalizeEmail(value) {
 function setGoogleButtonLoading(isLoading) {
     if (!googleBtn) return;
     googleBtn.disabled = isLoading;
-    googleBtn.innerHTML = isLoading ? "Google bejelentkezes..." : googleButtonDefaultLabel;
+    googleBtn.innerHTML = isLoading ? "Google bejelentkezés..." : googleButtonDefaultLabel;
 }
 
 function getFriendlyLoginErrorMessage(errorCode) {
@@ -39,45 +39,45 @@ function getFriendlyLoginErrorMessage(errorCode) {
         case 'auth/invalid-credential':
         case 'auth/wrong-password':
         case 'auth/user-not-found':
-            return "Hibas email cim vagy jelszo.";
+            return "Hibás e-mail cím vagy jelszó.";
         case 'auth/too-many-requests':
             return "Tul sok probalkozas tortent. Kerjuk, probald ujra kesobb.";
         case 'auth/invalid-email':
             return "Adj meg egy ervenyes email cimet.";
         case 'auth/network-request-failed':
-            return "Halozati hiba tortent. Ellenorizd az internetkapcsolatot, majd probald ujra.";
+            return "Hálózati hiba történt. Ellenőrizd az internetkapcsolatot, majd próbáld újra.";
         default:
-            return "Hiba tortent a bejelentkezes kozben.";
+            return "Hiba történt a bejelentkezés közben.";
     }
 }
 
 function getGoogleAuthErrorMessage(errorCode) {
     switch (errorCode) {
         case 'auth/account-exists-with-different-credential':
-            return "Ehhez az email cimhez mar tartozik fiok egy masik bejelentkezesi moddal.";
+            return "Ehhez az e-mail címhez már tartozik fiók egy másik bejelentkezési móddal.";
         case 'auth/popup-blocked':
-            return "A bongeszo letiltotta a Google felugro ablakot. Atvaltunk atiranyitasos bejelentkezesre.";
+            return "A böngésző letiltotta a Google felugró ablakot. Átváltunk átirányításos bejelentkezésre.";
         case 'auth/popup-closed-by-user':
         case 'auth/cancelled-popup-request':
             return "";
         case 'auth/operation-not-allowed':
-            return "A Google bejelentkezes nincs engedelyezve a Firebase projektben. Kapcsold be a Google szolgaltatot az Authentication beallitasoknal.";
+            return "A Google bejelentkezés nincs engedélyezve a Firebase projektben. Kapcsold be a Google szolgáltatót az Authentication beállításoknál.";
         case 'auth/unauthorized-domain':
-            return "Ez a domain nincs engedelyezve a Google bejelentkezeshez a Firebase projektben. Add hozza az aktualis domaint az Authentication > Settings > Authorized domains listahoz.";
+            return "Ez a domain nincs engedélyezve a Google bejelentkezéshez a Firebase projektben. Add hozzá az aktuális domaint az Authentication > Settings > Authorized domains listához.";
         case 'auth/network-request-failed':
-            return "Halozati hiba tortent a Google bejelentkezes kozben. Probald ujra stabil kapcsolattal.";
+            return "Hálózati hiba történt a Google bejelentkezés közben. Próbáld újra stabil kapcsolattal.";
         case 'permission-denied':
-            return "A Google fiokkal sikerult hitelesiteni, de az adatbazis nem engedte a profil menteset. A Firestore szabalyokat telepiteni kell.";
+            return "A Google-fiókkal sikerült hitelesíteni, de az adatbázis nem engedte a profil mentését. A Firestore szabályokat telepíteni kell.";
         default:
-            return "Nem sikerult a Google bejelentkezes. Kerjuk, probald ujra.";
+            return "Nem sikerült a Google bejelentkezés. Kérjük, próbáld újra.";
     }
 }
 
 async function saveGoogleUserProfile(user, additionalUserInfo) {
     const userDoc = {
-        fullname: user.displayName || "Not provided",
+        fullname: user.displayName || "",
         email: user.email || "",
-        phone: user.phoneNumber || "Not provided",
+        phone: user.phoneNumber || "",
         provider: "google",
         emailVerified: true,
         lastLoginAt: new Date()
@@ -106,8 +106,8 @@ async function finalizeGoogleSignIn(result) {
 
     if (additionalUserInfo?.isNewUser) {
         await forgeXModal(
-            "Google regisztracio kesz",
-            "A Google-fiokod sikeresen letrejott, most mar be is vagy jelentkezve."
+            "Google regisztráció kész",
+            "A Google-fiókod sikeresen létrejött, most már be is vagy jelentkezve."
         );
     }
 
@@ -134,7 +134,7 @@ async function handleGoogleLogin() {
 
         const errorMessage = getGoogleAuthErrorMessage(error.code);
         if (errorMessage) {
-            await forgeXModal("Bejelentkezesi hiba", errorMessage);
+            await forgeXModal("Bejelentkezési hiba", errorMessage);
         }
     } finally {
         setGoogleButtonLoading(false);
@@ -152,7 +152,7 @@ async function handlePendingGoogleRedirect() {
         console.error("Google redirect error:", error.code);
         const errorMessage = getGoogleAuthErrorMessage(error.code);
         if (errorMessage) {
-            await forgeXModal("Bejelentkezesi hiba", errorMessage);
+            await forgeXModal("Bejelentkezési hiba", errorMessage);
         }
     } finally {
         setGoogleButtonLoading(false);
@@ -166,7 +166,7 @@ const searchParams = new URLSearchParams(window.location.search);
 if (searchParams.get('verified') === '1') {
     forgeXModal(
         "Email megerositve",
-        "Az email cimedet sikeresen megerositettuk. Most mar be tudsz jelentkezni."
+        "Az e-mail címedet sikeresen megerősítettük. Most már be tudsz jelentkezni."
     );
     window.history.replaceState({}, document.title, window.location.pathname);
 }
@@ -207,7 +207,7 @@ if (loginForm) {
             window.location.href = "index.html";
         } catch (error) {
             console.error("Authentication error:", error.code);
-            await forgeXModal("Bejelentkezesi hiba", getFriendlyLoginErrorMessage(error.code));
+            await forgeXModal("Bejelentkezési hiba", getFriendlyLoginErrorMessage(error.code));
         }
     });
 }
@@ -223,8 +223,8 @@ if (resendButton) {
 
         if (!email || !password) {
             await forgeXModal(
-                "Hianyzo adatok",
-                "Add meg eloszor az email cimedet es a jelszavadat, majd kattints az ujrakuldes gombra."
+                "Hiányzó adatok",
+                "Add meg először az e-mail címedet és a jelszavadat, majd kattints az újraküldés gombra."
             );
             return;
         }
@@ -255,7 +255,7 @@ if (resendButton) {
             );
         } catch (error) {
             console.error("Resend verification error:", error.code);
-            await forgeXModal("Megerositasi hiba", getFriendlyLoginErrorMessage(error.code));
+            await forgeXModal("Megerősítési hiba", getFriendlyLoginErrorMessage(error.code));
         } finally {
             await signOut(auth).catch(() => {});
             resendButton.disabled = false;

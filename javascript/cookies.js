@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             saveButton.style.filter = '';
             showStatusModal(
                 'Beallitasok elmentve',
-                'A suti beallitasokat sikeresen frissitettuk.'
+                'A süti beállításokat sikeresen frissítettük.'
             );
         }, 600);
     });

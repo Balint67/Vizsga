@@ -5,7 +5,7 @@ import { forgeXModal } from './utils.js';
 
 let currentUserId = null;
 
-// Figyeljük a bejelentkezést a szinkronizációhoz
+
 onAuthStateChanged(auth, (user) => {
     currentUserId = user ? user.uid : null;
 });
@@ -21,7 +21,7 @@ function initModals() {
     const cartCountElement = document.getElementById('cart-count');
 
     if (!modal || !video || !source || !addToCartBtn) {
-        console.error("Hiba: Néhány modal elem hiányzik a HTML-ből!");
+        console.error("Error: Some modal elements are missing from the HTML.");
         return;
     }
 
@@ -40,12 +40,12 @@ function initModals() {
             return;
         }
 
-        // 1. LocalStorage betöltése
+
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-        // 2. Új tétel összeállítása a közös formátum szerint
+
         const newItem = {
-            id: Date.now().toString(), // Egyedi ID a törléshez
+            id: Date.now().toString(),
             title: item.title,
             price: Number(item.price),
             size: "Digitális",
@@ -57,22 +57,22 @@ function initModals() {
         cart.push(newItem);
         localStorage.setItem("cart", JSON.stringify(cart));
 
-        // 3. Fejléc számláló frissítése
+
         if (cartCountElement) {
             cartCountElement.innerText = cart.length;
         }
 
-        // 4. Firestore szinkronizáció
+
         try {
             await setDoc(doc(db, "carts", currentUserId), {
                 items: cart,
                 updatedAt: new Date()
             });
         } catch (error) {
-            console.error("Firebase hiba:", error);
+            console.error("Firebase error:", error);
         }
 
-        // 5. Vizuális visszajelzés
+
         if (typeof forgeXModal === "function") {
             await forgeXModal("Kosárba téve", `${item.title} bekerült a kosaradba!`);
         } else {
@@ -90,7 +90,7 @@ function initModals() {
         source.src = data.video;
         addToCartBtn.innerText = `Kosárba teszem - ${data.price.toLocaleString('hu-HU')} Ft`;
 
-        // Gomb eseménykezelő beállítása
+
         addToCartBtn.onclick = () => handleAddToCart(data);
 
         video.load();

@@ -20,7 +20,7 @@
 
 .trainers-grid {
     display: grid;
-    /* ha kicsi a hely, csökken */
+
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
 }
@@ -42,7 +42,7 @@
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 
-/* Kép tartó */
+
 .card-image {
     width: 100%;
     height: 600px;
@@ -133,7 +133,7 @@
 .single-trainer-page .trainer-info-side {
     flex: 1.2;
     display: flex;
-    align-items: flex-start; /* a tetejére igazodik */
+    align-items: flex-start;
 }
 
 .single-trainer-page .glass-content {
@@ -243,7 +243,7 @@
     }
 }
 
-/* Konténer a képnek és az alatta lévő infónak */
+
 .single-trainer-page .trainer-profile-box {
     width: 100%;
     max-width: 450px;
@@ -260,7 +260,7 @@
     box-shadow: none;
 }
 
-/* Információs rész a kép alatt */
+
 .single-trainer-page .trainer-under-info {
     padding: 25px;
     color: white;
@@ -280,7 +280,7 @@
     font-weight: 600;
 }
 
-/* Elérhetőségek */
+
 .single-trainer-page .trainer-contact-list {
     display: flex;
     flex-direction: column;

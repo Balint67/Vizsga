@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const deleteButton = document.createElement('button');
         deleteButton.className = 'delete-review';
         deleteButton.type = 'button';
-        deleteButton.setAttribute('aria-label', 'Delete review');
+        deleteButton.setAttribute('aria-label', 'Értékelés törlése');
         deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
         deleteButton.addEventListener('click', () => {
             pendingDeleteId = reviewId;
@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
             await api.deleteReview(currentUser, pendingDeleteId);
             removeReviewCard(pendingDeleteId);
         } catch (error) {
-            console.error('Hiba az üzenet törlése közben:', error);
+            console.error('Error while deleting review:', error);
             await forgeXModal(
                 'A törlés sikertelen',
                 'Jelneleg nem tudjuk törölni ezt az értékelést. Kérjük, probálja meg késöbb.'
@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const originalButtonText = submitButton.innerText;
         submitButton.disabled = true;
-        submitButton.innerText = 'Sending...';
+        submitButton.innerText = 'Küldés...';
 
         try {
             const review = await api.createReview(currentUser, {
@@ -288,8 +288,8 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('Error while saving review:', error);
             await forgeXModal(
-                'Save failed',
-                'We could not save your review. Please make sure you are signed in and that Firestore allows writes to the reviews collection.'
+                'Mentés sikertelen',
+                'Nem sikerült menteni az értékelést. Kérjük, ellenőrizd, hogy be vagy-e jelentkezve, majd próbáld újra.'
             );
         } finally {
             submitButton.disabled = false;
